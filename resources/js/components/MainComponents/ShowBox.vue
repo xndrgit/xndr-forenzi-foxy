@@ -1,26 +1,26 @@
 <template>
     <div>
         <div class="d-flex">
-            <div class="left w-50">
+            <div class="left col-5 d-flex justify-content-center">
                 <img
                     class="img-fluid"
-                    src="https://www.pngmart.com/files/7/Box-PNG-Free-Download.png"
+                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
                     alt=""
                 />
             </div>
-            <div class="right w-50">
+            <div class="right col-7">
                 <div>
-                    <h2 class="fw-bold">{{ product.name }}</h2>
+                    <h2 class="font-weight-bold">{{ product.name }}</h2>
                     <span class="price font-weight-bold"
-                        ><strong>{{ product.length }} L x</strong>
-                        <strong>{{ product.width }} P x</strong>
-                        <strong>{{ product.height }} H</strong>
+                        >{{ product.length }} x {{ product.width }} x
+                        {{ product.height }} cm
                     </span>
+                    <hr class="w-5" />
                     <!-- <div class="stars">
                         <i v-for="n in 5" :key="n" class="far fa-star"></i>
                     </div> -->
                     <div class="d-flex align-items-center">
-                        <h1>€ {{ product.price }}</h1>
+                        <h4 class="font-weight-bold">€{{ product.price }}</h4>
                         <span class="fw-bold px-2">prezzo cad.</span>
                     </div>
                     <p>
@@ -102,12 +102,10 @@
                         <td class="td2">€ {{ product.fourth_price }}</td>
                     </tr>
                 </table>
-                <h5 class="fw-bold py-2">
-                    PREZZO TOTALE CON IVA E CONAI:
-                    <span style="color: orange"
-                        >€ {{ totalPrice.toFixed(2) }}</span
-                    >
-                </h5>
+                <div class="d-flex align-items-center font-weight-bold py-2">
+                    <h6 class=" ">PREZZO TOTALE CON IVA E CONAI: </h6>
+                    <h6 class="mx-2" style="color: orange"> € {{ totalPrice.toFixed(2) }}</h6>
+                </div>
             </div>
         </div>
 
@@ -116,7 +114,7 @@
             <!-- <a href="#">SCATOLA CONSEGNA</a>
             <a href="#">SPEDIZIONE</a> -->
         </nav>
-        <table class="alternating-rows my-5">
+        <table class="alternating-rows">
             <tr>
                 <td class="td1">Tipologia:</td>
                 <td class="td2">{{ product.category.name }}</td>
@@ -205,6 +203,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+span {
+    font-size: 0.6rem;
+    margin-right: 3px;
+}
+strong {
+    font-size: 0.6rem;
+}
+img {
+    border: 1px solid lightgray;
+    padding: 3rem;
+    object-fit: cover;
+}
 input {
     width: 50px;
     text-align: center;
@@ -214,9 +224,7 @@ input {
 // NAV BAR
 nav {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    padding: 1rem;
     margin: 1rem;
     border-bottom: 1px solid lightgray;
 
@@ -251,7 +259,8 @@ table {
 }
 
 td {
-    padding: 0px;
+    font-size: 0.6rem;
+    padding: 1rem;
 }
 
 .td1 {

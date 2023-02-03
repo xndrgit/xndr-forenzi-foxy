@@ -1,7 +1,7 @@
 <template>
     <div class="FooterBottom">
         <div
-            class="container-lg d-flex align-items-center justify-content-between"
+            class="container-lg d-flex align-items-center justify-content-center"
         >
             <div class="d-flex align-items-center">
                 <p class="policy">
