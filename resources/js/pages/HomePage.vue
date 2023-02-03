@@ -25,7 +25,8 @@
                     :descriptionBold="element.descriptionBold"
                 />
 
-                <BoxesComponent
+                <LoadingRollComponent v-if="loadingProducts"/>
+                <BoxesComponent v-else
                     v-for="product in products"
                     :key="product.name"
                     :product="product"
@@ -51,6 +52,7 @@
 <script>
 import axios from "axios";
 import LoadingComponent from "../components/MainComponents/LoadingComponent.vue";
+import LoadingRollComponent from "../components/MainComponents/LoadingRollComponent.vue";
 
 import NavBoxesComponent from "../components/MainComponents/NavBoxesComponent.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
@@ -64,6 +66,7 @@ export default {
     name: "HomeComponent",
     components: {
         LoadingComponent,
+        LoadingRollComponent,
 
         NavBoxesComponent,
         BannerNewsComponent,
@@ -80,6 +83,7 @@ export default {
             currentPageCategories: 1,
             lastPageCategories: null,
             loadingCategories: true,
+            loadingProducts: true,
 
             txtbanners: [
                 {
@@ -126,12 +130,14 @@ export default {
                 });
         },
         getProducts() {
+            this.loadingProducts = true;
             axios
                 .get("/api/products", {})
                 .then((response) => {
                     console.log("products");
                     console.log(response.data.results);
                     this.products = response.data.results;
+                    this.loadingProducts = false;
                 })
                 .catch((error) => {
                     console.warn(error.message);

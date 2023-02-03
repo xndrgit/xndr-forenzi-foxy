@@ -103,8 +103,10 @@
                     </tr>
                 </table>
                 <div class="d-flex align-items-center font-weight-bold py-2">
-                    <h6 class=" ">PREZZO TOTALE CON IVA E CONAI: </h6>
-                    <h6 class="mx-2" style="color: orange"> € {{ totalPrice.toFixed(2) }}</h6>
+                    <h6 class=" ">PREZZO TOTALE CON IVA E CONAI:</h6>
+                    <h6 class="mx-2" style="color: orange">
+                        € {{ totalPrice.toFixed(2) }}
+                    </h6>
                 </div>
             </div>
         </div>

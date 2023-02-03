@@ -4,8 +4,8 @@
             <div class="right">
                 <div class="d-flex">
                     <div class="w-75">
-                        <h2 class="fw-bold">{{ category.name }}</h2>
-                        <h6 class="fw-bold">
+                        <h2 class="font-weight-bold">{{ category.name }}</h2>
+                        <h6 class="font-weight-bold">
                             {{ category.description }}
                         </h6>
                         <!-- <div class="stars">
@@ -21,11 +21,7 @@
                         </p>
                     </div>
                     <div class="w-25 p-5">
-                        <img
-                            class="img-fluid"
-                            :src="category.img"
-                            alt=""
-                        />
+                        <img class="img-fluid" :src="category.img" alt="" />
                     </div>
                 </div>
 

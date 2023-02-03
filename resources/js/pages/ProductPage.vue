@@ -5,7 +5,6 @@
 
             <div class="d-flex justify-content-center" v-else>
                 <NavBoxesComponent
-
                     v-for="category in categories"
                     :key="category.name"
                     :category="category"
@@ -77,6 +76,7 @@ export default {
                     console.warn(error.message);
                 });
         },
+      
     },
     created() {
         this.getCategories();
