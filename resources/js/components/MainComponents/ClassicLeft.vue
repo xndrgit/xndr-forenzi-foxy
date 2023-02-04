@@ -20,11 +20,7 @@
                     </button>
                 </div>
                 <div class="classic-image col-6 d-flex align-items-center">
-                    <img
-                        class="img-fluid"
-                        src="https://pngimg.com/uploads/box/box_PNG140.png"
-                        alt=""
-                    />
+                    <img class="img-fluid" src="../../../../public/Links/scatole.jpg" :alt="img" />
                 </div>
             </div>
         </div>

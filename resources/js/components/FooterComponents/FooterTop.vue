@@ -51,7 +51,7 @@
                     <form>
                         <input type="email" placeholder="" />
                         <br />
-                        <button class="dark-button" type="submit">
+                        <button class="dark-button text-white" type="submit">
                             ISCRIVITI
                         </button>
                     </form>

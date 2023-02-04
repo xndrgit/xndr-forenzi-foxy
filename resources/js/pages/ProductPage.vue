@@ -14,6 +14,10 @@
                 </div>
             </div>
 
+            <div class="d-flex justify-content-center">
+                <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
+            </div>
+
             <div class="row py-5">
                 <ShowBox />
                 <!-- <h4 class="fw-bold py-2">Elenco formati disponibili</h4> -->
@@ -32,7 +36,10 @@ import ShowBox from "../components/MainComponents/ShowBox.vue";
 
 import NavBoxesComponent from "../components/MainComponents/NavBoxesComponent.vue";
 import CustomizeBoxesComponent from "../components/MainComponents/CustomizeBoxesComponent.vue";
+
 import LoadingComponent from "../components/MainComponents/LoadingComponent.vue";
+import LoadingRollComponent from "../components/MainComponents/LoadingRollComponent.vue";
+
 // import TableComponent from "../components/MainComponents/TableComponent.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
 
@@ -42,7 +49,10 @@ export default {
         ShowBox,
 
         NavBoxesComponent,
+
         LoadingComponent,
+        LoadingRollComponent,
+
         CustomizeBoxesComponent,
         // TableComponent,
         BannerNewsComponent,
@@ -51,6 +61,7 @@ export default {
         return {
             categories: [],
             loadingCategories: true,
+            loadingProduct: true,
         };
     },
     methods: {
@@ -76,10 +87,23 @@ export default {
                     console.warn(error.message);
                 });
         },
-      
+        getProduct() {
+            this.loadingProduct = true;
+            axios
+                .get(`/api/products/${this.$route.params.id}`)
+                .then((response) => {
+                    this.product = response.data.results;
+                    console.log(this.product);
+                    this.loadingProduct = false;
+                })
+                .catch((error) => {
+                    console.warn(error.message);
+                });
+        },
     },
     created() {
         this.getCategories();
+        this.getProduct();
     },
 };
 </script>

@@ -25,8 +25,9 @@
                     :descriptionBold="element.descriptionBold"
                 />
 
-                <LoadingRollComponent v-if="loadingProducts"/>
-                <BoxesComponent v-else
+                <LoadingRollComponent v-if="loadingProducts" />
+                <BoxesComponent
+                    v-else
                     v-for="product in products"
                     :key="product.name"
                     :product="product"
@@ -63,7 +64,7 @@ import ClassicRight from "../components/MainComponents/ClassicRight.vue";
 import CustomizeBoxesComponent from "../components/MainComponents/CustomizeBoxesComponent.vue";
 
 export default {
-    name: "HomeComponent",
+    name: "HomePage",
     components: {
         LoadingComponent,
         LoadingRollComponent,

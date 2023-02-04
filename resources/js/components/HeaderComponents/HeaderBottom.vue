@@ -43,7 +43,7 @@
                                         class="btn btn-outline-secondary"
                                         type="button"
                                     >
-                                        <i class="fa fa-search"></i>
+                                        <i class="fa fa-lg fa-search"></i>
                                     </button>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                         class="btn btn-outline-secondary"
                                         type="button"
                                     >
-                                        <i class="fa fa-search"></i>
+                                        <i class="fa fa-lg fa-search"></i>
                                     </button>
                                 </div>
                             </div>

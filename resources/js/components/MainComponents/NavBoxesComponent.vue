@@ -9,33 +9,36 @@
                         class="card d-flex align-items-center position-relative"
                         :class="category.color"
                     >
-                        <router-link
-                            :to="{
-                                name: 'category',
-                                params: { id: category.id },
-                            }"
-                        >
-                            <img
-                                class="card-img-top"
-                                :src="category.img"
-                                alt="img"
-                            />
-                        </router-link>
-
-                        <div class="litlogo position-absolute">
-                            <img
-                                class="img-fluid"
-                                :src="category.img2"
-                                alt="img2"
-                            />
+                        <div class="up">
+                            <router-link
+                                :to="{
+                                    name: 'category',
+                                    params: { id: category.id },
+                                }"
+                            >
+                                <img
+                                    class="card-img-top"
+                                    :src="category.img"
+                                    alt="img"
+                                />
+                            </router-link>
+                            <div class="litlogo position-absolute">
+                                <img
+                                    class="img-fluid"
+                                    :src="category.img2"
+                                    alt="img2"
+                                />
+                            </div>
                         </div>
 
-                        <div class="card-body text-center p-1">
-                            <span class="card-title">SCATOLE</span>
-                            <br />
-                            <span class="card-text font-weight-bold"
-                                >{{ category.name }}
-                            </span>
+                        <div class="down">
+                            <div class="card-body text-center p-1">
+                                <span class="card-title">SCATOLE</span>
+                                <br />
+                                <span class="card-text font-weight-bold"
+                                    >{{ category.name }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,19 +83,27 @@ export default {
             transform: scale(0.95);
             cursor: pointer;
         }
-        span {
-            font-size: 0.8rem;
+
+        .up {
+            height: 60%;
+            img {
+                padding: 10px;
+                max-height: 120px;
+            }
+            .litlogo {
+                bottom: 60px;
+                right: 0px;
+                height: 60px;
+                width: 60px;
+            }
         }
 
-        img {
-            padding: 10px;
-            max-height: 120px;
-        }
-        .litlogo {
-            bottom: 60px;
-            right: 0px;
-            height: 60px;
-            width: 60px;
+        .down {
+            height: 40%;
+
+            span {
+                font-size: 0.8rem;
+            }
         }
     }
 

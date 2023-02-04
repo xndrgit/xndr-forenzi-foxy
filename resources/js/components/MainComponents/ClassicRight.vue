@@ -1,14 +1,15 @@
 <template>
     <section class="classic">
-        <div class="container d-flex">
-            <div class="classic-image col-4 d-flex justify-content-center">
+        <div class="container d-flex align-items-center">
+            <div class="classic-image col-3 d-flex justify-content-center">
                 <img alt="" class="" src="../../../../public/Links/01.png" />
             </div>
-            <div class="classic-image col-4 d-flex justify-content-center">
+            <div class="col-1"></div>
+            <div class="classic-image col-4">
                 <img
                     alt=""
                     class="img-fluid"
-                    src="../../../../public/Links/02.png"
+                    src="../../../../public/Links/rectangle.png"
                 />
             </div>
             <div

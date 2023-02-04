@@ -1,5 +1,9 @@
 <template>
     <div>
+        <!-- <div class="d-flex justify-content-center" v-if="loadingCategory">
+            <LoadingRollComponent />
+        </div> -->
+
         <div class="d-flex">
             <div class="right">
                 <div class="d-flex">
@@ -50,10 +54,12 @@
 
 <script>
 export default {
+    components: {},
     data() {
         return {
             value: 100,
             category: {},
+            loadingCategory: true,
         };
     },
     methods: {
@@ -64,11 +70,13 @@ export default {
             this.value -= 10;
         },
         getCategory() {
+            this.loadingCategory = true;
             axios
                 .get(`/api/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
                     console.log(this.category);
+                    this.loadingCategory = false;
                 })
                 .catch((error) => {
                     console.warn(error.message);

@@ -6,7 +6,7 @@
             </h1>
         </div>
 
-        <div class=" mx-5 px-5">
+        <div class="mx-5 px-5">
             <span class="text">
                 {{ description }}
             </span>

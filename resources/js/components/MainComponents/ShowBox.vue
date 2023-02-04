@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="d-flex">
+        <LoadingRollComponent v-if="loadingProduct" />
+        <div class="d-flex justify-content-center">
             <div class="left col-5 d-flex justify-content-center">
                 <img
                     class="img-fluid"
@@ -146,13 +147,18 @@
 
 <script>
 import axios from "axios";
+import LoadingRollComponent from "../MainComponents/LoadingRollComponent.vue";
 export default {
+    components: {
+        LoadingRollComponent,
+    },
     data() {
         return {
             value: 100,
             isReadOnly: true,
             product: {},
             priceDynamic: "",
+            loadingProduct: true,
         };
     },
     methods: {
@@ -163,11 +169,13 @@ export default {
             this.value -= 10;
         },
         getProduct() {
+            this.loadingProduct = true;
             axios
                 .get(`/api/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
                     console.log(this.product);
+                    this.loadingProduct = false;
                 })
                 .catch((error) => {
                     console.warn(error.message);
