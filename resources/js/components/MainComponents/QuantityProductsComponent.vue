@@ -7,6 +7,7 @@
             v-model="quantity"
             readonly
             id="quantity-input"
+            @input="updateQuantity"
         />
         <button @click="incrementQuantity" id="plus-button">+</button>
     </div>
@@ -29,6 +30,7 @@ export default {
     methods: {
         incrementQuantity() {
             this.quantity += this.product.purchasable_in_multi_of || 1;
+            this.$emit("update-quantity", this.quantity);
         },
         decrementQuantity() {
             if (this.quantity >= (this.product.purchasable_in_multi_of || 1)) {
@@ -36,7 +38,15 @@ export default {
                 if (this.quantity < this.product.purchasable_in_multi_of)
                     this.quantity = this.product.purchasable_in_multi_of;
             }
+            this.$emit("update-quantity", this.quantity);
         },
+        updateQuantity() {
+            console.log("Child component - quantity updated:", this.quantity);
+            this.$emit("update-quantity", this.quantity);
+        },
+    },
+    mounted() {
+        this.decrementQuantity();
     },
 };
 </script>
@@ -47,7 +57,7 @@ export default {
     display: flex;
     input {
         text-align: center;
-        max-width: 40px;
+        max-width: 45px;
         height: fit-content;
     }
 

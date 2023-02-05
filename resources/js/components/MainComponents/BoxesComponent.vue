@@ -40,7 +40,11 @@
                         </button>
                     </div>
                     <div class="right">
-                        <QuantityProductsComponent :product="product" />
+                        <QuantityProductsComponent
+                            @update-quantity="updateQuantity"
+                            :product="product"
+                        />
+                        <!-- <p>Quantity: {{ quantity }}</p> -->
                     </div>
                 </div>
             </div>
@@ -64,7 +68,7 @@ export default {
     },
     data() {
         return {
-            quantity: this.product.purchasable_in_multi_of || 1,
+            quantity: 0,
         };
     },
     methods: {
@@ -75,6 +79,7 @@ export default {
             if (!this.$store.state.isAuth) {
                 //not login
                 alert("Try to login");
+                this.$router.push("/login");
                 return;
             }
             axios
@@ -92,6 +97,10 @@ export default {
                 .catch((err) => {
                     //handle error
                 });
+        },
+        updateQuantity(value) {
+            console.log("value:", value);
+            this.quantity = value;
         },
     },
 };

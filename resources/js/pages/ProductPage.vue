@@ -16,14 +16,12 @@
 
             <div class="d-flex justify-content-center">
                 <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
+                <ShowBox v-else />
             </div>
 
-            <div class="row py-5">
-                <ShowBox />
-                <!-- <h4 class="fw-bold py-2">Elenco formati disponibili</h4> -->
-                <!-- <TableComponent /> -->
-                <BannerNewsComponent />
-            </div>
+            <!-- <h4 class="fw-bold py-2">Elenco formati disponibili</h4> -->
+            <!-- <TableComponent /> -->
+            <BannerNewsComponent />
         </div>
 
         <ClassicLeft />

@@ -55,19 +55,23 @@
                                         {{ $order->status }}
                                     </span>
                                 </td>
-                                <td>
-                                    <span
-                                        class="badge badge-pill py-1"
-                                        style="
-                                        @if ($order->payment->payment_status == 'successo') background-color: #005c00;
-                                        @elseif($order->payment->payment_status == 'fallito') 
-                                            background-color: #8b0000;
-                                        @elseif($order->payment->payment_status == 'in attesa') 
-                                            background-color: #cccc00; @endif"
-                                    >
-                                        {{ $order->payment->payment_status }}
-                                    </span>
-                                </td>
+                                @if (isset($order->payment) && isset($order->payment->payment_status))
+                                    <td>
+                                        <span
+                                            class="badge badge-pill py-1"
+                                            style="
+                                                @if ($order->payment->payment_status == 'successo') background-color: #005c00;
+                                                @elseif($order->payment->payment_status == 'fallito') 
+                                                    background-color: #8b0000;
+                                                @elseif($order->payment->payment_status == 'in attesa') 
+                                                    background-color: #cccc00; @endif"
+                                        >
+                                            {{ $order->payment->payment_status }}
+                                        </span>
+                                    </td>
+                                @else
+                                    <td>N/A</td>
+                                @endif
                                 <td>€{{ $order->total }}</td>
                                 <td>
                                     <a
