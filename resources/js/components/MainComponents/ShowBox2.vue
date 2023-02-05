@@ -6,26 +6,33 @@
 
         <div class="d-flex">
             <div class="right">
-                <div class="d-flex">
-                    <div class="w-75">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="w-60">
                         <h2 class="font-weight-bold">{{ category.name }}</h2>
                         <h6 class="font-weight-bold">
-                            {{ category.description }}
+                            {{ category.mini_description }}
                         </h6>
                         <!-- <div class="stars">
                         <i v-for="n in 5" :key="n" class="far fa-star"></i>
                     </div> -->
                         <div class="d-flex align-items-center">
                             <span>da </span>
-                            <h3 class="p-2">€ 2,08</h3>
+                            <h3 class="p-2 font-weight-bold">
+                                € {{ minimumPrice }}
+                            </h3>
                             <span>IVA esclusa</span>
                         </div>
-                        <p>
+                        <span>
                             {{ category.description }}
-                        </p>
+                        </span>
                     </div>
-                    <div class="w-25 p-5">
+                    <div class="w-25 position-relative">
                         <img class="img-fluid" :src="category.img" alt="" />
+                        <img
+                            class="logo img-fluid position-absolute"
+                            :src="category.img2"
+                            alt=""
+                        />
                     </div>
                 </div>
 
@@ -70,13 +77,17 @@ export default {
             this.value -= 10;
         },
         getCategory() {
+            console.log(this.loadingCategory);
             this.loadingCategory = true;
             axios
                 .get(`/api/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
                     console.log(this.category);
-                    this.loadingCategory = false;
+                    setTimeout(() => {
+                        console.log(this.loadingCategory);
+                        this.loadingCategory = false;
+                    }, 1000);
                 })
                 .catch((error) => {
                     console.warn(error.message);
@@ -89,10 +100,37 @@ export default {
     mounted() {
         window.scrollTo(0, 0);
     },
+    computed: {
+        minimumPrice() {
+            console.log(
+                this.category.products.map((product) =>
+                    Math.min(product.price, product.price_saled)
+                )
+            );
+            return Math.min(
+                ...this.category.products.map((product) =>
+                    product.price_saled === null
+                        ? product.price
+                        : Math.min(product.price, product.price_saled)
+                )
+            );
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
+.logo {
+    height: 120px;
+    right: 10px;
+    top: 10px;
+
+    // border: 5px solid white;
+    // border-radius: 50%;
+}
+span {
+    font-size: 0.8rem;
+}
 input[type="checkbox"] {
     border: 0;
     width: 20px;

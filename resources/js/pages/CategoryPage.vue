@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <div class="container">
-            <div class="d-flex justify-content-center" v-if="loadingProduct">
+            <div class="d-flex justify-content-center" v-if="loadingCategory">
                 <LoadingRollComponent />
             </div>
             <div class="row" v-else>
@@ -34,19 +34,23 @@ export default {
     },
     data() {
         return {
-            loadingProduct: true,
-            product: [],
+            loadingCategory: true,
+            category: [],
         };
     },
     methods: {
-        getProduct() {
-            this.loadingProduct = true;
+        getCategory() {
+            this.loadingCategory = true;
+            console.log(this.loadingCategory);
             axios
-                .get(`/api/products/${this.$route.params.id}`)
+                .get(`/api/categories/${this.$route.params.id}`)
                 .then((response) => {
-                    this.product = response.data.results;
-                    console.log(this.product);
-                    this.loadingProduct = false;
+                    this.category = response.data.results;
+                    console.log(this.category);
+                    setTimeout(() => {
+                        this.loadingCategory = false;
+                        console.log(this.loadingCategory);
+                    }, 1000);
                 })
                 .catch((error) => {
                     console.warn(error.message);
@@ -54,7 +58,7 @@ export default {
         },
     },
     created() {
-        this.getProduct();
+        this.getCategory();
     },
 };
 </script>
