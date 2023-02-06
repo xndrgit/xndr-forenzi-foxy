@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
+import ConfirmPage from "./pages/ConfirmPage";
 
 const router = new VueRouter({
     mode: "history",
@@ -42,6 +43,11 @@ const router = new VueRouter({
             path: "/checkout",
             name: "checkout",
             component: CheckoutPage,
+        },
+        {
+            path: "/confirm",
+            name: "confirm",
+            component: ConfirmPage,
         },
     ],
 });
