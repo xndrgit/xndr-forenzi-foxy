@@ -4,6 +4,7 @@ import App from "./views/App";
 import VueRouter from "vue-router";
 import router from "./router.js";
 
+
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import Vuelidate from 'vuelidate';

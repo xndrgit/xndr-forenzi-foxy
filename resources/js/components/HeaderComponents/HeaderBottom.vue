@@ -21,12 +21,14 @@
                                     style="width: 60px"
                                     type="number"
                                     class="form-control"
+                                    v-model="length"
                                     placeholder="Lato Lungo"
                                     max="99"
                                 />
                                 <input
                                     style="width: 60px"
                                     type="number"
+                                    v-model="height"
                                     class="form-control"
                                     placeholder="Lato Corto"
                                     max="99"
@@ -34,6 +36,7 @@
                                 <input
                                     type="number"
                                     class="form-control"
+                                    v-model="width"
                                     placeholder="Altezza"
                                     max="99"
                                 />
@@ -41,7 +44,7 @@
                                 <div class="input-group-append">
                                     <button
                                         class="btn btn-outline-secondary"
-                                        type="button"
+                                        type="submit" @click="search()"
                                     >
                                         <i class="fa fa-lg fa-search"></i>
                                     </button>
@@ -72,7 +75,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+    data() {
+
+        return {
+
+            length: '',
+            width: '',
+            height: '',
+            results:[],
+
+
+        }
+        
+}
+
+};
 </script>
 
 errors: 1-Inserting lang=scss in the
