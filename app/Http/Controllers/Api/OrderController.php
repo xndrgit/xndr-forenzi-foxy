@@ -103,7 +103,7 @@ class OrderController extends Controller
                     ['status', '=', 'in attesa']
                 ])->first()['id'];
 
-                DB::table('order_product')->create([
+                DB::table('order_product')->insert([
                     'product_id' => $order_product['id'],
                     'quantity' => $order_product['quantity'],
                     'order_id' => $order_id,

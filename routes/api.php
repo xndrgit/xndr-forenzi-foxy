@@ -34,7 +34,7 @@ Route::namespace('api')->group(function () {
     Route::post('/orders/transmit/{id}', 'OrderController@transmit');
     Route::delete('/orders/{id}', 'OrderController@destroy');
     
-    Route::get('/cart/{id}', 'OrderController@create');
+    // Route::get('/cart/{id}', 'OrderController@create');
 
     Route::get('/user/detail', 'UserController@show');
     Route::get('/user', function(Request $request) {     
