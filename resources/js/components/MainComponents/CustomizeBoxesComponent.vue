@@ -6,34 +6,33 @@
                     <div
                         class="card d-flex align-items-center position-relative gray-box"
                     >
-                        <img
-                            class="card-img-top"
-                            src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                            alt="img"
-                        />
-                        <div class="litlogo position-absolute">
+                        <div class="up">
                             <img
-                                class="img-fluid"
-                                src="https://assets.msn.com/weathermapdata/1/static/svg/72/v6/card/SunnyDayV3.svg"
-                                alt="img2"
+                                class="card-img-top"
+                                src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
+                                alt="img"
                             />
+                            <div class="litlogo position-absolute">
+                                <img
+                                    class="img-fluid"
+                                    src="https://assets.msn.com/weathermapdata/1/static/svg/72/v6/card/SunnyDayV3.svg"
+                                    alt="img2"
+                                />
+                            </div>
                         </div>
 
-                        <div class="card-body text-center p-1">
-                            <span class="card-title">SCATOLE</span>
-                            <br />
-                            <span class="card-text font-weight-bold"
-                                >PERSONALIIZATE
-                            </span>
+                        <div class="down">
+                            <div class="card-body text-center p-1">
+                                <span class="card-title">SCATOLE</span>
+                                <br />
+                                <span class="card-text font-weight-bold"
+                                    >PERSONALIIZATE
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </nav>
-        </div>
-        <div class="container">
-            <div class="row">
-                <hr class="m-4" />
-            </div>
         </div>
     </div>
 </template>
@@ -64,6 +63,19 @@ export default {
         &:hover {
             transform: scale(0.95);
             cursor: pointer;
+        }
+
+        .up {
+            height: 60%;
+
+            display: flex;
+            align-items: center;
+        }
+        .down {
+            height: 40%;
+
+            display: flex;
+            align-items: center;
         }
         span {
             font-size: 0.8rem;

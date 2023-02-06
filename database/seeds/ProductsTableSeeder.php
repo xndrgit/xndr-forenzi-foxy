@@ -35,18 +35,21 @@ class ProductsTableSeeder extends Seeder
             $newProduct->color = $faker->randomElement($colors);
             $newProduct->print = $faker->randomElement($prints);
             $newProduct->description = $faker->paragraph;
-            $newProduct->price = $faker->randomFloat(2, 10, 1000);
+
             $newProduct->quantity = $faker->randomNumber(3);
             $newProduct->img = $faker->imageUrl(640, 480);
             $newProduct->created_at = Carbon::now();
             $newProduct->updated_at = Carbon::now();
             $newProduct->mini_description = $faker->sentence;
-            $newProduct->price_saled = $faker->randomFloat(2, 10, 1000);
             $newProduct->weight = $faker->randomFloat(2, 10, 1000);
-            $newProduct->first_price = $faker->randomFloat(2, 10, 1000);
-            $newProduct->second_price = $faker->randomFloat(2, 10, 1000);
-            $newProduct->third_price = $faker->randomFloat(2, 10, 1000);
-            $newProduct->fourth_price = $faker->randomFloat(2, 10, 1000);
+
+            $newProduct->price = $faker->randomFloat(2, 9.99, 12.99);
+            $newProduct->first_price = $faker->randomFloat(2, 8.99, 9.99);
+            $newProduct->second_price = $faker->randomFloat(2, 7.99, 8.99);
+            $newProduct->third_price = $faker->randomFloat(2, 3.99, 7.99);
+            $newProduct->fourth_price = $faker->randomFloat(2, 1.99, 6.99);
+            $newProduct->price_saled = $faker->randomElement([null, $faker->randomFloat(2, $newProduct->price - 0.99, 5.99)]);
+
             $newProduct->purchasable_in_multi_of = $faker->randomElement($purchasable_in_multi_of);
             $newProduct->category_id = $faker->randomElement($categories)->id;
             $newProduct->subcategory_id = $faker->randomElement($subcategories)->id;

@@ -21,7 +21,8 @@ class CategoryTableSeeder extends Seeder
         foreach ($categories as $category) {
             $newCategory = new Category();
             $newCategory->name = $category;
-            $newCategory->description = $faker->sentence(10);
+            $newCategory->description = $faker->sentence(50);
+            $newCategory->mini_description = $faker->sentence(25);
             $newCategory->color = $faker->randomElement($colors);
             $newCategory->img = $faker->randomElement($image);
             $newCategory->img2 = $faker->randomElement($logo);

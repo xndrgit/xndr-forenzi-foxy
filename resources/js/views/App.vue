@@ -47,6 +47,7 @@ export default {
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.css";
 body * {
+    font-family: "Poppins", sans-serif;
     img {
         transition: 0.5s;
         &:hover {

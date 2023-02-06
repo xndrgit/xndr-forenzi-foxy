@@ -1,34 +1,43 @@
 <template>
     <div>
-        <div class="d-flex">
-            <div class="left w-50">
+        <LoadingRollComponent v-if="loadingProduct" />
+        <div class="d-flex justify-content-center">
+            <div class="left col-5 d-flex justify-content-center">
                 <img
-                    class="img-fluid"
-                    src="https://www.pngmart.com/files/7/Box-PNG-Free-Download.png"
+                    class=""
+                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
                     alt=""
                 />
             </div>
-            <div class="right w-50">
+            <div class="right col-7">
                 <div>
-                    <h2 class="fw-bold">{{ product.name }}</h2>
-                    <span class="price font-weight-bold"
-                        ><strong>{{ product.length }} L x</strong>
-                        <strong>{{ product.width }} P x</strong>
-                        <strong>{{ product.height }} H</strong>
-                    </span>
+                    <h2 class="font-weight-bold">{{ product.name }}</h2>
+                    <h6 class="price font-weight-bold">
+                        {{ product.length }} x {{ product.width }} x
+                        {{ product.height }} cm
+                    </h6>
+                    <hr class="w-5" />
                     <!-- <div class="stars">
                         <i v-for="n in 5" :key="n" class="far fa-star"></i>
                     </div> -->
                     <div class="d-flex align-items-center">
-                        <h1>€ {{ product.price }}</h1>
+                        <h4 v-if="product.price_saled" class="old-price">
+                            € {{ product.price }} ->
+                        </h4>
+                        <h4 v-if="!product.price_saled" class="price">
+                            € {{ product.price }}
+                        </h4>
+                        <h4 v-if="product.price_saled" class="current-price">
+                            € {{ product.price_saled }}
+                        </h4>
                         <span class="fw-bold px-2">prezzo cad.</span>
                     </div>
-                    <p>
+                    <p class="mt-3">
                         Aliqui ium faccum consequi vent, aut que volorum quiatur
                         mo beriam res consedi con pa abore venis audandunt ma
                         ata eum autati quodian dandust et volorem ulparum non
                         restiur ionsequid quidi consequam quatiatene sitem fugit
-                        eveliciis dolori vit delistotati simus.e
+                        eveliciis dolori vit delistotati simus.
                     </p>
                     <div
                         class="d-flex flex-column py-2"
@@ -48,20 +57,13 @@
                             >
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <div style="display: flex; justify-content: flex-end">
-                            <div class="d-flex align-items-center">
-                                <button @click="decreaseValue()">-</button>
-                                <input
-                                    type="text"
-                                    :readonly="isReadOnly"
-                                    id="input"
-                                    v-model="value"
-                                />
-                                <button @click="increaseValue()">+</button>
-                            </div>
-                        </div>
-                        <div class="yellow-button mx-5">
+                    <div class="d-flex align-items-center">
+                        <QuantityProductsComponent
+                            @update-quantity="updateQuantity"
+                            :product="product"
+                        />
+                        <!-- <p>Quantity: {{ quantity }}</p> -->
+                        <div @click="addToCart" class="yellow-button mx-2">
                             AGGIUNGI AL CARRELLO
                         </div>
                     </div>
@@ -95,28 +97,40 @@
                     </tr>
                     <tr>
                         <td class="td1">PREZZO UNITARIO</td>
-                        <td class="td2">€ {{ product.price }}</td>
+                        <td class="td2">
+                            <span v-if="!product.price_saled" class="price">
+                                € {{ product.price }}
+                            </span>
+                            <span
+                                v-if="product.price_saled"
+                                class="current-price text-danger"
+                            >
+                                € {{ product.price_saled }}
+                            </span>
+                        </td>
                         <td class="td2">€ {{ product.first_price }}</td>
                         <td class="td2">€ {{ product.second_price }}</td>
                         <td class="td2">€ {{ product.third_price }}</td>
                         <td class="td2">€ {{ product.fourth_price }}</td>
                     </tr>
                 </table>
-                <h5 class="fw-bold py-2">
-                    PREZZO TOTALE CON IVA E CONAI:
-                    <span style="color: orange"
-                        >€ {{ totalPrice.toFixed(2) }}</span
-                    >
-                </h5>
+                <div class="d-flex align-items-center py-2">
+                    <h6 class="font-weight-bold">
+                        PREZZO TOTALE CON IVA E CONAI:
+                    </h6>
+                    <h6 class="font-weight-bold mx-2" style="color: orange">
+                        € {{ totalPrice.toFixed(2) }}
+                    </h6>
+                </div>
             </div>
         </div>
 
         <nav>
-            <a href="#" class="active">CARATTERISTICHE</a>
+            <a href="#" class="active">CARATTERISTICHE SCATOLA</a>
             <!-- <a href="#">SCATOLA CONSEGNA</a>
             <a href="#">SPEDIZIONE</a> -->
         </nav>
-        <table class="alternating-rows my-5">
+        <table class="alternating-rows table table-hover">
             <tr>
                 <td class="td1">Tipologia:</td>
                 <td class="td2">{{ product.category.name }}</td>
@@ -146,53 +160,90 @@
 
 <script>
 import axios from "axios";
+import LoadingRollComponent from "../MainComponents/LoadingRollComponent.vue";
+import QuantityProductsComponent from "../MainComponents/QuantityProductsComponent.vue";
 export default {
+    props: {
+        product: {
+            type: Object,
+            required: true,
+        },
+    },
+    components: {
+        LoadingRollComponent,
+        QuantityProductsComponent,
+    },
     data() {
         return {
-            value: 100,
             isReadOnly: true,
             product: {},
             priceDynamic: "",
+            loadingProduct: true,
+            quantity: 0,
         };
     },
     methods: {
-        increaseValue() {
-            this.value += 10;
-        },
-        decreaseValue() {
-            this.value -= 10;
+        updateQuantity(quantity) {
+            this.quantity = quantity;
         },
         getProduct() {
+            this.loadingProduct = true;
             axios
                 .get(`/api/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
                     console.log(this.product);
+                    this.loadingProduct = false;
                 })
                 .catch((error) => {
                     console.warn(error.message);
                 });
         },
+        addToCart() {
+            // code to add item to cart, for example
+            // using this.product and this.quantity to add the product to the cart
+
+            if (!this.$store.state.isAuth) {
+                //not login
+                alert("Try to login");
+                this.$router.push("/login");
+                return;
+            }
+            axios
+                .post("/api/orders", {
+                    id: this.product.id,
+                    quantity: this.quantity,
+                })
+                .then((response) => {
+                    if (response.data.productCount) alert("Added to Cart");
+                    this.$store.commit("updateCart", {
+                        productCount: response.data.productCount,
+                        total: response.data.result,
+                    });
+                })
+                .catch((err) => {
+                    //handle error
+                });
+        },
     },
     computed: {
         totalPrice() {
-            if (this.value >= 1) {
+            if (this.quantity >= 1) {
                 this.priceDynamic = this.product.price;
             }
-            if (this.value >= 100) {
+            if (this.quantity >= 100) {
                 this.priceDynamic = this.product.first_price;
             }
-            if (this.value >= 300) {
+            if (this.quantity >= 300) {
                 this.priceDynamic = this.product.second_price;
             }
-            if (this.value >= 500) {
+            if (this.quantity >= 500) {
                 this.priceDynamic = this.product.third_price;
             }
-            if (this.value >= 1000) {
+            if (this.quantity >= 1000) {
                 this.priceDynamic = this.product.fourth_price;
             }
-
-            return this.priceDynamic * this.value * 1.22;
+            return this.priceDynamic * this.quantity * 1.22;
         },
     },
     created() {
@@ -205,6 +256,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.current-price {
+    font-weight: bold;
+}
+
+.old-price {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: lightgray;
+    margin-right: 5px;
+
+    text-decoration: line-through;
+}
+.price {
+    font-weight: bold;
+}
+
+p {
+    font-size: 0.8rem;
+}
+span {
+    font-size: 0.6rem;
+    margin-right: 3px;
+}
+strong {
+    font-size: 0.6rem;
+}
+img {
+    border: 1px solid lightgray;
+    padding: 3rem;
+    object-fit: contain;
+    max-width: 100%;
+    height: fit-content;
+}
 input {
     width: 50px;
     text-align: center;
@@ -214,25 +298,26 @@ input {
 // NAV BAR
 nav {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    padding: 1rem;
     margin: 1rem;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 2px solid lightgray;
 
     a {
         text-decoration: none;
         color: #333;
         font-weight: bold;
-        font-size: 0.8rem;
+        font-size: 0.5rem;
         transition: all 0.2s;
 
         &:hover {
             color: #0076ff;
+            font-size: 0.8rem;
         }
 
         &.active {
-            border-bottom: 5px solid #000;
+            position: relative;
+            bottom: -2px;
+            border-bottom: 2px solid #000;
         }
     }
 }
@@ -251,7 +336,9 @@ table {
 }
 
 td {
-    padding: 0px;
+    font-size: 0.6rem;
+    padding: 1rem;
+    border: 1px solid white;
 }
 
 .td1 {

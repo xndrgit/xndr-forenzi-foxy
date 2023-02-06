@@ -6,7 +6,7 @@
             </h1>
         </div>
 
-        <div class=" mx-5 px-5">
+        <div class="mx-5 px-5">
             <span class="text">
                 {{ description }}
             </span>
@@ -38,6 +38,7 @@ export default {
 <style lang="scss" scoped>
 .text-banner {
     padding: 2rem;
+    width: 100%;
     .text {
         font-size: 1rem;
     }

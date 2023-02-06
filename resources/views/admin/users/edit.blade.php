@@ -334,9 +334,7 @@
                             class="form-control"
                             id="password"
                             name="password"
-                            required
                             type="text"
-                            value="{{ old('password', '') }}"
                         />
 
                         @error('password')
