@@ -14,9 +14,10 @@ class AddColumnsToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('img')->nullable()->after('name');
-            $table->string('img2')->nullable()->after('img');
-            $table->string('color')->nullable()->after('img2');
+            $table->string('img')->after('name');
+            $table->string('img2')->after('img');
+            $table->string('color')->after('img2');
+            $table->string('mini_description')->after('description');
         });
     }
 

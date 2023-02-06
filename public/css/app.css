@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);/*!
  * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
@@ -8259,12 +8259,12 @@ section.dark .blue:nth-child(2n)::before {
   border-radius: 0px;
   color: #fff;
   font-weight: bold;
-  padding: 8px 10px;
+  padding: 8px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 8px;
-  margin: 10px 0;
+  margin: 15px 0;
   cursor: pointer;
 }
 

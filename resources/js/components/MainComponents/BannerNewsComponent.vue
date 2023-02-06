@@ -65,8 +65,6 @@ export default {
         display: flex;
         align-items: center;
 
-        padding: 4rem 0px;
-
         font-size: 0.8rem;
 
         height: 160px;
@@ -79,7 +77,7 @@ export default {
             object-fit: cover;
         }
 
-        p{
+        p {
             margin: 0px;
         }
         .new-text {

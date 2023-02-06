@@ -40,19 +40,11 @@
                         </button>
                     </div>
                     <div class="right">
-                        <button @click="decrementQuantity" id="minus-button">
-                            -
-                        </button>
-                        <input
-                            class="font-weight-bold"
-                            v-model="quantity"
-                            type="number"
-                            readonly
-                            id="quantity-input"
+                        <QuantityProductsComponent
+                            @update-quantity="updateQuantity"
+                            :product="product"
                         />
-                        <button @click="incrementQuantity" id="plus-button">
-                            +
-                        </button>
+                        <!-- <p>Quantity: {{ quantity }}</p> -->
                     </div>
                 </div>
             </div>
@@ -62,14 +54,21 @@
 
 <script>
 import axios from "axios";
+import QuantityProductsComponent from "../MainComponents/QuantityProductsComponent.vue";
 
 export default {
     props: {
-        product: Array,
+        product: {
+            type: Object,
+            required: true,
+        },
+    },
+    components: {
+        QuantityProductsComponent,
     },
     data() {
         return {
-            quantity: this.product.purchasable_in_multi_of || 1,
+            quantity: 0,
         };
     },
     methods: {
@@ -80,6 +79,7 @@ export default {
             if (!this.$store.state.isAuth) {
                 //not login
                 alert("Try to login");
+                this.$router.push("/login");
                 return;
             }
             axios
@@ -98,26 +98,27 @@ export default {
                     //handle error
                 });
         },
-        incrementQuantity() {
-            this.quantity += this.product.purchasable_in_multi_of || 1;
-        },
-        decrementQuantity() {
-            if (this.quantity >= (this.product.purchasable_in_multi_of || 1)) {
-                this.quantity -= this.product.purchasable_in_multi_of || 1;
-                if (this.quantity < 0) this.quantity = 0;
-            }
+        updateQuantity(value) {
+            console.log("value:", value);
+            this.quantity = value;
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
+.col-12 {
+    padding: 0px;
+    justify-content: space-around;
+}
 .box {
     width: 250px;
     border: 1px solid white;
     overflow: hidden;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
+
+    margin: 1.2rem;
 
     &:hover {
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
@@ -136,7 +137,7 @@ export default {
 
     .card-body {
         background-color: white;
-        padding: 1rem;
+        padding: 0px 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -163,13 +164,21 @@ export default {
             font-size: 1.2rem;
             font-weight: bold;
         }
+        p {
+            margin: 0px;
+        }
 
         .add-to-cart {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            .col-12 {
+                padding: 0px;
+            }
         }
+
         #add-to-cart-button {
             background-color: black;
             color: white;
@@ -184,6 +193,7 @@ export default {
     .card-footer {
         background-color: white;
         padding: 0px;
+        margin: 0px;
 
         border-top: 0px;
         .left {
@@ -193,7 +203,7 @@ export default {
             justify-content: center;
         }
         .right {
-            margin: 1rem 5px;
+            margin: 0rem 5px;
 
             display: flex;
             align-items: center;

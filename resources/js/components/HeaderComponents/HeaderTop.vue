@@ -4,7 +4,7 @@
             <div class="row justify-content-between">
                 <section class="col-3 d-flex align-items-center">
                     <div id="free" class="d-flex align-items-center">
-                        <i class="fa fa-bus-alt"></i>
+                        <i class="fa-solid fa-truck-fast"></i>
                         <div class="d-none d-lg-inline">
                             <p>SEI UN NUOVO CLIENTE?</p>
                             <strong>
@@ -17,9 +17,9 @@
                     <div id="clock" class="d-flex align-items-center">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <div class="d-none d-lg-inline">
-                            <p>SEI UN NUOVO CLIENTE?</p>
+                            <p>ORDINA SUBITO E RICEVI LA MERCE</p>
                             <strong>
-                                <p>SPEDIZIONE GRATIS IN TUTTA ITALIA</p>
+                                <p>GIOVEDI 04 NOVEMBRE 2022</p>
                             </strong>
                         </div>
                     </div>
