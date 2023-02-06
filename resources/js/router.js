@@ -7,8 +7,6 @@ import HomePage from "./pages/HomePage";
 import PersonalizePage from "./pages/PersonalizePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
-import ShowVonePage from "./pages/ShowVonePage";
-import ConfirmPage from "./pages/ConfirmPage";
 import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 
@@ -31,11 +29,6 @@ const router = new VueRouter({
             component: CartPage,
         },
         {
-            path: "/showvone",
-            name: "showvone",
-            component: ShowVonePage,
-        },
-        {
             path: "/product/:id",
             name: "product",
             component: ProductPage,
@@ -50,11 +43,6 @@ const router = new VueRouter({
             name: "checkout",
             component: CheckoutPage,
         },
-        {
-            path: "/confirm",
-            name: "confirm",
-            component: ConfirmPage,
-        }
     ],
 });
 export default router;
