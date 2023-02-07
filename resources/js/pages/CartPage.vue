@@ -18,7 +18,12 @@
                                             class="img-fluid mx-auto d-block image"
                                             src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
                                         />
-                                        <a type="button" class="delete" @click="deleteProduct(item)">X</a>
+                                        <a
+                                            type="button"
+                                            class="delete"
+                                            @click="deleteProduct(item)"
+                                            >X</a
+                                        >
                                     </div>
                                     <div class="col-md-8">
                                         <div class="info">
@@ -85,7 +90,7 @@
                                                 <div class="col-md-3 price">
                                                     <div
                                                         style="
-                                                            white-space: nowrap
+                                                            white-space: nowrap;
                                                         "
                                                     >
                                                         <label for="id1"
@@ -143,7 +148,8 @@
                             <div class="summary-item">
                                 <span class="text">SUBTOTALE</span>
                                 <span class="price"
-                                    >€ {{
+                                    >€
+                                    {{
                                         parseFloat(this.subtotal).toFixed(2)
                                     }}</span
                                 >
@@ -161,7 +167,8 @@
                             <div class="summary-item">
                                 <span class="text">SPEDIZIONE GRATUITA</span>
                                 <span class="price"
-                                    >€ {{
+                                    >€
+                                    {{
                                         parseFloat(this.shipping_cost).toFixed(
                                             2
                                         )
@@ -171,7 +178,8 @@
                             <div class="summary-item">
                                 <span class="text">CONTRIBUTO CONAI</span>
                                 <span class="price"
-                                    >€ {{
+                                    >€
+                                    {{
                                         parseFloat(this.conai).toFixed(2)
                                     }}</span
                                 >
@@ -179,9 +187,8 @@
                             <div class="summary-item">
                                 <span class="text">IVA</span>
                                 <span class="price"
-                                    >€ {{
-                                        parseFloat(this.iva).toFixed(2)
-                                    }}</span
+                                    >€
+                                    {{ parseFloat(this.iva).toFixed(2) }}</span
                                 >
                             </div>
                             <div
@@ -189,7 +196,8 @@
                             >
                                 <span class="text">TOTALE ORDINE</span>
                                 <span class="price"
-                                    >€ {{
+                                    >€
+                                    {{
                                         parseFloat(this.total).toFixed(2)
                                     }}</span
                                 >
@@ -294,16 +302,15 @@ export default {
         },
 
         deleteProduct(item) {
-            axios.delete(`/api/orders/${item.pivot.product_id}`, {})
-            .then(res => {
-                if (res.data.response == true)
-                    alert("Cancelled");
-                if (res.data.response == false)
-                    alert("Failed");
-                this.getOrders();
-                this.test(item);
-            });
-        }
+            axios
+                .delete(`/api/orders/${item.pivot.product_id}`, {})
+                .then((res) => {
+                    if (res.data.response == true) alert("Cancelled");
+                    if (res.data.response == false) alert("Failed");
+                    this.getOrders();
+                    this.test(item);
+                });
+        },
     },
     mounted() {
         axios.get("/api/users").then((res) => {

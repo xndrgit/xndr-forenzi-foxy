@@ -20,7 +20,7 @@
             </div>
 
             <!-- <h4 class="fw-bold py-2">Elenco formati disponibili</h4> -->
-            <!-- <TableComponent /> -->
+            <TableComponent />
             <BannerNewsComponent />
         </div>
 
@@ -38,7 +38,7 @@ import CustomizeBoxesComponent from "../components/MainComponents/CustomizeBoxes
 import LoadingComponent from "../components/MainComponents/LoadingComponent.vue";
 import LoadingRollComponent from "../components/MainComponents/LoadingRollComponent.vue";
 
-// import TableComponent from "../components/MainComponents/TableComponent.vue";
+import TableComponent from "../components/MainComponents/TableComponent.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
 
 export default {
@@ -52,7 +52,7 @@ export default {
         LoadingRollComponent,
 
         CustomizeBoxesComponent,
-        // TableComponent,
+        TableComponent,
         BannerNewsComponent,
     },
     data() {
