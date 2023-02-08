@@ -14,37 +14,24 @@
                             <div class="product">
                                 <div class="row">
                                     <div class="col-md-3 item">
-                                        <img
-                                            class="img-fluid mx-auto d-block image"
-                                            src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                                        />
-                                        <a
-                                            type="button"
-                                            class="delete"
-                                            @click="deleteProduct(item)"
-                                            >X</a
-                                        >
+                                        <img class="img-fluid mx-auto d-block image"
+                                            src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png" />
+                                        <a type="button" class="delete" @click="deleteProduct(item)">X</a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="info">
                                             <div class="row">
-                                                <div
-                                                    class="col-md-5 product-name"
-                                                >
+                                                <div class="col-md-5 product-name">
                                                     <div class="product-name">
                                                         <a href="#">{{
                                                             item.name
                                                         }}</a>
-                                                        <div
-                                                            class="product-info"
-                                                        >
+                                                        <div class="product-info">
                                                             <div>
                                                                 Dimensioni:
-                                                                <span
-                                                                    class="value"
-                                                                    >{{
-                                                                        item.length
-                                                                    }}
+                                                                <span class="value">{{
+                                                                    item.length
+                                                                }}
                                                                     x
                                                                     {{
                                                                         item.height
@@ -52,70 +39,44 @@
                                                                     x
                                                                     {{
                                                                         item.width
-                                                                    }}</span
-                                                                >
+                                                                    }}</span>
                                                             </div>
                                                             <div>
                                                                 Codice:
-                                                                <span
-                                                                    class="value"
-                                                                    >{{
-                                                                        item.code
-                                                                    }}</span
-                                                                >
+                                                                <span class="value">{{
+                                                                    item.code
+                                                                }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 quantity">
-                                                    <label
-                                                        class="fw-bold"
-                                                        for="quantity"
-                                                    >
+                                                    <label class="fw-bold" for="quantity">
                                                         Quantity:
                                                     </label>
 
-                                                    <input
-                                                        class="form-control quantity-input"
-                                                        :id="item.id"
-                                                        type="number"
-                                                        min="0"
-                                                        @change="test(item)"
-                                                        ref="totalQuantity"
-                                                        v-model="
-                                                            item.pivot.quantity
-                                                        "
-                                                    />
+                                                    <input class="form-control quantity-input" :id="item.id"
+                                                        type="number" min="0" @change="test(item)" ref="totalQuantity"
+                                                        v-model="item.pivot.quantity" />
                                                 </div>
                                                 <div class="col-md-3 price">
-                                                    <div
-                                                        style="
+                                                    <div style="
                                                             white-space: nowrap;
-                                                        "
-                                                    >
-                                                        <label for="id1"
-                                                            >€</label
-                                                        >
-                                                        <input
-                                                            type="text"
-                                                            id="id1"
-                                                            class="priceLabel"
-                                                            ref="subTotalPrice"
-                                                            style="
+                                                        ">
+                                                        <label for="id1">€</label>
+                                                        <input type="text" id="id1" class="priceLabel"
+                                                            ref="subTotalPrice" style="
                                                                 border: none;
                                                                 box-shadow: none;
                                                                 background-color: white;
                                                                 pointer-events: none;
-                                                            "
-                                                            :value="
+                                                            " :value="
                                                                 (
                                                                     item.pivot
                                                                         .quantity *
                                                                     item.price
                                                                 ).toFixed(2)
-                                                            "
-                                                            readonly
-                                                        />
+                                                            " readonly />
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,12 +108,10 @@
                             <h3>TOTALE A CARRELLO</h3>
                             <div class="summary-item">
                                 <span class="text">SUBTOTALE</span>
-                                <span class="price"
-                                    >€
+                                <span class="price">€
                                     {{
                                         parseFloat(this.subtotal).toFixed(2)
-                                    }}</span
-                                >
+                                    }}</span>
                             </div>
                             <!-- <div class="summary-item">
 																						<span class="text">FOXTOP - SCONTO 5%</span>
@@ -166,48 +125,34 @@
 																		</div> -->
                             <div class="summary-item">
                                 <span class="text">SPEDIZIONE GRATUITA</span>
-                                <span class="price"
-                                    >€
+                                <span class="price">€
                                     {{
                                         parseFloat(this.shipping_cost).toFixed(
                                             2
                                         )
-                                    }}</span
-                                >
+                                    }}</span>
                             </div>
                             <div class="summary-item">
                                 <span class="text">CONTRIBUTO CONAI</span>
-                                <span class="price"
-                                    >€
+                                <span class="price">€
                                     {{
                                         parseFloat(this.conai).toFixed(2)
-                                    }}</span
-                                >
+                                    }}</span>
                             </div>
                             <div class="summary-item">
                                 <span class="text">IVA</span>
-                                <span class="price"
-                                    >€
-                                    {{ parseFloat(this.iva).toFixed(2) }}</span
-                                >
+                                <span class="price">€
+                                    {{ parseFloat(this.iva).toFixed(2) }}</span>
                             </div>
-                            <div
-                                class="summary-item txt-orange d-flex align-items-center justify-content-between"
-                            >
+                            <div class="summary-item txt-orange d-flex align-items-center justify-content-between">
                                 <span class="text">TOTALE ORDINE</span>
-                                <span class="price"
-                                    >€
+                                <span class="price">€
                                     {{
                                         parseFloat(this.total).toFixed(2)
-                                    }}</span
-                                >
+                                    }}</span>
                             </div>
                             <hr />
-                            <a
-                                type="button"
-                                class="btn bg-yellow fw-bold btn-lg btn-block"
-                                @click="checkout()"
-                            >
+                            <a type="button" class="btn bg-yellow fw-bold btn-lg btn-block" @click="checkout()">
                                 PROCEDI AL CHECKOUT
                             </a>
                         </div>
@@ -233,11 +178,11 @@ export default {
             order_products: [],
             computedPrice: 0,
             quantity: [],
-            subtotal: 0,
-            shipping_cost: 0,
-            conai: 0,
-            iva: 0,
-            total: 0,
+            subtotal: 0.00,
+            shipping_cost: 0.00,
+            conai: 0.00,
+            iva: 0.00,
+            total: 0.00,
             params: [],
         };
     },
@@ -302,17 +247,19 @@ export default {
         },
 
         deleteProduct(item) {
-            axios
-                .delete(`/api/orders/${item.pivot.product_id}`, {})
+            axios.post(`/api/orders/delete/${item.pivot.order_id}`, {
+                product_id: item.pivot.product_id
+            })
                 .then((res) => {
                     if (res.data.response == true) alert("Cancelled");
                     if (res.data.response == false) alert("Failed");
+                    window.location.reload();
                     this.getOrders();
                     this.test(item);
                 });
         },
     },
-    mounted() {
+    created() {
         axios.get("/api/users").then((res) => {
             console.log(res);
         });
@@ -324,9 +271,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
+
 .product img {
     width: fit-content;
 }
+
 .coupon {
     margin: 2rem;
 }
@@ -466,6 +415,7 @@ export default {
 .item {
     position: relative;
 }
+
 .delete {
     position: absolute;
     cursor: pointer;

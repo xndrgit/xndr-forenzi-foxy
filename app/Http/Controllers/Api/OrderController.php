@@ -258,18 +258,19 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $product = DB::table('order_product')->where(
-            'product_id', $id
-        )->delete();
-        if ($product['order_id'])
+        $params = $request->all();
+        $product = DB::table('order_product')->where('order_id', $id)
+        ->where('product_id', $params['product_id']);
+        
+        if ($product->delete())
             return response() -> json([
-                "response" => false
+                "response" => true
             ]);
         else
             return response() -> json([
-                "response" => true
+                "response" => false
             ]);
     }
 
