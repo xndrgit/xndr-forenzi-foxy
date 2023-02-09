@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('api')->group(function () {
     Route::get('/products', 'ProductController@index');
     Route::get('/products/{id}', 'ProductController@show');
+    Route::get('/products/siblings/{id}', 'ProductController@siblings');
     // Route::get('/products/{id}', 'ProductController@destroy');
 
     Route::get('/categories', 'CategoryController@index');
@@ -33,7 +34,8 @@ Route::namespace('api')->group(function () {
     Route::post('/orders/{id}', 'OrderController@update');
     Route::post('/orders/transmit/{id}', 'OrderController@transmit');
     Route::post('/orders/delete/{id}', 'OrderController@destroy');
-    
+   
+
     // Route::get('/cart/{id}', 'OrderController@create');
 
     Route::get('/user/detail', 'UserController@show');

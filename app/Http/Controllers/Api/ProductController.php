@@ -93,4 +93,19 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
     }
+
+    public function siblings($id)
+    {
+        $product = Product::findOrFail($id);
+        $category_id = $product['category_id'];
+        
+        $siblings = Product::where([
+            ['category_id', '=', $category_id], 
+            ['id', '!=', $id]
+        ])->get();
+        return response()->json([
+            "response" => true,
+            "results" => $siblings
+        ]);
+    }
 }

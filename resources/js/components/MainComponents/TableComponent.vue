@@ -64,58 +64,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <img
-                                    class="img-fluid"
-                                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                                    alt="productImage"
-                                />
-                            </td>
-
-                            <td>144</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>10</td>
-                            <td>
-                                <img
-                                    class="img-fluid"
-                                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                                    alt="PersonaliseImage"
-                                />
-                            </td>
-                            <td>€ 2,08</td>
-                            <td>€ 2,08</td>
-                            <td>€ 2,08</td>
-                            <td>€ 2,08</td>
-                            <td>€ 2,08</td>
-                            <td>
-                                <div class="d-inline">1.280</div>
-                                <div class="yellow-button d-inline p-2 mx-2">
-                                    +
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex">
-                                    <div class="d-flex">
-                                        <button @click="decreaseValue()">
-                                            -
-                                        </button>
-
-                                        <input
-                                            type="text"
-                                            id="input"
-                                            v-model="value"
-                                        />
-                                        <button @click="increaseValue()">
-                                            +
-                                        </button>
-                                    </div>
-
-                                    <div class="yellow-button">AGGIUNGI</div>
-                                </div>
-                            </td>
-                        </tr>
+                        <SiblingProductsComponent v-for="(sibling, index) in siblings" :key="index"
+                            :product="sibling" />
                     </tbody>
                 </table>
             </div>
@@ -124,23 +74,50 @@
 </template>
 
 <script>
+import Axios from 'axios';
+import SiblingProductsComponent from '../MainComponents/SiblingProductsComponent.vue';
+
 export default {
     data() {
         return {
-            value: 100,
+            value: [],
+            siblings: [],
         };
     },
+    components: {
+        SiblingProductsComponent,
+    },
     methods: {
-        increaseValue() {
-            this.value += 10;
+        increaseValue(i) {
+            console.log("------", i, this.value[i]);
+            this.value[i] += 10;
         },
-        decreaseValue() {
-            this.value -= 10;
+        decreaseValue(i) {
+            console.log("++++++", i, this.value[i]);
+            this.value[i] -= 10;
         },
         sortTable() {
             console.log("clicked");
         },
+        getSiblings() {
+            Axios.get(`/api/products/siblings/${this.$route.params.id}`, {})
+                .then(res => {
+                    this.siblings = res.data.results;
+                    // this.value = res.data.results.purchasable_in_multi_of;
+                    res.data.results.map(val => {
+                        this.value.push(val.purchasable_in_multi_of);
+                    });
+                    // this.value.map(val => {
+                    //     this.value = res.data.results.purchasable_in_multi_of;
+                    // });
+
+                    console.log("@@@@@@@@@", this.value);
+                });
+        }
     },
+    mounted() {
+        this.getSiblings();
+    }
 };
 </script>
 
@@ -148,18 +125,23 @@ export default {
 .overflow-table::-webkit-scrollbar {
     background-color: transparent;
 }
+
 .overflow-table {
     overflow-x: auto;
+
     table {
+
         td,
         th {
             border: 1px solid #ddd;
             font-size: 0.4rem;
             text-align: center;
             vertical-align: middle;
+
             img {
                 max-height: 50px;
             }
+
             button {
                 font-size: large;
             }
