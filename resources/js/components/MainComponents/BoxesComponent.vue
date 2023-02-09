@@ -19,7 +19,7 @@
 
                 <div class="price d-flex align-items-center">
                     <div v-if="product.price_saled" class="sale-banner">
-                        Sale
+                        {{ salePercentage.toFixed(0) }}%
                     </div>
                     <p v-if="product.price_saled" class="old-price">
                         {{ product.price }} €
@@ -76,12 +76,12 @@ export default {
             // code to add item to cart, for example
             // using this.product and this.quantity to add the product to the cart
 
-            if (!this.$store.state.isAuth) {
-                //not login
-                alert("Try to login");
-                this.$router.push("/login");
-                return;
-            }
+            // if (!this.$store.state.isAuth) {
+            //     //not login
+            //     alert("Try to login");
+            //     this.$router.push("/login");
+            //     return;
+            // }
             axios
                 .post("/api/orders", {
                     id: this.product.id,
@@ -101,6 +101,16 @@ export default {
         updateQuantity(value) {
             console.log("value:", value);
             this.quantity = value;
+        },
+    },
+    computed: {
+        salePercentage() {
+            if (!this.product.price_saled) return 0;
+            return (
+                ((this.product.price - this.product.price_saled) /
+                    this.product.price) *
+                100
+            );
         },
     },
 };
