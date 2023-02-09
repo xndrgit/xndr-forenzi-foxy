@@ -28,11 +28,7 @@
                     </div>
                     <div class="w-25 position-relative">
                         <img class="img-fluid" :src="category.img" alt="" />
-                        <img
-                            class="logo img-fluid position-absolute"
-                            :src="category.img2"
-                            alt=""
-                        />
+                        <img class="logo img-fluid position-absolute" :src="category.img2" alt="" />
                     </div>
                 </div>
 
@@ -55,6 +51,57 @@
                     </div>
                 </div> -->
             </div>
+
+        </div>
+        <div class="row">
+            <section class="boxes d-flex flex-wrap justify-content-center" v-for="product in category.products">
+                <div class="box">
+                    <div class="card-header">
+                        <router-link :to="{ name: 'product', params: { id: product.id } }">
+                            <img class="img-fluid"
+                                src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
+                                :alt="product.name" />
+                        </router-link>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <div class=" d-flex align-items-center">
+                            <p class="category">
+                                {{ category.name }}
+                            </p>
+                            <p class="category">
+                                {{ product.subcategory_id }}
+                            </p>
+                            <!-- <p class="price align-items-center">
+                                {{ product.price }} €
+                            </p> -->
+                        </div>
+                        <div class=" d-flex align-items-center">
+                            <p>
+                                CODE:
+                                {{ product.code }}
+                            </p>
+
+                        </div>
+                        <div class=" d-flex align-items-center">
+                            <p>
+                                <i class="fas fa-tags"></i>
+                                {{ product.price }} €
+                            </p>
+                            <p>
+                                <i class="fas fa-box"></i>
+                                {{ product.quantity }}
+                            </p>
+                        </div>
+                        <div class=" d-flex align-items-center">
+                            <p>
+                                {{ product.description.slice(0, 40) }} ...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </template>
@@ -83,7 +130,6 @@ export default {
                 .get(`/api/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
-                    console.log(this.category);
                     setTimeout(() => {
                         console.log(this.loadingCategory);
                         this.loadingCategory = false;
@@ -128,14 +174,17 @@ export default {
     // border: 5px solid white;
     // border-radius: 50%;
 }
+
 span {
     font-size: 0.8rem;
 }
+
 input[type="checkbox"] {
     border: 0;
     width: 20px;
     height: 20px;
 }
+
 // NAV BAR
 nav {
     display: flex;
@@ -187,5 +236,147 @@ td {
 .td2 {
     color: orange;
     font-weight: bold;
+}
+
+.box {
+    width: 250px;
+    border: 1px solid white;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+
+    margin: 1.2rem;
+
+    &:hover {
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+    }
+
+    img {
+        object-fit: contain;
+    }
+
+    .card-header {
+        background-color: white;
+
+        border-bottom: 0px;
+    }
+
+    .card-body {
+        background-color: white;
+        padding: 0px 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .card-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .old-price {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: lightgray;
+            margin-right: 5px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 4px;
+        }
+
+        .add-to-cart {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .col-12 {
+                padding: 0px;
+            }
+        }
+
+        #add-to-cart-button {
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #add-to-cart-button:hover {
+            background-color: #3e8e41;
+        }
+    }
+
+    .card-footer {
+        background-color: white;
+        padding: 0px;
+        margin: 0px;
+
+        border-top: 0px;
+
+        .left {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right {
+            margin: 0rem 5px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            input {
+                text-align: center;
+                max-width: 45px;
+                height: fit-content;
+            }
+
+            input,
+            button {
+                border: 1px solid lightgrey;
+                font-size: 0.7rem;
+            }
+
+            #minus-button,
+            #plus-button {
+                height: fit-content;
+                background-color: white;
+
+                text-align: center;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            #minus-button:hover,
+            #plus-button:hover {
+                background-color: #fdbc48;
+            }
+        }
+    }
+}
+
+.category {
+    background-color: #333;
+    border-radius: 40px;
+    color: white;
+    padding: 4px;
+    padding-inline: 12px;
+    margin-left: 10px;
 }
 </style>
