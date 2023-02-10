@@ -227,7 +227,7 @@ class OrderController extends Controller
             }
             $shipping_cost = 0.00;
             $conai = $subtotal * 22.00 / 100;
-            $iva = 4.35;
+            $iva = $subtotal * 4.35;
         }
 
         $total = $subtotal + $shipping_cost + $conai + $iva;

@@ -2,14 +2,10 @@
     <section class="boxes d-flex flex-wrap justify-content-center">
         <div class="box">
             <div class="card-header">
-                <router-link
-                    :to="{ name: 'product', params: { id: product.id } }"
-                >
-                    <img
-                        class="img-fluid"
+                <router-link :to="{ name: 'product', params: { id: product.id } }">
+                    <img class="img-fluid"
                         src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                        :alt="product.name"
-                    />
+                        :alt="product.name" />
                 </router-link>
             </div>
 
@@ -40,10 +36,7 @@
                         </button>
                     </div>
                     <div class="right">
-                        <QuantityProductsComponent
-                            @update-quantity="updateQuantity"
-                            :product="product"
-                        />
+                        <QuantityProductsComponent @update-quantity="updateQuantity" :product="product" />
                         <!-- <p>Quantity: {{ quantity }}</p> -->
                     </div>
                 </div>
@@ -121,6 +114,7 @@ export default {
     padding: 0px;
     justify-content: space-around;
 }
+
 .box {
     width: 250px;
     border: 1px solid white;
@@ -170,10 +164,12 @@ export default {
             color: lightgray;
             margin-right: 5px;
         }
+
         .price {
             font-size: 1.2rem;
             font-weight: bold;
         }
+
         p {
             margin: 0px;
         }
@@ -200,24 +196,28 @@ export default {
             background-color: #3e8e41;
         }
     }
+
     .card-footer {
         background-color: white;
         padding: 0px;
         margin: 0px;
 
         border-top: 0px;
+
         .left {
             width: fit-content;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
         .right {
             margin: 0rem 5px;
 
             display: flex;
             align-items: center;
             justify-content: center;
+
             input {
                 text-align: center;
                 max-width: 45px;
@@ -229,6 +229,7 @@ export default {
                 border: 1px solid lightgrey;
                 font-size: 0.7rem;
             }
+
             #minus-button,
             #plus-button {
                 height: fit-content;
@@ -238,6 +239,7 @@ export default {
                 font-weight: bold;
                 cursor: pointer;
             }
+
             #minus-button:hover,
             #plus-button:hover {
                 background-color: #fdbc48;
