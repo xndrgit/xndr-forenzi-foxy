@@ -49,9 +49,7 @@
                 <section class="col-2">
                     <a href="/cart">
                         <div id="carriage" class="d-flex align-items-center">
-                            <router-link to="/cart"
-                                ><i class="fas fa-shopping-cart"></i
-                            ></router-link>
+                            <router-link to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
                             <div class="d-none d-lg-inline">
                                 <strong>
                                     <p>CARRELLO</p>
@@ -90,7 +88,7 @@ export default {
                         name: response.data.name,
                     });
                 })
-                .catch((error) => {});
+                .catch((error) => { });
         },
         getCartInfo() {
             axios
@@ -98,10 +96,10 @@ export default {
                 .then((response) => {
                     this.$store.commit("updateCart", {
                         productCount: response.data.results.products.length,
-                        total: parseFloat(response.data.results.total),
+                        total: parseFloat(response.data.results.subtotal).toFixed(2),
                     });
                 })
-                .catch((error) => {});
+                .catch((error) => { });
         },
     },
     created() {
@@ -142,10 +140,14 @@ export default {
 </style>
 
 errors: 1-Inserting lang=scss in the
-<style></style>
+<style>
+
+</style>
 @import './assets/style/variables.scss'; solutions: 1-This error occurs when you
 try to use SCSS (Sass) in your project but do not have the necessary
 dependencies installed. The solution is to install Bootstrap, which includes the
 required dependencies for using SCSS in your project. npm install bootstrap
 --save //terminal @import '~bootstrap/scss/bootstrap'; //app.vue
-<style></style>
+<style>
+
+</style>
