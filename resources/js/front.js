@@ -24,7 +24,8 @@ const store = new Vuex.Store({
     isAuth: false,
     name: "REGISTRATI",
     productCount: 0,
-    total: 0.00
+    total: 0.00,
+    quantity: [],
   },
   mutations: {
     updateUser(state, user) {
@@ -32,8 +33,11 @@ const store = new Vuex.Store({
       state.name = user.name;
     },
     updateCart(state, info) {
-        state.productCount = info.productCount;
-        state.total = info.total;
+      state.productCount = info.productCount;
+      state.total = info.total;
+    },
+    currentQuantity(state, info) {
+      state.quantity = info.quantity;
     }
   },
   actions: {
@@ -44,10 +48,10 @@ const store = new Vuex.Store({
 
 
 const app = new Vue({
-    el: "#app",
-    vuetify: new Vuetify(),
-    mixins: [validationMixin],
-    render: (h) => h(App),
-    router,
-    store
+  el: "#app",
+  vuetify: new Vuetify(),
+  mixins: [validationMixin],
+  render: (h) => h(App),
+  router,
+  store
 });
