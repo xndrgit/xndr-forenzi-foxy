@@ -227,11 +227,11 @@ export default {
 
             this.$refs.totalQuantity.map((quantity) => {
                 this.iva += quantity.value * 4.35;
-
-                this.params.push({
-                    id: quantity.id,
-                    quantity: quantity.value,
-                });
+                // this.params = [];
+                // this.params.push({
+                //     id: quantity.id,
+                //     quantity: quantity.value,
+                // });
             });
 
             this.conai = ((this.subtotal * 22) / 100.0).toFixed(2);
@@ -239,6 +239,14 @@ export default {
         },
 
         checkout() {
+            this.params = [];
+            this.$refs.totalQuantity.map((quantity) => {
+                this.params.push({
+                    id: quantity.id,
+                    quantity: quantity.value,
+                });
+            });
+
             axios.post("/api/orders/id", this.params).then((res) => {
                 console.log(res);
                 if (res.data.response) {

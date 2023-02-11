@@ -40,8 +40,9 @@ const store = new Vuex.Store({
       state.quantity = info.quantity;
     }
   },
+  getters: {
+  },
   actions: {
-
   },
   modules: {},
 });
@@ -53,5 +54,5 @@ const app = new Vue({
   mixins: [validationMixin],
   render: (h) => h(App),
   router,
-  store
+  store,
 });

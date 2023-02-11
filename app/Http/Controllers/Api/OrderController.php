@@ -223,7 +223,7 @@ class OrderController extends Controller
 
             $tmp = Product::select(['quantity', 'price'])->where('id', $op['id'])->first();
             if ($tmp->attributes['quantity'] < $op['quantity']) {
-                $subtotal += $tmp->price * $op['quantity'];
+                $subtotal += floatval($tmp->price) * floatval($op['quantity']);
             }
             $shipping_cost = 0.00;
             $conai = $subtotal * 22.00 / 100;

@@ -89,15 +89,13 @@ export default {
     },
     methods: {
         increaseValue(i) {
-            console.log("------", i, this.value[i]);
             this.value[i] += 10;
         },
         decreaseValue(i) {
-            console.log("++++++", i, this.value[i]);
             this.value[i] -= 10;
         },
         sortTable() {
-            console.log("clicked");
+            // console.log("clicked");
         },
         getSiblings() {
             Axios.get(`/api/products/siblings/${this.$route.params.id}`, {})
@@ -107,11 +105,6 @@ export default {
                     res.data.results.map(val => {
                         this.value.push(val.purchasable_in_multi_of);
                     });
-                    // this.value.map(val => {
-                    //     this.value = res.data.results.purchasable_in_multi_of;
-                    // });
-
-                    console.log("@@@@@@@@@", this.value);
                 });
         }
     },

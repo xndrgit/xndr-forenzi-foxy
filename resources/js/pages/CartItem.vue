@@ -3,10 +3,8 @@
         <div class="product">
             <div class="row">
                 <div class="col-md-3">
-                    <img
-                        class="img-fluid mx-auto d-block image"
-                        src="../../../public/Links/cat-scatole-maniglie-aperte.jpg"
-                    />
+                    <img class="img-fluid mx-auto d-block image"
+                        src="../../../public/Links/cat-scatole-maniglie-aperte.jpg" />
                 </div>
                 <div class="col-md-8">
                     <div class="info">
@@ -17,11 +15,9 @@
                                     <div class="product-info">
                                         <div>
                                             Dimensioni:
-                                            <span class="value"
-                                                >{{ detail.length }} x
+                                            <span class="value">{{ detail.length }} x
                                                 {{ detail.height }} x
-                                                {{ detail.width }}</span
-                                            >
+                                                {{ detail.width }}</span>
                                         </div>
                                         <div>
                                             Codice:
@@ -36,30 +32,18 @@
                                 <label class="fw-bold" for="quantity">
                                     Quantity:
                                 </label>
-                                <input
-                                    class="form-control quantity-input"
-                                    id="quantity"
-                                    type="number"
-                                    @change="test"
-                                    v-model="quantity"
-                                />
+                                <input class="form-control quantity-input" id="quantity" type="number" @change="test"
+                                    v-model="quantity" />
                             </div>
                             <div class="col-md-3 price">
                                 <div style="white-space: nowrap">
                                     <label for="id1">$</label>
-                                    <input
-                                        type="text"
-                                        id="id1"
-                                        class="priceLabel"
-                                        style="
+                                    <input type="text" id="id1" class="priceLabel" style="
                                             border: none;
                                             box-shadow: none;
                                             background-color: white;
                                             pointer-events: none;
-                                        "
-                                        :value="computedPrice"
-                                        readonly
-                                    />
+                                        " :value="computedPrice" readonly />
                                 </div>
                             </div>
                         </div>
@@ -92,7 +76,7 @@ export default {
             axios
                 .get("/api/orders/2")
                 .then((response) => {
-                    console.log(response.data.results);
+                    // console.log(response.data.results);
                     this.order = response.data.results;
                     this.order_products = response.data.results.products;
                 })
@@ -101,7 +85,7 @@ export default {
                 });
         },
         test() {
-            console.log(this.computedPrice);
+            // console.log(this.computedPrice);
         },
     },
 };
