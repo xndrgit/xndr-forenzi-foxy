@@ -3,11 +3,9 @@
         <LoadingRollComponent v-if="loadingProduct" />
         <div class="d-flex justify-content-center">
             <div class="left col-5 d-flex justify-content-center">
-                <img
-                    class=""
+                <img class=""
                     src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                    alt=""
-                />
+                    alt="" />
             </div>
             <div class="right col-7">
                 <div>
@@ -39,10 +37,7 @@
                         restiur ionsequid quidi consequam quatiatene sitem fugit
                         eveliciis dolori vit delistotati simus.
                     </p>
-                    <div
-                        class="d-flex flex-column py-2"
-                        style="border-bottom: 1px solid lightgray"
-                    >
+                    <div class="d-flex flex-column py-2" style="border-bottom: 1px solid lightgray">
                         <div class="d-flex">
                             <span>CODICE:</span>
                             <strong class="fw-bold">{{ product.code }}</strong>
@@ -50,18 +45,13 @@
 
                         <div class="d-flex">
                             <span>CATEGORIA:</span>
-                            <strong
-                                ><span class="fw-bold">{{
-                                    product.category.name
-                                }}</span></strong
-                            >
+                            <strong><span class="fw-bold">{{
+                                product.category.name
+                            }}</span></strong>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <QuantityProductsComponent
-                            @update-quantity="updateQuantity"
-                            :product="product"
-                        />
+                        <QuantityProductsComponent @update-quantity="updateQuantity" :product="product" />
                         <!-- <p>Quantity: {{ quantity }}</p> -->
                         <div @click="addToCart" class="yellow-button mx-2">
                             AGGIUNGI AL CARRELLO
@@ -101,10 +91,7 @@
                             <span v-if="!product.price_saled" class="price">
                                 € {{ product.price }}
                             </span>
-                            <span
-                                v-if="product.price_saled"
-                                class="current-price text-danger"
-                            >
+                            <span v-if="product.price_saled" class="current-price text-danger">
                                 € {{ product.price_saled }}
                             </span>
                         </td>
@@ -192,7 +179,7 @@ export default {
                 .get(`/api/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
-                    console.log(this.product);
+                    // console.log(this.product);
                     this.loadingProduct = false;
                 })
                 .catch((error) => {
@@ -268,6 +255,7 @@ export default {
 
     text-decoration: line-through;
 }
+
 .price {
     font-weight: bold;
 }
@@ -275,13 +263,16 @@ export default {
 p {
     font-size: 0.8rem;
 }
+
 span {
     font-size: 0.6rem;
     margin-right: 3px;
 }
+
 strong {
     font-size: 0.6rem;
 }
+
 img {
     border: 1px solid lightgray;
     padding: 3rem;
@@ -289,6 +280,7 @@ img {
     max-width: 100%;
     height: fit-content;
 }
+
 input {
     width: 50px;
     text-align: center;

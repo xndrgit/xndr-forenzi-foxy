@@ -5,11 +5,7 @@
                 <loadingComponent v-if="loadingCategories" />
 
                 <div class="d-flex" v-else>
-                    <NavBoxesComponent
-                        v-for="category in categories"
-                        :key="category.name"
-                        :category="category"
-                    />
+                    <NavBoxesComponent v-for="category in categories" :key="category.name" :category="category" />
                     <div @click="goToPersonalizePage">
                         <CustomizeBoxesComponent />
                     </div>
@@ -17,35 +13,19 @@
 
                 <!-- <JumboComponent /> -->
                 <BannerNewsComponent />
-                <BannerTextComponent
-                    v-for="element in txtbanners"
-                    :key="element.title"
-                    :title="element.title"
-                    :description="element.description"
-                    :descriptionBold="element.descriptionBold"
-                />
+                <BannerTextComponent v-for="element in txtbanners" :key="element.title" :title="element.title"
+                    :description="element.description" :descriptionBold="element.descriptionBold" />
 
                 <LoadingRollComponent v-if="loadingProducts" />
-                <BoxesComponent
-                    v-else
-                    v-for="product in products"
-                    :key="product.name"
-                    :product="product"
-                />
+                <BoxesComponent v-else v-for="product in products" :key="product.name" :product="product" />
 
                 <!-- <HolidayComponent /> -->
             </div>
         </div>
 
-        <ClassicLeft
-            v-for="(element, index) in txtleft"
-            :key="index"
-            :title="element.title"
-            :description="element.description"
-            :subdescription="element.subdescription"
-            :notes="element.notes"
-            :button="element.button"
-        />
+        <ClassicLeft v-for="(element, index) in txtleft" :key="index" :title="element.title"
+            :description="element.description" :subdescription="element.subdescription" :notes="element.notes"
+            :button="element.button" />
         <ClassicRight />
     </div>
 </template>
@@ -118,7 +98,6 @@ export default {
                 })
                 .then((response) => {
                     console.log("categories");
-                    console.log(response.data.results.data);
                     this.categories = response.data.results.data;
                     this.currentPageCategories =
                         response.data.results.currentPage;
@@ -135,8 +114,6 @@ export default {
             axios
                 .get("/api/products", {})
                 .then((response) => {
-                    console.log("products");
-                    console.log(response.data.results);
                     this.products = response.data.results;
                     this.loadingProducts = false;
                 })

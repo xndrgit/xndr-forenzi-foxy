@@ -124,14 +124,14 @@ export default {
             this.value -= 10;
         },
         getCategory() {
-            console.log(this.loadingCategory);
+            // console.log(this.loadingCategory);
             this.loadingCategory = true;
             axios
                 .get(`/api/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
                     setTimeout(() => {
-                        console.log(this.loadingCategory);
+                        // console.log(this.loadingCategory);
                         this.loadingCategory = false;
                     }, 1000);
                 })
@@ -148,11 +148,11 @@ export default {
     },
     computed: {
         minimumPrice() {
-            console.log(
-                this.category.products.map((product) =>
-                    Math.min(product.price, product.price_saled)
-                )
-            );
+            // console.log(
+            //     this.category.products.map((product) =>
+            //         Math.min(product.price, product.price_saled)
+            //     )
+            // );
             return Math.min(
                 ...this.category.products.map((product) =>
                     product.price_saled === null

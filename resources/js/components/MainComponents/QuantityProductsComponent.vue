@@ -1,14 +1,8 @@
 <template>
     <div class="quantity">
         <button @click="decrementQuantity" id="minus-button">-</button>
-        <input
-            class="font-weight-bold"
-            type="number"
-            v-model="quantity"
-            readonly
-            id="quantity-input"
-            @input="updateQuantity"
-        />
+        <input class="font-weight-bold" type="number" v-model="quantity" readonly id="quantity-input"
+            @input="updateQuantity" />
         <button @click="incrementQuantity" id="plus-button">+</button>
     </div>
 </template>
@@ -41,7 +35,7 @@ export default {
             this.$emit("update-quantity", this.quantity);
         },
         updateQuantity() {
-            console.log("Child component - quantity updated:", this.quantity);
+            // console.log("Child component - quantity updated:", this.quantity);
             this.$emit("update-quantity", this.quantity);
         },
     },
@@ -55,6 +49,7 @@ export default {
 .quantity {
     color: lightgray;
     display: flex;
+
     input {
         text-align: center;
         max-width: 45px;
@@ -70,6 +65,7 @@ export default {
 
         color: gray;
     }
+
     #minus-button,
     #plus-button {
         height: fit-content;
@@ -84,6 +80,7 @@ export default {
         padding-left: 5px;
         padding-right: 5px;
     }
+
     #minus-button:hover,
     #plus-button:hover {
         background-color: #fdbc48;
