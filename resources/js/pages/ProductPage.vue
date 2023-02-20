@@ -3,7 +3,7 @@
         <div class="container">
             <loadingComponent v-if="loadingCategories" />
 
-            <div class="d-flex justify-content-center" v-else>
+            <div class="d-flex flex-wrap justify-content-center" v-else>
                 <NavBoxesComponent v-for="category in categories" :key="category.name" :category="category" />
                 <div @click="goToPersonalizePage">
                     <CustomizeBoxesComponent />

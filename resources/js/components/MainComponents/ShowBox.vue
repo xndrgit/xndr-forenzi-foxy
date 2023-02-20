@@ -3,9 +3,7 @@
         <LoadingRollComponent v-if="loadingProduct" />
         <div class="d-flex justify-content-center">
             <div class="left col-5 d-flex justify-content-center">
-                <img class=""
-                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                    alt="" />
+                <img class="img-fluid" :src="imageSource" :alt="product.name" />
             </div>
             <div class="right col-7">
                 <div>
@@ -37,7 +35,10 @@
                         restiur ionsequid quidi consequam quatiatene sitem fugit
                         eveliciis dolori vit delistotati simus.
                     </p>
-                    <div class="d-flex flex-column py-2" style="border-bottom: 1px solid lightgray">
+                    <div
+                        class="d-flex flex-column py-2"
+                        style="border-bottom: 1px solid lightgray"
+                    >
                         <div class="d-flex">
                             <span>CODICE:</span>
                             <strong class="fw-bold">{{ product.code }}</strong>
@@ -45,13 +46,18 @@
 
                         <div class="d-flex">
                             <span>CATEGORIA:</span>
-                            <strong><span class="fw-bold">{{
-                                product.category.name
-                            }}</span></strong>
+                            <strong
+                                ><span class="fw-bold">{{
+                                    product.category.name
+                                }}</span></strong
+                            >
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <QuantityProductsComponent @update-quantity="updateQuantity" :product="product" />
+                        <QuantityProductsComponent
+                            @update-quantity="updateQuantity"
+                            :product="product"
+                        />
                         <!-- <p>Quantity: {{ quantity }}</p> -->
                         <div @click="addToCart" class="yellow-button mx-2">
                             AGGIUNGI AL CARRELLO
@@ -76,31 +82,39 @@
                     </div> -->
                 </div>
 
-                <table class="alternating-rows">
-                    <tr>
-                        <td class="td1">QUANTITÀ</td>
-                        <td>DA 1+</td>
-                        <td>DA 100+</td>
-                        <td>DA 300+</td>
-                        <td>DA 500+</td>
-                        <td>DA 1000+</td>
-                    </tr>
-                    <tr>
-                        <td class="td1">PREZZO UNITARIO</td>
-                        <td class="td2">
-                            <span v-if="!product.price_saled" class="price">
-                                € {{ product.price }}
-                            </span>
-                            <span v-if="product.price_saled" class="current-price text-danger">
-                                € {{ product.price_saled }}
-                            </span>
-                        </td>
-                        <td class="td2">€ {{ product.first_price }}</td>
-                        <td class="td2">€ {{ product.second_price }}</td>
-                        <td class="td2">€ {{ product.third_price }}</td>
-                        <td class="td2">€ {{ product.fourth_price }}</td>
-                    </tr>
-                </table>
+                <div class="overflow-table">
+                    <table
+                        class="alternating-rows table table-hover table-fixed"
+                    >
+                        <tr>
+                            <td class="td1">QUANTITÀ</td>
+                            <td>DA 1+</td>
+                            <td>DA 100+</td>
+                            <td>DA 300+</td>
+                            <td>DA 500+</td>
+                            <td>DA 1000+</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">PREZZO UNITARIO</td>
+                            <td class="td2">
+                                <span v-if="!product.price_saled" class="price">
+                                    € {{ product.price }}
+                                </span>
+                                <span
+                                    v-if="product.price_saled"
+                                    class="current-price text-danger"
+                                >
+                                    € {{ product.price_saled }}
+                                </span>
+                            </td>
+                            <td class="td2">€ {{ product.first_price }}</td>
+                            <td class="td2">€ {{ product.second_price }}</td>
+                            <td class="td2">€ {{ product.third_price }}</td>
+                            <td class="td2">€ {{ product.fourth_price }}</td>
+                        </tr>
+                    </table>
+                </div>
+
                 <div class="d-flex align-items-center py-2">
                     <h6 class="font-weight-bold">
                         PREZZO TOTALE CON IVA E CONAI:
@@ -214,6 +228,13 @@ export default {
         },
     },
     computed: {
+        imageSource() {
+            if (/^http/.test(this.product.img)) {
+                return this.product.img;
+            } else {
+                return "/storage" + this.product.img.substring(6);
+            }
+        },
         totalPrice() {
             if (this.quantity >= 1) {
                 this.priceDynamic = this.product.price;
@@ -243,6 +264,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.overflow-table::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+.overflow-table {
+    overflow-x: auto;
+}
 .current-price {
     font-weight: bold;
 }
@@ -275,10 +303,11 @@ strong {
 
 img {
     border: 1px solid lightgray;
-    padding: 3rem;
     object-fit: contain;
     max-width: 100%;
     height: fit-content;
+
+    width: -webkit-fill-available;
 }
 
 input {

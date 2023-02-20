@@ -1,10 +1,10 @@
 <template>
     <section class="classic d-flex">
-        <div class="container">
+        <div class="container-lg">
             <div
-                class="row d-flex flex-wrap justify-content-between align-items-center"
+                class="row d-flex flex-wrap col-12 justify-content-between align-items-center"
             >
-                <div class="classic-text col-6">
+                <div class="classic-text col-lg-6">
                     <h1 class="">{{ title }}</h1>
                     <p class="">
                         {{ description }}
@@ -19,8 +19,12 @@
                         {{ button }}
                     </button>
                 </div>
-                <div class="classic-image col-6 d-flex align-items-center">
-                    <img class="img-fluid" src="../../../../public/Links/scatole.jpg" :alt="img" />
+                <div class="classic-image col-lg-6 d-flex align-items-center">
+                    <img
+                        class="img-fluid"
+                        src="../../../../public/Links/scatole.jpg"
+                        :alt="img"
+                    />
                 </div>
             </div>
         </div>
@@ -61,7 +65,7 @@ export default {
         font-weight: bold;
         font-size: 2rem;
 
-        margin-right: 13rem;
+        margin-right: 5rem;
     }
 }
 </style>

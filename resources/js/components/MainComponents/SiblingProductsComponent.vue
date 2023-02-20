@@ -1,41 +1,46 @@
 <template>
     <tr>
         <td>
-            <img class="img-fluid"
-                src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                alt="productImage" />
+            <img class="img-fluid" :src="imageSource" :alt="product.name" />
         </td>
 
-        <td>{{ product.code }}</td>
-        <td>{{ product.length }}</td>
-        <td>{{ product.weight }}</td>
-        <td>{{ product.height }}</td>
+        <td class="font-weight-bold">{{ product.code }}</td>
+        <td class="font-weight-bold">{{ product.length }}</td>
+        <td class="font-weight-bold">{{ product.weight }}</td>
+        <td class="font-weight-bold">{{ product.height }}</td>
         <td>
-            <img class="img-fluid"
-                src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                alt="PersonaliseImage" />
+            <a href="/personalize">
+                <img
+                    class="img-fluid"
+                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
+                    alt="PersonaliseImage"
+                />
+            </a>
         </td>
-        <td>€ {{ product.price_saled }}</td>
+        <td>
+            <span v-if="!product.price_saled" class="price">
+                € {{ product.price }}
+            </span>
+            <span v-if="product.price_saled" class="current-price text-danger">
+                € {{ product.price_saled }}
+            </span>
+        </td>
         <td>€ {{ product.first_price }}</td>
         <td>€ {{ product.second_price }}</td>
         <td>€ {{ product.third_price }}</td>
         <td>€ {{ product.fourth_price }}</td>
-        <td>
+        <td class="bancale">
             <div class="d-inline">1.280</div>
-            <div class="yellow-button d-inline p-2 mx-2">
-                +
-            </div>
+            <div class="yellow-button d-inline p-2 mx-2">+</div>
         </td>
         <td>
-            <div class="d-flex">
-                <div class="d-flex">
-                    <button @click="decreaseValue()">
-                        -
-                    </button>
+            <div class="d-flex align-items-center">
+                <div class="quantity d-flex">
                     <input type="text" id="input" v-model="value" />
-                    <button @click="increaseValue()">
-                        +
-                    </button>
+                    <div class="d-flex flex-column">
+                        <button @click="increaseValue()">+</button>
+                        <button @click="decreaseValue()">-</button>
+                    </div>
                 </div>
 
                 <div @click="addToCart" class="yellow-button">AGGIUNGI</div>
@@ -53,9 +58,9 @@ export default {
     },
     data() {
         return {
-            code: '',
+            code: "",
             value: 0,
-        }
+        };
     },
     methods: {
         aaa() {
@@ -101,8 +106,17 @@ export default {
     },
     mounted() {
         this.aaa();
-    }
-}
+    },
+    computed: {
+        imageSource() {
+            if (/^http/.test(this.product.img)) {
+                return this.product.img;
+            } else {
+                return "/storage" + this.product.img.substring(6);
+            }
+        },
+    },
+};
 </script>
 <style lang="scss" scoped>
 .overflow-table::-webkit-scrollbar {
@@ -113,11 +127,11 @@ export default {
     overflow-x: auto;
 
     table {
-
         td,
         th {
+            min-width: 60px;
             border: 1px solid #ddd;
-            font-size: 0.4rem;
+            font-size: 0.5rem;
             text-align: center;
             vertical-align: middle;
 
@@ -127,6 +141,28 @@ export default {
 
             button {
                 font-size: large;
+            }
+
+            .quantity {
+                height: max-content;
+
+                align-items: center;
+                input {
+                    width: 40px;
+                    height: 30px;
+
+                    text-align: center;
+
+                    border: 1px solid lightgray;
+                }
+                button {
+                    border: 1px solid lightgray;
+                    padding: 0px 0.5rem;
+
+                    font-size: 0.6rem;
+
+                    margin-right: 10px;
+                }
             }
         }
     }

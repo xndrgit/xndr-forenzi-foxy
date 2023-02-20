@@ -3,7 +3,7 @@
         <div class="HeaderBoxes">
             <!-- <LoadingComponent v-if="LoadingCategories" /> -->
 
-            <nav class="d-flex">
+            <nav class="d-flex ">
                 <div class="container d-flex flex-wrap justify-content-around">
                     <div
                         class="card d-flex align-items-center position-relative"
@@ -33,11 +33,10 @@
 
                         <div class="down">
                             <div class="card-body text-center p-1">
-                                <span class="card-title">SCATOLE</span>
-                                <br />
-                                <span class="card-text font-weight-bold"
-                                    >{{ category.name }}
-                                </span>
+                                <p class="card-title">SCATOLE</p>
+                                <p class="card-text font-weight-bold">
+                                    {{ category.name }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -86,23 +85,28 @@ export default {
 
         .up {
             height: 60%;
+
             img {
                 padding: 10px;
-                max-height: 120px;
+                height: -webkit-fill-available;
+                padding: 1rem 0px;
             }
             .litlogo {
-                bottom: 60px;
-                right: 0px;
-                height: 60px;
-                width: 60px;
+                bottom: 50px;
+                right: -25px;
+                height: 80px;
+                width: 80px;
             }
         }
 
         .down {
             height: 40%;
 
-            span {
+            display: flex;
+            align-items: center;
+            p {
                 font-size: 0.8rem;
+                margin: 0px;
             }
         }
     }

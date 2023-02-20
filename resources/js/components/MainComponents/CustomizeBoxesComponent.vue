@@ -9,7 +9,7 @@
                         <div class="up">
                             <img
                                 class="card-img-top"
-                                src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
+                                src="https://www.freepnglogos.com/uploads/box-png/box-new-used-gaylord-boxes-for-sale-reliable-industries-llc-22.png"
                                 alt="img"
                             />
                             <div class="litlogo position-absolute">
@@ -23,14 +23,12 @@
 
                         <div class="down">
                             <div class="card-body text-center p-1">
-                                <span class="card-title">SCATOLE</span>
-                                <br />
-                                <span class="card-text font-weight-bold"
-                                    >PERSONALIIZATE
-                                </span>
+                                <p class="card-title">SCATOLE</p>
+                                <p class="card-text font-weight-bold">
+                                    PERSONALIIZATE
+                                </p>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </nav>
@@ -68,29 +66,27 @@ export default {
 
         .up {
             height: 60%;
-
-            display: flex;
-            align-items: center;
+            img {
+                padding: 10px;
+                height: -webkit-fill-available;
+                padding: 1rem 0px;
+            }
+            .litlogo {
+                bottom: 50px;
+                right: -25px;
+                height: 80px;
+                width: 80px;
+            }
         }
+
         .down {
             height: 40%;
-
             display: flex;
             align-items: center;
         }
-        span {
+        p {
             font-size: 0.8rem;
-        }
-
-        img {
-            padding: 10px;
-            max-height: 120px;
-        }
-        .litlogo {
-            bottom: 60px;
-            right: 0px;
-            height: 60px;
-            width: 60px;
+            margin: 0px;
         }
     }
 

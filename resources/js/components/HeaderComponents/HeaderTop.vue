@@ -123,7 +123,7 @@ export default {
         i {
             font-size: 20px;
             padding: 0 10px;
-            margin: 1rem 0px;
+            margin: .5rem 0px;
         }
 
         p {

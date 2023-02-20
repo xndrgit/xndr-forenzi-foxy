@@ -2,10 +2,14 @@
     <section class="boxes d-flex flex-wrap justify-content-center">
         <div class="box">
             <div class="card-header">
-                <router-link :to="{ name: 'product', params: { id: product.id } }">
-                    <img class="img-fluid"
-                        src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                        :alt="product.name" />
+                <router-link
+                    :to="{ name: 'product', params: { id: product.id } }"
+                >
+                    <img
+                        class="img-fluid"
+                        :src="imageSource"
+                        :alt="product.name"
+                    />
                 </router-link>
             </div>
 
@@ -36,7 +40,10 @@
                         </button>
                     </div>
                     <div class="right">
-                        <QuantityProductsComponent @update-quantity="updateQuantity" :product="product" />
+                        <QuantityProductsComponent
+                            @update-quantity="updateQuantity"
+                            :product="product"
+                        />
                         <!-- <p>Quantity: {{ quantity }}</p> -->
                     </div>
                 </div>
@@ -69,12 +76,12 @@ export default {
             // code to add item to cart, for example
             // using this.product and this.quantity to add the product to the cart
 
-            if (!this.$store.state.isAuth) {
-                //not login
-                alert("Try to login");
-                // window.location.reload("/login");
-                return;
-            }
+            // if (!this.$store.state.isAuth) {
+            //     //not login
+            //     alert("Try to login");
+            //     this.$router.push("/login");
+            //     return;
+            // }
             axios
                 .post("/api/orders", {
                     id: this.product.id,
@@ -104,6 +111,13 @@ export default {
                     this.product.price) *
                 100
             );
+        },
+        imageSource() {
+            if (/^http/.test(this.product.img)) {
+                return this.product.img;
+            } else {
+                return "/storage" + this.product.img.substring(6);
+            }
         },
     },
 };

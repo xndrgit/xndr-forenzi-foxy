@@ -1,6 +1,6 @@
 <template>
-    <section class="news-banner d-flex">
-        <div class="new">
+    <section class="news-banner d-flex flex-wrap justify-content-center">
+        <div class="new col-12 col-md-4">
             <div class="w-35">
                 <img
                     class="img-fluid"
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="new" style="">
+        <div class="new col-12 col-md-4">
             <div class="new-img w-35">
                 <img
                     class="img-fluid"
@@ -27,12 +27,12 @@
                 />
             </div>
             <div class="new-text w-65">
-                <h4>Scatole con maniglie</h4>
+                <h5>Scatole con maniglie</h5>
                 <p>Disponibili bianche e avana</p>
                 <button class="yellow-button">SCOPRI IL PRODOTTO</button>
             </div>
         </div>
-        <div class="new">
+        <div class="new col-12 col-md-4">
             <div class="new-img w-35">
                 <img
                     class="img-fluid"
@@ -41,7 +41,7 @@
                 />
             </div>
             <div class="new-text w-65">
-                <h4>Scatole colorate</h4>
+                <h5>Scatole colorate</h5>
                 <p>Varie forme e colori</p>
                 <button class="yellow-button">SCOPRI IL PRODOTTO</button>
             </div>
@@ -68,9 +68,9 @@ export default {
         font-size: 0.8rem;
 
         height: 160px;
-        width: 33.33%;
+        width: calc(33.33% - 50px);
         background-color: #e5e5e5;
-        margin: 50px 2px;
+        margin: 1px 0px;
 
         img {
             height: 160px;
@@ -83,7 +83,7 @@ export default {
         .new-text {
             padding: 10px;
             h1,
-            h4 {
+            h5 {
                 color: rgb(246, 134, 48);
                 font-weight: bold;
             }

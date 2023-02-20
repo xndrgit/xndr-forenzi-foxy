@@ -3,7 +3,7 @@
         <div class="HeaderSearch">
             <div class="container-lg">
                 <div class="row d-flex">
-                    <div class="col-12 col-md-3 logo">
+                    <div class="col-md-3 logo">
                         <router-link to="/">
                             <img
                                 class="img-fluid mb-4"
@@ -12,13 +12,17 @@
                             />
                         </router-link>
                     </div>
+
+                    <div class="d-none d-md-block col-md-1"></div>
+
                     <div
-                        class="col-12 col-md-9 d-flex align-items-center justify-content-end"
+                        class="col-md-8 d-flex align-items-center justify-content-end"
                     >
-                        <div class="inputs d-flex flex-sm-row">
+                        <div
+                            class="inputs d-flex flex-wrap flex-md-nowrap flex-sm-row"
+                        >
                             <div class="input-group mb-3 mx-2">
                                 <input
-                                    style="width: 60px"
                                     type="number"
                                     class="form-control"
                                     v-model="length"
@@ -26,7 +30,6 @@
                                     max="99"
                                 />
                                 <input
-                                    style="width: 60px"
                                     type="number"
                                     v-model="height"
                                     class="form-control"
@@ -40,17 +43,21 @@
                                     placeholder="Altezza"
                                     max="99"
                                 />
+                                <div class="divCm">
+                                    <span class="form-control"> CM </span>
+                                </div>
 
                                 <div class="input-group-append">
                                     <button
                                         class="btn btn-outline-secondary"
-                                        type="submit" @click="search()"
+                                        type="submit"
+                                        @click="search()"
                                     >
                                         <i class="fa fa-lg fa-search"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="input-group mb-3 mx-2 col*">
+                            <div class="input-group mb-3 mx-2">
                                 <input
                                     type="text"
                                     class="form-control"
@@ -76,30 +83,47 @@
 
 <script>
 export default {
-
     data() {
-
         return {
-
-            length: '',
-            width: '',
-            height: '',
-            results:[],
-
-
-        }
-        
-}
-
+            length: "",
+            width: "",
+            height: "",
+            results: [],
+        };
+    },
 };
 </script>
 
 errors: 1-Inserting lang=scss in the
 <style lang="scss" scoped>
+.divCm {
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.3);
+    border-radius: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+span {
+    color: black;
+    font-weight: bold;
+    height: 38px;
+
+    border: none;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+
+    width: fit-content;
+    font-size: 0.6rem;
+    padding: 0.8rem 14px;
+    cursor: none;
+}
 .inputs .input-group {
     background-color: #f1f1f1;
 }
 input {
+    width: 100%;
     border-radius: 0px;
     border: 1px solid white;
     border-radius: 0px;
@@ -112,6 +136,7 @@ input {
     }
 }
 input::placeholder {
+    width: fit-content;
     color: black;
     font-size: 0.7rem;
     padding: 0.4rem;
@@ -142,7 +167,6 @@ button.btn.btn-outline-secondary {
                     .input-group {
                         input {
                             font-weight: bold;
-                            min-width: 80px;
                             border: none;
                             background-color: transparent;
                             padding: 0.5rem;

@@ -3,43 +3,62 @@
         <div class="container-lg">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="h5 mx-4 large font-weight-bold">
-                        <h1>CHECKOUT</h1>
-                        <hr />
+                    <div class="h6 mx-4 large">
+                        <h2 class="font-weight-bold">CHECKOUT</h2>
+                        <hr class="w-5" />
                         <span> DETTAGLI DI FATTURAZIONE </span>
+                        <hr />
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-wrap">
                     <div class="col-6">
                         <div class="mobile h5">Billing Address</div>
-                        <div class="py-5" id="details">
+                        <div class="" id="details">
                             <v-form ref="entryForm">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">NOME</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
-                                                <v-text-field label="NOME" v-model="first_name" :error-messages="
-                                                    firstNameErrors
-                                                " required @input="
-    $v.first_name.$touch()
-" @blur="
-    $v.first_name.$touch()
-"></v-text-field>
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
+                                                <v-text-field
+                                                    label="NOME"
+                                                    v-model="first_name"
+                                                    :error-messages="
+                                                        firstNameErrors
+                                                    "
+                                                    required
+                                                    @input="
+                                                        $v.first_name.$touch()
+                                                    "
+                                                    @blur="
+                                                        $v.first_name.$touch()
+                                                    "
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">COGNOME</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
-                                                <v-text-field label="COGNOME" v-model="last_name" :error-messages="
-                                                    lastNameErrors
-                                                " required @input="
-    $v.last_name.$touch()
-" @blur="
-    $v.last_name.$touch()
-"></v-text-field>
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
+                                                <v-text-field
+                                                    label="COGNOME"
+                                                    v-model="last_name"
+                                                    :error-messages="
+                                                        lastNameErrors
+                                                    "
+                                                    required
+                                                    @input="
+                                                        $v.last_name.$touch()
+                                                    "
+                                                    @blur="
+                                                        $v.last_name.$touch()
+                                                    "
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
@@ -47,29 +66,42 @@
 
                                 <div class="form-group">
                                     <!-- <label class="">RAGIONE SOCIALE</label> -->
-                                    <div class="d-flex jusify-content-start align-items-center p-2">
+                                    <div
+                                        class="d-flex jusify-content-start align-items-center"
+                                    >
                                         <!-- COGNOME
                                         <input type="text" v-model="business_name" /> -->
-                                        <v-text-field label="RAGIONE SOCIALE" v-model="business_name"
-                                            :error-messages="businessNameErrors" required
+                                        <v-text-field
+                                            label="RAGIONE SOCIALE"
+                                            v-model="business_name"
+                                            :error-messages="businessNameErrors"
+                                            required
                                             @input="$v.business_name.$touch()"
-                                            @blur="$v.business_name.$touch()"></v-text-field>
+                                            @blur="$v.business_name.$touch()"
+                                        ></v-text-field>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <!-- <label class="">INDIRIZZO</label> -->
-                                    <div class="d-flex jusify-content-start align-items-center p-2">
+                                    <div
+                                        class="d-flex jusify-content-start align-items-center"
+                                    >
                                         <!-- <input type="text" v-model="address" /> -->
-                                        <v-text-field label="INDIRIZZO" v-model="address"
-                                            :error-messages="addressErrors" required @input="$v.address.$touch()"
-                                            @blur="$v.address.$touch()"></v-text-field>
+                                        <v-text-field
+                                            label="INDIRIZZO"
+                                            v-model="address"
+                                            :error-messages="addressErrors"
+                                            required
+                                            @input="$v.address.$touch()"
+                                            @blur="$v.address.$touch()"
+                                        ></v-text-field>
                                     </div>
                                 </div>
 
                                 <!-- <div class="form-group">
                                     <label class="">RAGIONE SOCIALE</label>
-                                    <div class="d-flex jusify-content-start align-items-center p-2">
+                                    <div class="d-flex jusify-content-start align-items-center  ">
                                         <input type="text" value="" />
                                     </div>
                                 </div> -->
@@ -78,22 +110,36 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">CAP</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="cap" /> -->
-                                                <v-text-field label="CAP" v-model="cap" :error-messages="capErrors"
-                                                    required @input="$v.cap.$touch()"
-                                                    @blur="$v.cap.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="CAP"
+                                                    v-model="cap"
+                                                    :error-messages="capErrors"
+                                                    required
+                                                    @input="$v.cap.$touch()"
+                                                    @blur="$v.cap.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">CITTÀ</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="city" /> -->
-                                                <v-text-field label="CITTÀ" v-model="city" :error-messages="cityErrors"
-                                                    required @input="$v.city.$touch()"
-                                                    @blur="$v.city.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="CITTÀ"
+                                                    v-model="city"
+                                                    :error-messages="cityErrors"
+                                                    required
+                                                    @input="$v.city.$touch()"
+                                                    @blur="$v.city.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
@@ -103,25 +149,42 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">PROVINCIA</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="province" /> -->
-                                                <v-text-field label="PROVINCIA" v-model="province" :error-messages="
-                                                    provinceErrors
-                                                " required @input="
-    $v.province.$touch()
-" @blur="$v.province.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="PROVINCIA"
+                                                    v-model="province"
+                                                    :error-messages="
+                                                        provinceErrors
+                                                    "
+                                                    required
+                                                    @input="
+                                                        $v.province.$touch()
+                                                    "
+                                                    @blur="$v.province.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">STATO</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="state" /> -->
-                                                <v-text-field label="STATO" v-model="state" :error-messages="
-                                                    stateErrors
-                                                " required @input="$v.state.$touch()"
-                                                    @blur="$v.state.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="STATO"
+                                                    v-model="state"
+                                                    :error-messages="
+                                                        stateErrors
+                                                    "
+                                                    required
+                                                    @input="$v.state.$touch()"
+                                                    @blur="$v.state.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
@@ -131,21 +194,35 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">TELEFONO</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="phone" /> -->
-                                                <v-text-field label="TELEFONO" v-model="phone" :error-messages="
-                                                    phoneErrors
-                                                " required @input="$v.phone.$touch()"
-                                                    @blur="$v.phone.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="TELEFONO"
+                                                    v-model="phone"
+                                                    :error-messages="
+                                                        phoneErrors
+                                                    "
+                                                    required
+                                                    @input="$v.phone.$touch()"
+                                                    @blur="$v.phone.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">MAIL</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" value="" /> -->
-                                                <v-text-field label="MAIL" :value="mail" readonly></v-text-field>
+                                                <v-text-field
+                                                    label="MAIL"
+                                                    :value="mail"
+                                                    readonly
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
@@ -155,24 +232,40 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">PEC</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="pec" /> -->
-                                                <v-text-field label="PEC" v-model="pec" :error-messages="pecErrors"
-                                                    required @input="$v.pec.$touch()"
-                                                    @blur="$v.pec.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="PEC"
+                                                    v-model="pec"
+                                                    :error-messages="pecErrors"
+                                                    required
+                                                    @input="$v.pec.$touch()"
+                                                    @blur="$v.pec.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <!-- <label class="">CODICE SDI</label> -->
-                                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                            <div
+                                                class="d-flex jusify-content-start align-items-center"
+                                            >
                                                 <!-- <input type="text" v-model="code_sdi" /> -->
-                                                <v-text-field label="CODICE SDI" v-model="code_sdi" :error-messages="
-                                                    codeSdiErrors
-                                                " required @input="
-    $v.code_sdi.$touch()
-" @blur="$v.code_sdi.$touch()"></v-text-field>
+                                                <v-text-field
+                                                    label="CODICE SDI"
+                                                    v-model="code_sdi"
+                                                    :error-messages="
+                                                        codeSdiErrors
+                                                    "
+                                                    required
+                                                    @input="
+                                                        $v.code_sdi.$touch()
+                                                    "
+                                                    @blur="$v.code_sdi.$touch()"
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +275,9 @@
                                     <!-- <label class=""
                                         >NOTE ORDINE (opzionale)</label
                                     > -->
-                                    <div class="d-flex jusify-content-start align-items-center p-2">
+                                    <div
+                                        class="d-flex jusify-content-start align-items-center"
+                                    >
                                         <!-- <v-textarea
                                             cols="200"
                                             id=""
@@ -190,9 +285,14 @@
                                             rows="5"
                                             v-model="notes"
                                         ></v-textarea> -->
-                                        <v-textarea label="NOTE ORDINE (opzionale)" v-model="notes"
-                                            :error-messages="notesErrors" required @input="$v.notes.$touch()"
-                                            @blur="$v.notes.$touch()"></v-textarea>
+                                        <v-textarea
+                                            label="NOTE ORDINE (opzionale)"
+                                            v-model="notes"
+                                            :error-messages="notesErrors"
+                                            required
+                                            @input="$v.notes.$touch()"
+                                            @blur="$v.notes.$touch()"
+                                        ></v-textarea>
                                     </div>
                                 </div>
                             </v-form>
@@ -200,39 +300,55 @@
                     </div>
                     <div class="summary col-6">
                         <div class="bg-white" id="cart">
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div
+                                class="d-flex justify-content-between align-items-center"
+                            >
                                 <div class="h6">RIEPILOGO ORDINE</div>
                                 <div class="h6"><a href="/cart">Back</a></div>
                             </div>
                             <div v-for="item in order.products">
-                                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom">
+                                <div
+                                    class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom"
+                                >
                                     <div class="item pr-2">
-                                        <img alt="" height="80"
-                                            src="../../../public/Links/cat-scatole-cartone-1-onda.jpg" width="80" />
-                                        <div class="number">
-                                            {{ item.pivot.quantity }}
-                                        </div>
+                                        <img
+                                            alt=""
+                                            height="80"
+                                            :src="productImage(item)"
+                                            width="80"
+                                        />
                                     </div>
 
                                     <div class="d-flex flex-column px-3">
                                         <b class="">{{ item.name }}</b>
-                                        <strong>CODICE:
+                                        <strong
+                                            >CODICE:
                                             <span> </span>
                                             <a class="text-primary" href="#">
                                                 {{ item.code }}
                                             </a>
                                         </strong>
-                                        <strong>DIMENSIONI:
+                                        <strong
+                                            >DIMENSIONI:
                                             <span> </span>
                                             <a class="text-primary" href="#">
-                                                <strong>CODICE:
-                                                    <span> </span>
-                                                    <a class="text-primary" href="#">
+                                                <strong>
+                                                    <a
+                                                        class="text-primary"
+                                                        href="#"
+                                                    >
                                                         {{ item.length }} x
                                                         {{ item.height }} x
                                                         {{ item.width }}
                                                     </a>
                                                 </strong>
+                                            </a>
+                                        </strong>
+                                        <strong
+                                            >QUANTITA'
+                                            <span> </span>
+                                            <a class="text-primary" href="#">
+                                                {{ item.pivot.quantity }}
                                             </a>
                                         </strong>
                                     </div>
@@ -281,12 +397,15 @@
                             </div> -->
 
                             <div class="py-5">
-                                <div class="d-flex align-items-center justify-content-between">
+                                <div
+                                    class="d-flex align-items-center justify-content-between"
+                                >
                                     <div class="display-5">SUBTOTALE</div>
                                     <div class="ml-auto font-weight-bold">
                                         € {{ this.subtotal.toFixed(2) }}
                                     </div>
                                 </div>
+                                <hr />
                                 <!-- <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -303,7 +422,9 @@
                                         $80.9
                                     </div>
                                 </div> -->
-                                <div class="d-flex align-items-center justify-content-between">
+                                <div
+                                    class="d-flex align-items-center justify-content-between"
+                                >
                                     <div class="display-5">
                                         SPEDIZIONE GRATUITA
                                     </div>
@@ -311,7 +432,10 @@
                                         € {{ this.shipping_cost.toFixed(2) }}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between">
+                                <hr />
+                                <div
+                                    class="d-flex align-items-center justify-content-between"
+                                >
                                     <div class="display-5">
                                         CONTRIBUTO CONAI
                                     </div>
@@ -319,53 +443,120 @@
                                         € {{ this.conai.toFixed(2) }}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between">
+                                <hr />
+                                <div
+                                    class="d-flex align-items-center justify-content-between"
+                                >
                                     <div class="display-5">IVA</div>
                                     <div class="ml-auto font-weight-bold">
                                         € {{ this.iva.toFixed(2) }}
                                     </div>
                                 </div>
+                                <hr />
                                 <div
-                                    class="total border-top d-flex justify-content-between align-items-center ml-2 font-weight-bold">
+                                    class="total d-flex justify-content-between align-items-center font-weight-bold"
+                                >
                                     <div>Total</div>
-                                    <div class="px-2">
+                                    <div>
                                         € {{ this.total.toFixed(2) }}
                                     </div>
                                 </div>
+                                <hr />
                             </div>
                             <div class="pay">
                                 <h5 class="fw-bold">MODALITÀ DI PAGAMENTO</h5>
                                 <br />
-                                <h6 class="">BONIFICO BANCARIO</h6>
-                                <p>
-                                    Effettua il pagamento tramite bonifico
-                                    bancario. Usa l’ID dell’ordine come causale.
-                                    Il tuo ordine non verrà spedito finché i
-                                    fondi non risulteranno trasferiti nel nostro
-                                    conto corrente.
-                                </p>
-                                <hr />
-                                <h6 class="">PAGAMENTO ALLA CONSEGNA</h6>
-                                <p>
-                                    Pagamento in contanti al momento della
-                                    consegna.
-                                </p>
-                                <hr />
-                                <div class="d-flex">
-                                    <h6>PAYPAL E CARTE DI CREDITO</h6>
-                                    <i class="fa-brands fa-cc-paypal"></i>
-                                    <i class="fa-brands fa-cc-visa"></i>
-                                    <i class="fa-brands fa-cc-apple-pay"></i>
-                                    <i class="fa-brands fa-cc-mastercard"></i>
-                                    <i class="fa-brands fa-cc-mastercard"></i>
+
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        id="bonifico"
+                                        value="bonifico"
+                                        v-model="paymentMethod"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="bonifico"
+                                    >
+                                        BONIFICO BANCARIO
+                                    </label>
+                                    <p>
+                                        Effettua il pagamento tramite bonifico
+                                        bancario. Usa l’ID dell’ordine come
+                                        causale. Il tuo ordine non verrà spedito
+                                        finché i fondi non risulteranno
+                                        trasferiti nel nostro conto corrente.
+                                    </p>
+                                    <hr />
                                 </div>
 
-                                <p>
-                                    Paga con PayPal; puoi pagare con la tua
-                                    carta di credito se non hai un account
-                                    PayPal.
-                                </p>
-                                <hr />
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        id="alla-consegna"
+                                        value="alla-consegna"
+                                        v-model="paymentMethod"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="alla-consegna"
+                                    >
+                                        PAGAMENTO ALLA CONSEGNA
+                                    </label>
+                                    <p>
+                                        Pagamento in contanti al momento della
+                                        consegna.
+                                    </p>
+                                    <hr />
+                                </div>
+
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        id="paypal"
+                                        value="paypal"
+                                        v-model="paymentMethod"
+                                    />
+
+                                    <div class="d-flex justify-content-between">
+                                        <label
+                                            class="form-check-label"
+                                            for="paypal"
+                                        >
+                                            PAYPAL E CARTE DI CREDITO
+                                        </label>
+                                        <div class="d-flex align-items-center">
+                                            <i
+                                                class="fab fa-cc-paypal fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-cc-visa fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-cc-mastercard fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-cc-apple-pay fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-google-pay fa-2x me-3"
+                                            ></i>
+                                        </div>
+                                    </div>
+
+                                    <p>
+                                        Paga con PayPal; puoi pagare con la tua
+                                        carta di credito se non hai un account
+                                        PayPal.
+                                    </p>
+                                    <hr />
+                                </div>
 
                                 <p>
                                     I tuoi dati personali verranno utilizzati
@@ -376,13 +567,28 @@
                                 </p>
                                 <hr />
 
-                                <input id="terms" name="terms" type="checkbox" v-model="agree" ref="checkTerm" />
-                                Ho letto e accetto
-                                <strong> termini e condizioni </strong>
-                                del sito web
-                                <strong>*</strong>
-                                <div class="col-md-12 my-4 d-flex justify-content-center w-100">
-                                    <button class="btn text-uppercase" @click="transmitt()" :disabled="!agree">
+                                <div class="form-check">
+                                    <input
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        id="terms"
+                                        v-model="agree"
+                                        ref="checkTerm"
+                                    />
+                                    <label class="form-check-label" for="terms"
+                                        >Ho letto e accetto
+                                        <strong>termini e condizioni</strong>
+                                        del sito web *</label
+                                    >
+                                </div>
+                                <div
+                                    class="col-md-12 my-4 d-flex justify-content-center w-100"
+                                >
+                                    <button
+                                        class="btn text-uppercase"
+                                        @click="transmitt()"
+                                        :disabled="!agree"
+                                    >
                                         PROCEDI CON L'ORDINE
                                     </button>
                                 </div>
@@ -465,6 +671,15 @@ export default {
     },
 
     computed: {
+        productImage() {
+            return function (product) {
+                if (/^http/.test(product.img)) {
+                    return product.img;
+                } else {
+                    return "/storage" + product.img.substring(6);
+                }
+            };
+        },
         firstNameErrors() {
             const errors = [];
             this.first_name_error = [];
@@ -645,7 +860,7 @@ export default {
                 .then((response) => {
                     this.mail = response.data.email;
                 })
-                .catch((error) => { });
+                .catch((error) => {});
         },
 
         getOrders() {
@@ -726,6 +941,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.display-5 {
+    font-weight: bold;
+}
+label {
+    font-weight: bold;
+}
+.col-lg-6 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.v-text-field {
+    padding: 0px;
+    margin: 0px 10px;
+}
 i {
     margin-left: 0.4rem;
     font-size: 0.8rem;
@@ -796,7 +1025,7 @@ select {
     border-radius: 5px;
 }
 
-input[type="checkbox"]+label {
+input[type="checkbox"] + label {
     font-size: 0.85rem;
     font-weight: 600;
 }
@@ -866,7 +1095,7 @@ input[type="checkbox"]+label {
     font-weight: bold;
 }
 
-#cart~p.text-muted {
+#cart ~ p.text-muted {
     margin: 0;
     font-size: 0.9rem;
 }
@@ -908,7 +1137,7 @@ tr.text-muted td {
     cursor: not-allowed;
 }
 
-.wrapper .row+div.text-muted {
+.wrapper .row + div.text-muted {
     font-size: 0.9rem;
 }
 
@@ -936,7 +1165,7 @@ tr.text-muted td {
     }
 
     .wrapper div.h5.large,
-    .wrapper .row+div.text-muted {
+    .wrapper .row + div.text-muted {
         display: none;
     }
 
@@ -957,7 +1186,7 @@ tr.text-muted td {
     }
 
     .wrapper div.h5.large,
-    .wrapper .row+div.text-muted {
+    .wrapper .row + div.text-muted {
         display: none;
     }
 
@@ -1009,7 +1238,7 @@ tr.text-muted td {
 
 .total * {
     color: orange;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 </style>

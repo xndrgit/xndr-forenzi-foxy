@@ -66,17 +66,21 @@
 <style lang="scss" scoped>
 .FooterTop {
     padding: 3rem 0;
-    background-color: #f5f5f5;
+    background-color: white;
     input {
         background-color: #f1f1f1;
         border: none;
-        padding-right: 3rem;
     }
     button {
         padding: 8px 2rem;
     }
     .footer-section {
         h3 {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        p {
+            font-size: 0.7rem;
             font-weight: bold;
         }
         i {
@@ -88,6 +92,7 @@
             list-style: none;
             padding: 0;
             li {
+                font-size: 0.8rem;
                 margin: 0px;
                 a {
                     color: black;

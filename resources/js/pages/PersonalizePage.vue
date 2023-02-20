@@ -162,7 +162,7 @@ export default {
                 },
                 {
                     title: "Dog playing fetch",
-                    src: require("../../../public/Links/02.png"),
+                    src: require("../../../public/Links/m003t277_delivery_paper_box_packaging_2.png"),
                 },
                 {
                     title: "Bird perched on a branch",

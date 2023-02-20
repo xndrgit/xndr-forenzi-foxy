@@ -91,7 +91,6 @@
                                     class="form-control"
                                     id="img2"
                                     name="img2"
-                                    required
                                     type="text"
                                     value="{{ old('img2', $category->img2) }}"
                                 />

@@ -6,8 +6,8 @@
 
         <div class="d-flex">
             <div class="right">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="w-60">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <div class="col-12 col-md-8">
                         <h2 class="font-weight-bold">{{ category.name }}</h2>
                         <h6 class="font-weight-bold">
                             {{ category.mini_description }}
@@ -26,9 +26,13 @@
                             {{ category.description }}
                         </span>
                     </div>
-                    <div class="w-25 position-relative">
+                    <div class="col-12 col-md-4 position-relative">
                         <img class="img-fluid" :src="category.img" alt="" />
-                        <img class="logo img-fluid position-absolute" :src="category.img2" alt="" />
+                        <img
+                            class="logo img-fluid position-absolute"
+                            :src="category.img2"
+                            alt=""
+                        />
                     </div>
                 </div>
 
@@ -51,58 +55,72 @@
                     </div>
                 </div> -->
             </div>
-
         </div>
-        <div class="row">
-            <section class="boxes d-flex flex-wrap justify-content-center" v-for="product in category.products">
+
+        <!-- <div class="row">
+            <section
+                class="boxes d-flex flex-wrap justify-content-center"
+                v-for="product in category.products"
+            >
                 <div class="box">
                     <div class="card-header">
-                        <router-link :to="{ name: 'product', params: { id: product.id } }">
-                            <img class="img-fluid"
+                        <router-link
+                            :to="{
+                                name: 'product',
+                                params: { id: product.id },
+                            }"
+                        >
+                            <img
+                                class="img-fluid"
                                 src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                                :alt="product.name" />
+                                :alt="product.name"
+                            />
                         </router-link>
                     </div>
 
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <div class=" d-flex align-items-center">
+                        <div class="d-flex align-items-center">
                             <p class="category">
                                 {{ category.name }}
                             </p>
                             <p class="category">
                                 {{ product.subcategory_id }}
                             </p>
-                            <!-- <p class="price align-items-center">
-                                {{ product.price }} €
-                            </p> -->
+                         
                         </div>
-                        <div class=" d-flex align-items-center">
+                        <div class="d-flex align-items-center">
                             <p>
                                 CODE:
                                 {{ product.code }}
                             </p>
-
                         </div>
-                        <div class=" d-flex align-items-center">
+                        <div class="d-flex align-items-center">
                             <p>
-                                <i class="fas fa-tags"></i>
-                                {{ product.price }} €
+                                <span v-if="!product.price_saled" class="price">
+                                    <i class="fas fa-tags"></i>
+                                    € {{ product.price }}
+                                </span>
+                                <span
+                                    v-if="product.price_saled"
+                                    class="current-price text-danger"
+                                >
+                                    <i class="fas fa-tags"></i>
+                                    € {{ product.price_saled }}
+                                </span>
                             </p>
                             <p>
                                 <i class="fas fa-box"></i>
                                 {{ product.quantity }}
                             </p>
                         </div>
-                        <div class=" d-flex align-items-center">
-                            <p>
-                                {{ product.description.slice(0, 40) }} ...
-                            </p>
+                        <div class="d-flex align-items-center">
+                            <p>{{ product.description.slice(0, 40) }} ...</p>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
+        </div> -->
     </div>
 </template>
 

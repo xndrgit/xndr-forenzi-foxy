@@ -4,8 +4,12 @@
             <div class="row justify-content-center">
                 <loadingComponent v-if="loadingCategories" />
 
-                <div class="d-flex" v-else>
-                    <NavBoxesComponent v-for="category in categories" :key="category.name" :category="category" />
+                <div class="d-flex flex-wrap justify-content-center" v-else>
+                    <NavBoxesComponent
+                        v-for="category in categories"
+                        :key="category.name"
+                        :category="category"
+                    />
                     <div @click="goToPersonalizePage">
                         <CustomizeBoxesComponent />
                     </div>
@@ -13,19 +17,35 @@
 
                 <!-- <JumboComponent /> -->
                 <BannerNewsComponent />
-                <BannerTextComponent v-for="element in txtbanners" :key="element.title" :title="element.title"
-                    :description="element.description" :descriptionBold="element.descriptionBold" />
+                <BannerTextComponent
+                    v-for="element in txtbanners"
+                    :key="element.title"
+                    :title="element.title"
+                    :description="element.description"
+                    :descriptionBold="element.descriptionBold"
+                />
 
                 <LoadingRollComponent v-if="loadingProducts" />
-                <BoxesComponent v-else v-for="product in products" :key="product.name" :product="product" />
+                <BoxesComponent
+                    v-else
+                    v-for="product in products"
+                    :key="product.name"
+                    :product="product"
+                />
 
                 <!-- <HolidayComponent /> -->
             </div>
         </div>
 
-        <ClassicLeft v-for="(element, index) in txtleft" :key="index" :title="element.title"
-            :description="element.description" :subdescription="element.subdescription" :notes="element.notes"
-            :button="element.button" />
+        <ClassicLeft
+            v-for="(element, index) in txtleft"
+            :key="index"
+            :title="element.title"
+            :description="element.description"
+            :subdescription="element.subdescription"
+            :notes="element.notes"
+            :button="element.button"
+        />
         <ClassicRight />
     </div>
 </template>

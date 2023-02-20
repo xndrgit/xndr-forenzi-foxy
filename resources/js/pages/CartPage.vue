@@ -2,9 +2,10 @@
     <section class="shopping-cart">
         <div class="container">
             <div class="block-heading">
-                <h2 class="display-5 fw-bold">IL TUO CARRELLO</h2>
+                <h2 class="display-5 font-weight-bold">IL TUO CARRELLO</h2>
+                <hr class="w-5" />
             </div>
-
+            <hr />
             <div class="content">
                 <div class="row">
                     <div class="col-md-12 col-lg-8">
@@ -13,25 +14,49 @@
 
                             <div class="product">
                                 <div class="row">
-                                    <div class="col-md-3 item">
-                                        <img class="img-fluid mx-auto d-block image"
-                                            src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png" />
-                                        <a type="button" class="delete" @click="deleteProduct(item)">X</a>
+                                    <div class="col-md-2 item">
+                                        <img
+                                            class="img-fluid mx-auto d-block image"
+                                            :src="productImage(item)"
+                                        />
+                                        <!-- <a
+                                            type="button"
+                                            class="delete"
+                                            @click="deleteProduct(item)"
+                                            ><i
+                                                class="fa-2x fa-regular fa-circle-xmark"
+                                            ></i
+                                        ></a> -->
                                     </div>
-                                    <div class="col-md-8">
+
+                                    <div class="col-md-10">
                                         <div class="info">
                                             <div class="row">
-                                                <div class="col-md-5 product-name">
+                                                <div
+                                                    class="col-md-3 product-name"
+                                                >
                                                     <div class="product-name">
-                                                        <a href="#">{{
-                                                            item.name
-                                                        }}</a>
-                                                        <div class="product-info">
+                                                        <div
+                                                            class="product-info"
+                                                        >
                                                             <div>
-                                                                Dimensioni:
-                                                                <span class="value">{{
-                                                                    item.length
-                                                                }}
+                                                                Codice:
+                                                                <span
+                                                                    class="value"
+                                                                    >{{
+                                                                        item.code
+                                                                    }}</span
+                                                                >
+                                                            </div>
+                                                            <a href="#">{{
+                                                                item.name
+                                                            }}</a>
+                                                            <div>
+                                                                <span
+                                                                    class="value font-weight-bold"
+                                                                    >{{
+                                                                        item.length
+                                                                    }}
                                                                     x
                                                                     {{
                                                                         item.height
@@ -39,46 +64,86 @@
                                                                     x
                                                                     {{
                                                                         item.width
-                                                                    }}</span>
-                                                            </div>
-                                                            <div>
-                                                                Codice:
-                                                                <span class="value">{{
-                                                                    item.code
-                                                                }}</span>
+                                                                    }}</span
+                                                                >
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2 price">
+                                                    <div>
+                                                        <span
+                                                            v-if="
+                                                                !item.price_saled
+                                                            "
+                                                            class="price"
+                                                        >
+                                                            €
+                                                            {{ item.price }}
+                                                        </span>
+                                                        <span
+                                                            v-if="
+                                                                item.price_saled
+                                                            "
+                                                            class="current-price text-danger"
+                                                        >
+                                                            €
+                                                            {{
+                                                                item.price_saled
+                                                            }}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-4 quantity">
-                                                    <label class="fw-bold" for="quantity">
-                                                        Quantity:
+                                                    <label
+                                                        class="fw-bold"
+                                                        for="quantity"
+                                                    >
                                                     </label>
 
-                                                    <input class="form-control quantity-input" :id="item.id"
-                                                        type="number" min="0" @change="test(item)" ref="totalQuantity"
+                                                    <input
+                                                        readonly
+                                                        class="form-control quantity-input"
+                                                        :id="item.id"
+                                                        type="number"
+                                                        min="0"
+                                                        @change="test(item)"
+                                                        ref="totalQuantity"
                                                         v-model="
                                                             item.pivot.quantity
-                                                        " />
+                                                        "
+                                                    />
                                                 </div>
                                                 <div class="col-md-3 price">
-                                                    <div style="
+                                                    <div
+                                                        style="
                                                             white-space: nowrap;
-                                                        ">
-                                                        <label for="id1">€</label>
-                                                        <input type="text" id="id1" class="priceLabel" :id="item.id"
-                                                            ref="subTotalPrice" style="
+                                                        "
+                                                    >
+                                                        <label for="id1"
+                                                            >€</label
+                                                        >
+                                                        <input
+                                                            type="text"
+                                                            id="id1"
+                                                            class="priceLabel"
+                                                            :id="item.id"
+                                                            ref="subTotalPrice"
+                                                            style="
                                                                 border: none;
                                                                 box-shadow: none;
                                                                 background-color: white;
                                                                 pointer-events: none;
-                                                            " :value="
+                                                            "
+                                                            :value="
                                                                 (
                                                                     item.pivot
                                                                         .quantity *
                                                                     item.price
                                                                 ).toFixed(2)
-                                                            " readonly />
+                                                            "
+                                                            readonly
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,10 +175,12 @@
                             <h3>TOTALE A CARRELLO</h3>
                             <div class="summary-item">
                                 <span class="text">SUBTOTALE</span>
-                                <span class="price">€
+                                <span class="price"
+                                    >€
                                     {{
                                         parseFloat(this.subtotal).toFixed(2)
-                                    }}</span>
+                                    }}</span
+                                >
                             </div>
                             <!-- <div class="summary-item">
 																						<span class="text">FOXTOP - SCONTO 5%</span>
@@ -127,34 +194,48 @@
 																		</div> -->
                             <div class="summary-item">
                                 <span class="text">SPEDIZIONE GRATUITA</span>
-                                <span class="price">€
+                                <span class="price"
+                                    >€
                                     {{
                                         parseFloat(this.shipping_cost).toFixed(
                                             2
                                         )
-                                    }}</span>
+                                    }}</span
+                                >
                             </div>
                             <div class="summary-item">
                                 <span class="text">CONTRIBUTO CONAI</span>
-                                <span class="price">€
+                                <span class="price"
+                                    >€
                                     {{
                                         parseFloat(this.conai).toFixed(2)
-                                    }}</span>
+                                    }}</span
+                                >
                             </div>
                             <div class="summary-item">
                                 <span class="text">IVA</span>
-                                <span class="price">€
-                                    {{ parseFloat(this.iva).toFixed(2) }}</span>
+                                <span class="price"
+                                    >€
+                                    {{ parseFloat(this.iva).toFixed(2) }}</span
+                                >
                             </div>
-                            <div class="summary-item txt-orange d-flex align-items-center justify-content-between">
+                            <div
+                                class="summary-item txt-orange d-flex align-items-center justify-content-between"
+                            >
                                 <span class="text">TOTALE ORDINE</span>
-                                <span class="price">€
+                                <span class="price"
+                                    >€
                                     {{
                                         parseFloat(this.total).toFixed(2)
-                                    }}</span>
+                                    }}</span
+                                >
                             </div>
                             <hr />
-                            <a type="button" class="btn bg-yellow fw-bold btn-lg btn-block" @click="checkout()">
+                            <a
+                                type="button"
+                                class="btn bg-yellow fw-bold btn-lg btn-block"
+                                @click="checkout()"
+                            >
                                 PROCEDI AL CHECKOUT
                             </a>
                         </div>
@@ -273,10 +354,12 @@ export default {
             });
 
             // after delete subtotal
-            let subtotal = 0.00;
-            this.$refs.subTotalPrice.map((sub) => {
-                if (item.id != sub.id) {
-                    subtotal = subtotal + parseFloat(sub.value);
+            let subtotal = 0.0;
+            this.order.products.map((product) => {
+                if (item.id != product.id) {
+                    subtotal =
+                        subtotal +
+                        parseFloat(product.price * product.pivot.quantity);
                 }
             });
 
@@ -292,7 +375,14 @@ export default {
             this.conai = ((this.subtotal * 22) / 100.0).toFixed(2);
 
             // after delete total
-            this.total = parseFloat(this.subtotal + this.conai + this.iva).toFixed(2);
+            this.total = parseFloat(
+                this.subtotal + this.conai + this.iva
+            ).toFixed(2);
+
+            console.log("subtotal:", this.subtotal);
+            console.log("iva:", this.iva);
+            console.log("conai:", this.conai);
+            console.log("total:", this.total);
 
             // save product count and subtotal to store
             this.$store.commit("updateCart", {
@@ -310,6 +400,8 @@ export default {
                     if (res.data.response == true) {
                         this.subtotal = this.$store.state.total;
 
+                        console.log("subtotal:", this.subtotal);
+
                         let params = [];
                         this.$store.state.quantity.map((quantity) => {
                             params.push({
@@ -318,11 +410,14 @@ export default {
                             });
                         });
 
-                        axios.post("/api/orders/id", params).then((res) => {
-                            if (res.data.response) {
-                                alert("Deleted Successfully!"); // show alert
-                            }
-                        }).then();
+                        axios
+                            .post("/api/orders/id", params)
+                            .then((res) => {
+                                if (res.data.response) {
+                                    alert("Deleted Successfully!"); // show alert
+                                }
+                            })
+                            .then();
                         this.getOrders();
                     }
                 });
@@ -335,6 +430,33 @@ export default {
         this.getOrders();
         this.getProducts();
     },
+    computed: {
+        productImage() {
+            return function (product) {
+                if (/^http/.test(product.img)) {
+                    return product.img;
+                } else {
+                    return "/storage" + product.img.substring(6);
+                }
+            };
+        },
+        subtotal() {
+            return this.order.products.reduce((subtotal, product) => {
+                return subtotal + product.price * product.pivot.quantity;
+            }, 0);
+        },
+        iva() {
+            return this.$refs.totalQuantity.reduce((iva, quantity) => {
+                return iva + quantity.value * 4.35;
+            }, 0);
+        },
+        conai() {
+            return (this.subtotal * 22) / 100;
+        },
+        total() {
+            return this.subtotal + this.conai + this.iva;
+        },
+    },
 };
 </script>
 
@@ -343,6 +465,7 @@ export default {
 
 .product img {
     width: fit-content;
+    height: 100px;
 }
 
 .coupon {
@@ -487,16 +610,25 @@ export default {
 
 .delete {
     position: absolute;
-    cursor: pointer;
+
     font-weight: 800;
+    font-size: 0.8rem;
+    text-align: center;
     color: #fff;
-    background-color: orange;
     padding-left: 4px;
-    border-radius: 50%;
-    border: 1px solid #fff;
-    width: 25px;
-    height: 25px;
-    top: 0px;
-    right: 0px;
+
+    top: 30px;
+    right: 25px;
+
+    i {
+        background-color: rgb(244, 190, 89);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 1s ease-in-out;
+        &:hover {
+            transform: scale(0.9);
+            filter: grayscale(2);
+        }
+    }
 }
 </style>

@@ -11,33 +11,49 @@
                             <th class="bg-secondary text-white" colspan="3">
                                 MISURE IN CM
                             </th>
-                            <th>
-                                <!-- <img
+                            <th
                                 style="
-                                    position: absolute;
-                                    top: -10px;
-                                    left: 30px;
-                                    width: 80px;
+                                    position: relative;
+                                    padding: 0px;
+                                    background-color: rgb(246, 134, 48);
+                                    border: 1px solid rgb(246, 134, 48);
                                 "
-                                class="img-fluid"
-                                src="https://th.bing.com/th/id/R.f3a729f2cdc6271bcbdae051ca28fd47?rik=FT%2f0BrFqRaQgxQ&pid=ImgRaw&r=0"
-                                alt=""
-                            /> -->
+                            >
+                                <img
+                                    style="
+                                        position: absolute;
+                                        width: 30px;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                    "
+                                    class="img-fluid"
+                                    src="https://static.thenounproject.com/png/1134892-200.png"
+                                    alt=""
+                                />
                             </th>
                             <th class="bg-dark text-white" colspan="5"></th>
 
-                            <th>
-                                <!-- <img
+                            <th
                                 style="
-                                    position: absolute;
-                                    top: -10px;
-                                    left: 40px;
-                                    width: 80px;
+                                    position: relative;
+                                    padding: 0px;
+                                    background-color: rgb(246, 134, 48);
+                                    border: 1px solid rgb(246, 134, 48);
                                 "
-                                class="img-fluid"
-                                src="https://th.bing.com/th/id/R.f3a729f2cdc6271bcbdae051ca28fd47?rik=FT%2f0BrFqRaQgxQ&pid=ImgRaw&r=0"
-                                alt=""
-                            /> -->
+                            >
+                                <img
+                                    style="
+                                        position: absolute;
+                                        width: 30px;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                    "
+                                    class="img-fluid"
+                                    src="https://static.thenounproject.com/png/1134892-200.png"
+                                    alt=""
+                                />
                             </th>
                             <th class="bg-dark text-white">
                                 CONSEGNA IN 24/48 ORE
@@ -49,23 +65,26 @@
                             <th>LATO LUNGO</th>
                             <th>LATO CORTO</th>
                             <th>ALTEZZA</th>
-                            <th style="background-color: orange">
+                            <th style="background-color: rgb(246, 134, 48)">
                                 PERSONALIZZA LA SCATOLA
                             </th>
                             <th>DA 1+</th>
                             <th>DA 100+</th>
                             <th>DA 300+</th>
                             <th>DA 500+</th>
-                            <th>DA 1.000+</th>
-                            <th style="background-color: orange">
+                            <th>DA 1000+</th>
+                            <th style="background-color: rgb(246, 134, 48)">
                                 AGGIUNGI UN BANCALE DA
                             </th>
                             <th>QUANTITÀ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <SiblingProductsComponent v-for="(sibling, index) in siblings" :key="index"
-                            :product="sibling" />
+                        <SiblingProductsComponent
+                            v-for="(sibling, index) in siblings"
+                            :key="index"
+                            :product="sibling"
+                        />
                     </tbody>
                 </table>
             </div>
@@ -74,8 +93,8 @@
 </template>
 
 <script>
-import Axios from 'axios';
-import SiblingProductsComponent from '../MainComponents/SiblingProductsComponent.vue';
+import Axios from "axios";
+import SiblingProductsComponent from "../MainComponents/SiblingProductsComponent.vue";
 
 export default {
     data() {
@@ -98,23 +117,26 @@ export default {
             // console.log("clicked");
         },
         getSiblings() {
-            Axios.get(`/api/products/siblings/${this.$route.params.id}`, {})
-                .then(res => {
-                    this.siblings = res.data.results;
-                    // this.value = res.data.results.purchasable_in_multi_of;
-                    res.data.results.map(val => {
-                        this.value.push(val.purchasable_in_multi_of);
-                    });
+            Axios.get(
+                `/api/products/siblings/${this.$route.params.id}`,
+                {}
+            ).then((res) => {
+                this.siblings = res.data.results;
+                // this.value = res.data.results.purchasable_in_multi_of;
+                res.data.results.map((val) => {
+                    this.value.push(val.purchasable_in_multi_of);
                 });
-        }
+            });
+        },
     },
     mounted() {
         this.getSiblings();
-    }
+    },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../../../sass/global.scss";
 .overflow-table::-webkit-scrollbar {
     background-color: transparent;
 }
@@ -123,13 +145,15 @@ export default {
     overflow-x: auto;
 
     table {
-
         td,
         th {
+            background-color: $yellow;
             border: 1px solid #ddd;
-            font-size: 0.4rem;
+            font-size: 0.6rem;
             text-align: center;
             vertical-align: middle;
+
+            font-weight: bold;
 
             img {
                 max-height: 50px;

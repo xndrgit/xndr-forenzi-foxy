@@ -1,12 +1,12 @@
 <template>
     <section class="text-banner text-center d-block">
         <div>
-            <h1>
+            <h1 class="">
                 {{ title }}
             </h1>
         </div>
 
-        <div class="mx-5 px-5">
+        <div class="mx-5">
             <span class="text">
                 {{ description }}
             </span>
@@ -45,7 +45,7 @@ export default {
 
     h1 {
         font-weight: bolder;
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 }
 </style>
