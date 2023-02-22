@@ -15,7 +15,7 @@
                     </div>
                 </div>
 
-                <!-- <JumboComponent /> -->
+                <JumboComponent />
                 <BannerNewsComponent />
                 <BannerTextComponent
                     v-for="element in txtbanners"
@@ -58,6 +58,9 @@ import LoadingRollComponent from "../components/MainComponents/LoadingRollCompon
 import NavBoxesComponent from "../components/MainComponents/NavBoxesComponent.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
 import BannerTextComponent from "../components/MainComponents/BannerTextComponent.vue";
+
+import JumboComponent from "../components/MainComponents/JumboComponent.vue";
+
 import BoxesComponent from "../components/MainComponents/BoxesComponent.vue";
 import ClassicLeft from "../components/MainComponents/ClassicLeft.vue";
 import ClassicRight from "../components/MainComponents/ClassicRight.vue";
@@ -72,6 +75,9 @@ export default {
         NavBoxesComponent,
         BannerNewsComponent,
         BannerTextComponent,
+
+        JumboComponent,
+
         BoxesComponent,
         ClassicLeft,
         ClassicRight,
