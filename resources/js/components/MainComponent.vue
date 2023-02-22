@@ -31,7 +31,7 @@ export default {
     methods: {
         getCategories(pageCategories = 1) {
             axios
-                .get("/api/categories", {
+                .get("/user/categories", {
                     page: pageCategories,
                 })
                 .then((response) => {

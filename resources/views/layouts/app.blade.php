@@ -40,6 +40,10 @@
         href="{{ asset('css/app.css') }}"
         rel="stylesheet"
     >
+
+    <script>
+        window.laravel = '{!! json_encode(['csrfToken' => csrf_token()]) !!}';
+    </script>
 </head>
 
 <body>

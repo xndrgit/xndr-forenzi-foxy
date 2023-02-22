@@ -55,7 +55,7 @@
 export default {
     components: {},
     props: {
-        category: Array,
+        category: Object,
     },
     data() {
         return {};

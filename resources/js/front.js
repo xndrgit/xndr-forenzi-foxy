@@ -47,6 +47,17 @@ const store = new Vuex.Store({
   modules: {},
 });
 
+window.axios.interceptors.response.use(function (response) {
+    return response
+}, function (error) {
+    console.log(error.response.data)
+    if (error.response.status === 401 || error.response.status === 419) {
+        window.location.href = '/login'
+    }
+
+    return Promise.reject(error)
+})
+
 
 const app = new Vue({
   el: "#app",

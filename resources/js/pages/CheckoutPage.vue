@@ -856,7 +856,7 @@ export default {
     methods: {
         getUserInfo() {
             axios
-                .get("api/user", {})
+                .get("user/user", {})
                 .then((response) => {
                     this.mail = response.data.email;
                 })
@@ -865,7 +865,7 @@ export default {
 
         getOrders() {
             axios
-                .put("/api/orders")
+                .put("/user/orders")
                 .then((response) => {
                     this.order = response.data.results;
 
@@ -904,7 +904,7 @@ export default {
                 this.$refs.checkTerm.checked
             )
                 axios
-                    .post(`/api/orders/transmit/id`, {
+                    .post(`/user/orders/transmit/id`, {
                         user_detail: {
                             surname: this.last_name,
                             business_name: this.business_name,

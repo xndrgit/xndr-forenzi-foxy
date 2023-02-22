@@ -87,7 +87,7 @@
                             <p class="category">
                                 {{ product.subcategory_id }}
                             </p>
-                         
+
                         </div>
                         <div class="d-flex align-items-center">
                             <p>
@@ -145,7 +145,7 @@ export default {
             // console.log(this.loadingCategory);
             this.loadingCategory = true;
             axios
-                .get(`/api/categories/${this.$route.params.id}`)
+                .get(`/user/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
                     setTimeout(() => {
