@@ -19,14 +19,14 @@
                                             class="img-fluid mx-auto d-block image"
                                             :src="productImage(item)"
                                         />
-                                        <!-- <a
+                                        <a
                                             type="button"
                                             class="delete"
                                             @click="deleteProduct(item)"
                                             ><i
                                                 class="fa-2x fa-regular fa-circle-xmark"
                                             ></i
-                                        ></a> -->
+                                        ></a>
                                     </div>
 
                                     <div class="col-md-10">
