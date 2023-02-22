@@ -272,7 +272,7 @@ export default {
     methods: {
         getProducts() {
             axios
-                .get("/user/products", {})
+                .get("/guest/products", {})
                 .then((response) => {
                     this.products = response.data.results;
                 })
@@ -283,7 +283,7 @@ export default {
 
         getOrders() {
             axios
-                .put("/user/orders")
+                .put("/guest/orders")
                 .then((response) => {
                     this.order = response.data.results;
                     this.subtotal = parseFloat(this.order.subtotal);
@@ -328,7 +328,7 @@ export default {
                 });
             });
 
-            axios.post("/user/orders/id", this.params).then((res) => {
+            axios.post("/guest/orders/id", this.params).then((res) => {
                 console.log(res);
                 if (res.data.response) {
                     alert("Procedi Al Checkout"); // show alert
@@ -391,7 +391,7 @@ export default {
             });
 
             axios
-                .post(`/user/orders/delete/${item.pivot.order_id}`, {
+                .post(`/guest/orders/delete/${item.pivot.order_id}`, {
                     product_id: item.pivot.product_id,
                 })
                 .then((res) => {
@@ -411,7 +411,7 @@ export default {
                         });
 
                         axios
-                            .post("/user/orders/id", params)
+                            .post("/guest/orders/id", params)
                             .then((res) => {
                                 if (res.data.response) {
                                     alert("Deleted Successfully!"); // show alert
@@ -424,7 +424,7 @@ export default {
         },
     },
     created() {
-        axios.get("/user/users").then((res) => {
+        axios.get("/guest/users").then((res) => {
             console.log(res);
         });
         this.getOrders();

@@ -81,7 +81,7 @@ export default {
     methods: {
         getUserInfo() {
             axios
-                .get("user/user", {})
+                .get("guest/user", {})
                 .then((response) => {
                     this.$store.commit("updateUser", {
                         isAuth: true,
@@ -92,7 +92,7 @@ export default {
         },
         getCartInfo() {
             axios
-                .put("user/orders", {})
+                .put("guest/orders", {})
                 .then((response) => {
                     this.$store.commit("updateCart", {
                         productCount: response.data.results.products.length,

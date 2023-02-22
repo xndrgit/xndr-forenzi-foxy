@@ -145,7 +145,7 @@ export default {
             // console.log(this.loadingCategory);
             this.loadingCategory = true;
             axios
-                .get(`/user/categories/${this.$route.params.id}`)
+                .get(`/guest/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
                     setTimeout(() => {

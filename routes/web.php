@@ -58,11 +58,11 @@ Route::prefix('user')
 
 Route::middleware('auth')
     //! aggiorna ogni url
-    ->prefix('user')
+    ->prefix('guest')
     //! aggiorna la cartella all'interno della quale si trovano i controller
     ->namespace('Api')
     //! aggiorna la cartella all'interno della quale si trovani i blade
-    ->name('user.')
+    ->name('guest.')
     ->group(function () {
         Route::put('/orders', 'OrderController@show');
         Route::post('/orders', 'OrderController@create');
