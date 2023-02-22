@@ -37417,8 +37417,16 @@ try {
  */
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.baseURL = 'http://localhost:8000';
+window.axios.defaults.baseURL = 'http://127.0.0.1:8000';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+// added csrf token in axios header
+var token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.laravel.csrfToken;
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -37457,8 +37465,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mymai\OneDrive\Desktop\Projects\forenzi-foxy-laravel7-vue2-XanderWorld\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\mymai\OneDrive\Desktop\Projects\forenzi-foxy-laravel7-vue2-XanderWorld\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Tasks\Upwork\foxy\forenzi-foxy-laravel7-vue2-XanderWorld\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Tasks\Upwork\foxy\forenzi-foxy-laravel7-vue2-XanderWorld\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

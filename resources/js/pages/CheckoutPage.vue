@@ -639,6 +639,8 @@ export default {
             mail: "",
             agree: "",
 
+            paymentMethod: "",
+
             first_name_error: ["error"],
             last_name_error: ["error"],
             business_name_error: ["error"],
@@ -856,7 +858,7 @@ export default {
     methods: {
         getUserInfo() {
             axios
-                .get("api/user", {})
+                .get("guest/user", {})
                 .then((response) => {
                     this.mail = response.data.email;
                 })
@@ -865,7 +867,7 @@ export default {
 
         getOrders() {
             axios
-                .put("/api/orders")
+                .put("/guest/orders")
                 .then((response) => {
                     this.order = response.data.results;
 
@@ -904,7 +906,7 @@ export default {
                 this.$refs.checkTerm.checked
             )
                 axios
-                    .post(`/api/orders/transmit/id`, {
+                    .post(`/guest/orders/transmit/id`, {
                         user_detail: {
                             surname: this.last_name,
                             business_name: this.business_name,

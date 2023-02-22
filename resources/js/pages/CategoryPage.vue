@@ -77,7 +77,7 @@ export default {
             this.loadingCategories = true;
             console.log(this.loadingCategories);
             axios
-                .get("/api/categories", {})
+                .get("/guest/categories", {})
                 .then((response) => {
                     console.log("categories");
                     console.log(response.data.results.data);
@@ -96,7 +96,7 @@ export default {
             this.loadingCategory = true;
             console.log(this.loadingCategory);
             axios
-                .get(`/api/categories/${this.$route.params.id}`)
+                .get(`/guest/categories/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data.results;
                     console.log(this.category);
@@ -112,7 +112,7 @@ export default {
         getProduct() {
             this.loadingProduct = true;
             axios
-                .get(`/api/products/${this.$route.params.id}`)
+                .get(`/guest/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
                     console.log(this.product);

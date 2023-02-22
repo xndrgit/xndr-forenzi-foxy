@@ -23,7 +23,7 @@
                     <img
                         class="img-fluid"
                         src="../../../../public/Links/scatole.jpg"
-                        :alt="img"
+                        alt="img"
                     />
                 </div>
             </div>

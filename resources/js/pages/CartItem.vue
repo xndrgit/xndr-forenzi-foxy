@@ -74,7 +74,7 @@ export default {
     methods: {
         getOrders() {
             axios
-                .get("/api/orders/2")
+                .get("/guest/orders/2")
                 .then((response) => {
                     // console.log(response.data.results);
                     this.order = response.data.results;

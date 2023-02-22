@@ -34,15 +34,14 @@ Route::namespace('api')->group(function () {
     Route::post('/orders/{id}', 'OrderController@update');
     Route::post('/orders/transmit/{id}', 'OrderController@transmit');
     Route::post('/orders/delete/{id}', 'OrderController@destroy');
-   
 
     // Route::get('/cart/{id}', 'OrderController@create');
 
     Route::get('/user/detail', 'UserController@show');
-    Route::get('/user', function(Request $request) {     
-        return response()->json([
-            'name' => Auth::user()->name,
-            'email' => Auth::user()->email,
-        ]);
-    });
+//    Route::get('/user', function(Request $request) {
+//        return response()->json([
+//            'name' => Auth::user()->name,
+//            'email' => Auth::user()->email,
+//        ]);
+//    });
 });

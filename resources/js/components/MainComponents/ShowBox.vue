@@ -190,7 +190,7 @@ export default {
         getProduct() {
             this.loadingProduct = true;
             axios
-                .get(`/api/products/${this.$route.params.id}`)
+                .get(`/guest/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
                     // console.log(this.product);
@@ -211,7 +211,7 @@ export default {
                 return;
             }
             axios
-                .post("/api/orders", {
+                .post("/guest/orders", {
                     id: this.product.id,
                     quantity: this.quantity,
                 })
