@@ -639,6 +639,8 @@ export default {
             mail: "",
             agree: "",
 
+            paymentMethod: "",
+
             first_name_error: ["error"],
             last_name_error: ["error"],
             business_name_error: ["error"],
