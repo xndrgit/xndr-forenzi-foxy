@@ -295,18 +295,26 @@ class OrderController extends Controller
             ]);
     }
 
-    // transmit shipping & payment information
+    /**
+     * transmit shipping & payment information
+     *
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     * @throws Exception
+     */
     public function transmit(Request $request, $id)
+    : JsonResponse
     {
         $params = $request->all();
         // update order_product
-        $order = Order::where('user_id', Auth::id())->first();
-        // $order = Order::where('id', $id)->first();
+        $order = Order::find($id);
+        // $order = Order::where('user_id', Auth::id())->first();
         $order->status = 'spedito';
 
         if ($order->save()) {
             // create user_detail
-            $user_detail = new UserDetail;
+            $user_detail = new UserDetail();
             $user_detail->user_id = Auth::id();
             $user_detail->surname = $params['user_detail']['surname'];
             $user_detail->business_name = $params['user_detail']['business_name'];
@@ -324,9 +332,8 @@ class OrderController extends Controller
             $user_detail->updated_at = now();
 
             if ($user_detail->save()) {
-
                 // create payment
-                $payment = new Payment;
+                $payment = new Payment();
                 $payment->order_id = $order->id;
                 $payment->transaction_id = random_int(1, 23234342);
                 $payment->payment_method = 'PayPal';    // set static
@@ -337,8 +344,14 @@ class OrderController extends Controller
 
                 if ($payment->save())
                     // if save success
-                    return true;
+                    return response()->json([
+                        'status' => 'success'
+                    ]);
             }
         }
+
+        return response()->json([
+            'status' => 'failed'
+        ], 400);
     }
 }
