@@ -37465,8 +37465,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Tasks\Upwork\foxy\forenzi-foxy-laravel7-vue2-XanderWorld\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Tasks\Upwork\foxy\forenzi-foxy-laravel7-vue2-XanderWorld\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mymai\OneDrive\Desktop\Projects\forenzi-foxy-laravel7-vue2-XanderWorld\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mymai\OneDrive\Desktop\Projects\forenzi-foxy-laravel7-vue2-XanderWorld\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
