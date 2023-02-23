@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Payment;
 use App\User;
 use Exception;
@@ -50,7 +51,7 @@ class PaypalController extends Controller
             $payment->transaction_id = $response['id'];
             $payment->payment_method = 'PayPal';    // set static
             $payment->amount = $params['amount'];
-            $payment->payment_status = 'success';  // set static
+            $payment->payment_status = 'pending';  // set static
             $payment->created_at = now();
             $payment->updated_at = now();
             $payment->save();
@@ -78,9 +79,23 @@ class PaypalController extends Controller
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            $user = User::find($user_id);
             // Process payment success
+            $payment = Payment::where('transaction_id', $request['token'])->first();
+            if ($payment) {
+                $payment->payment_status = 'success';
+
+                $order = Order::find($payment->order_id);
+                $order->status = 'pagata';
+                $order->save();
+
+                $payment->save();
+            }
+
+            return redirect()->to('/')->with('success', 'Transaction complete');
         }
+
+        return redirect()->to('/checkout')
+            ->with('error', 'Payment failed');
     }
 
     /**
@@ -98,6 +113,17 @@ class PaypalController extends Controller
             $provider->getAccessToken();
 
             // Process payment cancel
+//            $response = $provider->capturePaymentOrder($request['token']);
+            $payment = Payment::where('transaction_id', $request['token'])->first();
+            if ($payment) {
+                $payment->payment_status = 'canceled';
+
+                $order = Order::find($payment->order_id);
+                $order->status = 'annullata';
+                $order->save();
+
+                $payment->save();
+            }
         }
 
         return redirect()->to('/checkout')
