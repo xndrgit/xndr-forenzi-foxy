@@ -24,9 +24,11 @@
                     </div>
 
                     <div>
-                        <div class="row flex-wrap justify-content-center">
+                        <div
+                            class="row flex-wrap justify-content-center col-12"
+                        >
                             <div
-                                class="steps col-xl-7 col-lg-* col-md-* col-sm-*"
+                                class="steps col-xl-8 col-lg-* col-md-* col-sm-*"
                             >
                                 <!-- Left side content goes here -->
                                 <StepFirstDynamic
@@ -48,9 +50,22 @@
                                     :txt-banner="element.txtBanner"
                                     :img="element.img"
                                 />
-                                <StepSecondDynamic
-                                    v-for="(element, index) in boxtwo"
-                                    @imageSelected="setSelectedImage"
+                                <StepColor
+                                    v-for="(element, index) in colorData"
+                                    @selectedColor="setSelectedColor"
+                                    :key="element.id"
+                                    :step="element.step"
+                                    :title="element.title"
+                                    :title-one="element.titleOne"
+                                    :title-two="element.titleTwo"
+                                    :txt-one="element.txtOne"
+                                    :txt-two="element.txtTwo"
+                                    :img-one="element.imgOne"
+                                    :img-two="element.imgTwo"
+                                />
+                                <StepType
+                                    v-for="(element, index) in typeData"
+                                    @selectedType="setSelectedType"
                                     :key="element.id"
                                     :step="element.step"
                                     :title="element.title"
@@ -67,14 +82,17 @@
                                     :radio-value="radioValue"
                                 />
                             </div>
-                            <SummaryPersonalize
-                                :inputH="inputH"
-                                :inputP="inputP"
-                                :inputL="inputL"
-                                :inputQ="inputQ"
-                                :selectedImage="selectedImage"
-                                :radioValue="radioValue"
-                            />
+                            <div class="col-xl-4 col-lg-* col-md-* col-sm-*">
+                                <SummaryPersonalize
+                                    :inputH="inputH"
+                                    :inputP="inputP"
+                                    :inputL="inputL"
+                                    :inputQ="inputQ"
+                                    :selectedColor="selectedColor"
+                                    :selectedType="selectedType"
+                                    :radioValue="radioValue"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,13 +103,15 @@
 
 <script>
 import StepFirstDynamic from "../components/MainComponents/StepFirstDynamic.vue";
-import StepSecondDynamic from "../components/MainComponents/StepSecondDynamic.vue";
+import StepColor from "../components/MainComponents/StepColor.vue";
+import StepType from "../components/MainComponents/StepType.vue";
 import StepThirdDynamic from "../components/MainComponents/StepThirdDynamic.vue";
 import SummaryPersonalize from "../components/MainComponents/SummaryPersonalize.vue";
 export default {
     components: {
         StepFirstDynamic,
-        StepSecondDynamic,
+        StepColor,
+        StepType,
         StepThirdDynamic,
         SummaryPersonalize,
     },
@@ -102,7 +122,8 @@ export default {
             inputL: "",
             inputQ: "",
             radioValue: "",
-            selectedImage: "",
+            selectedColor: "",
+            selectedType: "",
 
             boxone: [
                 {
@@ -133,7 +154,7 @@ export default {
                     img: "",
                 },
             ],
-            boxtwo: [
+            colorData: [
                 {
                     step: "3",
                     title: "SCEGLI IL COLORE DELLA SCATOLA",
@@ -144,6 +165,8 @@ export default {
                     imgOne: require("../../../public/Links/category-scatole-americane-bianche.jpg"),
                     imgTwo: require("../../../public/Links/category-scatole-americane-bianche.jpg"),
                 },
+            ],
+            typeData: [
                 {
                     step: "4",
                     title: "SCEGLI IL TIPO DI CARTONE",
@@ -189,8 +212,11 @@ export default {
             this.inputQ = inputQuantity.inputQ;
         },
 
-        setSelectedImage(image) {
-            this.selectedImage = image;
+        setSelectedColor(color) {
+            this.selectedColor = color;
+        },
+        setSelectedType(type) {
+            this.selectedType = type;
         },
 
         // setSelectedColor(color) {
@@ -236,7 +262,7 @@ i {
 }
 
 .step {
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
     display: flex;
     border: 1px solid lightgray;
     padding: 1rem;
