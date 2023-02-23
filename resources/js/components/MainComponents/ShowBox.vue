@@ -205,8 +205,9 @@ export default {
 
             if (!this.$store.state.isAuth) {
                 //not login
-                alert("Try to login");
-                this.$router.push("/login");
+                // alert("Try to login");
+                //this.$router.push("/login");
+                window.location.href = '/login';
                 return;
             }
             axios
