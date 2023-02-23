@@ -867,7 +867,7 @@ export default {
 
         getOrders() {
             axios
-                .put("/guest/orders")
+                .get("/guest/orders")
                 .then((response) => {
                     this.order = response.data.results;
 
@@ -891,22 +891,22 @@ export default {
         transmitt() {
             this.$v.$touch();
             if (
-                this.first_name_error.length == 0 &&
-                this.last_name_error.length == 0 &&
-                this.business_name_error.length == 0 &&
-                this.address_error.length == 0 &&
-                this.cap_error.length == 0 &&
-                this.city_error.length == 0 &&
-                this.cap_error.length == 0 &&
-                this.province_error.length == 0 &&
-                this.state_error.length == 0 &&
-                this.pec_error.length == 0 &&
-                this.code_sdi_error.length == 0 &&
-                this.notes_error.length == 0 &&
+                this.first_name_error.length === 0 &&
+                this.last_name_error.length === 0 &&
+                this.business_name_error.length === 0 &&
+                this.address_error.length === 0 &&
+                this.cap_error.length === 0 &&
+                this.city_error.length === 0 &&
+                this.cap_error.length === 0 &&
+                this.province_error.length === 0 &&
+                this.state_error.length === 0 &&
+                this.pec_error.length === 0 &&
+                this.code_sdi_error.length === 0 &&
+                this.notes_error.length === 0 &&
                 this.$refs.checkTerm.checked
             )
                 axios
-                    .post(`/guest/orders/transmit/id`, {
+                    .post(`/guest/orders/transmit/${this.order.id}`, {
                         user_detail: {
                             surname: this.last_name,
                             business_name: this.business_name,
@@ -926,8 +926,9 @@ export default {
                     })
                     .then((res) => {
                         if (res) {
-                            alert("Success transmitted!");
-                            this.$router.replace({ path: "/confirm/" });
+
+                            // alert("Success transmitted!");
+                            // this.$router.replace({ path: "/confirm/" });
                         } else {
                             alert("Failed!");
                         }

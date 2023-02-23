@@ -56,7 +56,7 @@ Route::prefix('guest')
         Route::get('/categories', 'CategoryController@index');
         Route::get('/categories/{id}', 'CategoryController@show');
 
-        Route::get('/orders', 'OrderController@index');
+//        Route::get('/orders', 'OrderController@index');
     });
 
 Route::middleware('auth')
@@ -67,12 +67,15 @@ Route::middleware('auth')
     //! aggiorna la cartella all'interno della quale si trovani i blade
     ->name('guest.')
     ->group(function () {
-        Route::put('/orders', 'OrderController@show');
-        Route::post('/orders', 'OrderController@create');
-        Route::post('/orders/{id}', 'OrderController@update');
-        Route::post('/orders/transmit/{id}', 'OrderController@transmit');
-        Route::post('/orders/delete/{id}', 'OrderController@destroy');
+        Route::get('/orders', 'OrderController@show');
+        Route::post('/orders', 'OrderController@store');
+        Route::put('/orders/{id}', 'OrderController@update');
+        Route::post('/orders/transmit/{order}', 'OrderController@transmit');
+        Route::delete('/orders/delete/{id}', 'OrderController@destroy');
 
+        Route::get('/users', function (Request $request) {
+            return $request->user();
+        });
         Route::get('/user/detail', 'UserController@show');
         Route::get('/user', function (Request $request) {
             return response()->json([
