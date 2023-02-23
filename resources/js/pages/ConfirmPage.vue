@@ -171,7 +171,7 @@ export default {
     methods: {
         getOrders() {
             axios
-            .put("/guest/orders")
+            .get("/guest/orders")
             .then((response) => {
                 this.order = response.data.results;
             })

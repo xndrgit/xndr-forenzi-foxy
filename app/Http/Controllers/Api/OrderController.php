@@ -38,13 +38,13 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
      * @param Request $request
      * @return JsonResponse
      * @throws Exception
      */
-    public function create(Request $request)
+    public function store(Request $request)
     : JsonResponse
     {
         $id = $request->user()->id;
@@ -167,17 +167,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @return JsonResponse
@@ -198,17 +187,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param Request $request
@@ -216,24 +194,20 @@ class OrderController extends Controller
      * @return JsonResponse
      * @throws Exception
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, Order $order)
     : JsonResponse
     {
 
         $params = $request->all();
 
-        $old_product = Order::where('user_id', Auth::id())->first();
-        $order_id = $old_product->id;
-
-        $total = 0.00;
         $subtotal = 0.00;
         $shipping_cost = 0.00;
         $conai = 0.00;
         $iva = 0.00;
 
         foreach ($params as $op) {
-            $old_order = DB::table('order_product')->where([
-                ['order_id', $order_id],
+            DB::table('order_product')->where([
+                ['order_id', $order->id],
                 ['product_id', $op['id']]
             ])->update([
                 'quantity' => $op['quantity']
@@ -250,20 +224,19 @@ class OrderController extends Controller
 
         $total = $subtotal + $shipping_cost + $conai + $iva;
 
-        $old_order = Order::where('user_id', Auth::id())->first();
-
-        $old_order->total = $total;
-        $old_order->subtotal = $subtotal;
-        $old_order->shipping_cost = $shipping_cost;
-        $old_order->conai = $conai;
-        $old_order->iva = $iva;
-        $old_order->order_number = random_int(1, 23234342);
-        $old_order->updated_at = now();
-        $old_order->save();
+        $order->user_id = $request->user()->id;
+        $order->total = $total;
+        $order->subtotal = $subtotal;
+        $order->shipping_cost = $shipping_cost;
+        $order->conai = $conai;
+        $order->iva = $iva;
+        $order->order_number = random_int(1, 23234342);
+        $order->updated_at = now();
+        $order->save();
 
         return response()->json([
             "response" => true,
-            "order"    => $old_order
+            "order"    => $order
         ]);
     }
 
@@ -299,16 +272,14 @@ class OrderController extends Controller
      * transmit shipping & payment information
      *
      * @param Request $request
-     * @param $id
+     * @param Order $order
      * @return JsonResponse
-     * @throws Exception
      */
-    public function transmit(Request $request, $id)
+    public function transmit(Request $request, Order $order)
     : JsonResponse
     {
         $params = $request->all();
         // update order_product
-        $order = Order::find($id);
         // $order = Order::where('user_id', Auth::id())->first();
         $order->status = 'spedito';
 
@@ -332,21 +303,6 @@ class OrderController extends Controller
             $user_detail->updated_at = now();
 
             if ($user_detail->save()) {
-                // create payment
-//                $payment = new Payment();
-//                $payment->order_id = $order->id;
-//                $payment->transaction_id = random_int(1, 23234342);
-//                $payment->payment_method = 'PayPal';    // set static
-//                $payment->amount = $params['payment']['amount'];
-//                $payment->payment_status = 'success';  // set static
-//                $payment->created_at = now();
-//                $payment->updated_at = now();
-//
-//                if ($payment->save())
-//                    // if save success
-//                    return response()->json([
-//                        'status' => 'success'
-//                    ]);
                 return response()->json([
                     'status'   => 'success',
                     'order_id' => $order->id
