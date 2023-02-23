@@ -117,7 +117,7 @@ export default {
         },
         getSiblings() {
             Axios.get(
-                `/guest/products/siblings/${this.$route.params.id}`,
+                `/shop/products/siblings/${this.$route.params.id}`,
                 {}
             ).then((res) => {
                 this.siblings = res.data.results;

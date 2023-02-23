@@ -87,7 +87,7 @@ export default {
         getUserInfo()
         {
             axios
-                .get("guest/user", {})
+                .get("shop/user", {})
                 .then((response) =>
                 {
                     this.$store.commit("updateUser", {
@@ -102,7 +102,7 @@ export default {
         getCartInfo()
         {
             axios
-                .get("guest/orders", {})
+                .get("shop/orders", {})
                 .then((response) =>
                 {
                     this.$store.commit("updateCart", {
@@ -117,8 +117,8 @@ export default {
     },
     created()
     {
-        this.getUserInfo();
-        this.getCartInfo();
+        // this.getUserInfo();
+        // this.getCartInfo();
     },
 };
 </script>

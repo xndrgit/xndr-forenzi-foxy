@@ -83,7 +83,7 @@ export default {
             //     return;
             // }
             axios
-                .post("/guest/orders", {
+                .post("/shop/orders", {
                     id: this.product.id,
                     quantity: this.quantity,
                 })

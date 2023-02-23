@@ -65,7 +65,7 @@ export default {
         getCategories() {
             this.loadingCategories = true;
             axios
-                .get("/guest/categories", {})
+                .get("/shop/categories", {})
                 .then((response) => {
                     this.categories = response.data.results.data;
                     this.currentPageCategories =
@@ -80,7 +80,7 @@ export default {
         getProduct() {
             this.loadingProduct = true;
             axios
-                .get(`/guest/products/${this.$route.params.id}`)
+                .get(`/shop/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
                     this.loadingProduct = false;
