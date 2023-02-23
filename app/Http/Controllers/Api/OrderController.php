@@ -333,20 +333,24 @@ class OrderController extends Controller
 
             if ($user_detail->save()) {
                 // create payment
-                $payment = new Payment();
-                $payment->order_id = $order->id;
-                $payment->transaction_id = random_int(1, 23234342);
-                $payment->payment_method = 'PayPal';    // set static
-                $payment->amount = $params['payment']['amount'];
-                $payment->payment_status = 'success';  // set static
-                $payment->created_at = now();
-                $payment->updated_at = now();
-
-                if ($payment->save())
-                    // if save success
-                    return response()->json([
-                        'status' => 'success'
-                    ]);
+//                $payment = new Payment();
+//                $payment->order_id = $order->id;
+//                $payment->transaction_id = random_int(1, 23234342);
+//                $payment->payment_method = 'PayPal';    // set static
+//                $payment->amount = $params['payment']['amount'];
+//                $payment->payment_status = 'success';  // set static
+//                $payment->created_at = now();
+//                $payment->updated_at = now();
+//
+//                if ($payment->save())
+//                    // if save success
+//                    return response()->json([
+//                        'status' => 'success'
+//                    ]);
+                return response()->json([
+                    'status'   => 'success',
+                    'order_id' => $order->id
+                ]);
             }
         }
 

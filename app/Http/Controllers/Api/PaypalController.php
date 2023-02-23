@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\User;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Throwable;
@@ -15,11 +18,53 @@ class PaypalController extends Controller
      * @throws Throwable
      */
     public function payment(Request $request)
+    : RedirectResponse
     {
         $provider = new PayPalClient;
 
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
+
+        $user = $request->user();
+        $params = $request->all();
+        $response = $provider->createOrder([
+            'intent'              => 'CAPTURE',
+            'application_context' => [
+                'return_url' => url('/payment/success/' . $user->id),
+                'cancel_url' => url('/payment/cancel/' . $user->id)
+            ],
+            'purchase_units'      => [
+                0 => [
+                    'amount' => [
+                        'currency_code' => 'USD',
+                        'value'         => '2.99'
+                    ]
+                ]
+            ]
+        ]);
+
+        if (isset($response['id']) && $response['id'] != null) {
+            // update payment table
+            $payment = new Payment();
+            $payment->order_id = $params['order_id'];
+            $payment->transaction_id = $response['id'];
+            $payment->payment_method = 'PayPal';    // set static
+            $payment->amount = $params['amount'];
+            $payment->payment_status = 'success';  // set static
+            $payment->created_at = now();
+            $payment->updated_at = now();
+            $payment->save();
+
+            // redirect to approve href
+            foreach ($response['links'] as $link) {
+                if ($link['rel'] == 'approve') {
+                    return redirect()->away($link['href']);
+                }
+            }
+        }
+
+        return redirect()->to('/checkout')
+            ->with('error', 'Payment failed');
     }
 
     /**
@@ -31,16 +76,31 @@ class PaypalController extends Controller
 
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $user = User::find($user_id);
+            // Process payment success
+        }
     }
 
     /**
      * @throws Throwable
      */
     public function cancel(Request $request, $user_id)
+    : RedirectResponse
     {
-        $provider = new PayPalClient;
+        $user = User::find($user_id);
 
-        $provider->setApiCredentials(config('paypal'));
-        $provider->getAccessToken();
+        if ($user) {
+            $provider = new PayPalClient;
+
+            $provider->setApiCredentials(config('paypal'));
+            $provider->getAccessToken();
+
+            // Process payment cancel
+        }
+
+        return redirect()->to('/checkout')
+            ->with('error', 'Payment cancelled');
     }
 }
