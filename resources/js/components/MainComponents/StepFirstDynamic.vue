@@ -10,9 +10,11 @@
                     </div>
                     <div class="w-90">
                         <span class="title-create">{{ title }}</span>
-                        <div>
+                        <div
+                            class="d-flex align-items-center justify-content-between col-12"
+                        >
                             <!-- Left column -->
-                            <div class="inputs">
+                            <div class="inputs col-md-6">
                                 <!-- Left side content goes here -->
                                 <div
                                     class="d-flex align-items-center justify-content-start"
@@ -21,6 +23,7 @@
                                         {{ letterQ }}
                                     </div>
                                     <input
+                                        required
                                         v-if="letterQ"
                                         v-model="inputQ"
                                         @input="emitQuantity"
@@ -40,6 +43,7 @@
                                         {{ letterOne }}
                                     </div>
                                     <input
+                                        required
                                         v-if="letterOne"
                                         v-model="inputL"
                                         @input="emitInputValues"
@@ -59,6 +63,7 @@
                                         {{ letterTwo }}
                                     </div>
                                     <input
+                                        required
                                         v-model="inputP"
                                         @input="emitInputValues"
                                         v-if="letterTwo"
@@ -78,6 +83,7 @@
                                         {{ letterThree }}
                                     </div>
                                     <input
+                                        required
                                         v-model="inputH"
                                         @input="emitInputValues"
                                         v-if="letterThree"
@@ -91,7 +97,7 @@
                                 </div>
                             </div>
                             <!-- Right column -->
-                            <div class="image">
+                            <div class="image col-md-6">
                                 <!-- Right side content goes here -->
                                 <img
                                     v-if="img"
@@ -101,6 +107,7 @@
                                 />
                             </div>
                         </div>
+                        <span class="sub">{{ txtBanner }}</span>
                     </div>
                 </div>
             </div>
@@ -157,6 +164,10 @@ h2 {
     font-size: 1.5rem;
 }
 
+.sub {
+    font-size: 0.5rem;
+}
+
 .inputs {
     display: flex;
     flex-direction: column;
@@ -172,16 +183,16 @@ h2 {
 .inputs .bg-yellow {
     color: white;
     display: flex;
-    height: 60px;
+    height: 50px;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 50px;
 }
 
 .inputs input {
     padding: 1rem 0.5rem;
     font-weight: bold;
-    height: 60px;
+    height: 50px;
     width: 30%;
     margin: 1rem 0px;
     font-size: 1.5rem;

@@ -1,7 +1,5 @@
 <template>
-    <div
-        class="shopping-cart d-flex align-items-start col-xl-5 col-md-12 col-lg-5"
-    >
+    <div class="shopping-cart d-flex align-items-start">
         <div class="summary d-flex flex-column">
             <h3>RIEPILOGO</h3>
             <div class="summary-item">
@@ -20,11 +18,11 @@
             </div>
             <div class="summary-item">
                 <span class="text">COLORE SCATOLA</span>
-                <span class="price">{{ selectedImage.value }}</span>
+                <span class="price">{{ selectedColor.value }}</span>
             </div>
             <div class="summary-item">
                 <span class="text">TIPO DI CARTONE</span>
-                <span class="price">{{ selectedImage.value }}</span>
+                <span class="price">{{ selectedType.value }}</span>
             </div>
             <div class="summary-item">
                 <span class="text">STAMPA</span>
@@ -114,7 +112,8 @@ export default {
         "inputL",
         "inputP",
         "inputQ",
-        "selectedImage",
+        "selectedColor",
+        "selectedType",
         "radioValue",
     ],
     data() {
@@ -133,7 +132,6 @@ export default {
     background-color: white;
     padding: 30px;
     color: black;
-    width: 100%;
 }
 
 .shopping-cart .summary h3 {
