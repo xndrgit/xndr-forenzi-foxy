@@ -858,7 +858,7 @@ export default {
     methods: {
         getUserInfo() {
             axios
-                .get("guest/user", {})
+                .get("shop/user", {})
                 .then((response) => {
                     this.mail = response.data.email;
                 })
@@ -867,7 +867,7 @@ export default {
 
         getOrders() {
             axios
-                .get("/guest/orders")
+                .get("/shop/orders")
                 .then((response) => {
                     this.order = response.data.results;
 
@@ -906,7 +906,7 @@ export default {
                 this.$refs.checkTerm.checked
             )
                 axios
-                    .post(`/guest/orders/transmit/${this.order.id}`, {
+                    .post(`/shop/orders/transmit/${this.order.id}`, {
                         user_detail: {
                             surname: this.last_name,
                             business_name: this.business_name,
@@ -926,7 +926,7 @@ export default {
                     })
                     .then((res) => {
                         if (res) {
-
+                            window.location.href = '/shop/payment';
                             // alert("Success transmitted!");
                             // this.$router.replace({ path: "/confirm/" });
                         } else {

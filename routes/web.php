@@ -42,11 +42,11 @@ Route::middleware('auth')
         Route::resource('/categories', 'CategoryController');
     });
 
-Route::prefix('guest')
+Route::prefix('shop')
     //! aggiorna la cartella all'interno della quale si trovano i controller
     ->namespace('Api')
     //! aggiorna la cartella all'interno della quale si trovani i blade
-    ->name('guest.')
+    ->name('shop.')
     ->group(function () {
         Route::get('/products', 'ProductController@index');
         Route::get('/products/{id}', 'ProductController@show');
@@ -61,11 +61,11 @@ Route::prefix('guest')
 
 Route::middleware('auth')
     //! aggiorna ogni url
-    ->prefix('guest')
+    ->prefix('shop')
     //! aggiorna la cartella all'interno della quale si trovano i controller
     ->namespace('Api')
     //! aggiorna la cartella all'interno della quale si trovani i blade
-    ->name('guest.')
+    ->name('shop.')
     ->group(function () {
         Route::get('/orders', 'OrderController@show');
         Route::post('/orders', 'OrderController@store');

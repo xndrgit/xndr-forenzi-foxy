@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,32 +15,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return response()->json(Auth::user());
+    return response()->json($request->user());
 });
 
-Route::namespace('api')->group(function () {
-    Route::get('/products', 'ProductController@index');
-    Route::get('/products/{id}', 'ProductController@show');
-    Route::get('/products/siblings/{id}', 'ProductController@siblings');
-    // Route::get('/products/{id}', 'ProductController@destroy');
-
-    Route::get('/categories', 'CategoryController@index');
-    Route::get('/categories/{id}', 'CategoryController@show');
-
-    Route::get('/orders', 'OrderController@index');
-    Route::put('/orders', 'OrderController@show');
-    Route::post('/orders', 'OrderController@create');
-    Route::post('/orders/{id}', 'OrderController@update');
-    Route::post('/orders/transmit/{id}', 'OrderController@transmit');
-    Route::post('/orders/delete/{id}', 'OrderController@destroy');
-
-    // Route::get('/cart/{id}', 'OrderController@create');
-
-    Route::get('/user/detail', 'UserController@show');
-//    Route::get('/user', function(Request $request) {
-//        return response()->json([
-//            'name' => Auth::user()->name,
-//            'email' => Auth::user()->email,
-//        ]);
-//    });
-});

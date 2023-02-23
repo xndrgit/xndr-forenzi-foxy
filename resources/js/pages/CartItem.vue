@@ -74,7 +74,7 @@ export default {
     methods: {
         getOrders() {
             axios
-                .get("/guest/orders")
+                .get("/shop/orders")
                 .then((response) => {
                     this.order = response.data.results;
                     this.order_products = response.data.results.products;
