@@ -3,7 +3,7 @@
         <div class="HeaderBoxes">
             <!-- <LoadingComponent v-if="LoadingCategories" /> -->
 
-            <nav class="d-flex ">
+            <nav class="d-flex">
                 <div class="container d-flex flex-wrap justify-content-around">
                     <div
                         class="card d-flex align-items-center position-relative"
@@ -70,13 +70,12 @@ export default {
     }
     .card {
         width: 8rem;
-        margin: 8px 0px;
         border-radius: 0px;
         border: 0px;
         transition: transform 0.2s;
         padding: 0px;
-        min-height: 180px;
-        max-height: 180px;
+        min-height: 150px;
+        max-height: 150px;
 
         &:hover {
             transform: scale(0.95);
@@ -84,7 +83,7 @@ export default {
         }
 
         .up {
-            height: 60%;
+            height: 75%;
 
             img {
                 padding: 10px;
@@ -92,7 +91,7 @@ export default {
                 padding: 1rem 0px;
             }
             .litlogo {
-                bottom: 50px;
+                bottom: 30px;
                 right: -25px;
                 height: 80px;
                 width: 80px;
@@ -100,10 +99,11 @@ export default {
         }
 
         .down {
-            height: 40%;
+            height: 25%;
 
             display: flex;
             align-items: center;
+        
             p {
                 font-size: 0.8rem;
                 margin: 0px;

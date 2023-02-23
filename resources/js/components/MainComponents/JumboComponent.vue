@@ -4,6 +4,7 @@
             <carousel
                 class="align-items-center justify-content-center"
                 :perPageCustom="[
+                    [0, 1],
                     [480, 1],
                     [768, 1],
                     [1024, 1],
@@ -11,17 +12,23 @@
                 ]"
             >
                 <slide v-for="(image, index) in images" :key="index">
-                    <img
-                        class="img-fluid"
-                        :src="image"
-                        alt="Slider image"
-                        style="
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            position: relative;
-                        "
-                    />
+                    <div class="carousel-image-container position-relative">
+                        <img
+                            class="img-fluid"
+                            :src="image.src"
+                            alt="Slider image"
+                            style="width: 100%; height: 100%; object-fit: cover"
+                        />
+                        <div class="carousel-content position-absolute">
+                            <h3 class="carousel-title">{{ image.title }}</h3>
+                            <p class="carousel-description">
+                                {{ image.description }}
+                            </p>
+                            <button class="yellow-button">
+                                SCOPRI IL PRODOTTO
+                            </button>
+                        </div>
+                    </div>
                 </slide>
             </carousel>
         </div>
@@ -102,10 +109,27 @@ export default {
     data() {
         return {
             images: [
-                require("../../../../public/Links/PHV7570.jpg"),
-                "https://image.shutterstock.com/image-vector/realistic-cardboard-box-mockup-set-260nw-1670147116.jpg",
-                "https://image.shutterstock.com/image-vector/realistic-cardboard-box-mockup-set-260nw-1670147116.jpg",
-                "https://image.shutterstock.com/image-vector/realistic-cardboard-box-mockup-set-260nw-1670147116.jpg",
+                {
+                    src: require("../../../../public/Links/PHV7570.jpg"),
+                    title: "Scatole per pizza",
+                    description:
+                        "Disponibili in diverse misure e colori. Possibilità di personalizzazione con logo e testi e motivi grafici.",
+                },
+                {
+                    src: require("../../../../public/Links/PHV7570.jpg"),
+                    title: "Title 2",
+                    description: "Description 2",
+                },
+                {
+                    src: require("../../../../public/Links/PHV7570.jpg"),
+                    title: "Title 3",
+                    description: "Description 3",
+                },
+                {
+                    src: require("../../../../public/Links/PHV7570.jpg"),
+                    title: "Title 4",
+                    description: "Description 4",
+                },
             ],
             days: 0,
             hours: 0,
@@ -153,6 +177,38 @@ export default {
 .jumbo {
     display: flex;
     .jumbo1 {
+        .carousel-image-container {
+            position: relative;
+        }
+
+        .carousel-content {
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-end;
+
+            color: black;
+            padding: 20px;
+            margin-left: 55%;
+            text-align: end;
+        }
+
+        .carousel-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .carousel-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            margin-left: 10%;
+        }
+
         .VueCarousel {
             object-fit: cover;
             width: 100%;
