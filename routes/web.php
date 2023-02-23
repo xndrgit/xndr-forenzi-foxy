@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('payment/success/{user_id?}', 'Api\PaypalController@success')->name('payment.success');
+Route::get('payment/cancel/{user_id?}', 'Api\PaypalController@cancel')->name('payment.cancel');
+
 Auth::routes();
 
 
@@ -77,6 +80,8 @@ Route::middleware('auth')
                 'email' => $request->user()->email,
             ]);
         });
+
+        Route::get('/payment', 'PaypalController@payment')->name('payment');
     });
 
 Route::get("{any?}", function () {
