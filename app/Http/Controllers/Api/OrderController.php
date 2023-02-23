@@ -49,24 +49,27 @@ class OrderController extends Controller
     {
         $id = $request->user()->id;
 
-        $order_exist = Order::where([
+        $order = Order::where([
             ['user_id', '=', $id],
             ['status', '=', 'in attesa']
         ])->first();
 
         $order_product = $request->all();
 
-        if ($order_exist != null) {
-            $order_product_exist = DB::table('order_product')->where([
+        if ($order != null) {
+            $order_product_exist = Order::table('order_product')->where([
                 ['product_id', '=', $order_product['id']],
-                ['order_id', '=', $order_exist->id]
+                ['order_id', '=', $order->id]
             ])->first();
 
             if ($order_product_exist != null) {
-                $product = DB::table('products')->select('quantity')->where('id', $order_product_exist->product_id)->first(); //in product: original qu
+                $product = Product::select('quantity')
+                    ->where('id', $order_product_exist->product_id)
+                    ->first(); //in product: original qu
+
                 $order_pro = DB::table('order_product')->select('quantity')->where([
                     ['product_id', '=', $order_product_exist->product_id],
-                    ['order_id', '=', $order_exist->id]
+                    ['order_id', '=', $order->id]
                 ])->first(); //in order_product, qu
 
                 if ($product->quantity < $order_product['quantity'] + $order_pro->quantity)
@@ -77,43 +80,36 @@ class OrderController extends Controller
 
                 DB::table('order_product')->where([
                     ['product_id', '=', $order_product_exist->product_id],
-                    ['order_id', '=', $order_exist->id]
+                    ['order_id', '=', $order->id]
                 ])->increment('quantity', $order_product['quantity'], ['updated_at' => now()]);
             }
             else {
                 DB::table('order_product')->insert([
                     'product_id' => $order_product['id'],
                     'quantity'   => $order_product['quantity'],
-                    'order_id'   => $order_exist->id,
+                    'order_id'   => $order->id,
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
             }
         }
         else {
-            $orderLog = new Order();
-            $orderLog->user_id = $id;
-            $orderLog->order_number = random_int(1, 23234342);
-            $orderLog->status = 'in attesa';
-            $orderLog->total = 0;
-            $orderLog->subtotal = 0;
-            $orderLog->shipping_cost = 0;
-            $orderLog->conai = 0;
-            $orderLog->iva = 0;
-            $orderLog->created_at = now();
+            $order = new Order();
+            $order->user_id = $id;
+            $order->order_number = random_int(1, 23234342);
+            $order->status = 'in attesa';
+            $order->total = 0;
+            $order->subtotal = 0;
+            $order->shipping_cost = 0;
+            $order->conai = 0;
+            $order->iva = 0;
+            $order->created_at = now();
 
-            $orderLog->save();
-
-            if ($orderLog) {
-                $order_id = Order::where([
-                    ['user_id', '=', $id],
-                    ['status', '=', 'in attesa']
-                ])->first()['id'];
-
+            if ($order->save()) {
                 DB::table('order_product')->insert([
                     'product_id' => $order_product['id'],
                     'quantity'   => $order_product['quantity'],
-                    'order_id'   => $order_id,
+                    'order_id'   => $order->id,
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
@@ -126,19 +122,14 @@ class OrderController extends Controller
             }
         }
 
-        $oid = DB::table('orders')->where([
-            ['user_id', '=', $id],
-            ['status', '=', 'in attesa']
-        ])->first();
-
         $order_products = DB::table('order_product')->where([
-            'order_id' => $oid->id
+            'order_id' => $order->id
         ])->get();
 
         $subtotal = 0.00;
         $rejectedList = [];
         foreach ($order_products as $op) {
-            $tmp = DB::table('products')->select(['quantity', 'price'])->where('id', $op->product_id)->first();
+            $tmp = Product::select(['quantity', 'price'])->where('id', $op->product_id)->first();
 
             if ($tmp->quantity > $op->quantity) {
                 $subtotal += $tmp->price * $op->quantity;
@@ -148,15 +139,14 @@ class OrderController extends Controller
                 $rejectedList[] = $op->order_id . '->' . $op->product_id;
             }
         }
-        // conai, iva shipping_cost random value must be setted
-        Order::where('id', $oid->id)->update([
-            'subtotal'      => $subtotal,
-            'shipping_cost' => 0,
-            'conai'         => round($subtotal * 22.00 / 100, 2),
-            'iva'           => 4.35,
-            'total'         => round($subtotal + $subtotal * 22.00 / 100 + 4.35, 2),
-            'updated_at'    => now()
-        ]);
+
+        $order->subtotal = $subtotal;
+        $order->shipping_cost = 0;
+        $order->conai = round($subtotal * 22.00 / 100, 2);
+        $order->iva = 4.35;
+        $order->total = round($subtotal + $subtotal * 22.00 / 100 + 4.35, 2);
+        $order->updated_at = now();
+        $order->save();
 
         return response()->json([
             "response"     => true,
@@ -197,7 +187,6 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     : JsonResponse
     {
-
         $params = $request->all();
 
         $subtotal = 0.00;
@@ -285,29 +274,30 @@ class OrderController extends Controller
 
         if ($order->save()) {
             // create user_detail
-            $user_detail = new UserDetail();
-            $user_detail->user_id = Auth::id();
-            $user_detail->surname = $params['user_detail']['surname'];
-            $user_detail->business_name = $params['user_detail']['business_name'];
-            $user_detail->notes = $params['user_detail']['notes'];
-            $user_detail->address = $params['user_detail']['address'];
-            $user_detail->phone = $params['user_detail']['phone'];
-            $user_detail->city = $params['user_detail']['city'];
-            $user_detail->cap = $params['user_detail']['cap'];
-            $user_detail->province = $params['user_detail']['province'];
-            $user_detail->state = $params['user_detail']['state'];
-            $user_detail->pec = $params['user_detail']['pec'];
-            $user_detail->code_sdi = $params['user_detail']['code_sdi'];
-            $user_detail->admin = 'registered'; // set static
-            $user_detail->created_at = now();
-            $user_detail->updated_at = now();
-
-            if ($user_detail->save()) {
-                return response()->json([
-                    'status'   => 'success',
-                    'order_id' => $order->id
-                ]);
+            $user_detail = UserDetail::where('user_id', $request->user()->id)->first();
+            if (!$user_detail) {
+                $user_detail = new UserDetail();
+                $user_detail->user_id = $request->user()->id;
+                $user_detail->surname = $params['user_detail']['surname'];
+                $user_detail->business_name = $params['user_detail']['business_name'];
+                $user_detail->notes = $params['user_detail']['notes'];
+                $user_detail->address = $params['user_detail']['address'];
+                $user_detail->phone = $params['user_detail']['phone'];
+                $user_detail->city = $params['user_detail']['city'];
+                $user_detail->cap = $params['user_detail']['cap'];
+                $user_detail->province = $params['user_detail']['province'];
+                $user_detail->state = $params['user_detail']['state'];
+                $user_detail->pec = $params['user_detail']['pec'];
+                $user_detail->code_sdi = $params['user_detail']['code_sdi'];
+                $user_detail->admin = 'registered'; // set static
+                $user_detail->created_at = now();
+                $user_detail->updated_at = now();
+                $user_detail->save();
             }
+
+            return response()->json([
+                'status' => 'success'
+            ]);
         }
 
         return response()->json([

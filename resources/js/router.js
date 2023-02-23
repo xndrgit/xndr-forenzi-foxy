@@ -18,37 +18,70 @@ const router = new VueRouter({
             path: "/",
             name: "home",
             component: HomePage,
+            meta: {
+                requiresAuth: false
+            },
         },
         {
             path: "/personalize",
             name: "personalize",
             component: PersonalizePage,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: "/cart",
             name: "cart",
             component: CartPage,
+            meta: {
+                requiresAuth: true
+            },
         },
         {
             path: "/product/:id",
             name: "product",
             component: ProductPage,
+            meta: {
+                requiresAuth: false
+            },
         },
         {
             path: "/category/:id",
             name: "category",
             component: CategoryPage,
+            meta: {
+                requiresAuth: false
+            },
         },
         {
             path: "/checkout",
             name: "checkout",
             component: CheckoutPage,
+            meta: {
+                requiresAuth: true
+            },
         },
         {
             path: "/confirm",
             name: "confirm",
             component: ConfirmPage,
+            meta: {
+                requiresAuth: true
+            },
         },
     ],
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+        if (!window.localStorage.getItem('user')) {
+            console.log('hey');
+            window.location.href = '/login';
+        }
+    }
+
+    next();
+});
+
 export default router;

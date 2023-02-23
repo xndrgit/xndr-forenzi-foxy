@@ -304,6 +304,22 @@ export default {
                 });
         },
 
+        getCartInfo()
+        {
+            axios
+                .get("shop/orders", {})
+                .then((response) =>
+                {
+                    this.$store.commit("updateCart", {
+                        productCount: response.data.results.products.length,
+                        total: parseFloat(response.data.results.subtotal).toFixed(2),
+                    });
+                })
+                .catch((error) =>
+                {
+                });
+        },
+
         test(item)
         {
             this.subtotal += item.pivot.quantity * parseFloat(item.price);
@@ -414,27 +430,6 @@ export default {
                     if (!res.data.response) alert("Failed");
                     if (res.data.response)
                     {
-                        this.subtotal = this.$store.state.total;
-
-                        let params = [];
-                        this.$store.state.quantity.map((quantity) =>
-                        {
-                            params.push({
-                                id: quantity.id,
-                                quantity: quantity.value,
-                            });
-                        });
-
-                        axios
-                            .put(`/shop/orders/${this.order.id}`, params)
-                            .then((res) =>
-                            {
-                                if (res.data.response)
-                                {
-                                    alert("Deleted Successfully!"); // show alert
-                                }
-                            })
-                            .then();
                         this.getOrders();
                     }
                 });
@@ -442,12 +437,9 @@ export default {
     },
     created()
     {
-        axios.get("/shop/users").then((res) =>
-        {
-            // console.log(res);
-        });
         this.getOrders();
         this.getProducts();
+        this.getCartInfo();
     },
     computed: {
         productImage()
@@ -463,23 +455,7 @@ export default {
                     return "/storage" + product.img.substring(6);
                 }
             };
-        },
-        // subtotal() {
-        //     return this.order.products.reduce((subtotal, product) => {
-        //         return subtotal + product.price * product.pivot.quantity;
-        //     }, 0);
-        // },
-        // iva() {
-        //     return this.$refs.totalQuantity.reduce((iva, quantity) => {
-        //         return iva + quantity.value * 4.35;
-        //     }, 0);
-        // },
-        // conai() {
-        //     return (this.subtotal * 22) / 100;
-        // },
-        // total() {
-        //     return this.subtotal + this.conai + this.iva;
-        // },
+        }
     },
 };
 </script>

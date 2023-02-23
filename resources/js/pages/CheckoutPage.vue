@@ -858,15 +858,29 @@ export default {
     methods: {
         getUserInfo() {
             axios
-                .get("shop/user", {})
+                .get("/shop/user/detail", {})
                 .then((response) => {
-                    this.mail = response.data.email;
-                    this.$store.commit("updateUser", {
-                        isAuth: true,
-                        name: response.data.name,
-                    });
-                })
-                .catch((error) => {});
+                    const details = response.data.results;
+                    this.mail = details.email;
+                    if (details.user_detail) {
+                        this.first_name = details.name;
+                        this.surname = details.user_detail.surname;
+                        this.business_name = details.user_detail.business_name;
+                        this.notes = details.user_detail.notes;
+                        this.address = details.user_detail.address;
+                        this.phone = details.user_detail.phone;
+                        this.city = details.user_detail.city;
+                        this.cap = details.user_detail.cap;
+                        this.province = details.user_detail.province;
+                        this.state = details.user_detail.state;
+                        this.pec = details.user_detail.pec;
+                        this.code_sdi = details.user_detail.code_sdi;
+                        this.mail = details.user_detail.mail;
+                        this.agree = details.user_detail.agree;
+
+                        this.$forceUpdate();
+                    }
+                });
         },
 
         getOrders() {
@@ -930,7 +944,7 @@ export default {
                     })
                     .then((res) => {
                         if (res) {
-                            window.location.href = '/shop/payment';
+                            window.location.href = `/shop/payment?order_id=${this.order.id}`;
                             // alert("Success transmitted!");
                             // this.$router.replace({ path: "/confirm/" });
                         } else {
@@ -955,12 +969,12 @@ label {
     font-weight: bold;
 }
 .col-lg-6 {
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 .v-text-field {
-    padding: 0px;
-    margin: 0px 10px;
+    padding: 0;
+    margin: 0 10px;
 }
 i {
     margin-left: 0.4rem;
@@ -1013,7 +1027,7 @@ textarea {
 
 .form-group .d-flex {
     font-size: 0.8rem;
-    margin: 0.5rem 0rem;
+    margin: 0.5rem 0;
 }
 
 .form-group .d-flex input {
@@ -1123,7 +1137,7 @@ tr.text-muted td {
 .btn.text-uppercase {
     border: 1px solid #333;
     font-weight: 600;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .btn.text-uppercase:hover {
@@ -1133,7 +1147,7 @@ tr.text-muted td {
 
 .btn.text-white {
     background-color: #66cdaa;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .btn.text-white:hover {
