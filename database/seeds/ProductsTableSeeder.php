@@ -23,7 +23,7 @@ class ProductsTableSeeder extends Seeder
         $colors = ['bianca', 'avana'];
         $prints = ['personalizzata', 'neutra'];
 
-        $purchasable_in_multi_of = [20, 50, 100, 200];
+        $purchasable_in_multi_of = [1, 2, 3, 4, 5, 10, 20, 30, 50, 100, 200];
 
         for ($i = 0; $i < 50; $i++) {
             $newProduct = new Product();

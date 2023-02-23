@@ -39,11 +39,11 @@ Route::middleware('auth')
         Route::resource('/categories', 'CategoryController');
     });
 
-Route::prefix('user')
+Route::prefix('guest')
     //! aggiorna la cartella all'interno della quale si trovano i controller
     ->namespace('Api')
     //! aggiorna la cartella all'interno della quale si trovani i blade
-    ->name('user.')
+    ->name('guest.')
     ->group(function () {
         Route::get('/products', 'ProductController@index');
         Route::get('/products/{id}', 'ProductController@show');

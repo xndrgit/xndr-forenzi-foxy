@@ -14,7 +14,6 @@ export default {
     methods: {},
     created() {},
     mounted() {
-        console.log("Component mounted.");
     },
 };
 </script>

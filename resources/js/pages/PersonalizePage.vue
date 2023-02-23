@@ -178,7 +178,6 @@ export default {
     methods: {
         setPrintValue(print) {
             this.radioValue = print;
-            console.log(this.radioValue);
         },
 
         setInputValues(inputValues) {
@@ -192,16 +191,13 @@ export default {
 
         setSelectedImage(image) {
             this.selectedImage = image;
-            console.log(this.selectedImage.value);
         },
 
         // setSelectedColor(color) {
         //     this.selectedColor = color;
-        //     console.log(this.selectedColor);
         // },
         // setSelectedCategory(category) {
         //     this.selectedCategory = category;
-        //     console.log(this.selectedCategory);
         // },
     },
 };

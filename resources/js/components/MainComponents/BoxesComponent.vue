@@ -99,7 +99,6 @@ export default {
                 });
         },
         updateQuantity(value) {
-            console.log("value:", value);
             this.quantity = value;
         },
     },

@@ -35,7 +35,6 @@ export default {
             this.$emit("update-quantity", this.quantity);
         },
         updateQuantity() {
-            // console.log("Child component - quantity updated:", this.quantity);
             this.$emit("update-quantity", this.quantity);
         },
     },

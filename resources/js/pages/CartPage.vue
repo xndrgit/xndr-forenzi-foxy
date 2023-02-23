@@ -3,9 +3,9 @@
         <div class="container">
             <div class="block-heading">
                 <h2 class="display-5 font-weight-bold">IL TUO CARRELLO</h2>
-                <hr class="w-5" />
+                <hr class="w-5"/>
             </div>
-            <hr />
+            <hr/>
             <div class="content">
                 <div class="row">
                     <div class="col-md-12 col-lg-8">
@@ -18,14 +18,14 @@
                                         <img
                                             class="img-fluid mx-auto d-block image"
                                             :src="productImage(item)"
-                                        />
+                                            alt=""/>
                                         <a
                                             type="button"
                                             class="delete"
                                             @click="deleteProduct(item)"
-                                            ><i
-                                                class="fa-2x fa-regular fa-circle-xmark"
-                                            ></i
+                                        ><i
+                                            class="fa-2x fa-regular fa-circle-xmark"
+                                        ></i
                                         ></a>
                                     </div>
 
@@ -43,18 +43,18 @@
                                                                 Codice:
                                                                 <span
                                                                     class="value"
-                                                                    >{{
+                                                                >{{
                                                                         item.code
                                                                     }}</span
                                                                 >
                                                             </div>
                                                             <a href="#">{{
-                                                                item.name
-                                                            }}</a>
+                                                                    item.name
+                                                                }}</a>
                                                             <div>
                                                                 <span
                                                                     class="value font-weight-bold"
-                                                                    >{{
+                                                                >{{
                                                                         item.length
                                                                     }}
                                                                     x
@@ -121,7 +121,7 @@
                                                         "
                                                     >
                                                         <label for="id1"
-                                                            >€</label
+                                                        >€</label
                                                         >
                                                         <input
                                                             type="text"
@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr />
+                            <hr/>
                         </div>
                         <!-- <div class="d-flex justify-content-between">
 																		<form class="coupon d-flex">
@@ -176,7 +176,7 @@
                             <div class="summary-item">
                                 <span class="text">SUBTOTALE</span>
                                 <span class="price"
-                                    >€
+                                >€
                                     {{
                                         parseFloat(this.subtotal).toFixed(2)
                                     }}</span
@@ -195,7 +195,7 @@
                             <div class="summary-item">
                                 <span class="text">SPEDIZIONE GRATUITA</span>
                                 <span class="price"
-                                    >€
+                                >€
                                     {{
                                         parseFloat(this.shipping_cost).toFixed(
                                             2
@@ -206,7 +206,7 @@
                             <div class="summary-item">
                                 <span class="text">CONTRIBUTO CONAI</span>
                                 <span class="price"
-                                    >€
+                                >€
                                     {{
                                         parseFloat(this.conai).toFixed(2)
                                     }}</span
@@ -215,7 +215,7 @@
                             <div class="summary-item">
                                 <span class="text">IVA</span>
                                 <span class="price"
-                                    >€
+                                >€
                                     {{ parseFloat(this.iva).toFixed(2) }}</span
                                 >
                             </div>
@@ -224,13 +224,13 @@
                             >
                                 <span class="text">TOTALE ORDINE</span>
                                 <span class="price"
-                                    >€
+                                >€
                                     {{
                                         parseFloat(this.total).toFixed(2)
                                     }}</span
                                 >
                             </div>
-                            <hr />
+                            <hr/>
                             <a
                                 type="button"
                                 class="btn bg-yellow fw-bold btn-lg btn-block"
@@ -254,7 +254,8 @@ export default {
     components: {
         CartItem,
     },
-    data() {
+    data()
+    {
         return {
             products: [],
             order: {},
@@ -270,21 +271,26 @@ export default {
         };
     },
     methods: {
-        getProducts() {
+        getProducts()
+        {
             axios
                 .get("/guest/products", {})
-                .then((response) => {
+                .then((response) =>
+                {
                     this.products = response.data.results;
                 })
-                .catch((error) => {
+                .catch((error) =>
+                {
                     console.warn(error.message);
                 });
         },
 
-        getOrders() {
+        getOrders()
+        {
             axios
                 .put("/guest/orders")
-                .then((response) => {
+                .then((response) =>
+                {
                     this.order = response.data.results;
                     this.subtotal = parseFloat(this.order.subtotal);
                     // this.shipping_cost = parseFloat(this.order.shipping_cost);
@@ -292,21 +298,25 @@ export default {
                     this.iva = parseFloat(this.order.iva);
                     this.total = parseFloat(this.order.total);
                 })
-                .catch((error) => {
+                .catch((error) =>
+                {
                     console.log(error.message);
                 });
         },
 
-        test(item) {
+        test(item)
+        {
             this.subtotal += item.pivot.quantity * parseFloat(item.price);
 
             this.subtotal = 0;
             this.iva = 0;
-            this.$refs.subTotalPrice.map((sub) => {
+            this.$refs.subTotalPrice.map((sub) =>
+            {
                 this.subtotal += parseFloat(sub.value);
             });
 
-            this.$refs.totalQuantity.map((quantity) => {
+            this.$refs.totalQuantity.map((quantity) =>
+            {
                 this.iva += quantity.value * 4.35;
                 // this.params = [];
                 // this.params.push({
@@ -319,29 +329,35 @@ export default {
             this.total = this.subtotal + this.conai + this.iva;
         },
 
-        checkout() {
+        checkout()
+        {
             this.params = [];
-            this.$refs.totalQuantity.map((quantity) => {
+            this.$refs.totalQuantity.map((quantity) =>
+            {
                 this.params.push({
                     id: quantity.id,
                     quantity: quantity.value,
                 });
             });
 
-            axios.post("/guest/orders/id", this.params).then((res) => {
-                console.log(res);
-                if (res.data.response) {
+            axios.post("/guest/orders/id", this.params).then((res) =>
+            {
+                if (res.data.response)
+                {
                     alert("Procedi Al Checkout"); // show alert
-                    this.$router.replace({ path: "/checkout" });
+                    this.$router.replace({path: "/checkout"});
                 }
             });
         },
 
-        deleteProduct(item) {
+        deleteProduct(item)
+        {
             // save current quantity to store
             let quantityTemp = [];
-            this.$refs.totalQuantity.map((quantity) => {
-                if (item.id != quantity.id) {
+            this.$refs.totalQuantity.map((quantity) =>
+            {
+                if (item.id !== quantity.id)
+                {
                     quantityTemp.push({
                         id: quantity.id,
                         value: parseFloat(quantity.value).toFixed(2),
@@ -355,8 +371,10 @@ export default {
 
             // after delete subtotal
             let subtotal = 0.0;
-            this.order.products.map((product) => {
-                if (item.id != product.id) {
+            this.order.products.map((product) =>
+            {
+                if (item.id !== product.id)
+                {
                     subtotal =
                         subtotal +
                         parseFloat(product.price * product.pivot.quantity);
@@ -366,8 +384,9 @@ export default {
             this.subtotal = subtotal;
 
             // after delete iva
-            this.$refs.totalQuantity.map((quantity) => {
-                if (item.id != quantity.id)
+            this.$refs.totalQuantity.map((quantity) =>
+            {
+                if (item.id !== quantity.id)
                     this.iva += (quantity.value * 4.35).toFixed(2);
             });
 
@@ -379,11 +398,6 @@ export default {
                 this.subtotal + this.conai + this.iva
             ).toFixed(2);
 
-            console.log("subtotal:", this.subtotal);
-            console.log("iva:", this.iva);
-            console.log("conai:", this.conai);
-            console.log("total:", this.total);
-
             // save product count and subtotal to store
             this.$store.commit("updateCart", {
                 productCount: this.order.products.length - 1,
@@ -394,16 +408,17 @@ export default {
                 .post(`/guest/orders/delete/${item.pivot.order_id}`, {
                     product_id: item.pivot.product_id,
                 })
-                .then((res) => {
+                .then((res) =>
+                {
                     // if (res.data.response == true) alert("Cancelled");
-                    if (res.data.response == false) alert("Failed");
-                    if (res.data.response == true) {
+                    if (!res.data.response) alert("Failed");
+                    if (res.data.response)
+                    {
                         this.subtotal = this.$store.state.total;
 
-                        console.log("subtotal:", this.subtotal);
-
                         let params = [];
-                        this.$store.state.quantity.map((quantity) => {
+                        this.$store.state.quantity.map((quantity) =>
+                        {
                             params.push({
                                 id: quantity.id,
                                 quantity: quantity.value,
@@ -412,8 +427,10 @@ export default {
 
                         axios
                             .post("/guest/orders/id", params)
-                            .then((res) => {
-                                if (res.data.response) {
+                            .then((res) =>
+                            {
+                                if (res.data.response)
+                                {
                                     alert("Deleted Successfully!"); // show alert
                                 }
                             })
@@ -423,19 +440,26 @@ export default {
                 });
         },
     },
-    created() {
-        axios.get("/guest/users").then((res) => {
-            console.log(res);
+    created()
+    {
+        axios.get("/guest/users").then((res) =>
+        {
+            // console.log(res);
         });
         this.getOrders();
         this.getProducts();
     },
     computed: {
-        productImage() {
-            return function (product) {
-                if (/^http/.test(product.img)) {
+        productImage()
+        {
+            return function (product)
+            {
+                if (/^http/.test(product.img))
+                {
                     return product.img;
-                } else {
+                }
+                else
+                {
                     return "/storage" + product.img.substring(6);
                 }
             };
@@ -625,6 +649,7 @@ export default {
         border-radius: 50%;
         cursor: pointer;
         transition: 1s ease-in-out;
+
         &:hover {
             transform: scale(0.9);
             filter: grayscale(2);
