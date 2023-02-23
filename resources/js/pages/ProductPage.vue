@@ -64,18 +64,14 @@ export default {
         },
         getCategories() {
             this.loadingCategories = true;
-            console.log(this.loadingCategories);
             axios
                 .get("/guest/categories", {})
                 .then((response) => {
-                    console.log("categories");
-                    console.log(response.data.results.data);
                     this.categories = response.data.results.data;
                     this.currentPageCategories =
                         response.data.results.currentPage;
                     this.lastPageCategories = response.data.results.lastPage;
                     this.loadingCategories = false;
-                    console.log(this.loadingCategories);
                 })
                 .catch((error) => {
                     console.warn(error.message);
@@ -87,7 +83,6 @@ export default {
                 .get(`/guest/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
-                    console.log(this.product);
                     this.loadingProduct = false;
                 })
                 .catch((error) => {

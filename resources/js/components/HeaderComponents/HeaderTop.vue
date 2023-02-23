@@ -7,9 +7,11 @@
                         <i class="fa-solid fa-truck-fast"></i>
                         <div class="d-none d-lg-inline">
                             <p>SEI UN NUOVO CLIENTE?</p>
-                            <strong>
-                                <p>SPEDIZIONE GRATIS IN TUTTA ITALIA</p>
-                            </strong>
+                            <p>
+                                <strong>
+                                    SPEDIZIONE GRATIS IN TUTTA ITALIA
+                                </strong>
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -18,9 +20,11 @@
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <div class="d-none d-lg-inline">
                             <p>ORDINA SUBITO E RICEVI LA MERCE</p>
-                            <strong>
-                                <p>GIOVEDI 04 NOVEMBRE 2022</p>
-                            </strong>
+                            <p>
+                                <strong>
+                                    GIOVEDI 04 NOVEMBRE 2022
+                                </strong>
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -32,15 +36,15 @@
                         <div id="login" class="d-flex align-items-center">
                             <i class="fa fa-user-alt"></i>
                             <div class="d-none d-lg-inline">
-                                <strong>
-                                    <p>
+                                <p>
+                                    <strong>
                                         {{
                                             this.$store.state.isAuth
                                                 ? "DISCONNETTITI"
                                                 : "ACCEDI O"
                                         }}
-                                    </p>
-                                </strong>
+                                    </strong>
+                                </p>
                                 <p>{{ this.$store.state.name }}</p>
                             </div>
                         </div>
@@ -51,9 +55,11 @@
                         <div id="carriage" class="d-flex align-items-center">
                             <router-link to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
                             <div class="d-none d-lg-inline">
-                                <strong>
-                                    <p>CARRELLO</p>
-                                </strong>
+                                <p>
+                                    <strong>
+                                        CARRELLO
+                                    </strong>
+                                </p>
                                 <p>
                                     {{ this.$store.state.total }} € /
                                     {{ this.$store.state.productCount }}
@@ -69,42 +75,50 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
-    data() {
+    data()
+    {
         return {
             isLogin: false,
             text: "REGISTRATI",
         };
     },
     methods: {
-        getUserInfo() {
+        getUserInfo()
+        {
             axios
                 .get("guest/user", {})
-                .then((response) => {
+                .then((response) =>
+                {
                     this.$store.commit("updateUser", {
                         isAuth: true,
                         name: response.data.name,
                     });
                 })
-                .catch((error) => { });
+                .catch((error) =>
+                {
+                });
         },
-        getCartInfo() {
+        getCartInfo()
+        {
             axios
                 .put("guest/orders", {})
-                .then((response) => {
+                .then((response) =>
+                {
                     this.$store.commit("updateCart", {
                         productCount: response.data.results.products.length,
                         total: parseFloat(response.data.results.subtotal).toFixed(2),
                     });
                 })
-                .catch((error) => { });
+                .catch((error) =>
+                {
+                });
         },
     },
-    created() {
-        this.getUserInfo();
-        this.getCartInfo();
+    created()
+    {
+        // this.getUserInfo();
+        // this.getCartInfo();
     },
 };
 </script>
@@ -123,11 +137,11 @@ export default {
         i {
             font-size: 20px;
             padding: 0 10px;
-            margin: .5rem 0px;
+            margin: .5rem 0;
         }
 
         p {
-            margin: 0px;
+            margin: 0;
             font-size: 0.5rem;
         }
 
@@ -139,15 +153,15 @@ export default {
 }
 </style>
 
-errors: 1-Inserting lang=scss in the
-<style>
+<!--errors: 1-Inserting lang=scss in the-->
+<!--<style>-->
 
-</style>
-@import './assets/style/variables.scss'; solutions: 1-This error occurs when you
-try to use SCSS (Sass) in your project but do not have the necessary
-dependencies installed. The solution is to install Bootstrap, which includes the
-required dependencies for using SCSS in your project. npm install bootstrap
---save //terminal @import '~bootstrap/scss/bootstrap'; //app.vue
-<style>
+<!--</style>-->
+<!--@import './assets/style/variables.scss'; solutions: 1-This error occurs when you-->
+<!--try to use SCSS (Sass) in your project but do not have the necessary-->
+<!--dependencies installed. The solution is to install Bootstrap, which includes the-->
+<!--required dependencies for using SCSS in your project. npm install bootstrap-->
+<!--&#45;&#45;save //terminal @import '~bootstrap/scss/bootstrap'; //app.vue-->
+<!--<style>-->
 
-</style>
+<!--</style>-->

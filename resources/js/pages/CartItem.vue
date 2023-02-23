@@ -76,7 +76,6 @@ export default {
             axios
                 .get("/guest/orders/2")
                 .then((response) => {
-                    // console.log(response.data.results);
                     this.order = response.data.results;
                     this.order_products = response.data.results.products;
                 })
@@ -85,7 +84,6 @@ export default {
                 });
         },
         test() {
-            // console.log(this.computedPrice);
         },
     },
 };

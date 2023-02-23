@@ -35,8 +35,6 @@ export default {
                     page: pageCategories,
                 })
                 .then((response) => {
-                    console.log("categories");
-                    console.log(response.data.results.data);
                     this.categories = response.data.results.data;
                     this.currentPage = response.data.results.currentPage;
                     this.lastPage = response.data.results.lastPage;
@@ -50,7 +48,6 @@ export default {
         this.getCategories();
     },
     mounted() {
-        console.log("Component mounted.");
     },
 };
 </script>

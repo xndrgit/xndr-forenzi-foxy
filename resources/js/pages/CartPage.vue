@@ -342,7 +342,6 @@ export default {
 
             axios.post("/guest/orders/id", this.params).then((res) =>
             {
-                console.log(res);
                 if (res.data.response)
                 {
                     alert("Procedi Al Checkout"); // show alert
@@ -399,11 +398,6 @@ export default {
                 this.subtotal + this.conai + this.iva
             ).toFixed(2);
 
-            console.log("subtotal:", this.subtotal);
-            console.log("iva:", this.iva);
-            console.log("conai:", this.conai);
-            console.log("total:", this.total);
-
             // save product count and subtotal to store
             this.$store.commit("updateCart", {
                 productCount: this.order.products.length - 1,
@@ -421,8 +415,6 @@ export default {
                     if (res.data.response)
                     {
                         this.subtotal = this.$store.state.total;
-
-                        console.log("subtotal:", this.subtotal);
 
                         let params = [];
                         this.$store.state.quantity.map((quantity) =>
@@ -452,7 +444,7 @@ export default {
     {
         axios.get("/guest/users").then((res) =>
         {
-            console.log(res);
+            // console.log(res);
         });
         this.getOrders();
         this.getProducts();

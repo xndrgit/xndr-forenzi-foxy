@@ -114,7 +114,6 @@ export default {
             this.value[i] -= 10;
         },
         sortTable() {
-            // console.log("clicked");
         },
         getSiblings() {
             Axios.get(

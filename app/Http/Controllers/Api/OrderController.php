@@ -169,7 +169,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -211,11 +211,13 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
+     * @throws Exception
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
+    : JsonResponse
     {
 
         $params = $request->all();
@@ -268,19 +270,25 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, int $id)
+    : JsonResponse
     {
         $params = $request->all();
-        $product = DB::table('order_product')->where('order_id', $id)
+        $product = DB::table('order_product')
+            ->where('order_id', $id)
             ->where('product_id', $params['product_id']);
 
-        if ($product->delete())
+        if ($product->delete()) {
+            Order::find($id)->delete();
+
             return response()->json([
                 "response" => true
             ]);
+        }
         else
             return response()->json([
                 "response" => false

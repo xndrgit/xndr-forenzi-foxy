@@ -193,7 +193,6 @@ export default {
                 .get(`/guest/products/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data.results;
-                    // console.log(this.product);
                     this.loadingProduct = false;
                 })
                 .catch((error) => {

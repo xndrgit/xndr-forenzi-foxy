@@ -117,19 +117,16 @@ export default {
         },
         getCategories(pageCategories = 1) {
             this.loadingCategories = true;
-            console.log(this.loadingCategories);
             axios
                 .get("/guest/categories", {
                     page: pageCategories,
                 })
                 .then((response) => {
-                    console.log("categories");
                     this.categories = response.data.results.data;
                     this.currentPageCategories =
                         response.data.results.currentPage;
                     this.lastPageCategories = response.data.results.lastPage;
                     this.loadingCategories = false;
-                    console.log(this.loadingCategories);
                 })
                 .catch((error) => {
                     console.warn(error.message);
