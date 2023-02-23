@@ -56,8 +56,8 @@ export default {
         border: 0px;
         transition: transform 0.2s;
         padding: 0px;
-        min-height: 180px;
-        max-height: 180px;
+        min-height: 150px;
+        max-height: 150px;
 
         &:hover {
             transform: scale(0.95);
@@ -65,14 +65,14 @@ export default {
         }
 
         .up {
-            height: 60%;
+            height: 75%;
             img {
                 padding: 10px;
                 height: -webkit-fill-available;
                 padding: 1rem 0px;
             }
             .litlogo {
-                bottom: 50px;
+                bottom: 30px;
                 right: -25px;
                 height: 80px;
                 width: 80px;
@@ -80,7 +80,7 @@ export default {
         }
 
         .down {
-            height: 40%;
+            height: 25%;
             display: flex;
             align-items: center;
         }

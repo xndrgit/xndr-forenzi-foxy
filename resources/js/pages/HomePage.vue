@@ -26,12 +26,21 @@
                 />
 
                 <LoadingRollComponent v-if="loadingProducts" />
-                <BoxesComponent
-                    v-else
-                    v-for="product in products"
-                    :key="product.name"
-                    :product="product"
-                />
+                <div class="d-flex justify-content-center flex-wrap" v-else>
+                    <BoxesComponent
+                        v-for="product in products"
+                        :key="product.name"
+                        :product="product"
+                    />
+                </div>
+
+                <div v-if="!loadingProducts">
+                    <div v-if="!pagination.next_page_url">
+                        <button class="yellow-button" @click="loadMore">
+                            Load More
+                        </button>
+                    </div>
+                </div>
 
                 <!-- <HolidayComponent /> -->
             </div>
@@ -87,10 +96,18 @@ export default {
         return {
             products: [],
             categories: [],
-            currentPageCategories: 1,
-            lastPageCategories: null,
-            loadingCategories: true,
+            // currentPageCategories: 1,
+            // lastPageCategories: null,
+            // loadingCategories: true,
             loadingProducts: true,
+            pagination: {
+                total: null,
+                per_page: null,
+                current_page: 1,
+                last_page: null,
+                next_page_url: null,
+                prev_page_url: null,
+            },
 
             txtbanners: [
                 {
@@ -112,6 +129,26 @@ export default {
         };
     },
     methods: {
+        loadMore() {
+            if (!this.pagination.current_page) {
+                // show popup error
+                alert("Error: Current page is not defined!");
+                return;
+            }
+            axios
+                .get("/api/products?page=" + (this.pagination.current_page + 1))
+                .then((response) => {
+                    this.products = [
+                        ...this.products,
+                        ...response.data.results,
+                    ];
+                    this.pagination.current_page = response.data.current_page;
+                    this.pagination.next_page_url = response.data.next_page_url;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
         goToPersonalizePage() {
             this.$router.push({ path: "/personalize" });
         },

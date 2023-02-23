@@ -123,6 +123,10 @@ span {
     background-color: #f1f1f1;
 }
 input {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
     width: 100%;
     border-radius: 0px;
     border: 1px solid white;
@@ -136,10 +140,10 @@ input {
     }
 }
 input::placeholder {
-    width: fit-content;
+    width: min-content;
     color: black;
-    font-size: 0.7rem;
-    padding: 0.4rem;
+    font-size: 60%;
+    
 }
 button.btn.btn-outline-secondary {
     background-color: rgb(253, 188, 72);

@@ -13,13 +13,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->paginate(8);
         return response()->json([
             "response" => true,
-            "count" => count($products),
-            "results" => $products
+            "count" => $products->total(),
+            "per_page" => $products->perPage(),
+            "current_page" => $products->currentPage(),
+            "last_page" => $products->lastPage(),
+            "results" => $products->items(),
         ]);
     }
 
@@ -98,9 +101,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $category_id = $product['category_id'];
-        
+
         $siblings = Product::where([
-            ['category_id', '=', $category_id], 
+            ['category_id', '=', $category_id],
             ['id', '!=', $id]
         ])->get();
         return response()->json([
