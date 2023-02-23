@@ -181,7 +181,7 @@ export default {
         },
         getUser() {
             axios
-            .get("shop/user/detail", {})
+            .get("/shop/user/detail", {})
             .then((response) => {
                 this.order = response.data.results.orders[0];
                 this.subtotal = parseFloat(this.order.subtotal);

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-    
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -70,5 +70,12 @@
         </div>
     </div>
 </div>
-<style>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        window.onload = function () {
+            window.localStorage.removeItem('user');
+        }
+    </script>
+@endpush

@@ -30,7 +30,10 @@ const store = new Vuex.Store({
   mutations: {
     updateUser(state, user) {
       state.isAuth = user.isAuth;
-      state.name = user.name;
+      if (user.isAuth) {
+        state.name = user.name;
+        window.localStorage.setItem('user', user.name);
+      }
     },
     updateCart(state, info) {
       state.productCount = info.productCount;
@@ -41,6 +44,12 @@ const store = new Vuex.Store({
     }
   },
   getters: {
+    getUser (state) {
+        return state.name;
+    },
+    checkAuth (state) {
+        return state.isAuth;
+    }
   },
   actions: {
   },

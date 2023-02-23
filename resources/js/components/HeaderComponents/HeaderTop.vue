@@ -75,6 +75,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     data()
     {
@@ -83,6 +85,11 @@ export default {
             text: "REGISTRATI",
         };
     },
+    computed: {
+        ...mapGetters({
+            checkAuth: 'checkAuth'
+        })
+    },
     methods: {
         getUserInfo()
         {
@@ -90,13 +97,23 @@ export default {
                 .get("shop/user", {})
                 .then((response) =>
                 {
-                    this.$store.commit("updateUser", {
-                        isAuth: true,
-                        name: response.data.name,
-                    });
-                })
-                .catch((error) =>
-                {
+                    if (response.data.is_auth) {
+                        this.isLogin = true;
+
+                        this.$store.commit("updateUser", {
+                            isAuth: true,
+                            name: response.data.name,
+                        });
+
+                        this.getCartInfo();
+                    } else {
+                        window.localStorage.removeItem('user');
+
+                        this.$store.commit("updateUser", {
+                            isAuth: false,
+                            name: "REGISTRATI",
+                        });
+                    }
                 });
         },
         getCartInfo()
@@ -109,16 +126,12 @@ export default {
                         productCount: response.data.results.products.length,
                         total: parseFloat(response.data.results.subtotal).toFixed(2),
                     });
-                })
-                .catch((error) =>
-                {
                 });
         },
     },
-    created()
+    mounted()
     {
-        // this.getUserInfo();
-        // this.getCartInfo();
+        this.getUserInfo();
     },
 };
 </script>

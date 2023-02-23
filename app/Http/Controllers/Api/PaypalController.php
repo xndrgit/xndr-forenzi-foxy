@@ -29,16 +29,16 @@ class PaypalController extends Controller
         $user = $request->user();
         $params = $request->all();
         $response = $provider->createOrder([
-            'intent'              => 'CAPTURE',
-            'application_context' => [
+            "intent"              => "CAPTURE",
+            "application_context" => [
                 'return_url' => url('/payment/success/' . $user->id),
                 'cancel_url' => url('/payment/cancel/' . $user->id)
             ],
-            'purchase_units'      => [
+            "purchase_units"      => [
                 0 => [
-                    'amount' => [
-                        'currency_code' => 'USD',
-                        'value'         => '2.99'
+                    "amount" => [
+                        "currency_code" => "EUR",
+                        "value"         => 3
                     ]
                 ]
             ]
@@ -50,7 +50,7 @@ class PaypalController extends Controller
             $payment->order_id = $params['order_id'];
             $payment->transaction_id = $response['id'];
             $payment->payment_method = 'PayPal';    // set static
-            $payment->amount = $params['amount'];
+            $payment->amount = 3;
             $payment->payment_status = 'pending';  // set static
             $payment->created_at = now();
             $payment->updated_at = now();
