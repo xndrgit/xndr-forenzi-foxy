@@ -858,16 +858,20 @@ export default {
     methods: {
         getUserInfo() {
             axios
-                .get("guest/user", {})
+                .get("shop/user", {})
                 .then((response) => {
                     this.mail = response.data.email;
+                    this.$store.commit("updateUser", {
+                        isAuth: true,
+                        name: response.data.name,
+                    });
                 })
                 .catch((error) => {});
         },
 
         getOrders() {
             axios
-                .put("/guest/orders")
+                .get("/shop/orders")
                 .then((response) => {
                     this.order = response.data.results;
 
@@ -891,22 +895,22 @@ export default {
         transmitt() {
             this.$v.$touch();
             if (
-                this.first_name_error.length == 0 &&
-                this.last_name_error.length == 0 &&
-                this.business_name_error.length == 0 &&
-                this.address_error.length == 0 &&
-                this.cap_error.length == 0 &&
-                this.city_error.length == 0 &&
-                this.cap_error.length == 0 &&
-                this.province_error.length == 0 &&
-                this.state_error.length == 0 &&
-                this.pec_error.length == 0 &&
-                this.code_sdi_error.length == 0 &&
-                this.notes_error.length == 0 &&
+                this.first_name_error.length === 0 &&
+                this.last_name_error.length === 0 &&
+                this.business_name_error.length === 0 &&
+                this.address_error.length === 0 &&
+                this.cap_error.length === 0 &&
+                this.city_error.length === 0 &&
+                this.cap_error.length === 0 &&
+                this.province_error.length === 0 &&
+                this.state_error.length === 0 &&
+                this.pec_error.length === 0 &&
+                this.code_sdi_error.length === 0 &&
+                this.notes_error.length === 0 &&
                 this.$refs.checkTerm.checked
             )
                 axios
-                    .post(`/guest/orders/transmit/id`, {
+                    .post(`/shop/orders/transmit/${this.order.id}`, {
                         user_detail: {
                             surname: this.last_name,
                             business_name: this.business_name,
@@ -926,8 +930,9 @@ export default {
                     })
                     .then((res) => {
                         if (res) {
-                            alert("Success transmitted!");
-                            this.$router.replace({ path: "/confirm/" });
+                            window.location.href = '/shop/payment';
+                            // alert("Success transmitted!");
+                            // this.$router.replace({ path: "/confirm/" });
                         } else {
                             alert("Failed!");
                         }

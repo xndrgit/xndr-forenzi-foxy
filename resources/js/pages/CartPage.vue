@@ -274,7 +274,7 @@ export default {
         getProducts()
         {
             axios
-                .get("/guest/products", {})
+                .get("/shop/products", {})
                 .then((response) =>
                 {
                     this.products = response.data.results;
@@ -288,7 +288,7 @@ export default {
         getOrders()
         {
             axios
-                .put("/guest/orders")
+                .get("/shop/orders")
                 .then((response) =>
                 {
                     this.order = response.data.results;
@@ -340,7 +340,7 @@ export default {
                 });
             });
 
-            axios.post("/guest/orders/id", this.params).then((res) =>
+            axios.put(`/shop/orders/${this.order.id}`, this.params).then((res) =>
             {
                 if (res.data.response)
                 {
@@ -405,7 +405,7 @@ export default {
             });
 
             axios
-                .post(`/guest/orders/delete/${item.pivot.order_id}`, {
+                .delete(`/shop/orders/delete/${item.pivot.order_id}`, {
                     product_id: item.pivot.product_id,
                 })
                 .then((res) =>
@@ -426,7 +426,7 @@ export default {
                         });
 
                         axios
-                            .post("/guest/orders/id", params)
+                            .put(`/shop/orders/${this.order.id}`, params)
                             .then((res) =>
                             {
                                 if (res.data.response)
@@ -442,7 +442,7 @@ export default {
     },
     created()
     {
-        axios.get("/guest/users").then((res) =>
+        axios.get("/shop/users").then((res) =>
         {
             // console.log(res);
         });

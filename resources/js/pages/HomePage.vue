@@ -155,7 +155,7 @@ export default {
         getCategories(pageCategories = 1) {
             this.loadingCategories = true;
             axios
-                .get("/guest/categories", {
+                .get("/shop/categories", {
                     page: pageCategories,
                 })
                 .then((response) => {
@@ -172,7 +172,7 @@ export default {
         getProducts() {
             this.loadingProducts = true;
             axios
-                .get("/guest/products", {})
+                .get("/shop/products", {})
                 .then((response) => {
                     this.products = response.data.results;
                     this.loadingProducts = false;
