@@ -11,6 +11,7 @@ use App\Models\UserDetail;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,10 @@ class OrderController extends Controller
     public function index()
     : JsonResponse
     {
-        $orders = Order::with('products.category')->paginate(5);
+        $orders = Order::with('products.category')
+            ->where('user_id', Auth::id())
+            ->where('status', 'in attesa')
+            ->paginate(5);
 
         return response()->json([
             "response" => true,
@@ -166,7 +170,7 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -176,12 +180,16 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function show()
+    : JsonResponse
     {
-        $order = Order::with('products.category')->where('user_id', Auth::id())->first();
+        $order = Order::with('products.category')
+            ->where('user_id', Auth::id())
+            ->where('status', 'in attesa')
+            ->first();
+
         return response()->json([
             "response" => true,
             "user_id"  => Auth::id(),
@@ -193,7 +201,7 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -205,7 +213,7 @@ class OrderController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -261,7 +269,7 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Request $request, $id)
     {
