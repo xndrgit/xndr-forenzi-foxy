@@ -85,6 +85,7 @@ export default {
                 //not login
                 alert("Try to login");
                 // this.$router.push("/login");
+                window.location.href = '/login';
                 return;
             }
             axios
