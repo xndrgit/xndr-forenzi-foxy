@@ -117,8 +117,8 @@ export default {
     },
     created()
     {
-        this.getUserInfo();
-        this.getCartInfo();
+        // this.getUserInfo();
+        // this.getCartInfo();
     },
 };
 </script>

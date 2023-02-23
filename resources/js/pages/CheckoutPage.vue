@@ -861,6 +861,10 @@ export default {
                 .get("shop/user", {})
                 .then((response) => {
                     this.mail = response.data.email;
+                    this.$store.commit("updateUser", {
+                        isAuth: true,
+                        name: response.data.name,
+                    });
                 })
                 .catch((error) => {});
         },
