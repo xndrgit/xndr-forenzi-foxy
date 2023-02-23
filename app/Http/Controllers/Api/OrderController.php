@@ -8,9 +8,12 @@ use App\Models\Product;
 use App\Models\Payment;
 use App\Models\UserDetail;
 
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -18,11 +21,13 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
+    : JsonResponse
     {
         $orders = Order::with('products.category')->paginate(5);
+
         return response()->json([
             "response" => true,
             "count" => count($orders),
@@ -33,13 +38,15 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Exception
      */
     public function create(Request $request)
+    : JsonResponse
     {
-        $id = Auth::id();
-        //
-        Log::debug(json_encode($request->user()));
+        $id = $request->user()->id;
+
         $order_exist = Order::where([
             ['user_id', '=', $id],
             ['status', '=', 'in attesa']
@@ -50,7 +57,7 @@ class OrderController extends Controller
         if ($order_exist != null) {
             $order_product_exist = DB::table('order_product')->where([
                 ['product_id', '=', $order_product['id']],
-                ['order_id', '=', $order_exist['id']]
+                ['order_id', '=', $order_exist->id]
             ])->first();
 
             if ($order_product_exist != null) {
@@ -93,7 +100,7 @@ class OrderController extends Controller
 
             $orderLog->save();
 
-            if ($orderLog == true) {
+            if ($orderLog) {
                 $order_id = Order::where([
                     ['user_id', '=', $id],
                     ['status', '=', 'in attesa']
@@ -132,7 +139,7 @@ class OrderController extends Controller
                 $subtotal += $tmp->price * $op->quantity;
             } else {
                 $subtotal += $tmp->price * $tmp->quantity;
-                array_push($rejectedList, $op->order_id . '->' . $op->product_id);
+                $rejectedList[] = $op->order_id . '->' . $op->product_id;
             }
         }
         // conai, iva shipping_cost random value must be setted
