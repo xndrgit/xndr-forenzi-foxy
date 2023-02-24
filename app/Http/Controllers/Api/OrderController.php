@@ -240,12 +240,15 @@ class OrderController extends Controller
     : JsonResponse
     {
         $params = $request->all();
-        $product = DB::table('order_product')
+        $ordered_product = DB::table('order_product')
             ->where('order_id', $id)
             ->where('product_id', $params['product_id']);
 
-        if ($product->delete()) {
-            Order::find($id)->delete();
+        if ($ordered_product->delete()) {
+            $order = Order::with('products')->find($id);
+            if (!$order->products()->count()) {
+                $order->delete();
+            }
 
             return response()->json([
                 "response" => true
