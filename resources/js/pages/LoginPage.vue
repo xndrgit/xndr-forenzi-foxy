@@ -24,7 +24,7 @@
                                 </div>
                             </div>
 
-                            <div lass="col-md-12 my-4 d-flex justify-content-center w-100">
+                            <div class="col-md-12 my-4 d-flex justify-content-center w-100">
                                 <div type="submit" @click="register" class="btn btn-primary">
                                     SIGN IN
                                 </div>

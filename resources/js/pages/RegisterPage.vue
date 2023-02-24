@@ -38,7 +38,7 @@
                                 </div>
                             </div>
 
-                            <div lass="col-md-12 my-4 d-flex justify-content-center w-100">
+                            <div class="col-md-12 my-4 d-flex justify-content-center w-100">
                                 <div class="btn btn-primary">
                                     <router-link to="/register">
                                         REGISTER
