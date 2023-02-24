@@ -136,7 +136,7 @@ export default {
                 return;
             }
             axios
-                .get("/api/products?page=" + (this.pagination.current_page + 1))
+                .get("/shop/products?page=" + (this.pagination.current_page + 1))
                 .then((response) => {
                     this.products = [
                         ...this.products,
