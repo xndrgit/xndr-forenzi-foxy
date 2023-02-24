@@ -944,7 +944,7 @@ export default {
                     })
                     .then((res) => {
                         if (res) {
-                            window.location.href = `/shop/payment?order_id=${this.order.id}`;
+                            window.location.href = `/shop/payment?order_id=${this.order.id}&amount=${this.total}`;
                             // alert("Success transmitted!");
                             // this.$router.replace({ path: "/confirm/" });
                         } else {

@@ -38,7 +38,7 @@ class PaypalController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "EUR",
-                        "value"         => 3
+                        "value"         => $params['amount']
                     ]
                 ]
             ]
@@ -50,7 +50,7 @@ class PaypalController extends Controller
             $payment->order_id = $params['order_id'];
             $payment->transaction_id = $response['id'];
             $payment->payment_method = 'PayPal';    // set static
-            $payment->amount = 3;
+            $payment->amount = $params['amount'];
             $payment->payment_status = 'pending';  // set static
             $payment->created_at = now();
             $payment->updated_at = now();
