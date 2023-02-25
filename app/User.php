@@ -3,9 +3,10 @@
 namespace App;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Role;
-use App\Models\UserRole;
 use App\Models\userDetail;
+use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -65,5 +66,11 @@ class User extends Authenticatable
     : BelongsToMany
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function products()
+    : BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'user_carts', 'user_id', 'product_id')->withPivot('quantity');
     }
 }

@@ -421,9 +421,7 @@ export default {
             });
 
             axios
-                .delete(`/shop/orders/delete/${item.pivot.order_id}`, {
-                    product_id: item.pivot.product_id,
-                })
+                .delete(`/shop/orders/delete/${item.pivot.order_id}/${item.pivot.product_id}`)
                 .then((res) =>
                 {
                     // if (res.data.response == true) alert("Cancelled");

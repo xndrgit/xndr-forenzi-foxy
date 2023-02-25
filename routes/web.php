@@ -39,14 +39,14 @@ Route::prefix('shop')
 Route::get('/shop/user', function (Request $request) {
     if (auth()->check()) {
         return response()->json([
-            'name'  => $request->user()->name,
-            'email' => $request->user()->email,
+            'name'    => $request->user()->name,
+            'email'   => $request->user()->email,
             'is_auth' => true
         ]);
     } else {
         return response()->json([
-            'name'  => null,
-            'email' => null,
+            'name'    => null,
+            'email'   => null,
             'is_auth' => false
         ]);
     }
@@ -83,7 +83,7 @@ Route::middleware('auth')
         Route::post('/orders', 'OrderController@store');
         Route::put('/orders/{id}', 'OrderController@update');
         Route::post('/orders/transmit/{order}', 'OrderController@transmit');
-        Route::delete('/orders/delete/{id}', 'OrderController@destroy');
+        Route::delete('/orders/delete/{id}/{product_id}', 'OrderController@destroy');
 
         Route::get('/users', function (Request $request) {
             return $request->user();
@@ -92,6 +92,10 @@ Route::middleware('auth')
         Route::get('/user/detail', 'UserController@show');
 
         Route::get('/payment', 'PaypalController@payment')->name('payment');
+
+        Route::get('/carts', 'UserCartController@index')->name('carts');
+        Route::post('/carts', 'UserCartController@store')->name('carts.store');
+        Route::delete('/carts/{id}', 'UserCartController@destroy')->name('carts.delete');
     });
 
 Route::get("{any?}", function () {
