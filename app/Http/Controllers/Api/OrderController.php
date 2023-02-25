@@ -5,34 +5,38 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Payment;
 use App\Models\UserDetail;
-
+use App\Repositories\OrderRepository;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    protected $repository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->repository = $orderRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     : JsonResponse
     {
-        $orders = Order::with('products.category')
-            ->where('user_id', Auth::id())
-            ->where('status', 'in attesa')
-            ->paginate(5);
+        $orders = $this->repository->getAllOrders($request->user()->id);
 
         return response()->json([
             "response" => true,
-            "count"    => count($orders),
+            "count"    => count($orders->toArray()),
             "results"  => $orders
         ]);
     }
@@ -41,6 +45,7 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      * @throws Exception
      */
@@ -57,7 +62,7 @@ class OrderController extends Controller
         $order_product = $request->all();
 
         if ($order != null) {
-            $order_product_exist = Order::table('order_product')->where([
+            $order_product_exist = DB::table('order_product')->where([
                 ['product_id', '=', $order_product['id']],
                 ['order_id', '=', $order->id]
             ])->first();
@@ -82,8 +87,7 @@ class OrderController extends Controller
                     ['product_id', '=', $order_product_exist->product_id],
                     ['order_id', '=', $order->id]
                 ])->increment('quantity', $order_product['quantity'], ['updated_at' => now()]);
-            }
-            else {
+            } else {
                 DB::table('order_product')->insert([
                     'product_id' => $order_product['id'],
                     'quantity'   => $order_product['quantity'],
@@ -92,8 +96,7 @@ class OrderController extends Controller
                     'updated_at' => now()
                 ]);
             }
-        }
-        else {
+        } else {
             $order = new Order();
             $order->user_id = $id;
             $order->order_number = random_int(1, 23234342);
@@ -113,8 +116,7 @@ class OrderController extends Controller
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
-            }
-            else {
+            } else {
                 return response()->json([
                     "response" => true,
                     "result"   => "order creat error"
@@ -133,8 +135,7 @@ class OrderController extends Controller
 
             if ($tmp->quantity > $op->quantity) {
                 $subtotal += $tmp->price * $op->quantity;
-            }
-            else {
+            } else {
                 $subtotal += $tmp->price * $tmp->quantity;
                 $rejectedList[] = $op->order_id . '->' . $op->product_id;
             }
@@ -180,7 +181,8 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int $id
+     * @param Order   $order
+     *
      * @return JsonResponse
      * @throws Exception
      */
@@ -233,16 +235,18 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request
-     * @param int $id
+     * @param int     $id
+     * @param int     $product_id
+     *
      * @return JsonResponse
+     * @throws Exception
      */
-    public function destroy(Request $request, int $id)
+    public function destroy(int $id, int $product_id)
     : JsonResponse
     {
-        $params = $request->all();
         $ordered_product = DB::table('order_product')
             ->where('order_id', $id)
-            ->where('product_id', $params['product_id']);
+            ->where('product_id', $product_id);
 
         if ($ordered_product->delete()) {
             $order = Order::with('products')->find($id);
@@ -253,8 +257,7 @@ class OrderController extends Controller
             return response()->json([
                 "response" => true
             ]);
-        }
-        else
+        } else
             return response()->json([
                 "response" => false
             ]);
@@ -264,7 +267,8 @@ class OrderController extends Controller
      * transmit shipping & payment information
      *
      * @param Request $request
-     * @param Order $order
+     * @param Order   $order
+     *
      * @return JsonResponse
      */
     public function transmit(Request $request, Order $order)

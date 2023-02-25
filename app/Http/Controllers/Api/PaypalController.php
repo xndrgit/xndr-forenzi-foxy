@@ -72,6 +72,7 @@ class PaypalController extends Controller
      * @throws Throwable
      */
     public function success(Request $request, $user_id)
+    : RedirectResponse
     {
         $provider = new PayPalClient;
 
@@ -113,7 +114,6 @@ class PaypalController extends Controller
             $provider->getAccessToken();
 
             // Process payment cancel
-//            $response = $provider->capturePaymentOrder($request['token']);
             $payment = Payment::where('transaction_id', $request['token'])->first();
             if ($payment) {
                 $payment->payment_status = 'canceled';
