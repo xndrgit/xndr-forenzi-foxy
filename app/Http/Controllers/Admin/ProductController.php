@@ -198,7 +198,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $data = $request->all();
-        // dd($data);
+
 
         // $validation = $request->validate($this->validation, $this->validationCustom);
 
@@ -232,7 +232,7 @@ class ProductController extends Controller
         ]);
 
 
-        $data['img'] = Storage::put('public/uploadedProducts', $data['img']);
+        $data['img'] = Storage::put('uploadedProducts', $data['img']);
 
         //! non dobbiamo creare un new product ma modificare quello scelto
         $product->category_id = $data['category_id'];
@@ -253,7 +253,7 @@ class ProductController extends Controller
 
         $product->price = $data['price'];
         $product->price_saled = $data['price_saled'];
-
+      
         $product->quantity = $data['quantity'];
         $product->weight = $data['weight'];
 
@@ -265,6 +265,7 @@ class ProductController extends Controller
         $product->description = $data['description'];
 
         $product->save();
+        
 
         return redirect()
             // rinominiamo la variabile post

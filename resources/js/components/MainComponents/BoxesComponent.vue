@@ -115,7 +115,7 @@ export default {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
             } else {
-                return "/storage" + this.product.img.substring(6);
+                return "/storage/" + this.product.img;
             }
         },
     },
@@ -161,7 +161,7 @@ export default {
 
         .card-title {
             margin: 0;
-            font-size: 1rem;
+            font-size: .8rem;
             font-weight: bold;
             line-height: 1.5;
         }

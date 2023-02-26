@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="overflow-table">
-                <table class="table table-hover table-fixed my-4">
+                <table class="table table-fixed my-4">
                     <thead>
                         <tr class="header-top">
                             <th class="bg-dark text-white" colspan="2">

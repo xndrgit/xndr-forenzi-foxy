@@ -90,7 +90,7 @@
                 <div class="w-40 d-flex justify-content-start">
                     <img
                         class="delivery-image"
-                        src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
+                        src="https://lh3.googleusercontent.com/2gjYXJFYWEoKX3RyV5A6Ahe_W4Nb6A_94emUjNGFltzCbVaHzolDEOVauVnfENXYSsPU25oGFq36au_jgSzaEWRXCFLmBoyIYnq17s0"
                         alt=""
                     />
                 </div>
