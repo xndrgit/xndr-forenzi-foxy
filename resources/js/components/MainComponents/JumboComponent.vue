@@ -21,7 +21,7 @@
                         />
 
                         <img
-                            style="position: absolute; right: 0px"
+                            style="position: absolute; right: -40px"
                             src="../../../../public/Links/maschera_dx.png"
                             alt=""
                         />
@@ -45,7 +45,7 @@
                     EFFETUA IL TUO ORDINE ENTRO
                 </h5>
                 <div
-                    class="countdown d-flex justify-content-center align-items-center flex-wrap"
+                    class="countdown d-flex justify-content-center align-items-center flex-wrap col-12 p-0"
                 >
                     <div class="square flex-column">
                         <div class="square-time">
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="square-text">
-                            <span>days</span>
+                            <span>GIORNI</span>
                         </div>
                     </div>
                     <div class="square flex-column">
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="square-text">
-                            <span>hours</span>
+                            <span>ORE</span>
                         </div>
                     </div>
                     <div class="square flex-column">
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="square-text">
-                            <span>minutes</span>
+                            <span>MINUTI</span>
                         </div>
                     </div>
                     <div class="square flex-column">
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="square-text">
-                            <span>seconds</span>
+                            <span>SECONDI</span>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                     <h2 class="txt-orange font-weight-bold">
                         Spedizione gratuita in tutta Italia
                     </h2>
-                    <span> per ordini di qualunque importo! </span>
+                    <span > per ordini di qualunque importo! </span>
                 </div>
                 <div class="w-40 d-flex justify-content-start">
                     <img
@@ -222,6 +222,7 @@ export default {
             font-size: 1rem;
             margin-bottom: 20px;
             margin-left: 10%;
+            font-weight: 400;
         }
 
         .VueCarousel {
@@ -248,14 +249,14 @@ export default {
                     align-items: center;
                     justify-content: center;
 
-                    height: 30px;
-                    width: 30px;
+                    height: 70px;
+                    width: 70px;
                     background-color: rgb(253, 188, 72);
                     margin: 10px;
-                    padding: 1.5rem;
+                    padding: 1.2rem;
 
                     .square-time {
-                        font-size: 1.2rem;
+                        font-size: 1.8rem;
                         font-weight: bold;
                         color: black;
                     }
@@ -279,6 +280,7 @@ export default {
             }
             span {
                 font-size: 0.8rem;
+                font-weight: 500;
             }
             .delivery-image {
                 height: -webkit-fill-available;

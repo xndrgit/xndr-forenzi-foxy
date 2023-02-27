@@ -33,9 +33,9 @@
             </div>
         </div>
         <div class="new col-12 col-md-4 p-0">
-            <div class="new-img w-35">
+            <div class="new-img w-35 py-2">
                 <img
-                    class="img-fluid"
+                    class="img-fluid py-4"
                     src="../../../../public/Links/scatola-colorata.png"
                     alt=""
                 />
@@ -73,12 +73,16 @@ export default {
         margin: 1px 0px;
 
         img {
-         min-height: 150px;
-            object-fit: contain;
+            height: 160px;
+          
         }
 
+        span{
+            font-weight: 500;
+        }
         p {
             margin: 0px;
+            font-weight: 500;
         }
         .new-text {
             padding: 10px;

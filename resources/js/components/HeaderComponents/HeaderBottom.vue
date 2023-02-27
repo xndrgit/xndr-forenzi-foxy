@@ -106,7 +106,7 @@ export default {
 }
 span {
     color: black;
-    font-weight: bold;
+    font-weight: 900;
     height: 38px;
 
     border: none;
@@ -140,6 +140,7 @@ input::placeholder {
     width: min-content;
     color: black;
     font-size: 60%;
+    font-weight: 600;
     
 }
 button.btn.btn-outline-secondary {

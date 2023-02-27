@@ -4,7 +4,7 @@
             <div
                 class="row d-flex flex-wrap col-12 justify-content-between align-items-center"
             >
-                <div class="classic-text col-lg-6">
+                <div class="classic-text col-lg-5">
                     <h1 class="">{{ title }}</h1>
                     <p class="">
                         {{ description }}
@@ -15,11 +15,11 @@
                     <p class="">
                         {{ notes }}
                     </p>
-                    <button v-show="button" class="yellow-button">
+                    <button v-show="button" class="yellow-button my-4">
                         {{ button }}
                     </button>
                 </div>
-                <div class="classic-image col-lg-6 d-flex align-items-center">
+                <div class="classic-image col-lg-7 d-flex justify-content-center align-items-center">
                     <img
                         class="img-fluid"
                         src="../../../../public/Links/scatole.jpg"
@@ -58,7 +58,8 @@ export default {
         max-height: 380px;
     }
     p {
-        font-size: 1rem;
+        font-size: 0.8rem;
+        margin: 0px;
     }
     h1 {
         color: rgb(246, 135, 46);

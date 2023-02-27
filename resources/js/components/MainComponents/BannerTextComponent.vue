@@ -11,6 +11,11 @@
                 {{ description }}
             </span>
         </div>
+         <div class="mx-5">
+            <span class="text">
+                {{ descriptionTwo }}
+            </span>
+        </div>
 
         <div>
             <p class="text fw-bold">
@@ -25,6 +30,7 @@ export default {
     props: {
         title: String,
         description: String,
+        descriptionTwo: String,
         descriptionBold: String,
     },
     components: {},

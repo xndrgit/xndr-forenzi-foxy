@@ -21,7 +21,7 @@
                             <div class="card-body text-center p-1">
                                 <p class="card-title">SCATOLE</p>
                                 <p class="card-text font-weight-bold">
-                                    PERSONALIIZATE
+                                    PERSONALIZZATE
                                 </p>
                             </div>
                         </div>
@@ -47,11 +47,11 @@ export default {
     }
     .card {
         width: 8rem;
-        margin: 8px 0px;
         border-radius: 0px;
         border: 0px;
         transition: transform 0.2s;
         padding: 0px;
+        margin: 8px 2px;
         min-height: 150px;
         max-height: 150px;
 

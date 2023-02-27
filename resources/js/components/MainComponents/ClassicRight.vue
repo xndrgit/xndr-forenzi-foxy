@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12 d-flex align-items-center flex-wrap">
                     <div
-                        class="classic-image col-12 col-md-4 d-flex justify-content-center"
+                        class="classic-image col-12 col-md-5 d-flex justify-content-center"
                     >
                         <img
                             alt=""
@@ -12,7 +12,7 @@
                             src="../../../../public/Links/01.png"
                         />
                     </div>
-                    <div class="col-1"></div>
+
                     <div class="classic-image col-12 col-md-3">
                         <img
                             alt=""
@@ -32,12 +32,14 @@
                             responsabile ti ricontatterà per comunicarti la
                             quotazione!
                         </p>
-                        <button
-                            class="yellow-button"
-                            style="background-color: black"
-                        >
-                            CONFIGURA ORA
-                        </button>
+                        <div class="d-flex justify-content-end classic-btn">
+                            <button
+                                class="yellow-button"
+                                style="background-color: black"
+                            >
+                                CONFIGURA ORA
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,18 +55,23 @@
     .classic-text {
         width: fit-content;
     }
+    .classic-btn{
+        width: -webkit-fill-available;
+    }
     img {
         width: -webkit-fill-available;
         max-height: 380px;
         object-fit: contain;
     }
     p {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        text-align: end;
     }
     h1 {
         color: rgb(246, 135, 46);
         font-weight: bold;
-        font-size: 2.2rem;
+        font-size: 1.5rem;
+        text-align: end;
     }
 }
 </style>

@@ -4,7 +4,7 @@
             <!-- <LoadingComponent v-if="LoadingCategories" /> -->
 
             <nav class="d-flex">
-                <div class="container d-flex flex-wrap justify-content-around">
+                <div class="container d-flex flex-wrap">
                     <div
                         class="card d-flex align-items-center position-relative"
                         :class="category.color"
@@ -34,7 +34,7 @@
                         <div class="down">
                             <div class="card-body text-center p-1">
                                 <p class="card-title">SCATOLE</p>
-                                <p class="card-text font-weight-bold">
+                                <p class="card-text">
                                     {{ category.name }}
                                 </p>
                             </div>
@@ -43,11 +43,7 @@
                 </div>
             </nav>
         </div>
-        <div class="container">
-            <div class="row">
-                <hr class="m-4" />
-            </div>
-        </div>
+      
     </div>
 </template>
 
@@ -65,15 +61,13 @@ export default {
 
 <style lang="scss" scoped>
 .HeaderBoxes {
-    .container {
-        padding: 0px 5px;
-    }
     .card {
         width: 8rem;
         border-radius: 0px;
         border: 0px;
         transition: transform 0.2s;
         padding: 0px;
+        margin: 8px 2px;
         min-height: 150px;
         max-height: 150px;
 
@@ -104,12 +98,17 @@ export default {
             display: flex;
             align-items: center;
 
+            .card-text{
+                font-weight: 700;
+            }
+
             p {
                 font-size: 0.8rem;
                 margin: 0px;
             }
         }
     }
+    
 
     .orange-box {
         background-color: rgb(245, 134, 47);

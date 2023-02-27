@@ -62,21 +62,20 @@ $gray: #f1f1f1;
     border-radius: 0px;
     color: $white;
     font-weight: bold;
-    padding: 8px 25px;
+    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 8px;
+    font-size: 10px;
     margin: 15px 0;
     cursor: pointer;
 
-    transition: all 0.5s ease-in-out;
+    transition: all 0.1s ease-in-out;
     &:hover {
-        filter: blur(2);
-        transition: 1s;
+        transform: scale(0.95);
     }
     &:active {
-        transform: scale(0.9);
+        transform: scale(1);
         box-shadow: 0 0 10px #000;
         background-color: #00f;
     }
@@ -88,21 +87,20 @@ $gray: #f1f1f1;
     border-radius: 0px;
     color: $white;
     font-weight: bold;
-    padding: 8px 25px;
+    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 8px;
+    font-size: 10px;
     margin: 15px 0;
     cursor: pointer;
 
-    transition: all 0.5s ease-in-out;
+    transition: all 0.1s ease-in-out;
     &:hover {
-        filter: blur(2);
-        transition: 1s;
+        transform: scale(0.95);
     }
     &:active {
-        transform: scale(0.9);
+        transform: scale(1);
         box-shadow: 0 0 10px #000;
         background-color: #00f;
     }
@@ -121,9 +119,14 @@ $gray: #f1f1f1;
     font-size: 8px;
     margin: 10px 0;
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
     &:hover {
-        filter: invert(100%);
-        transition: 1s;
+        transform: scale(0.95);
+    }
+    &:active {
+        transform: scale(1);
+        box-shadow: 0 0 10px #000;
+        background-color: #00f;
     }
 }
 
@@ -138,12 +141,6 @@ $gray: #f1f1f1;
 
 .w-10 {
     width: 10%;
-}
-
-//! Section with fixed height and padding
-
-section.classic {
-    padding: 2rem;
 }
 
 //! Styles for boxes with sale banner, stars, old and current price, header with image, and body with title

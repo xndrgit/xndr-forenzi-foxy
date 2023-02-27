@@ -32,7 +32,7 @@
                         <div class="d-none d-lg-inline">
                             <p>ORDINA SUBITO E RICEVI LA MERCE</p>
                             <p>
-                                <strong> GIOVEDI 04 NOVEMBRE 2022 </strong>
+                                <strong> DOMENICA 26 MARZO 2023 </strong>
                             </p>
                         </div>
                     </div>

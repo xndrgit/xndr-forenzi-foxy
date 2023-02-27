@@ -4,7 +4,10 @@
             <div class="row justify-content-center">
                 <loadingComponent v-if="loadingCategories" />
 
-                <div class="d-flex flex-wrap justify-content-center" v-else>
+                <div
+                    class="d-flex flex-wrap justify-content-between col-12"
+                    v-else
+                >
                     <NavBoxesComponent
                         v-for="category in categories"
                         :key="category.name"
@@ -22,6 +25,7 @@
                     :key="element.title"
                     :title="element.title"
                     :description="element.description"
+                       :descriptionTwo="element.descriptionTwo"
                     :descriptionBold="element.descriptionBold"
                 />
 
@@ -113,13 +117,15 @@ export default {
                 {
                     title: "FoxyBox - Scatole di tutti i tipi consegnate in tempi record",
                     description:
-                        "Scegli tra le nostre linee di prodotti in pronta consegna oppure le scatole con misure personalizzate. Acquista ora in modo facile, veloce e sicuro!",
+                        "Scegli tra le nostre linee di prodotti in pronta consegna oppure le scatole con misure personalizzate. ",
+                    descriptionTwo:
+                        "Acquista ora in modo facile, veloce e sicuro!",
                     descriptionBold: "",
                 },
             ],
             txtleft: [
                 {
-                    title: "Scegli FoxyBox, qualità dei prodotti, consegna rapida e assistenza dedicata",
+                    title: "Scegli FoxyBox, qualità dei prodotti, consegna rapida e assistenza dedicata.",
                     description:
                         "Semplifica il tuo rifornimento di scatole, sono tutte in pronta consegna e le acquisti in pochi e semplici click!",
                     subdescription: "In più, la spedizione è sempre gratuita!",
@@ -136,7 +142,9 @@ export default {
                 return;
             }
             axios
-                .get("/shop/products?page=" + (this.pagination.current_page + 1))
+                .get(
+                    "/shop/products?page=" + (this.pagination.current_page + 1)
+                )
                 .then((response) => {
                     this.products = [
                         ...this.products,

@@ -84,21 +84,24 @@
         h3 {
             font-weight: bold;
             font-size: 1rem;
+            margin-bottom: 20px;
         }
         p {
             font-size: 0.7rem;
-            font-weight: bold;
+            font-weight: 500;
         }
         img {
             height: 30px;
+            margin-right: 2px;
         }
 
         ul {
             list-style: none;
             padding: 0;
             li {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
                 margin: 0px;
+                font-weight: 500;
                 a {
                     color: black;
                     margin: 0px 0px;
