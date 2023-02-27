@@ -94,7 +94,6 @@ export default {
 };
 </script>
 
-errors: 1-Inserting lang=scss in the
 <style lang="scss" scoped>
 .divCm {
     background-color: #f1f1f1;
@@ -117,7 +116,6 @@ span {
     width: fit-content;
     font-size: 0.6rem;
     padding: 0.8rem 14px;
-    cursor: none;
 }
 .inputs .input-group {
     background-color: #f1f1f1;
@@ -129,7 +127,6 @@ input {
 
     width: 100%;
     border-radius: 0px;
-    border: 1px solid white;
     border-radius: 0px;
     padding: 0px;
     box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.3);
@@ -199,10 +196,3 @@ button.btn.btn-outline-secondary {
     }
 }
 </style>
-
-solutions: 1-This error occurs when you try to use SCSS (Sass) in your project
-but do not have the necessary dependencies installed. The solution is to install
-Bootstrap, which includes the required dependencies for using SCSS in your
-project. npm install bootstrap --save //terminal @import
-'~bootstrap/scss/bootstrap'; //app.vue
-<style></style>

@@ -28,7 +28,7 @@
                                         transform: translate(-50%, -50%);
                                     "
                                     class="img-fluid"
-                                    src="https://static.thenounproject.com/png/1134892-200.png"
+                                    src="../../../../public/Links/scatola-personalizzata-per-tabella.png"
                                     alt=""
                                 />
                             </th>
@@ -51,7 +51,7 @@
                                         transform: translate(-50%, -50%);
                                     "
                                     class="img-fluid"
-                                    src="https://static.thenounproject.com/png/1134892-200.png"
+                                    src="../../../../public/Links/bancale-per-tabella.png"
                                     alt=""
                                 />
                             </th>
@@ -113,8 +113,7 @@ export default {
         decreaseValue(i) {
             this.value[i] -= 10;
         },
-        sortTable() {
-        },
+        sortTable() {},
         getSiblings() {
             Axios.get(
                 `/shop/products/siblings/${this.$route.params.id}`,
