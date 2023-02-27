@@ -12,7 +12,7 @@
             <a href="/personalize">
                 <img
                     class="img-fluid"
-                    src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
+                    src="../../../../public/Links/misure-personalizzate-per-tabella.png"
                     alt="PersonaliseImage"
                 />
             </a>
@@ -85,7 +85,7 @@ export default {
                 //not login
                 alert("Try to login");
                 // this.$router.push("/login");
-                window.location.href = '/login';
+                window.location.href = "/login";
                 return;
             }
             axios
@@ -113,7 +113,7 @@ export default {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
             } else {
-                return "/storage" + this.product.img.substring(6);
+                return "/storage/" + this.product.img;
             }
         },
     },

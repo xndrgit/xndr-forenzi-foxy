@@ -28,19 +28,25 @@
                 </div>
                 <div class="footer-section col-3">
                     <h3>Seguici sui social</h3>
-                    <ul class="d-flex">
-                        <li>
-                            <a href="https://www.facebook.com/"
-                                ><i class="fa-brands fa-facebook"></i
-                            ></a>
-                        </li>
+                    <div class="d-flex">
+                        <a href="https://www.facebook.com/">
+                            <div>
+                                <img
+                                    src="../../../../public/Links/fb-Icon.png"
+                                    alt=""
+                                />
+                            </div>
+                        </a>
 
-                        <li>
-                            <a href="https://www.instagram.com/"
-                                ><i class="fa-brands fa-instagram"></i
-                            ></a>
-                        </li>
-                    </ul>
+                        <a href="https://www.instagram.com/">
+                            <div>
+                                <img
+                                    src="../../../../public/Links/ig.png"
+                                    alt=""
+                                />
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section col-3">
                     <h3>Newsletter</h3>
@@ -83,9 +89,8 @@
             font-size: 0.7rem;
             font-weight: bold;
         }
-        i {
-            margin: 0.8rem 0px;
-            font-size: 2rem;
+        img {
+            height: 30px;
         }
 
         ul {
@@ -96,7 +101,7 @@
                 margin: 0px;
                 a {
                     color: black;
-                    margin: 0px 5px;
+                    margin: 0px 0px;
                 }
             }
         }

@@ -14,9 +14,9 @@ class CategoryTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $categories = ['1 ONDA', '2 ONDE', 'ECOLOGICHE', 'ECOMMERCE', 'NATALIZIE', 'CONFEZIONI', 'IMBALLAGGIO'];
-        $colors = ['orange-box', 'yellow-box', 'gray-box'];
-        $image = ['https://www.freepnglogos.com/uploads/box-png/box-new-used-gaylord-boxes-for-sale-reliable-industries-llc-22.png'];
-        $logo = ['https://assets.msn.com/weathermapdata/1/static/svg/72/v6/card/SunnyDayV3.svg'];
+        $colors = ['orange-box', 'yellow-box'];
+        $image = ['https://www.freepnglogos.com/uploads/box-png/box-png-transparent-google-objects-pinterest-9.png'];
+        $logo = ['https://www.freepnglogos.com/uploads/logo-website-png/logo-website-file-globe-icon-svg-wikimedia-commons-21.png'];
 
         foreach ($categories as $category) {
             $newCategory = new Category();

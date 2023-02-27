@@ -12,7 +12,7 @@ class OrdersTableSeeder extends Seeder
     {
         $users = User::all();
         $status = ['in attesa', 'spedito', 'consegnato', 'annullato'];
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             $order = new Order();
             $order->user_id = $faker->randomElement($users)->id;
             $order->order_number = $faker->unique()->randomNumber(8);

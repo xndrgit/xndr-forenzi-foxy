@@ -250,6 +250,7 @@
                             id="first_price"
                             name="first_price"
                             required
+                            step="0.01"
                             type="number"
                             value="{{ old('first_price', $product->first_price) }}"
                         />
@@ -274,6 +275,7 @@
                             id="second_price"
                             name="second_price"
                             required
+                            step="0.01"
                             type="number"
                             value="{{ old('second_price', $product->second_price) }}"
                         />
@@ -298,6 +300,7 @@
                             id="third_price"
                             name="third_price"
                             required
+                            step="0.01"
                             type="number"
                             value="{{ old('third_price', $product->third_price) }}"
                         />
@@ -322,6 +325,7 @@
                             id="fourth_price"
                             name="fourth_price"
                             required
+                            step="0.01"
                             type="number"
                             value="{{ old('fourth_price', $product->fourth_price) }}"
                         />
@@ -350,6 +354,7 @@
                             id="price"
                             name="price"
                             required
+                            step="0.01"
                             type="number"
                             value="{{ old('price', $product->price) }}"
                         />
@@ -371,6 +376,7 @@
                             class="form-control"
                             id="price_saled"
                             name="price_saled"
+                            step="0.01"
                             type="number"
                             value="{{ old('price_saled', $product->price_saled) }}"
                         />
@@ -417,6 +423,7 @@
                             id="weight"
                             name="weight"
                             required
+                            step="0.01"
                             type="number"
                             value="{{ old('weight', $product->weight) }}"
                         />
@@ -464,23 +471,25 @@
                         <label
                             class="form-label"
                             for="img"
-                        >Immagine Prodotto
-                        </label>
+                        >Immagine Prodotto</label>
+
                         <input
                             class="form-control"
                             id="img"
                             name="img"
-                            required
                             type="file"
-                            value="{{ old('img', $product->img) }}"
-                        />
-
+                            value="{{ old('img') }}"
+                        >
+                        <input
+                            name="old_img"
+                            type="hidden"
+                            value="{{ $product->img }}"
+                        >
                         @error('img')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
                 </div>
                 <div class="col form-outline">
                     <label

@@ -19,14 +19,14 @@
                                 <img
                                     class="card-img-top"
                                     :src="category.img"
-                                    alt="img"
+                                    alt="category-img"
                                 />
                             </router-link>
                             <div class="litlogo position-absolute">
                                 <img
                                     class="img-fluid"
                                     :src="category.img2"
-                                    alt="img2"
+                                    alt=""
                                 />
                             </div>
                         </div>
@@ -103,7 +103,7 @@ export default {
 
             display: flex;
             align-items: center;
-        
+
             p {
                 font-size: 0.8rem;
                 margin: 0px;

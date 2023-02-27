@@ -81,13 +81,13 @@
             <div
                 class="delivery d-none d-lg-flex d-flex align-items-center position-relative"
             >
-                <div class="w-60 p-2">
+                <div class="p-2">
                     <h3 class="txt-orange font-weight-bold">
                         Spedizione gratuita in tutta Italia
                     </h3>
                     <span> per ordini di qualunque importo! </span>
                 </div>
-                <div class="w-40 d-flex justify-content-start">
+                <div class="w-50 d-flex justify-content-start">
                     <img
                         class="delivery-image"
                         src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
