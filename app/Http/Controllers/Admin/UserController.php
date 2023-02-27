@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Role;
-use App\Models\userDetail;
+use App\Models\UserDetail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -84,7 +84,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $levels = userDetail::select('admin')->distinct()->get();
+        $levels = UserDetail::select('admin')->distinct()->get();
         return view('admin.users.edit', compact('user', 'levels'));
     }
 
@@ -160,20 +160,20 @@ class UserController extends Controller
         $oldData->password = Hash::make($data['password']);
         $oldData->save();
 
-        $oldData->userDetail->surname = $data['surname'];
-        $oldData->userDetail->business_name = $data['business_name'];
-        $oldData->userDetail->address = $data['address'];
-        $oldData->userDetail->cap = $data['cap'];
-        $oldData->userDetail->city = $data['city'];
-        $oldData->userDetail->province = $data['province'];
-        $oldData->userDetail->state = $data['state'];
-        $oldData->userDetail->phone = $data['phone'];
-        $oldData->userDetail->pec = $data['pec'];
-        $oldData->userDetail->code_sdi = $data['code_sdi'];
-        $oldData->userDetail->notes = $data['notes'];
-        $oldData->userDetail->admin = $data['admin'];
+        $oldData->user_detail->surname = $data['surname'];
+        $oldData->user_detail->business_name = $data['business_name'];
+        $oldData->user_detail->address = $data['address'];
+        $oldData->user_detail->cap = $data['cap'];
+        $oldData->user_detail->city = $data['city'];
+        $oldData->user_detail->province = $data['province'];
+        $oldData->user_detail->state = $data['state'];
+        $oldData->user_detail->phone = $data['phone'];
+        $oldData->user_detail->pec = $data['pec'];
+        $oldData->user_detail->code_sdi = $data['code_sdi'];
+        $oldData->user_detail->notes = $data['notes'];
+        $oldData->user_detail->admin = $data['admin'];
 
-        $oldData->userDetail->save();
+        $oldData->user_detail->save();
 
 
 

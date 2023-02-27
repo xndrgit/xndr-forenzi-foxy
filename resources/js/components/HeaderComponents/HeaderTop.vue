@@ -67,14 +67,12 @@
                 <section class="col-2">
                     <a href="/cart">
                         <div id="carriage" class="d-flex align-items-center">
-                            <router-link to="/cart">
-                                <div>
-                                    <img
-                                        src="../../../../public/Links/header/carrello.png"
-                                        alt=""
-                                    />
-                                </div>
-                            </router-link>
+                            <div>
+                                <img
+                                    src="../../../../public/Links/header/carrello.png"
+                                    alt=""
+                                />
+                            </div>
                             <div class="d-none d-lg-inline">
                                 <p>
                                     <strong> CARRELLO </strong>
@@ -94,9 +92,11 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
+import mixinCart from "../../mixins/mixinCart";
 
 export default {
+    mixins: [mixinCart],
     data() {
         return {
             isLogin: false,
@@ -131,14 +131,12 @@ export default {
             });
         },
         getCartInfo() {
-            axios.get("shop/orders", {}).then((response) => {
-                this.$store.commit("updateCart", {
-                    productCount: response.data.results.products.length,
-                    total: parseFloat(response.data.results.subtotal).toFixed(
-                        2
-                    ),
+            axios.get("shop/carts", {})
+                .then((response) => {
+                    if (response.data.result === 'success') {
+                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
+                    }
                 });
-            });
         },
     },
     mounted() {

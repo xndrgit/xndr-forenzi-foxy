@@ -5,7 +5,7 @@ namespace App;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Role;
-use App\Models\userDetail;
+use App\Models\UserDetail;
 use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -44,10 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userDetail()
+    public function user_detail()
     : HasOne
     {
-        return $this->hasOne(userDetail::class);
+        return $this->hasOne(UserDetail::class);
     }
 
     public function orders()
@@ -71,6 +71,7 @@ class User extends Authenticatable
     public function products()
     : BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'user_carts', 'user_id', 'product_id')->withPivot('quantity');
+        return $this->belongsToMany(Product::class, 'user_carts', 'user_id', 'product_id')
+            ->withPivot('quantity');
     }
 }

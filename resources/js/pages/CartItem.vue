@@ -86,21 +86,7 @@ export default {
         quantity() {
             this.computedPrice = (this.detail.price * this.quantity).toFixed(2);
         },
-    },
-    methods: {
-        getOrders() {
-            axios
-                .get("/shop/orders")
-                .then((response) => {
-                    this.order = response.data.results;
-                    this.order_products = response.data.results.products;
-                })
-                .catch((error) => {
-                    console.log(error.message);
-                });
-        },
-        test() {},
-    },
+    }
 };
 </script>
 

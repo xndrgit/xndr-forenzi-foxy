@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     : JsonResponse
     {
-        $users = User::with('userDetail')->with('orders')->paginate(5);
+        $users = User::with(['user_detail', 'orders'])->paginate(5);
 
         return response()->json([
             "response" => true,
@@ -34,11 +34,12 @@ class UserController extends Controller
     public function show()
     : JsonResponse
     {
-        $user = User::with(['userDetail', 'orders'])->where('id', Auth::id())->first();
+        $user = User::find(auth()->id());
+        $user->user_detail = $user->user_detail()->first();
 
         return response()->json([
             "response" => true,
-            "results"  => $user
+            "result"  => $user
         ]);
     }
 }
