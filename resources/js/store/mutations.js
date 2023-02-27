@@ -14,28 +14,20 @@ const mutations = {
         state.quantity = info.quantity;
     },
     setCartItems(state, data) {
-        state.cartItems = data;
+        state.cartItems = JSON.parse(JSON.stringify(data));
 
-        window.localStorage.setItem('foxy-cart-items', JSON.stringify(data));
+        if (!data || !data.length) {
+            window.localStorage.removeItem('foxy-cart-items');
+        } else {
+            window.localStorage.setItem('foxy-cart-items', JSON.stringify(data));
+        }
     },
     clearCartItems(state) {
-        state.cartItems = [];
+        state.cartItems = null;
         state.productCount = 0;
         state.total = 0;
 
         window.localStorage.removeItem('foxy-cart-items');
-    },
-    addCartItems(state, info) {
-        state.cartItems.push(info);
-        state.productCount = info.productCount;
-        state.total = info.total;
-
-        if (window.localStorage.getItem('foxy-cart-items')) {
-            let existCartItems = JSON.parse(window.localStorage.getItem('foxy-cart-items'));
-            existCartItems.push(info);
-
-            window.localStorage.setItem('foxy-cart-items', JSON.stringify(existCartItems));
-        }
     }
 };
 

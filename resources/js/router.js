@@ -63,7 +63,7 @@ const router = new VueRouter({
             },
         },
         {
-            path: "/confirm",
+            path: "/confirm/:id",
             name: "confirm",
             component: ConfirmPage,
             meta: {

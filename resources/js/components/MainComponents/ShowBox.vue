@@ -163,16 +163,19 @@
 import axios from "axios";
 import LoadingRollComponent from "../MainComponents/LoadingRollComponent.vue";
 import QuantityProductsComponent from "../MainComponents/QuantityProductsComponent.vue";
+import mixinCart from "../../mixins/mixinCart";
+
 export default {
+    components: {
+        LoadingRollComponent,
+        QuantityProductsComponent,
+    },
+    mixins: [mixinCart],
     props: {
         product: {
             type: Object,
             required: true,
         },
-    },
-    components: {
-        LoadingRollComponent,
-        QuantityProductsComponent,
     },
     data() {
         return {
@@ -182,50 +185,6 @@ export default {
             loadingProduct: true,
             quantity: 0,
         };
-    },
-    methods: {
-        updateQuantity(quantity) {
-            this.quantity = quantity;
-        },
-        getProduct() {
-            this.loadingProduct = true;
-            axios
-                .get(`/shop/products/${this.$route.params.id}`)
-                .then((response) => {
-                    this.product = response.data.results;
-                    this.loadingProduct = false;
-                })
-                .catch((error) => {
-                    console.warn(error.message);
-                });
-        },
-        addToCart() {
-            // code to add item to cart, for example
-            // using this.product and this.quantity to add the product to the cart
-
-            if (!this.$store.state.isAuth) {
-                //not login
-                // alert("Try to login");
-                //this.$router.push("/login");
-                window.location.href = "/login";
-                return;
-            }
-            axios
-                .post("/shop/orders", {
-                    id: this.product.id,
-                    quantity: this.quantity,
-                })
-                .then((response) => {
-                    if (response.data.productCount) alert("Added to Cart");
-                    this.$store.commit("updateCart", {
-                        productCount: response.data.productCount,
-                        total: response.data.result,
-                    });
-                })
-                .catch((err) => {
-                    //handle error
-                });
-        },
     },
     computed: {
         imageSource() {
@@ -260,6 +219,49 @@ export default {
     mounted() {
         window.scrollTo(0, 0);
     },
+    methods: {
+        updateQuantity(quantity) {
+            this.quantity = quantity;
+        },
+        getProduct() {
+            this.loadingProduct = true;
+            axios
+                .get(`/shop/products/${this.$route.params.id}`)
+                .then((response) => {
+                    this.product = response.data.results;
+                    this.loadingProduct = false;
+                })
+                .catch((error) => {
+                    console.warn(error.message);
+                });
+        },
+        addToCart() {
+            // code to add item to cart, for example
+            // using this.product and this.quantity to add the product to the cart
+
+            if (!this.$store.state.isAuth) {
+                window.location.href = "/login";
+                return;
+            }
+
+            axios
+                .post("/shop/carts", {
+                    product_id: this.product.id,
+                    quantity: this.quantity,
+                })
+                .then((response) => {
+                    if (response.data.result === 'success') {
+                        alert("Added to Cart");
+
+                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
+                    }
+                })
+                .catch((err) => {
+                    //handle error
+                    console.error(err);
+                });
+        },
+    }
 };
 </script>
 

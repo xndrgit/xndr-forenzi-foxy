@@ -27,10 +27,7 @@ class UserCartController extends Controller
     public function index(Request $request)
     : JsonResponse
     {
-        return response()->json([
-            'result'   => 'success',
-            'products' => $this->repository->getCartItems($request->user())
-        ]);
+        return $this->getCartsList($request->user());
     }
 
     /**
@@ -48,11 +45,17 @@ class UserCartController extends Controller
             'quantity'   => 'required|integer'
         ]);
 
-        $request->user()->products($request->input('product_id'))->attach([
-            'quantity' => $request->input('quantity')
+        $product_id = $request->input('product_id');
+
+        $request->user()->products()->attach([
+            $product_id => [
+                'quantity'   => $request->input('quantity'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
 
-        return $this->index($request);
+        return $this->getCartsList($request->user());
     }
 
     /**
@@ -70,9 +73,26 @@ class UserCartController extends Controller
         $user = User::find($user_id);
         $user->products()->detach($id);
 
+        return $this->getCartsList($user);
+    }
+
+    /**
+     * Get all cart items
+     *
+     * @param $user
+     *
+     * @return JsonResponse
+     */
+    private function getCartsList($user)
+    : JsonResponse
+    {
+        [$products, $subtotal, $product_count] = $this->repository->getAddedProductsDetails($user);
+
         return response()->json([
-            'result'   => 'success',
-            'products' => $this->repository->getCartItems($user)
+            'result'       => 'success',
+            'total'        => $subtotal,
+            'products'     => $products,
+            'productCount' => $product_count
         ]);
     }
 }

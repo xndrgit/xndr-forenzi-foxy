@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td>
-            <img class="img-fluid" :src="imageSource" :alt="product.name" />
+            <img class="img-fluid" :src="imageSource" :alt="product.name"/>
         </td>
 
         <td class="font-weight-bold">{{ product.code }}</td>
@@ -36,7 +36,7 @@
         <td>
             <div class="d-flex align-items-center">
                 <div class="quantity d-flex">
-                    <input type="text" id="input" v-model="value" />
+                    <input type="text" id="input" v-model="value"/>
                     <div class="d-flex flex-column">
                         <button @click="increaseValue()">+</button>
                         <button @click="decreaseValue()">-</button>
@@ -49,7 +49,10 @@
     </tr>
 </template>
 <script>
+import mixinCart from "../../mixins/mixinCart";
+
 export default {
+    mixins: [mixinCart],
     props: {
         product: {
             type: Object,
@@ -61,6 +64,18 @@ export default {
             code: "",
             value: 0,
         };
+    },
+    mounted() {
+        this.aaa();
+    },
+    computed: {
+        imageSource() {
+            if (/^http/.test(this.product.img)) {
+                return this.product.img;
+            } else {
+                return "/storage/" + this.product.img;
+            }
+        },
     },
     methods: {
         aaa() {
@@ -78,45 +93,27 @@ export default {
             }
         },
         addToCart() {
-            // code to add item to cart, for example
-            // using this.product and this.quantity to add the product to the cart
-
             if (!this.$store.state.isAuth) {
-                //not login
-                alert("Try to login");
-                // this.$router.push("/login");
                 window.location.href = "/login";
                 return;
             }
             axios
-                .post("/shop/orders", {
-                    id: this.product.id,
+                .post("/shop/carts", {
+                    product_id: this.product.id,
                     quantity: this.value,
                 })
                 .then((response) => {
-                    if (response.data.productCount) alert("Added to Cart");
-                    this.$store.commit("updateCart", {
-                        productCount: response.data.productCount,
-                        total: response.data.result,
-                    });
+                    if (response.data.result === 'success') {
+                        alert("Added to Cart");
+
+                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
+                    }
                 })
                 .catch((err) => {
-                    //handle error
+                    console.error(err);
                 });
         },
-    },
-    mounted() {
-        this.aaa();
-    },
-    computed: {
-        imageSource() {
-            if (/^http/.test(this.product.img)) {
-                return this.product.img;
-            } else {
-                return "/storage/" + this.product.img;
-            }
-        },
-    },
+    }
 };
 </script>
 <style lang="scss" scoped>
@@ -148,6 +145,7 @@ export default {
                 height: max-content;
 
                 align-items: center;
+
                 input {
                     width: 40px;
                     height: 30px;
@@ -156,6 +154,7 @@ export default {
 
                     border: 1px solid lightgray;
                 }
+
                 button {
                     border: 1px solid lightgray;
                     padding: 0px 0.5rem;

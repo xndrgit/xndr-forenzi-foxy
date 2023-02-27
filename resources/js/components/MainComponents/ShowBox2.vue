@@ -20,7 +20,7 @@
                         <div class="d-flex align-items-center">
                             <span>da </span>
                             <h3 class="p-2 font-weight-bold">
-                                € {{ minimumPrice }}
+                                €{{ (minimumPrice).toFixed(2) }}
                             </h3>
                             <span>IVA esclusa</span>
                         </div>
@@ -136,6 +136,27 @@ export default {
             loadingCategory: true,
         };
     },
+    computed: {
+        minimumPrice() {
+            if (this.category && this.category.products) {
+                return Math.min(
+                    ...this.category.products.map((product) =>
+                        product.price_saled === null
+                            ? product.price
+                            : Math.min(product.price, product.price_saled)
+                    )
+                );
+            }
+
+            return 0;
+        },
+    },
+    created() {
+        this.getCategory();
+    },
+    mounted() {
+        window.scrollTo(0, 0);
+    },
     methods: {
         increaseValue() {
             this.value += 10;
@@ -156,23 +177,6 @@ export default {
                 .catch((error) => {
                     console.warn(error.message);
                 });
-        },
-    },
-    created() {
-        this.getCategory();
-    },
-    mounted() {
-        window.scrollTo(0, 0);
-    },
-    computed: {
-        minimumPrice() {
-            return Math.min(
-                ...this.category.products.map((product) =>
-                    product.price_saled === null
-                        ? product.price
-                        : Math.min(product.price, product.price_saled)
-                )
-            );
         },
     },
 };
