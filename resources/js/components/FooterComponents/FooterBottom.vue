@@ -1,7 +1,7 @@
 <template>
     <div class="FooterBottom">
         <div
-            class="container-lg d-flex align-items-center justify-content-between"
+            class="container d-flex align-items-center justify-content-between"
         >
             <div class="d-flex align-items-center">
                 <p class="policy">
@@ -11,11 +11,11 @@
                 </p>
             </div>
             <div>
-                <i class="fa-brands fa-cc-mastercard"></i>
-                <i class="fa-brands fa-cc-visa"></i>
-                <i class="fa-brands fa-cc-paypal"></i>
-                <i class="fa-brands fa-cc-apple-pay"></i>
-                <i class="fa-brands fa-cc-amazon-pay"></i>
+                <img
+                    class="img-fluid"
+                    src="../../../../public/Links/carte-di-pagamento.png"
+                    alt=""
+                />
             </div>
         </div>
     </div>
@@ -31,13 +31,13 @@ export default {};
     background-color: black;
     color: white;
 
-    i {
-        font-size: 1.5rem;
-        margin: 0px 10px;
+    img {
+        height: 25px;
+        margin: 2px;
     }
     .policy {
         display: contents;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
     }
 }
 </style>

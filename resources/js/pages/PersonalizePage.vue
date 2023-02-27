@@ -136,7 +136,7 @@ export default {
                     txtTwo: "CM",
                     txtThree: "CM",
                     txtBanner: "",
-                    img: require("../../../public/Links/cat-scatole-cartone-2-onde.jpg"),
+                    img: require("../../../public/Links/misure.png"),
                 },
                 {
                     step: "2",
@@ -162,8 +162,8 @@ export default {
                     titleTwo: "BIANCA",
                     txtOne: "",
                     txtTwo: "",
-                    imgOne: require("../../../public/Links/category-scatole-americane-bianche.jpg"),
-                    imgTwo: require("../../../public/Links/category-scatole-americane-bianche.jpg"),
+                    imgOne: require("../../../public/Links/scatola-personalizzata-1-per-pagina-avana.png"),
+                    imgTwo: require("../../../public/Links/scatola-personalizzata-bianca.png"),
                 },
             ],
             typeData: [
@@ -174,25 +174,25 @@ export default {
                     titleTwo: "SCATOLE A 2 ONDE",
                     txtOne: "consigliata fino a 10kg",
                     txtTwo: "consigliata fino a 10k",
-                    imgOne: require("../../../public/Links/cat-scatole-cartone-2-onde.jpg"),
-                    imgTwo: require("../../../public/Links/cat-scatole-cartone-2-onde.jpg"),
+                    imgOne: require("../../../public/Links/1-onda.jpg"),
+                    imgTwo: require("../../../public/Links/2-onde.jpg"),
                 },
             ],
             images: [
                 {
-                    title: "Cat in a cardboard box",
+                    title: "",
                     src: require("../../../public/Links/rm442-09-05-g-mockup.png"),
                 },
                 {
-                    title: "Dog playing fetch",
-                    src: require("../../../public/Links/m003t277_delivery_paper_box_packaging_2.png"),
+                    title: "",
+                    src: require("../../../public/Links/scatola-box.png"),
                 },
                 {
-                    title: "Bird perched on a branch",
+                    title: "",
                     src: require("../../../public/Links/28_April_04.png"),
                 },
                 {
-                    title: "Fish swimming in a tank",
+                    title: "",
                     src: require("../../../public/Links/04.png"),
                 },
             ],

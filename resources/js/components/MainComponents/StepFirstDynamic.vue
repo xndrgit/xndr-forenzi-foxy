@@ -208,9 +208,7 @@ h2 {
     flex-direction: column;
 }
 
-.image img {
-    width: 60%;
-}
+
 
 .step {
     margin-bottom: 5rem;

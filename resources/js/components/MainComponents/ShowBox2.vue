@@ -6,7 +6,9 @@
 
         <div class="d-flex">
             <div class="right">
-                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div
+                    class="d-flex flex-wrap justify-content-between align-items-center"
+                >
                     <div class="col-12 col-md-8">
                         <h2 class="font-weight-bold">{{ category.name }}</h2>
                         <h6 class="font-weight-bold">

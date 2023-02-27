@@ -678,7 +678,7 @@ export default {
                 if (/^http/.test(product.img)) {
                     return product.img;
                 } else {
-                    return "/storage" + product.img.substring(6);
+                    return "/storage/" + product.img;
                 }
             };
         },

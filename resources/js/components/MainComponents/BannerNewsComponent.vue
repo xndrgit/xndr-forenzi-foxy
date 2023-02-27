@@ -1,6 +1,6 @@
 <template>
     <section class="news-banner d-flex flex-wrap justify-content-center">
-        <div class="new col-12 col-md-4">
+        <div class="new col-12 col-md-4 p-0">
             <div class="w-35">
                 <img
                     class="img-fluid"
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="new col-12 col-md-4">
+        <div class="new col-12 col-md-4 p-0">
             <div class="new-img w-35">
                 <img
                     class="img-fluid"
@@ -32,11 +32,11 @@
                 <button class="yellow-button">SCOPRI IL PRODOTTO</button>
             </div>
         </div>
-        <div class="new col-12 col-md-4">
+        <div class="new col-12 col-md-4 p-0">
             <div class="new-img w-35">
                 <img
                     class="img-fluid"
-                    src="../../../../public/Links/maniglie-ai.png"
+                    src="../../../../public/Links/scatola-colorata.png"
                     alt=""
                 />
             </div>
@@ -73,8 +73,8 @@ export default {
         margin: 1px 0px;
 
         img {
-            height: 160px;
-            object-fit: cover;
+         min-height: 150px;
+            object-fit: contain;
         }
 
         p {

@@ -207,7 +207,7 @@ export default {
                 //not login
                 // alert("Try to login");
                 //this.$router.push("/login");
-                window.location.href = '/login';
+                window.location.href = "/login";
                 return;
             }
             axios
@@ -232,7 +232,7 @@ export default {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
             } else {
-                return "/storage" + this.product.img.substring(6);
+                return "/storage/" + this.product.img;
             }
         },
         totalPrice() {

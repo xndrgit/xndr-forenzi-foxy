@@ -17,10 +17,9 @@ class ProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(Request $request)
-    : JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $products = Product::with('category')->paginate(8);
+        $products = Product::with('category')->paginate(12);
         return response()->json([
             "response"     => true,
             "count"        => $products->total(),
@@ -38,8 +37,7 @@ class ProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function show(int $id)
-    : JsonResponse
+    public function show(int $id): JsonResponse
     {
         $product = Product::with('category')->findOrFail($id);
         return response()->json([
@@ -55,15 +53,13 @@ class ProductController extends Controller
      *
      * @return Response
      */
-    public function destroy(int $id)
-    : Response
+    public function destroy(int $id): Response
     {
         $product = Product::findOrFail($id);
         $product->delete();
     }
 
-    public function siblings($id)
-    : JsonResponse
+    public function siblings($id): JsonResponse
     {
         $product = Product::findOrFail($id);
         $category_id = $product['category_id'];
