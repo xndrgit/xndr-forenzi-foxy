@@ -15,12 +15,12 @@ class AddSalePricesToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->string('mini_description');
-            $table->integer('price_saled')->nullable();
-            $table->integer('weight');
-            $table->integer('first_price');
-            $table->integer('second_price');
-            $table->integer('third_price');
-            $table->integer('fourth_price');
+            $table->decimal('price_saled', 8, 2)->nullable();
+            $table->decimal('weight', 8, 2);
+            $table->decimal('first_price', 8, 2);
+            $table->decimal('second_price', 8, 2);
+            $table->decimal('third_price', 8, 2);
+            $table->decimal('fourth_price', 8, 2);
             $table->integer('purchasable_in_multi_of');
 
             // $table->unsignedBigInteger('category_id');

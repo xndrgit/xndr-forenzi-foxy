@@ -4,7 +4,13 @@
             <div class="row justify-content-between">
                 <section class="col-3 d-flex align-items-center">
                     <div id="free" class="d-flex align-items-center">
-                        <i class="fa-solid fa-truck-fast"></i>
+                        <div>
+                            <img
+                                class="img-fluid"
+                                src="../../../../public/Links/header/consegna-gratuita.png"
+                                alt=""
+                            />
+                        </div>
                         <div class="d-none d-lg-inline">
                             <p>SEI UN NUOVO CLIENTE?</p>
                             <p>
@@ -17,13 +23,16 @@
                 </section>
                 <section class="col-3">
                     <div id="clock" class="d-flex align-items-center">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <div>
+                            <img
+                                src="../../../../public/Links/header/ordina-subito.png"
+                                alt=""
+                            />
+                        </div>
                         <div class="d-none d-lg-inline">
                             <p>ORDINA SUBITO E RICEVI LA MERCE</p>
                             <p>
-                                <strong>
-                                    GIOVEDI 04 NOVEMBRE 2022
-                                </strong>
+                                <strong> GIOVEDI 04 NOVEMBRE 2022 </strong>
                             </p>
                         </div>
                     </div>
@@ -34,7 +43,12 @@
                 <section class="col-2">
                     <a href="/login">
                         <div id="login" class="d-flex align-items-center">
-                            <i class="fa fa-user-alt"></i>
+                            <div>
+                                <img
+                                    src="../../../../public/Links/header/account.png"
+                                    alt=""
+                                />
+                            </div>
                             <div class="d-none d-lg-inline">
                                 <p>
                                     <strong>
@@ -53,12 +67,17 @@
                 <section class="col-2">
                     <a href="/cart">
                         <div id="carriage" class="d-flex align-items-center">
-                            <router-link to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
+                            <router-link to="/cart">
+                                <div>
+                                    <img
+                                        src="../../../../public/Links/header/carrello.png"
+                                        alt=""
+                                    />
+                                </div>
+                            </router-link>
                             <div class="d-none d-lg-inline">
                                 <p>
-                                    <strong>
-                                        CARRELLO
-                                    </strong>
+                                    <strong> CARRELLO </strong>
                                 </p>
                                 <p>
                                     {{ this.$store.state.total }} € /
@@ -75,11 +94,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-    data()
-    {
+    data() {
         return {
             isLogin: false,
             text: "REGISTRATI",
@@ -87,50 +105,43 @@ export default {
     },
     computed: {
         ...mapGetters({
-            checkAuth: 'checkAuth'
-        })
+            checkAuth: "checkAuth",
+        }),
     },
     methods: {
-        getUserInfo()
-        {
-            axios
-                .get("shop/user", {})
-                .then((response) =>
-                {
-                    if (response.data.is_auth) {
-                        this.isLogin = true;
+        getUserInfo() {
+            axios.get("shop/user", {}).then((response) => {
+                if (response.data.is_auth) {
+                    this.isLogin = true;
 
-                        this.$store.commit("updateUser", {
-                            isAuth: true,
-                            name: response.data.name,
-                        });
-
-                        this.getCartInfo();
-                    } else {
-                        window.localStorage.removeItem('user');
-
-                        this.$store.commit("updateUser", {
-                            isAuth: false,
-                            name: "REGISTRATI",
-                        });
-                    }
-                });
-        },
-        getCartInfo()
-        {
-            axios
-                .get("shop/orders", {})
-                .then((response) =>
-                {
-                    this.$store.commit("updateCart", {
-                        productCount: response.data.results.products.length,
-                        total: parseFloat(response.data.results.subtotal).toFixed(2),
+                    this.$store.commit("updateUser", {
+                        isAuth: true,
+                        name: response.data.name,
                     });
+
+                    this.getCartInfo();
+                } else {
+                    window.localStorage.removeItem("user");
+
+                    this.$store.commit("updateUser", {
+                        isAuth: false,
+                        name: "REGISTRATI",
+                    });
+                }
+            });
+        },
+        getCartInfo() {
+            axios.get("shop/orders", {}).then((response) => {
+                this.$store.commit("updateCart", {
+                    productCount: response.data.results.products.length,
+                    total: parseFloat(response.data.results.subtotal).toFixed(
+                        2
+                    ),
                 });
+            });
         },
     },
-    mounted()
-    {
+    mounted() {
         this.getUserInfo();
     },
 };
@@ -147,10 +158,10 @@ export default {
         cursor: pointer;
         transition: 1s;
 
-        i {
-            font-size: 20px;
+        img {
+            height: 25px;
             padding: 0 10px;
-            margin: .5rem 0;
+            margin: 0.5rem 0;
         }
 
         p {

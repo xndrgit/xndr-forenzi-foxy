@@ -48,11 +48,6 @@ export default {
 @import "~@fortawesome/fontawesome-free/css/all.css";
 body * {
     font-family: "Poppins", sans-serif;
-    img {
-        transition: 0.5s;
-        &:hover {
-            transform: translateY(-2px);
-        }
-    }
+   
 }
 </style>

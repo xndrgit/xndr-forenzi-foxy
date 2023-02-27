@@ -9,15 +9,11 @@
                         <div class="up">
                             <img
                                 class="card-img-top"
-                                src="https://www.freepnglogos.com/uploads/box-png/box-new-used-gaylord-boxes-for-sale-reliable-industries-llc-22.png"
-                                alt="img"
+                                src="https://lh3.googleusercontent.com/1nhedymgp5b6yGMF5ebryG4YlgGqgRbypmRYvIZh3u0FwbVdvfl-x4dvozD8MLdcbpW7-VtD8XTkaTj_fsm-tY0gkXL-RoN6qjeuBIUr"
+                                alt="category-img"
                             />
                             <div class="litlogo position-absolute">
-                                <img
-                                    class="img-fluid"
-                                    src="https://assets.msn.com/weathermapdata/1/static/svg/72/v6/card/SunnyDayV3.svg"
-                                    alt="img2"
-                                />
+                                <img class="img-fluid" src="" alt="" />
                             </div>
                         </div>
 

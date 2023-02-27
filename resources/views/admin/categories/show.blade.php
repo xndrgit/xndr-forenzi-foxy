@@ -20,13 +20,13 @@
                         <div class="container d-flex flex-wrap justify-content-around">
                             <div class="card d-flex align-items-center position-relative {{ $category->color }}">
                                 <img
-                                    alt="img"
+                                    alt="category-img"
                                     class="card-img-top"
                                     src="{{ $category->img }}"
                                 />
                                 <div class="litlogo position-absolute">
                                     <img
-                                        alt="img2"
+                                        alt=""
                                         class="img-fluid"
                                         src="{{ $category->img2 }}"
                                     />
