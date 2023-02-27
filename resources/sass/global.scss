@@ -82,6 +82,32 @@ $gray: #f1f1f1;
     }
 }
 
+.orange-button {
+    background-color: $orange;
+    border: none;
+    border-radius: 0px;
+    color: $white;
+    font-weight: bold;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 15px 0;
+    cursor: pointer;
+
+    transition: all 0.5s ease-in-out;
+    &:hover {
+        filter: blur(2);
+        transition: 1s;
+    }
+    &:active {
+        transform: scale(0.9);
+        box-shadow: 0 0 10px #000;
+        background-color: #00f;
+    }
+}
+
 .dark-button {
     background-color: #000000;
     border: none;

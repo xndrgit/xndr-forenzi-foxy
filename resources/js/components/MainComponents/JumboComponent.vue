@@ -12,19 +12,26 @@
                 ]"
             >
                 <slide v-for="(image, index) in images" :key="index">
-                    <div class="carousel-image-container position-relative">
+                    <div class="carousel-image-container">
                         <img
-                            class="img-fluid"
+                            style="width: 80%"
+                            class="img-fluid jumbo-image"
                             :src="image.src"
                             alt="Slider image"
-                            style="width: 100%; height: 100%; object-fit: cover"
                         />
+
+                        <img
+                            style="position: absolute; right: 0px"
+                            src="../../../../public/Links/maschera_dx.png"
+                            alt=""
+                        />
+
                         <div class="carousel-content position-absolute">
                             <h3 class="carousel-title">{{ image.title }}</h3>
                             <p class="carousel-description">
                                 {{ image.description }}
                             </p>
-                            <button class="yellow-button">
+                            <button class="orange-button">
                                 SCOPRI IL PRODOTTO
                             </button>
                         </div>
@@ -33,8 +40,10 @@
             </carousel>
         </div>
         <div class="jumbo2 col-xl-5">
-            <div class="clock d-none d-lg-flex d-flex flex-column">
-                <h4>EFFETUA IL TUO ORDINE ENTRO</h4>
+            <div class="clock p-2 d-none d-lg-flex d-flex flex-column">
+                <h5 class="m-0 font-weight-bold">
+                    EFFETUA IL TUO ORDINE ENTRO
+                </h5>
                 <div
                     class="countdown d-flex justify-content-center align-items-center flex-wrap"
                 >
@@ -75,19 +84,21 @@
                         </div>
                     </div>
                 </div>
-                <p>e ricevi le scatole</p>
-                <h5 class="text-white">Martedì 12 Agosto</h5>
+                <p class="m-0">e ricevi le scatole</p>
+                <h5 class="text-white m-0 font-weight-bold">
+                    Martedì 12 Agosto
+                </h5>
             </div>
             <div
-                class="delivery d-none d-lg-flex d-flex align-items-center position-relative"
+                class="delivery d-none d-lg-flex d-flex align-items-start position-relative"
             >
                 <div class="p-2">
-                    <h3 class="txt-orange font-weight-bold">
+                    <h2 class="txt-orange font-weight-bold">
                         Spedizione gratuita in tutta Italia
-                    </h3>
+                    </h2>
                     <span> per ordini di qualunque importo! </span>
                 </div>
-                <div class="w-50 d-flex justify-content-start">
+                <div class="w-40 d-flex justify-content-start">
                     <img
                         class="delivery-image"
                         src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
@@ -174,15 +185,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.paginationActiveColor {
+    color: red;
+}
 .jumbo {
     display: flex;
     .jumbo1 {
+        height: -webkit-fill-available;
         .carousel-image-container {
             position: relative;
         }
 
         .carousel-content {
-            top: 50px;
+            top: 10px;
             bottom: 0;
             left: 0;
             right: 0;
@@ -210,17 +225,9 @@ export default {
         }
 
         .VueCarousel {
-            object-fit: cover;
+            object-fit: contain;
             width: 100%;
-            height: 570px;
-        }
-
-        .slide {
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+            height: 400px;
         }
     }
 
@@ -230,10 +237,9 @@ export default {
             align-items: center;
             justify-content: center;
 
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1rem;
 
-            height: 250px;
+            height: -webkit-fill-available;
             background-color: rgb(246, 134, 48);
 
             .countdown {
@@ -242,14 +248,14 @@ export default {
                     align-items: center;
                     justify-content: center;
 
-                    height: 50px;
-                    width: 50px;
+                    height: 30px;
+                    width: 30px;
                     background-color: rgb(253, 188, 72);
                     margin: 10px;
-                    padding: 2rem;
+                    padding: 1.5rem;
 
                     .square-time {
-                        font-size: 2rem;
+                        font-size: 1.2rem;
                         font-weight: bold;
                         color: black;
                     }
@@ -263,6 +269,7 @@ export default {
         }
 
         .delivery {
+            height: fit-content;
             margin-top: 10px;
 
             border: 10px solid rgb(246, 134, 48);
@@ -270,8 +277,11 @@ export default {
             .h1 {
                 color: rgb(246, 134, 48);
             }
+            span {
+                font-size: 0.8rem;
+            }
             .delivery-image {
-                height: 270px;
+                height: -webkit-fill-available;
                 width: -webkit-fill-available;
                 min-height: -webkit-fill-available;
             }
