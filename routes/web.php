@@ -79,17 +79,14 @@ Route::middleware('auth')
     //! aggiorna la cartella all'interno della quale si trovani i blade
     ->name('shop.')
     ->group(function () {
-        Route::get('/orders', 'OrderController@show');
+        Route::get('/orders/{order}', 'OrderController@show');
         Route::post('/orders', 'OrderController@store');
-        Route::put('/orders/{id}', 'OrderController@update');
-        Route::post('/orders/transmit/{order}', 'OrderController@transmit');
-        Route::delete('/orders/delete/{id}/{product_id}', 'OrderController@destroy');
 
         Route::get('/users', function (Request $request) {
             return $request->user();
         });
 
-        Route::get('/user/detail', 'UserController@show');
+        Route::get('/users/detail', 'UserController@show');
 
         Route::get('/payment', 'PaypalController@payment')->name('payment');
 

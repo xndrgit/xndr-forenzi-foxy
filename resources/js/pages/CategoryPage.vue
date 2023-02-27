@@ -3,16 +3,18 @@
         <div class="container">
             <loadingComponent v-if="loadingCategories" />
 
-            <div class="d-flex flex-wrap justify-content-center" v-else>
+            <div v-else-if="categories" class="d-flex flex-wrap justify-content-center">
                 <NavBoxesComponent
-                    v-for="category in categories"
-                    :key="category.name"
-                    :category="category"
+                    v-for="item in categories"
+                    :key="item.name"
+                    :category="item"
                 />
                 <div @click="goToPersonalizePage">
                     <CustomizeBoxesComponent />
                 </div>
             </div>
+
+            <div v-else class="d-flex flex-wrap justify-content-center"></div>
 
             <div class="row justify-content-center" >
                 <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
@@ -88,20 +90,6 @@ export default {
                     console.warn(error.message);
                 });
         },
-        getCategory() {
-            this.loadingCategory = true;
-            axios
-                .get(`/shop/categories/${this.$route.params.id}`)
-                .then((response) => {
-                    this.category = response.data.results;
-                    setTimeout(() => {
-                        this.loadingCategory = false;
-                    }, 1000);
-                })
-                .catch((error) => {
-                    console.warn(error.message);
-                });
-        },
         getProduct() {
             this.loadingProduct = true;
             axios
@@ -116,7 +104,6 @@ export default {
         },
     },
     created() {
-        this.getCategory();
         this.getCategories();
         this.getProduct();
     },

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
-use App\Models\userDetail;
+use App\Models\UserDetail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -179,16 +179,6 @@ class OrderController extends Controller
         $userDetail->pec = $data['pec'];
         $userDetail->code_sdi = $data['code_sdi'];
         $userDetail->save();
-
-
-
-
-
-
-
-
-
-
 
         return redirect()
             ->route('admin.orders.show', ['order' => $oldData])
