@@ -15,6 +15,7 @@
                                     class="card-img-top"
                                     :src="category.img"
                                     alt="category-img"
+                                    @click="$router.go(`/category/${category.id}`)"
                                 />
                             </a>
                             <div class="litlogo position-absolute">
