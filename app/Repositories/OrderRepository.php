@@ -49,7 +49,7 @@ class OrderRepository extends Repository
         $order->subtotal = $subtotal;
         $order->shipping_cost = 0;
         $order->conai = 4.35;
-        $order->iva = $iva;
+        $order->iva = $iva; 
         $order->total = round(($subtotal + 4.35 + $iva), 2);
         $order->order_date = now();
         $order->created_at = now();

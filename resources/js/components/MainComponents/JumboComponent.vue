@@ -96,7 +96,7 @@
                     <h2 class="txt-orange font-weight-bold">
                         Spedizione gratuita in tutta Italia
                     </h2>
-                    <span > per ordini di qualunque importo! </span>
+                    <span> per ordini di qualunque importo! </span>
                 </div>
                 <div class="w-40 d-flex justify-content-start">
                     <img
@@ -184,9 +184,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.paginationActiveColor {
-    color: red;
+<style lang="scss">
+div.VueCarousel-pagination {
+    position: absolute !important;
 }
 .jumbo {
     display: flex;

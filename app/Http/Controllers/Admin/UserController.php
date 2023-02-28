@@ -20,8 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
+        $users = User::with('user_detail')->get();
+        // dd($users);
         return view('admin.users.index', compact('users'));
     }
 
