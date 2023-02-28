@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('id', 'desc')->all();
         // dd($orders[1]->payment->id);
         return view('admin.orders.index', compact('orders'));
     }
