@@ -151,7 +151,7 @@ export default {
     },
     created() {
         // Set the countdown date
-        const countdownDate = new Date("Feb 28, 2023 00:00:00").getTime();
+        const countdownDate = new Date("Feb 29, 2023 00:00:00").getTime();
 
         // Update the countdown every second
         this.interval = setInterval(() => {

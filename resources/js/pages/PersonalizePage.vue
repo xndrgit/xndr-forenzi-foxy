@@ -16,7 +16,7 @@
                             <img
                                 v-for="(image, index) in images"
                                 :key="index"
-                                class="img-fluid col-12 col-md-4 col-lg-3"
+                                class="personalize-img img-fluid col-6 col-md-3"
                                 :alt="image.title"
                                 :src="image.src"
                             />
@@ -250,7 +250,7 @@ h2 {
 }
 i {
     position: absolute;
-    font-size: 8rem;
+    font-size: 12rem;
     top: 80px;
     color: white;
     font-weight: bold;

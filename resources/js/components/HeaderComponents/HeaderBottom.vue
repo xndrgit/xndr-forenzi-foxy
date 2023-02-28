@@ -192,7 +192,7 @@ button.btn.btn-outline-secondary {
                             border: none;
                             background-color: transparent;
                             padding: 0.5rem;
-                            font-size: 1rem;
+                            font-size: 1.1rem;
                             transition: all 0.3s ease-in-out;
 
                             &:hover {

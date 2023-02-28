@@ -30,7 +30,7 @@
                         <div class="down">
                             <div class="card-body text-center p-1">
                                 <p class="card-title">SCATOLE</p>
-                                <p class="card-text">
+                                <p class="card-text mb-4">
                                     {{ category.name }}
                                 </p>
                             </div>

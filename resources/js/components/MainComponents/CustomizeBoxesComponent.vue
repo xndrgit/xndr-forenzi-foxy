@@ -20,7 +20,7 @@
                         <div class="down">
                             <div class="card-body text-center p-1">
                                 <p class="card-title">SCATOLE</p>
-                                <p class="card-text font-weight-bold">
+                                <p class="card-text font-weight-bold mb-4">
                                     PERSONALIZZATE
                                 </p>
                             </div>

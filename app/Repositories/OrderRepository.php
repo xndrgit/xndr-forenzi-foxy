@@ -40,7 +40,7 @@ class OrderRepository extends Repository
             return null;
         }
 
-        $conai = round($subtotal * 22.00 / 100, 2);
+        $iva = round($subtotal * 22.00 / 100, 2);
 
         $order = new Order();
         $order->user_id = $user_id;
@@ -48,9 +48,9 @@ class OrderRepository extends Repository
         $order->status = 'in attesa';
         $order->subtotal = $subtotal;
         $order->shipping_cost = 0;
-        $order->conai = $conai;
-        $order->iva = 4.35;
-        $order->total = round(($subtotal + $conai + 4.35), 2);
+        $order->conai = 4.35;
+        $order->iva = $iva;
+        $order->total = round(($subtotal + 4.35 + $iva), 2);
         $order->order_date = now();
         $order->created_at = now();
         $order->updated_at = now();

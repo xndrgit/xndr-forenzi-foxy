@@ -19,8 +19,7 @@ class PaypalController extends Controller
      * @throws Exception
      * @throws Throwable
      */
-    public function payment(Request $request)
-    : RedirectResponse
+    public function payment(Request $request): RedirectResponse
     {
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
@@ -84,8 +83,7 @@ class PaypalController extends Controller
     /**
      * @throws Throwable
      */
-    public function success(Request $request, $user_id)
-    : RedirectResponse
+    public function success(Request $request, $user_id): RedirectResponse
     {
         $user = User::find($user_id);
 
@@ -122,8 +120,7 @@ class PaypalController extends Controller
     /**
      * @throws Throwable
      */
-    public function cancel(Request $request, $user_id)
-    : RedirectResponse
+    public function cancel(Request $request, $user_id): RedirectResponse
     {
         $user = User::find($user_id);
 

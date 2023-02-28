@@ -108,12 +108,17 @@ export default {
 .box {
     position: relative;
     border: none;
+    transition: .5s;
+    &:hover{
+        transform: scale(.89);
+    }
 }
 i {
     position: absolute;
-    font-size: 6rem;
+    font-size: 10rem;
     top: 80px;
-    color: white;
+    right: 80px;
+    color: #fdbc48;
     font-weight: bold;
 }
 </style>

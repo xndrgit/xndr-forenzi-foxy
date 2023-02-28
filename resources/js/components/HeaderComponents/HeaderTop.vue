@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import mixinCart from "../../mixins/mixinCart";
 
 export default {
@@ -131,12 +131,15 @@ export default {
             });
         },
         getCartInfo() {
-            axios.get("shop/carts", {})
-                .then((response) => {
-                    if (response.data.result === 'success') {
-                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
-                    }
-                });
+            axios.get("shop/carts", {}).then((response) => {
+                if (response.data.result === "success") {
+                    this.updateCartInfo(
+                        response.data.productCount,
+                        response.data.total,
+                        response.data.products
+                    );
+                }
+            });
         },
     },
     mounted() {
@@ -164,7 +167,7 @@ export default {
 
         p {
             margin: 0;
-            font-size: 0.5rem;
+            font-size: 0.6rem;
         }
 
         a {

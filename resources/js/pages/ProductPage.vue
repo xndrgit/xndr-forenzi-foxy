@@ -4,18 +4,24 @@
             <loadingComponent v-if="loadingCategories" />
 
             <div class="d-flex flex-wrap justify-content-center" v-else>
-                <NavBoxesComponent v-for="category in categories" :key="category.name" :category="category" />
+                <NavBoxesComponent
+                    v-for="category in categories"
+                    :key="category.name"
+                    :category="category"
+                />
                 <div @click="goToPersonalizePage">
                     <CustomizeBoxesComponent />
                 </div>
             </div>
+
+            <hr />
 
             <div class="d-flex justify-content-center">
                 <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
                 <ShowBox v-else/>
             </div>
 
-            <h4 class="fw-bold py-2">Elenco formati disponibili</h4>
+            <h6 class="font-weight-bold m-0">Elenco formati disponibili</h6>
             <TableComponent />
             <BannerNewsComponent />
         </div>
@@ -101,6 +107,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
