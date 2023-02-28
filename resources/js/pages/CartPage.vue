@@ -2,10 +2,10 @@
     <section class="shopping-cart">
         <div class="container">
             <div class="block-heading">
-                <h2 class="display-5 font-weight-bold">IL TUO CARRELLO</h2>
-                <hr class="w-5"/>
+                <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
+                <hr class="w-5" />
             </div>
-            <hr/>
+            <hr />
             <div class="content">
                 <div class="row">
                     <div class="col-md-12 col-lg-8" v-if="items">
@@ -23,7 +23,9 @@
                                             class="delete"
                                             @click="deleteProduct(item)"
                                         >
-                                            <i class="fa-2x fa-regular fa-circle-xmark"></i>
+                                            <i
+                                                class="fa-2x fa-regular fa-circle-xmark"
+                                            ></i>
                                         </a>
                                     </div>
 
@@ -31,7 +33,7 @@
                                         <div class="info">
                                             <div class="row">
                                                 <div
-                                                    class="col-md-3 product-name"
+                                                    class="col-md-4 product-name"
                                                 >
                                                     <div class="product-name">
                                                         <div
@@ -42,7 +44,9 @@
                                                                 <span
                                                                     class="value"
                                                                 >
-                                                                    {{ item.code }}
+                                                                    {{
+                                                                        item.code
+                                                                    }}
                                                                 </span>
                                                             </div>
                                                             <a href="#">
@@ -52,11 +56,17 @@
                                                                 <span
                                                                     class="value font-weight-bold"
                                                                 >
-                                                                    {{ item.length }}
+                                                                    {{
+                                                                        item.length
+                                                                    }}
                                                                     x
-                                                                    {{ item.height }}
+                                                                    {{
+                                                                        item.height
+                                                                    }}
                                                                     x
-                                                                    {{ item.width }}
+                                                                    {{
+                                                                        item.width
+                                                                    }}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -66,16 +76,22 @@
                                                     <div>
                                                         <span
                                                             :class="{
-                                                                'price': !item.price_saled,
-                                                                'current-price': item.price_saled,
-                                                                'text-danger': item.price_saled
+                                                                price: !item.price_saled,
+                                                                'current-price':
+                                                                    item.price_saled,
+                                                                'text-warning':
+                                                                    item.price_saled,
                                                             }"
                                                         >
-                                                            €{{ item.price_saled ? item.price_saled : item.price }}
+                                                            €{{
+                                                                item.price_saled
+                                                                    ? item.price_saled
+                                                                    : item.price
+                                                            }}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 quantity">
+                                                <div class="col-md-3 quantity">
                                                     <label
                                                         class="fw-bold"
                                                         for="quantity"
@@ -88,7 +104,9 @@
                                                         type="number"
                                                         min="0"
                                                         ref="totalQuantity"
-                                                        :value="item.pivot.quantity"
+                                                        :value="
+                                                            item.pivot.quantity
+                                                        "
                                                     />
                                                 </div>
                                                 <div class="col-md-3 price">
@@ -97,7 +115,9 @@
                                                             white-space: nowrap;
                                                         "
                                                     >
-                                                        <label for="id1">€</label>
+                                                        <label for="id1"
+                                                            >€</label
+                                                        >
                                                         <input
                                                             type="text"
                                                             id="id1"
@@ -110,9 +130,15 @@
                                                                 background-color: white;
                                                                 pointer-events: none;
                                                             "
-                                                            :value="(
-                                                                item.pivot.quantity * (item.price_saled ? item.price_saled : item.price)
-                                                                ).toFixed(2)"
+                                                            :value="
+                                                                (
+                                                                    item.pivot
+                                                                        .quantity *
+                                                                    (item.price_saled
+                                                                        ? item.price_saled
+                                                                        : item.price)
+                                                                ).toFixed(2)
+                                                            "
                                                             readonly
                                                         />
                                                     </div>
@@ -122,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr/>
+                            <hr />
                         </div>
                         <!-- <div class="d-flex justify-content-between">
 																		<form class="coupon d-flex">
@@ -180,14 +206,21 @@
                                 </span>
                             </div>
                             <div
-                                class="summary-item txt-orange d-flex align-items-center justify-content-between"
+                                class="summary-item txt-orange d-flex align-items-center justify-content-between mt-3"
                             >
                                 <span class="text">TOTALE ORDINE</span>
                                 <span class="price">
-                                    €{{ parseFloat((subtotal + shipping_cost + conai + iva)).toFixed(2) }}
+                                    €{{
+                                        parseFloat(
+                                            subtotal +
+                                                shipping_cost +
+                                                conai +
+                                                iva
+                                        ).toFixed(2)
+                                    }}
                                 </span>
                             </div>
-                            <hr/>
+                            <hr />
                             <a
                                 v-if="items"
                                 type="button"
@@ -212,7 +245,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import CartItem from "./CartItem";
 import mixinCart from "../mixins/mixinCart";
 
@@ -238,7 +271,7 @@ export default {
                     return "/storage/" + product.img;
                 }
             };
-        }
+        },
     },
     mounted() {
         this.items = [...this.cartItems];
@@ -251,17 +284,22 @@ export default {
 
             alert("Procedi Al Checkout");
 
-            window.location.href = '/checkout';
+            window.location.href = "/checkout";
         },
 
         deleteProduct(item) {
-            axios.delete(`/shop/carts/${item.id}`)
-                .then(response => {
-                    if (response.data.result === 'success') {
-                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
+            axios
+                .delete(`/shop/carts/${item.id}`)
+                .then((response) => {
+                    if (response.data.result === "success") {
+                        this.updateCartInfo(
+                            response.data.productCount,
+                            response.data.total,
+                            response.data.products
+                        );
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.error(err);
                 });
         },
@@ -271,6 +309,17 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
+
+.btn {
+    font-size: 0.8rem;
+}
+.price {
+    font-size: 0.6rem;
+}
+
+a {
+    font-size: 0.5rem;
+}
 
 .product img {
     width: fit-content;
@@ -369,13 +418,14 @@ export default {
 }
 
 .shopping-cart .summary .text {
-    font-size: 0.6rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 800;
 }
 
 .shopping-cart .summary .price {
     float: right;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 800;
 }
 
 .shopping-cart .summary button {

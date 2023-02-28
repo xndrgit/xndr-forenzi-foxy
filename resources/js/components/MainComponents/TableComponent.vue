@@ -147,7 +147,7 @@ export default {
         th {
             background-color: $yellow;
             border: 1px solid #ddd;
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             text-align: center;
             vertical-align: middle;
 

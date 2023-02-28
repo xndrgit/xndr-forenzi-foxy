@@ -1,7 +1,7 @@
 <template>
     <div class="FooterBottom">
         <div
-            class="container d-flex align-items-center justify-content-between"
+            class="container d-flex align-items-center justify-content-between p-0"
         >
             <div class="d-flex align-items-center">
                 <p class="policy">
@@ -33,11 +33,21 @@ export default {};
 
     img {
         height: 25px;
-        margin: 2px;
+        margin: 10px;
     }
     .policy {
         display: contents;
         font-size: 0.8rem;
+    }
+
+    @media (max-width: 1000px) {
+        img {
+            height: 20px; /* Height for screens less than 1000px */
+        }
+        .policy {
+            font-size: 0.5rem;
+            height: 20px;
+        }
     }
 }
 </style>

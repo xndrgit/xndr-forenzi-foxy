@@ -10,17 +10,20 @@
                     class="d-flex flex-wrap justify-content-between align-items-center"
                 >
                     <div class="col-12 col-md-8">
-                        <h2 class="font-weight-bold">{{ category.name }}</h2>
+                        <h2 class="font-weight-bold">
+                            SCATOLE A {{ category.name }}
+                        </h2>
                         <h6 class="font-weight-bold">
                             {{ category.mini_description }}
                         </h6>
                         <!-- <div class="stars">
                         <i v-for="n in 5" :key="n" class="far fa-star"></i>
                     </div> -->
+                        <hr class="w-5" />
                         <div class="d-flex align-items-center">
                             <span>da </span>
                             <h3 class="p-2 font-weight-bold">
-                                €{{ (minimumPrice).toFixed(2) }}
+                                €{{ minimumPrice.toFixed(2) }}
                             </h3>
                             <span>IVA esclusa</span>
                         </div>
@@ -28,6 +31,7 @@
                             {{ category.description }}
                         </span>
                     </div>
+                  
                     <div class="col-12 col-md-4 position-relative">
                         <img class="img-fluid" :src="category.img" alt="" />
                         <img

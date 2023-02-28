@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td>
-            <img class="img-fluid" :src="imageSource" :alt="product.name"/>
+            <img class="img-fluid" :src="imageSource" :alt="product.name" />
         </td>
 
         <td class="font-weight-bold">{{ product.code }}</td>
@@ -11,7 +11,7 @@
         <td>
             <a href="/personalize">
                 <img
-                    class="img-fluid"
+                    class="img-fluid p-2"
                     src="../../../../public/Links/misure-personalizzate-per-tabella.png"
                     alt="PersonaliseImage"
                 />
@@ -21,7 +21,7 @@
             <span v-if="!product.price_saled" class="price">
                 € {{ product.price }}
             </span>
-            <span v-if="product.price_saled" class="current-price text-danger">
+            <span v-if="product.price_saled" class="current-price">
                 € {{ product.price_saled }}
             </span>
         </td>
@@ -36,7 +36,7 @@
         <td>
             <div class="d-flex align-items-center">
                 <div class="quantity d-flex">
-                    <input type="text" id="input" v-model="value"/>
+                    <input type="text" id="input" v-model="value" />
                     <div class="d-flex flex-column">
                         <button @click="increaseValue()">+</button>
                         <button @click="decreaseValue()">-</button>
@@ -103,20 +103,28 @@ export default {
                     quantity: this.value,
                 })
                 .then((response) => {
-                    if (response.data.result === 'success') {
+                    if (response.data.result === "success") {
                         alert("Added to Cart");
 
-                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
+                        this.updateCartInfo(
+                            response.data.productCount,
+                            response.data.total,
+                            response.data.products
+                        );
                     }
                 })
                 .catch((err) => {
                     console.error(err);
                 });
         },
-    }
+    },
 };
 </script>
 <style lang="scss" scoped>
+.current-price {
+    color: #f68630;
+    font-weight: bold;
+}
 .overflow-table::-webkit-scrollbar {
     background-color: transparent;
 }
@@ -129,7 +137,7 @@ export default {
         th {
             min-width: 60px;
             border: 1px solid #ddd;
-            font-size: 0.5rem;
+            font-size: 0.75rem;
             text-align: center;
             vertical-align: middle;
 

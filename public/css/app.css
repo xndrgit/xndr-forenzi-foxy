@@ -8207,8 +8207,7 @@ section.dark .blue:nth-child(2n)::before {
 }
 .yellow-button:active {
   transform: scale(1);
-  box-shadow: 0 0 10px #000;
-  background-color: #00f;
+  background-color: #f68630;
 }
 
 .orange-button {
@@ -8255,8 +8254,7 @@ section.dark .blue:nth-child(2n)::before {
 }
 .dark-button:active {
   transform: scale(1);
-  box-shadow: 0 0 10px #000;
-  background-color: #00f;
+  background-color: #f68630;
 }
 
 .orange {

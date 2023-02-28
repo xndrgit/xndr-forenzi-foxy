@@ -18,7 +18,7 @@
                     </div> -->
                     <div class="d-flex align-items-center">
                         <h4 v-if="product.price_saled" class="old-price">
-                            € {{ product.price }} ->
+                            € {{ product.price }} 
                         </h4>
                         <h4 v-if="!product.price_saled" class="price">
                             € {{ product.price }}
@@ -53,7 +53,7 @@
                             >
                         </div>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center productAdd ">
                         <QuantityProductsComponent
                             @update-quantity="updateQuantity"
                             :product="product"
@@ -102,7 +102,7 @@
                                 </span>
                                 <span
                                     v-if="product.price_saled"
-                                    class="current-price text-danger"
+                                    class="current-price"
                                 >
                                     € {{ product.price_saled }}
                                 </span>
@@ -131,7 +131,7 @@
             <!-- <a href="#">SCATOLA CONSEGNA</a>
             <a href="#">SPEDIZIONE</a> -->
         </nav>
-        <table class="alternating-rows table table-hover">
+        <table class="alternating-rows table table-hover mb-5">
             <tr>
                 <td class="td1">Tipologia:</td>
                 <td class="td2">{{ product.category.name }}</td>
@@ -266,6 +266,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.productAdd{
+    transform: scale(1.2);
+    margin-left: 4rem;
+}
 .overflow-table::-webkit-scrollbar {
     background-color: transparent;
 }
@@ -275,6 +280,8 @@ export default {
 }
 .current-price {
     font-weight: bold;
+    color:#f68630;
+   
 }
 
 .old-price {
@@ -295,7 +302,7 @@ p {
 }
 
 span {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     margin-right: 3px;
 }
 
@@ -329,7 +336,7 @@ nav {
         text-decoration: none;
         color: #333;
         font-weight: bold;
-        font-size: 0.5rem;
+        font-size: 0.8rem;
         transition: all 0.2s;
 
         &:hover {
@@ -359,7 +366,7 @@ table {
 }
 
 td {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     padding: 1rem;
     border: 1px solid white;
 }

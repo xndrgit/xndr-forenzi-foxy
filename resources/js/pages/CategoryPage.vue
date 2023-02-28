@@ -1,9 +1,12 @@
 <template>
     <div class="home">
         <div class="container">
-            <loadingComponent v-if="loadingCategories" />
+            <!-- <loadingComponent v-if="loadingCategories" /> -->
 
-            <div v-else-if="categories" class="d-flex flex-wrap justify-content-center">
+            <div
+                v-if="categories"
+                class="d-flex flex-wrap justify-content-between col-12"
+            >
                 <NavBoxesComponent
                     v-for="item in categories"
                     :key="item.name"
@@ -14,17 +17,18 @@
                 </div>
             </div>
 
-            <div v-else class="d-flex flex-wrap justify-content-center"></div>
+            <hr />
 
-            <div class="row justify-content-center" >
-                <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
-                <ShowBox2 v-else />
+            <div class="row justify-content-center">
+                <!-- <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" /> -->
+                <ShowBox2 />
                 <!-- <h4 class="fw-bold py-2">Elenco formati disponibili</h4> -->
             </div>
         </div>
         <!-- <ClassicRight /> -->
         <div class="container">
-            <h4 class="fw-bold py-2">Elenco formati disponibili</h4>
+            <hr class="my-4" />
+
             <TableComponent />
             <BannerNewsComponent />
         </div>

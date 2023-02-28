@@ -5,9 +5,9 @@
                 <div class="col-lg-12">
                     <div class="h6 mx-4 large">
                         <h2 class="font-weight-bold">CHECKOUT</h2>
-                        <hr class="w-5"/>
+                        <hr class="w-5" />
                         <span> DETTAGLI DI FATTURAZIONE </span>
-                        <hr/>
+                        <hr />
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-wrap">
@@ -25,10 +25,16 @@
                                                 <v-text-field
                                                     label="NOME"
                                                     v-model="first_name"
-                                                    :error-messages="firstNameErrors"
+                                                    :error-messages="
+                                                        firstNameErrors
+                                                    "
                                                     required
-                                                    @input="$v.first_name.$touch()"
-                                                    @blur="$v.first_name.$touch()"
+                                                    @input="
+                                                        $v.first_name.$touch()
+                                                    "
+                                                    @blur="
+                                                        $v.first_name.$touch()
+                                                    "
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -42,10 +48,16 @@
                                                 <v-text-field
                                                     label="COGNOME"
                                                     v-model="last_name"
-                                                    :error-messages="lastNameErrors"
+                                                    :error-messages="
+                                                        lastNameErrors
+                                                    "
                                                     required
-                                                    @input="$v.last_name.$touch()"
-                                                    @blur="$v.last_name.$touch()"
+                                                    @input="
+                                                        $v.last_name.$touch()
+                                                    "
+                                                    @blur="
+                                                        $v.last_name.$touch()
+                                                    "
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -209,7 +221,6 @@
                                                 <v-text-field
                                                     label="MAIL"
                                                     :value="mail"
-                                                    readonly
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -313,19 +324,25 @@
                                         <div class="d-flex flex-column px-3">
                                             <b class="">{{ item.name }}</b>
                                             <strong
-                                            >CODICE:
+                                                >CODICE:
                                                 <span> </span>
-                                                <a class="text-primary" href="#">
+                                                <a
+                                                    class="text-warnings"
+                                                    href="#"
+                                                >
                                                     {{ item.code }}
                                                 </a>
                                             </strong>
                                             <strong
-                                            >DIMENSIONI:
+                                                >DIMENSIONI:
                                                 <span> </span>
-                                                <a class="text-primary" href="#">
+                                                <a
+                                                    class="text-warnings"
+                                                    href="#"
+                                                >
                                                     <strong>
                                                         <a
-                                                            class="text-primary"
+                                                            class="text-warnings"
                                                             href="#"
                                                         >
                                                             {{ item.length }} x
@@ -336,9 +353,12 @@
                                                 </a>
                                             </strong>
                                             <strong
-                                            >QUANTITA'
+                                                >QUANTITA'
                                                 <span> </span>
-                                                <a class="text-primary" href="#">
+                                                <a
+                                                    class="text-warnings"
+                                                    href="#"
+                                                >
                                                     {{ item.pivot.quantity }}
                                                 </a>
                                             </strong>
@@ -397,7 +417,7 @@
                                         € {{ this.subtotal.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <!-- <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -424,7 +444,7 @@
                                         € {{ this.shipping_cost.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -435,7 +455,7 @@
                                         € {{ this.conai.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -444,20 +464,28 @@
                                         € {{ this.iva.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div
                                     class="total d-flex justify-content-between align-items-center font-weight-bold"
                                 >
-                                    <div>Total</div>
+                                    <div>TOTALE</div>
                                     <div>
-                                        € {{ (subtotal + shipping_cost + conai + iva).toFixed(2) }}
+                                        €
+                                        {{
+                                            (
+                                                subtotal +
+                                                shipping_cost +
+                                                conai +
+                                                iva
+                                            ).toFixed(2)
+                                        }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                             </div>
                             <div class="pay">
                                 <h5 class="fw-bold">MODALITÀ DI PAGAMENTO</h5>
-                                <br/>
+                                <br />
 
                                 <div class="form-check">
                                     <input
@@ -481,7 +509,7 @@
                                         finché i fondi non risulteranno
                                         trasferiti nel nostro conto corrente.
                                     </p>
-                                    <hr/>
+                                    <hr />
                                 </div>
 
                                 <div class="form-check">
@@ -503,7 +531,7 @@
                                         Pagamento in contanti al momento della
                                         consegna.
                                     </p>
-                                    <hr/>
+                                    <hr />
                                 </div>
 
                                 <div class="form-check">
@@ -524,11 +552,21 @@
                                             PAYPAL E CARTE DI CREDITO
                                         </label>
                                         <div class="d-flex align-items-center">
-                                            <i class="fab fa-cc-paypal fa-2x me-3"></i>
-                                            <i class="fab fa-cc-visa fa-2x me-3"></i>
-                                            <i class="fab fa-cc-mastercard fa-2x me-3"></i>
-                                            <i class="fab fa-cc-apple-pay fa-2x me-3"></i>
-                                            <i class="fab fa-google-pay fa-2x me-3"></i>
+                                            <i
+                                                class="fab fa-cc-paypal fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-cc-visa fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-cc-mastercard fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-cc-apple-pay fa-2x me-3"
+                                            ></i>
+                                            <i
+                                                class="fab fa-google-pay fa-2x me-3"
+                                            ></i>
                                         </div>
                                     </div>
 
@@ -537,7 +575,7 @@
                                         carta di credito se non hai un account
                                         PayPal.
                                     </p>
-                                    <hr/>
+                                    <hr />
                                 </div>
 
                                 <p>
@@ -545,9 +583,11 @@
                                     per elaborare il tuo ordine, supportare la
                                     tua esperienza in questo sito Web e per
                                     altri scopi descritti nella nostra
-                                    <strong>privacy policy.</strong>
+                                    <strong>
+                                        <a href="">privacy policy.</a>
+                                    </strong>
                                 </p>
-                                <hr/>
+                                <hr />
 
                                 <div class="form-check">
                                     <input
@@ -559,7 +599,11 @@
                                     />
                                     <label class="form-check-label" for="terms">
                                         Ho letto e accetto
-                                        <strong>termini e condizioni</strong>
+                                        <strong
+                                            ><a href=""
+                                                >termini e condizioni</a
+                                            ></strong
+                                        >
                                         del sito web *
                                     </label>
                                 </div>
@@ -567,7 +611,7 @@
                                     class="col-md-12 my-4 d-flex justify-content-center w-100"
                                 >
                                     <button
-                                        class="btn text-uppercase"
+                                        class="yellow-button text-uppercase"
                                         @click="send()"
                                         :disabled="!agree || pending"
                                     >
@@ -584,8 +628,8 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-import {maxLength, required,} from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
+import { maxLength, required } from "vuelidate/lib/validators";
 import mixinCart from "../mixins/mixinCart";
 
 export default {
@@ -629,23 +673,23 @@ export default {
             code_sdi_error: ["error"],
             notes_error: ["error"],
 
-            pending: false
+            pending: false,
         };
     },
 
     validations: {
-        first_name: {required, maxLength: maxLength(10)},
-        last_name: {required, maxLength: maxLength(10)},
-        business_name: {required, maxLength: maxLength(15)},
-        address: {required},
-        cap: {required},
-        city: {required},
-        province: {required},
-        state: {required},
-        phone: {required},
-        pec: {required},
-        code_sdi: {required},
-        notes: {required},
+        first_name: { required, maxLength: maxLength(10) },
+        last_name: { required, maxLength: maxLength(10) },
+        business_name: { required, maxLength: maxLength(15) },
+        address: { required },
+        cap: { required },
+        city: { required },
+        province: { required },
+        state: { required },
+        phone: { required },
+        pec: { required },
+        code_sdi: { required },
+        notes: { required },
     },
 
     computed: {
@@ -669,11 +713,11 @@ export default {
                 return errors;
             }
             !this.$v.first_name.maxLength &&
-            errors.push("Must be at most 10 characters long") &&
-            this.first_name_error.push("error");
+                errors.push("Must be at most 10 characters long") &&
+                this.first_name_error.push("error");
             !this.$v.first_name.required &&
-            errors.push("First Name is required.") &&
-            this.first_name_error.push("error");
+                errors.push("First Name is required.") &&
+                this.first_name_error.push("error");
             return errors;
         },
 
@@ -685,11 +729,11 @@ export default {
                 return errors;
             }
             !this.$v.last_name.maxLength &&
-            errors.push("Must be at most 10 characters long") &&
-            this.last_name_error.push("error");
+                errors.push("Must be at most 10 characters long") &&
+                this.last_name_error.push("error");
             !this.$v.last_name.required &&
-            errors.push("Last Name is required.") &&
-            this.last_name_error.push("error");
+                errors.push("Last Name is required.") &&
+                this.last_name_error.push("error");
             return errors;
         },
 
@@ -701,11 +745,11 @@ export default {
                 return errors;
             }
             !this.$v.business_name.maxLength &&
-            errors.push("Must be at most 10 characters long") &&
-            this.business_name_error.push("error");
+                errors.push("Must be at most 10 characters long") &&
+                this.business_name_error.push("error");
             !this.$v.business_name.required &&
-            errors.push("Business Name is required.") &&
-            this.business_name_error.push("error");
+                errors.push("Business Name is required.") &&
+                this.business_name_error.push("error");
             return errors;
         },
 
@@ -717,8 +761,8 @@ export default {
                 return errors;
             }
             !this.$v.address.required &&
-            errors.push("ADDRESS is required.") &&
-            this.address_error.push("error");
+                errors.push("ADDRESS is required.") &&
+                this.address_error.push("error");
             return errors;
         },
 
@@ -730,8 +774,8 @@ export default {
                 return errors;
             }
             !this.$v.cap.required &&
-            errors.push("POSTAL CODE is required.") &&
-            this.cap_error.push("error");
+                errors.push("POSTAL CODE is required.") &&
+                this.cap_error.push("error");
             return errors;
         },
 
@@ -743,8 +787,8 @@ export default {
                 return errors;
             }
             !this.$v.city.required &&
-            errors.push("CITY is required.") &&
-            this.city_error.push("error");
+                errors.push("CITY is required.") &&
+                this.city_error.push("error");
             return errors;
         },
 
@@ -756,8 +800,8 @@ export default {
                 return errors;
             }
             !this.$v.province.required &&
-            errors.push("PROVINCE is required.") &&
-            this.province_error.push("error");
+                errors.push("PROVINCE is required.") &&
+                this.province_error.push("error");
             return errors;
         },
 
@@ -769,8 +813,8 @@ export default {
                 return errors;
             }
             !this.$v.state.required &&
-            errors.push("STATE is required.") &&
-            this.state_error.push("error");
+                errors.push("STATE is required.") &&
+                this.state_error.push("error");
             return errors;
         },
 
@@ -782,8 +826,8 @@ export default {
                 return errors;
             }
             !this.$v.phone.required &&
-            errors.push("TELEPHONE is required.") &&
-            this.phone_error.push("error");
+                errors.push("TELEPHONE is required.") &&
+                this.phone_error.push("error");
             return errors;
         },
 
@@ -795,8 +839,8 @@ export default {
                 return errors;
             }
             !this.$v.pec.required &&
-            errors.push("PEC is required.") &&
-            this.pec_error.push("error");
+                errors.push("PEC is required.") &&
+                this.pec_error.push("error");
             return errors;
         },
 
@@ -808,8 +852,8 @@ export default {
                 return errors;
             }
             !this.$v.code_sdi.required &&
-            errors.push("SDI CODE is required.") &&
-            this.code_sdi_error.push("error");
+                errors.push("SDI CODE is required.") &&
+                this.code_sdi_error.push("error");
             return errors;
         },
 
@@ -821,8 +865,8 @@ export default {
                 return errors;
             }
             !this.$v.notes.required &&
-            errors.push("NOTES is required.") &&
-            this.notes_error.push("error");
+                errors.push("NOTES is required.") &&
+                this.notes_error.push("error");
             return errors;
         },
     },
@@ -832,36 +876,35 @@ export default {
     },
     methods: {
         pushBack() {
-            this.$router.push('/cart');
+            this.$router.push("/cart");
         },
         getUserInfo() {
-            axios
-                .get("/shop/users/detail", {})
-                .then((response) => {
-                    const details = response.data.result;
-                    this.mail = details.email;
-                    if (details.user_detail) {
-                        this.first_name = details.name;
-                        this.last_name = details.user_detail.surname;
-                        this.business_name = details.user_detail.business_name;
-                        this.notes = details.user_detail.notes;
-                        this.address = details.user_detail.address;
-                        this.phone = details.user_detail.phone;
-                        this.city = details.user_detail.city;
-                        this.cap = details.user_detail.cap;
-                        this.province = details.user_detail.province;
-                        this.state = details.user_detail.state;
-                        this.pec = details.user_detail.pec;
-                        this.code_sdi = details.user_detail.code_sdi;
-                        this.agree = details.user_detail.agree;
+            axios.get("/shop/users/detail", {}).then((response) => {
+                const details = response.data.result;
+                this.mail = details.email;
+                if (details.user_detail) {
+                    this.first_name = details.name;
+                    this.last_name = details.user_detail.surname;
+                    this.business_name = details.user_detail.business_name;
+                    this.notes = details.user_detail.notes;
+                    this.address = details.user_detail.address;
+                    this.phone = details.user_detail.phone;
+                    this.city = details.user_detail.city;
+                    this.cap = details.user_detail.cap;
+                    this.province = details.user_detail.province;
+                    this.state = details.user_detail.state;
+                    this.pec = details.user_detail.pec;
+                    this.code_sdi = details.user_detail.code_sdi;
+                    this.agree = details.user_detail.agree;
 
-                        this.$forceUpdate();
-                    }
-                });
+                    this.$forceUpdate();
+                }
+            });
         },
 
         send() {
-            const total = this.subtotal + this.shipping_cost + this.conai + this.iva;
+            const total =
+                this.subtotal + this.shipping_cost + this.conai + this.iva;
             if (total <= 0) {
                 alert("Cart Failed!");
                 return;
@@ -883,7 +926,8 @@ export default {
                 this.notes_error.length === 0 &&
                 this.$refs.checkTerm.checked
             ) {
-                const total = this.subtotal + this.shipping_cost + this.conai + this.iva;
+                const total =
+                    this.subtotal + this.shipping_cost + this.conai + this.iva;
                 this.pending = true;
                 axios
                     .post(`/shop/orders`, {
@@ -899,10 +943,10 @@ export default {
                             state: this.state,
                             pec: this.pec,
                             code_sdi: this.code_sdi,
-                        }
+                        },
                     })
                     .then((res) => {
-                        if (res.data.result === 'success' && res.data.id) {
+                        if (res.data.result === "success" && res.data.id) {
                             window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}`;
                         } else {
                             alert("Failed!");
@@ -916,6 +960,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.text-warnings {
+    color: #f68630;
+    font-weight: 800;
+}
 .display-5 {
     font-weight: bold;
 }
@@ -1092,27 +1140,26 @@ tr.text-muted td {
     padding: 0.3rem;
 }
 
-.btn.text-uppercase {
-    border: 1px solid #333;
-    font-weight: 600;
-    border-radius: 0;
+.yellow-button{
+    width: -webkit-fill-available;
+    font-size: 1.1rem;
 }
 
-.btn.text-uppercase:hover {
+.yellow-button.text-uppercase:hover {
     background-color: #333;
     color: #eee;
 }
 
-.btn.text-white {
+.yellow-button.text-white {
     background-color: #66cdaa;
     border-radius: 0;
 }
 
-.btn.text-white:hover {
+.yellow-button.text-white:hover {
     background-color: #3cb371;
 }
 
-.btn:disabled {
+.yellow-button:disabled {
     cursor: not-allowed;
 }
 
