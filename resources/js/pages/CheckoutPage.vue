@@ -903,7 +903,7 @@ export default {
                     })
                     .then((res) => {
                         if (res.data.result === 'success' && res.data.id) {
-                            window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}`;
+                            window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}&payment_method=${this.paymentMethod}`;
                         } else {
                             alert("Failed!");
                             this.pending = false;
