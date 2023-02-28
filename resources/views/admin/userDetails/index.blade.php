@@ -38,7 +38,7 @@
                                 <th scope="row">{{ $user->roles->first()->name }}</th>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->userDetail->phone }}</td>
+                                <td>{{ $user->user_detail->phone }}</td>
                                 <td>
                                     <a
                                         class="btn btn-sm btn-success rounded-circle"

@@ -47,7 +47,7 @@
                                     name="surname"
                                     required
                                     type="text"
-                                    value="{{ old('surname', $user->userDetail->surname) }}"
+                                    value="{{ old('surname', $user->user_detail->surname) }}"
                                 />
 
                                 @error('name')
@@ -71,7 +71,7 @@
                                     name="business_name"
                                     required
                                     type="text"
-                                    value="{{ old('business_name', $user->userDetail->business_name) }}"
+                                    value="{{ old('business_name', $user->user_detail->business_name) }}"
                                 />
 
                                 @error('business_name')
@@ -93,7 +93,7 @@
                                     name="address"
                                     required
                                     type="text"
-                                    value="{{ old('address', $user->userDetail->address) }}"
+                                    value="{{ old('address', $user->user_detail->address) }}"
                                 />
 
                                 @error('address')
@@ -117,7 +117,7 @@
                                     name="cap"
                                     required
                                     type="text"
-                                    value="{{ old('cap', $user->userDetail->cap) }}"
+                                    value="{{ old('cap', $user->user_detail->cap) }}"
                                 />
 
                                 @error('cap')
@@ -139,7 +139,7 @@
                                     name="city"
                                     required
                                     type="city"
-                                    value="{{ old('city', $user->userDetail->city) }}"
+                                    value="{{ old('city', $user->user_detail->city) }}"
                                 />
 
                                 @error('city')
@@ -163,7 +163,7 @@
                                     name="province"
                                     required
                                     type="text"
-                                    value="{{ old('province', $user->userDetail->province) }}"
+                                    value="{{ old('province', $user->user_detail->province) }}"
                                 />
 
                                 @error('province')
@@ -185,7 +185,7 @@
                                     name="state"
                                     required
                                     type="text"
-                                    value="{{ old('state', $user->userDetail->state) }}"
+                                    value="{{ old('state', $user->user_detail->state) }}"
                                 />
 
                                 @error('state')
@@ -211,7 +211,7 @@
                                     name="phone"
                                     required
                                     type="text"
-                                    value="{{ old('phone', $user->userDetail->phone) }}"
+                                    value="{{ old('phone', $user->user_detail->phone) }}"
                                 />
 
                                 @error('phone')
@@ -258,7 +258,7 @@
                                     name="pec"
                                     required
                                     type="text"
-                                    value="{{ old('pec', $user->userDetail->pec) }}"
+                                    value="{{ old('pec', $user->user_detail->pec) }}"
                                 />
 
                                 @error('pec')
@@ -280,7 +280,7 @@
                                     name="code_sdi"
                                     required
                                     type="number"
-                                    value="{{ old('code_sdi', $user->userDetail->code_sdi) }}"
+                                    value="{{ old('code_sdi', $user->user_detail->code_sdi) }}"
                                 />
 
                                 @error('code_sdi')
@@ -309,7 +309,7 @@
                                     rows="4"
                                     style="white-space: wrap !important;"
                                     type="text"
-                                >{{ old('notes', $user->userDetail->notes) }}</textarea>
+                                >{{ old('notes', $user->user_detail->notes) }}</textarea>
 
                                 @error('pec')
                                     <div class="alert alert-danger">
@@ -414,7 +414,7 @@
                                         >
                                             @foreach ($levels as $level)
                                                 <option
-                                                    {{ old('admin', $user->userDetail->admin) == $level->admin ? 'selected' : '' }}
+                                                    {{ old('admin', $user->user_detail->admin) == $level->admin ? 'selected' : '' }}
                                                     value="{{ $level->admin }}"
                                                 >
                                                     {{ $level->admin }}

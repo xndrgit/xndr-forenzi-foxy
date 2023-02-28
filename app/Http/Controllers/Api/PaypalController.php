@@ -53,13 +53,14 @@ class PaypalController extends Controller
             $payment->transaction_id = $response['id'];
             $payment->payment_method = 'PayPal';    // set static
             $payment->amount = round($params['amount'], 2);
-            $payment->payment_status = 'pending';  // set static
+            $payment->payment_status = 'in attesa';  // set static
             $payment->created_at = now();
             $payment->updated_at = now();
             $payment->save();
 
             $order = Order::find($orderId);
             $order->order_number = $response['id'];
+            $order->status = 'spedito';
             $order->order_date = now();
             $order->save();
 
@@ -93,10 +94,10 @@ class PaypalController extends Controller
                 // Process payment success
                 $payment = Payment::where('transaction_id', $request['token'])->first();
                 if ($payment) {
-                    $payment->payment_status = 'success';
+                    $payment->payment_status = 'successo';
 
                     $order = Order::find($payment->order_id);
-                    $order->status = 'pagata';
+                    $order->status = 'consegnato';
                     $order->save();
 
                     $payment->save();
@@ -130,10 +131,10 @@ class PaypalController extends Controller
             // Process payment cancel
             $payment = Payment::where('transaction_id', $request['token'])->first();
             if ($payment) {
-                $payment->payment_status = 'canceled';
+                $payment->payment_status = 'fallito';
 
                 $order = Order::find($payment->order_id);
-                $order->status = 'annullata';
+                $order->status = 'annullato';
                 $order->save();
 
                 $payment->save();

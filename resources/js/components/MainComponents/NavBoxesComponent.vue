@@ -10,18 +10,13 @@
                         :class="category.color"
                     >
                         <div class="up">
-                            <router-link
-                                :to="{
-                                    name: 'category',
-                                    params: { id: category.id },
-                                }"
-                            >
+                            <a :href="`/category/${category.id}`">
                                 <img
                                     class="card-img-top"
                                     :src="category.img"
                                     alt="category-img"
                                 />
-                            </router-link>
+                            </a>
                             <div class="litlogo position-absolute">
                                 <img
                                     class="img-fluid"
@@ -43,7 +38,7 @@
                 </div>
             </nav>
         </div>
-      
+
     </div>
 </template>
 
@@ -80,9 +75,8 @@ export default {
             height: 75%;
 
             img {
-                padding: 10px;
                 height: -webkit-fill-available;
-                padding: 1rem 0px;
+                padding: 1rem 0;
             }
             .litlogo {
                 bottom: 30px;
@@ -108,7 +102,7 @@ export default {
             }
         }
     }
-    
+
 
     .orange-box {
         background-color: rgb(245, 134, 47);

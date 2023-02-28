@@ -41,9 +41,9 @@
                             <div class="postcard__preview-txt"><span class="text-muted">EMAIL:</span>
                                 {{ ucwords($user->email) }}</div>
                             <div class="postcard__preview-txt"><span class="text-muted">ADDRESS:</span>
-                                {{ ucwords($user->userdetail->address) }}</div>
+                                {{ ucwords($user->user_detail->address) }}</div>
                             <div class="postcard__preview-txt"><span class="text-muted">PHONE:</span>
-                                {{ ucwords($user->userDetail->phone) }}</div>
+                                {{ ucwords($user->user_detail->phone) }}</div>
                             <ul class="postcard__tagbox">
                                 <li class="tag__item"><i
                                         class="fas fa-user mr-2"></i>{{ ucwords($user->roles->first()->name) }}</li>
