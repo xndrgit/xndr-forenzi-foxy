@@ -55,10 +55,10 @@
 
                         <!-- Header -->
                         <div class="card__header">
-                            <h3 class="card__header-title">{{ $user->name }} {{ $user->userDetail->surname }}</h3>
+                            <h3 class="card__header-title">{{ $user->name }} {{ $user->user_detail->surname }}</h3>
                             <div class="d-flex">
                                 <i class="fas fa-user-cog mx-1"></i>
-                                <p class="card__header-meta">{{ ucwords($user->userDetail->admin) }}</p>
+                                <p class="card__header-meta">{{ ucwords($user->user_detail->admin) }}</p>
                             </div>
 
                             <div class="card__header-icon">
@@ -95,11 +95,11 @@
                     <tbody>
                         <tr>
                             <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->userDetail->state }}</td>
-                            <td>{{ $user->userDetail->city }}</td>
-                            <td>{{ $user->userDetail->province }}</td>
-                            <td>{{ $user->userDetail->address }}</td>
-                            <td>{{ $user->userDetail->cap }}</td>
+                            <td>{{ $user->user_detail->state }}</td>
+                            <td>{{ $user->user_detail->city }}</td>
+                            <td>{{ $user->user_detail->province }}</td>
+                            <td>{{ $user->user_detail->address }}</td>
+                            <td>{{ $user->user_detail->cap }}</td>
                         </tr>
 
                     </tbody>
@@ -119,11 +119,11 @@
                     <tbody>
                         <tr>
                             <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->userDetail->business_name }}</td>
-                            <td>{{ $user->userDetail->phone }}</td>
+                            <td>{{ $user->user_detail->business_name }}</td>
+                            <td>{{ $user->user_detail->phone }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->userDetail->pec }}</td>
-                            <td>{{ $user->userDetail->code_sdi }}</td>
+                            <td>{{ $user->user_detail->pec }}</td>
+                            <td>{{ $user->user_detail->code_sdi }}</td>
                         </tr>
 
                     </tbody>

@@ -35,10 +35,10 @@
                     <tbody>
                         @forelse ($users as $user)
                             <tr>
-                                <th scope="row">{{ $user->userDetail['admin'] }}</th>
+                                <th scope="row">{{ $user->user_detail['admin'] }}</th>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->userDetail['phone'] }}</td>
+                                <td>{{ $user->user_detail['phone'] }}</td>
                                 <td>
                                     <a
                                         class="btn btn-sm btn-success rounded-circle"

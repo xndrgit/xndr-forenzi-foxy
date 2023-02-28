@@ -31,7 +31,7 @@
                         </a>
                         <div class="postcard__text">
                             <h1 class="postcard__title blue"><a href="{{-- {{ route('admin.orders.show', $order->user->id) }} --}}">{{ $order->user->name }}
-                                    {{ $order->user->userDetail->surname }}</a>
+                                    {{ $order->user->user_detail->surname }}</a>
                             </h1>
                             <div class="postcard__subtitle small">
                                 <time datetime="2020-05-25 12:00:00">
@@ -41,9 +41,9 @@
                             <div class="postcard__bar"></div>
 
                             <div class="postcard__preview-txt h6 small"><span class="text-muted">INDIRIZZO:</span>
-                                {{ $order->user->userDetail->address }}</div>
+                                {{ $order->user->user_detail->address }}</div>
                             <div class="postcard__preview-txt h6 small"><span class="text-muted">TELEFONO:</span>
-                                {{ $order->user->userDetail->phone }}</div>
+                                {{ $order->user->user_detail->phone }}</div>
                             <div class="postcard__preview-txt h6 small"><span class="text-muted">EMAIL:</span>
                                 {{ $order->user->email }}</div>
 
@@ -53,11 +53,11 @@
                                     class="tag__item"
                                     style="
                                         @if ($order->status == 'consegnato') background-color: #005c00;
-                                        @elseif($order->status == 'annullato') 
+                                        @elseif($order->status == 'annullato')
                                             background-color: #8b0000;
-                                        @elseif($order->status == 'spedito') 
+                                        @elseif($order->status == 'spedito')
                                             background-color: #000066;
-                                        @elseif($order->status == 'in attesa') 
+                                        @elseif($order->status == 'in attesa')
                                             background-color: #cccc00; @endif"
                                 ><i class="fas fa-bus-alt mr-2"></i>{{ $order->status }}</li>
                                 {{-- <li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
@@ -88,14 +88,14 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">{{ $order->user->userDetail->id }}</th>
-                            <td>{{ $order->user->userDetail->business_name }}</td>
-                            <td>{{ $order->user->userDetail->cap }}</td>
-                            <td>{{ $order->user->userDetail->city }}</td>
-                            <td>{{ $order->user->userDetail->province }}</td>
-                            <td>{{ $order->user->userDetail->state }}</td>
-                            <td>{{ $order->user->userDetail->pec }}</td>
-                            <td>{{ $order->user->userDetail->code_sdi }}</td>
+                            <th scope="row">{{ $order->user->user_detail->id }}</th>
+                            <td>{{ $order->user->user_detail->business_name }}</td>
+                            <td>{{ $order->user->user_detail->cap }}</td>
+                            <td>{{ $order->user->user_detail->city }}</td>
+                            <td>{{ $order->user->user_detail->province }}</td>
+                            <td>{{ $order->user->user_detail->state }}</td>
+                            <td>{{ $order->user->user_detail->pec }}</td>
+                            <td>{{ $order->user->user_detail->code_sdi }}</td>
                         </tr>
 
                     </tbody>
@@ -104,7 +104,7 @@
                 <div class="card col-12 my-4 px-5">
                     <div class="card-body ">
                         <h2 class="text-muted">Note</h2>
-                        <p class="card-text">{{ $order->user->userDetail->notes }}</p>
+                        <p class="card-text">{{ $order->user->user_detail->notes }}</p>
                     </div>
                 </div>
 
