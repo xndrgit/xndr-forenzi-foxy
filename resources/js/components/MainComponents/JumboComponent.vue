@@ -2,7 +2,7 @@
     <div class="jumbo d-flex flex-wrap col-xl-12">
         <div id="slider" class="jumbo1 col-xl-7">
             <carousel
-                class="align-items-center justify-content-center"
+                class="align-items-center justify-content-start"
                 :perPageCustom="[
                     [0, 1],
                     [480, 1],
@@ -41,9 +41,9 @@
         </div>
         <div class="jumbo2 col-xl-5">
             <div class="clock p-2 d-none d-lg-flex d-flex flex-column">
-                <h5 class="m-0 font-weight-bold">
+                <h6 class="m-0 font-weight-bold">
                     EFFETUA IL TUO ORDINE ENTRO
-                </h5>
+                </h6>
                 <div
                     class="countdown d-flex justify-content-center align-items-center flex-wrap col-12 p-0"
                 >
@@ -187,6 +187,7 @@ export default {
 <style lang="scss">
 div.VueCarousel-pagination {
     position: absolute !important;
+    bottom: 20px;
 }
 .jumbo {
     display: flex;
@@ -228,7 +229,7 @@ div.VueCarousel-pagination {
         .VueCarousel {
             object-fit: contain;
             width: 100%;
-            height: 400px;
+            height: 360px;
         }
     }
 
@@ -238,7 +239,7 @@ div.VueCarousel-pagination {
             align-items: center;
             justify-content: center;
 
-            font-size: 1rem;
+            font-size: 0.9rem;
 
             height: -webkit-fill-available;
             background-color: rgb(246, 134, 48);
@@ -249,8 +250,8 @@ div.VueCarousel-pagination {
                     align-items: center;
                     justify-content: center;
 
-                    height: 70px;
-                    width: 70px;
+                    height: 60px;
+                    width: 60px;
                     background-color: rgb(253, 188, 72);
                     margin: 10px;
                     padding: 1.2rem;
@@ -262,7 +263,7 @@ div.VueCarousel-pagination {
                     }
 
                     .square-text {
-                        font-size: 0.5rem;
+                        font-size: 0.4rem;
                         font-weight: bold;
                     }
                 }
