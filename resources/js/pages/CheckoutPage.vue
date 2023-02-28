@@ -946,18 +946,8 @@ export default {
                         },
                     })
                     .then((res) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
                         if (res.data.result === "success" && res.data.id) {
-                            window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}`;
-=======
-                        if (res.data.result === 'success' && res.data.id) {
                             window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}&payment_method=${this.paymentMethod}`;
->>>>>>> 4eeda0388a35e7634e9356c43ae651efab01b8e4
-=======
-                        if (res.data.result === 'success' && res.data.id) {
-                            window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}&payment_method=${this.paymentMethod}`;
->>>>>>> 4eeda0388a35e7634e9356c43ae651efab01b8e4
                         } else {
                             alert("Failed!");
                             this.pending = false;
@@ -1150,7 +1140,7 @@ tr.text-muted td {
     padding: 0.3rem;
 }
 
-.yellow-button{
+.yellow-button {
     width: -webkit-fill-available;
     font-size: 1.1rem;
 }

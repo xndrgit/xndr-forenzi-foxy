@@ -206,7 +206,7 @@
                                 </span>
                             </div>
                             <div
-                                class="summary-item txt-orange d-flex align-items-center justify-content-between mt-3"
+                                class="summary-item txt-orange d-flex align-items-center justify-content-between"
                             >
                                 <span class="text">TOTALE ORDINE</span>
                                 <span class="price">
