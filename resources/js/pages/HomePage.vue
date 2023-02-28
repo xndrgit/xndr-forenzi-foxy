@@ -2,7 +2,7 @@
     <div class="home">
         <div class="container">
             <div class="row justify-content-center">
-                <loadingComponent v-if="loadingCategories" />
+                <loadingComponent v-if="loadingCategories"/>
 
                 <div
                     class="d-flex flex-wrap justify-content-between col-12"
@@ -14,22 +14,22 @@
                         :category="category"
                     />
                     <div @click="goToPersonalizePage">
-                        <CustomizeBoxesComponent />
+                        <CustomizeBoxesComponent/>
                     </div>
                 </div>
 
-                <JumboComponent />
-                <BannerNewsComponent />
+                <JumboComponent/>
+                <BannerNewsComponent/>
                 <BannerTextComponent
                     v-for="element in txtbanners"
                     :key="element.title"
                     :title="element.title"
                     :description="element.description"
-                       :descriptionTwo="element.descriptionTwo"
+                    :descriptionTwo="element.descriptionTwo"
                     :descriptionBold="element.descriptionBold"
                 />
 
-                <LoadingRollComponent v-if="loadingProducts" />
+                <LoadingRollComponent v-if="loadingProducts"/>
                 <div class="d-flex justify-content-center flex-wrap" v-else>
                     <BoxesComponent
                         v-for="product in products"
@@ -39,7 +39,7 @@
                 </div>
 
                 <div v-if="!loadingProducts">
-                    <div v-if="!pagination.next_page_url">
+                    <div v-if="pagination.next_page_url">
                         <button class="yellow-button" @click="loadMore">
                             Load More
                         </button>
@@ -59,7 +59,7 @@
             :notes="element.notes"
             :button="element.button"
         />
-        <ClassicRight />
+        <ClassicRight/>
     </div>
 </template>
 
@@ -102,14 +102,14 @@ export default {
             categories: [],
             // currentPageCategories: 1,
             // lastPageCategories: null,
-            // loadingCategories: true,
+            loadingCategories: true,
             loadingProducts: true,
             pagination: {
                 total: null,
                 per_page: null,
                 current_page: 1,
-                last_page: null,
-                next_page_url: null,
+                last_page: 1,
+                next_page_url: 1,
                 prev_page_url: null,
             },
 
@@ -132,7 +132,21 @@ export default {
                     button: "SCOPRI IL PRODOTTO",
                 },
             ],
+            searchParams: {
+                length: null,
+                width: null,
+                height: null,
+                searchStr: null
+            }
         };
+    },
+    beforeDestroy() {
+        window.VBus.stop('search-products', this.searchProducts);
+    },
+    mounted() {
+        this.getCategories();
+        this.getProducts();
+        window.VBus.listen('search-products', this.searchProducts);
     },
     methods: {
         loadMore() {
@@ -141,24 +155,32 @@ export default {
                 alert("Error: Current page is not defined!");
                 return;
             }
+
+            this.loadingProducts = true;
             axios
-                .get(
-                    "/shop/products?page=" + (this.pagination.current_page + 1)
-                )
+                .post("/shop/products", {
+                    page: (this.pagination.current_page + 1),
+                    searchParams: this.searchParams
+                })
                 .then((response) => {
+                    this.loadingProducts = false;
                     this.products = [
                         ...this.products,
                         ...response.data.results,
                     ];
                     this.pagination.current_page = response.data.current_page;
-                    this.pagination.next_page_url = response.data.next_page_url;
+                    this.pagination.last_page = response.data.last_page;
+                    this.pagination.prev_page_url = this.pagination.current_page > 1 ? (this.pagination.current_page - 1) : 1;
+                    this.pagination.next_page_url = (!response.data.results || !response.data.results.length) || (this.pagination.current_page === response.data.last_page)
+                        ? null
+                        : (this.pagination.current_page + 1);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
         goToPersonalizePage() {
-            this.$router.push({ path: "/personalize" });
+            this.$router.push({path: "/personalize"});
         },
         getCategories(pageCategories = 1) {
             this.loadingCategories = true;
@@ -180,7 +202,9 @@ export default {
         getProducts() {
             this.loadingProducts = true;
             axios
-                .get("/shop/products", {})
+                .post("/shop/products", {
+                    searchParams: this.searchParams
+                })
                 .then((response) => {
                     this.products = response.data.results;
                     this.loadingProducts = false;
@@ -189,10 +213,10 @@ export default {
                     console.warn(error.message);
                 });
         },
-    },
-    created() {
-        this.getCategories();
-        this.getProducts();
+        searchProducts(data) {
+            this.searchParams = Object.assign({}, data);
+            this.getProducts();
+        }
     },
 };
 </script>

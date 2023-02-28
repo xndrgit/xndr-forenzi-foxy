@@ -29,6 +29,7 @@ Route::prefix('shop')
     ->name('shop.')
     ->group(function () {
         Route::get('/products', 'ProductController@index');
+        Route::post('/products', 'ProductController@index')->name('products.search');
         Route::get('/products/{id}', 'ProductController@show');
         Route::get('/products/siblings/{id}', 'ProductController@siblings');
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <LoadingRollComponent v-if="loadingProduct" />
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center" v-if="product">
             <div class="left col-5 d-flex justify-content-center">
                 <img class="img-fluid" :src="imageSource" :alt="product.name" />
             </div>
@@ -18,7 +18,7 @@
                     </div> -->
                     <div class="d-flex align-items-center">
                         <h4 v-if="product.price_saled" class="old-price">
-                            € {{ product.price }} 
+                            € {{ product.price }}
                         </h4>
                         <h4 v-if="!product.price_saled" class="price">
                             € {{ product.price }}
@@ -46,8 +46,7 @@
 
                         <div class="d-flex">
                             <span>CATEGORIA:</span>
-                            <strong
-                                ><span class="fw-bold">{{
+                            <strong v-if="product.category"><span class="fw-bold">{{
                                     product.category.name
                                 }}</span></strong
                             >
@@ -131,10 +130,10 @@
             <!-- <a href="#">SCATOLA CONSEGNA</a>
             <a href="#">SPEDIZIONE</a> -->
         </nav>
-        <table class="alternating-rows table table-hover mb-5">
+        <table class="alternating-rows table table-hover mb-5" v-if="product">
             <tr>
                 <td class="td1">Tipologia:</td>
-                <td class="td2">{{ product.category.name }}</td>
+                <td class="td2" v-if="product.category">{{ product.category.name }}</td>
             </tr>
             <tr>
                 <td class="td1">Cartone:</td>
@@ -171,16 +170,10 @@ export default {
         QuantityProductsComponent,
     },
     mixins: [mixinCart],
-    props: {
-        product: {
-            type: Object,
-            required: true,
-        },
-    },
     data() {
         return {
             isReadOnly: true,
-            product: {},
+            product: null,
             priceDynamic: "",
             loadingProduct: true,
             quantity: 0,
@@ -281,7 +274,7 @@ export default {
 .current-price {
     font-weight: bold;
     color:#f68630;
-   
+
 }
 
 .old-price {
@@ -316,7 +309,7 @@ img {
     max-width: 100%;
     height: fit-content;
 
-    width: -webkit-fill-available;
+    width: 100%;
 }
 
 input {
@@ -354,7 +347,7 @@ nav {
 
 // TABLE
 table {
-    width: -webkit-fill-available;
+    width: 100%;
 }
 
 .alternating-rows tr:nth-child(odd) {

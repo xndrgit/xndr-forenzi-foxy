@@ -18,7 +18,7 @@
 
             <div class="d-flex justify-content-center">
                 <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
-                <ShowBox v-else />
+                <ShowBox v-else/>
             </div>
 
             <h6 class="font-weight-bold m-0">Elenco formati disponibili</h6>
@@ -42,10 +42,14 @@ import LoadingRollComponent from "../components/MainComponents/LoadingRollCompon
 
 import TableComponent from "../components/MainComponents/TableComponent.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
+import ClassicLeft from "../components/MainComponents/ClassicLeft.vue";
+import ClassicRight from "../components/MainComponents/ClassicRight.vue";
 
 export default {
     name: "UnOnda",
     components: {
+        ClassicRight,
+        ClassicLeft,
         ShowBox,
 
         NavBoxesComponent,
