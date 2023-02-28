@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
+    protected $repository;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->repository = $productRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +25,11 @@ class ProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
+    : JsonResponse
     {
-        $products = Product::with('category')->paginate(12);
+        $products = $this->repository->getProducts($request);
+
         return response()->json([
             "response"     => true,
             "count"        => $products->total(),
@@ -37,9 +47,11 @@ class ProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show(int $id)
+    : JsonResponse
     {
         $product = Product::with('category')->findOrFail($id);
+
         return response()->json([
             "response" => true,
             "results"  => $product
@@ -53,13 +65,16 @@ class ProductController extends Controller
      *
      * @return Response
      */
-    public function destroy(int $id): Response
+    public function destroy(int $id)
+    : Response
     {
         $product = Product::findOrFail($id);
+
         $product->delete();
     }
 
-    public function siblings($id): JsonResponse
+    public function siblings($id)
+    : JsonResponse
     {
         $product = Product::findOrFail($id);
         $category_id = $product['category_id'];

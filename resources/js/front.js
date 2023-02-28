@@ -8,6 +8,7 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import Vuelidate from 'vuelidate';
 import { validationMixin } from 'vuelidate';
+import VBus from './utils/VBus.js';
 
 require('./app');
 
@@ -16,6 +17,8 @@ Vue.use(VueRouter);
 Vue.use(Vuetify);
 Vue.use(Vuelidate);
 // Vue.use(Notifications);
+
+window.VBus = new VBus();
 
 window.axios.interceptors.response.use(function (response) {
     return response

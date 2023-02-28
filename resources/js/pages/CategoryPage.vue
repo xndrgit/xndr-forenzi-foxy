@@ -71,6 +71,10 @@ export default {
             loadingProduct: true,
         };
     },
+    mounted() {
+        this.getCategories();
+        this.getProduct();
+    },
     methods: {
         goToPersonalizePage() {
             this.$router.push({ path: "/personalize" });
@@ -102,10 +106,6 @@ export default {
                     console.warn(error.message);
                 });
         },
-    },
-    created() {
-        this.getCategories();
-        this.getProduct();
     },
 };
 </script>

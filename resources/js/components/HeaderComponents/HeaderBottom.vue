@@ -59,6 +59,7 @@
                             </div>
                             <div class="input-group mb-3 mx-2">
                                 <input
+                                    v-model="searchStr"
                                     type="text"
                                     class="form-control"
                                     placeholder="Cerca per prodotto e riferimento"
@@ -68,6 +69,7 @@
                                     <button
                                         class="btn btn-outline-secondary"
                                         type="button"
+                                        @click="search()"
                                     >
                                         <i class="fa fa-lg fa-search"></i>
                                     </button>
@@ -88,22 +90,33 @@ export default {
             length: "",
             width: "",
             height: "",
-            results: [],
+            searchStr: ""
         };
     },
+    methods: {
+        search() {
+            window.VBus.fire('search-products', {
+                length: this.length,
+                width: this.width,
+                height: this.height,
+                searchStr: this.searchStr
+            });
+        }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .divCm {
     background-color: #f1f1f1;
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.3);
-    border-radius: 0px;
+    box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 span {
     color: black;
     font-weight: 900;
@@ -117,46 +130,52 @@ span {
     font-size: 0.6rem;
     padding: 0.8rem 14px;
 }
+
 .inputs .input-group {
     background-color: #f1f1f1;
 }
+
 input {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 
     width: 100%;
-    border-radius: 0px;
-    border-radius: 0px;
-    padding: 0px;
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    padding: 0;
+    box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
     transition: all 1s;
+
     &:hover {
         // transform: translateY(-2px);
-        // box-shadow: 0px 15px 25px -5px rgba(0, 0, 0, 0.5);
+        // box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.5);
     }
 }
+
 input::placeholder {
     width: min-content;
     color: black;
     font-size: 60%;
     font-weight: 600;
-    
+
 }
+
 button.btn.btn-outline-secondary {
     background-color: rgb(253, 188, 72);
     color: black;
     font-weight: bold;
-    border: 0px;
+    border: 0;
 
     &:hover {
-        // border-radius: 0px;
+        // border-radius: 0;
         // transform: scale(0.9);
-        // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+        // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     }
 }
+
 .HeaderBottom {
     background-color: #ffffff;
+
     .HeaderSearch {
         .container-lg {
             .row {
@@ -165,6 +184,7 @@ button.btn.btn-outline-secondary {
                         width: 100%;
                     }
                 }
+
                 .inputs {
                     .input-group {
                         input {
@@ -174,10 +194,12 @@ button.btn.btn-outline-secondary {
                             padding: 0.5rem;
                             font-size: 1rem;
                             transition: all 0.3s ease-in-out;
+
                             &:hover {
-                                box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.3);
+                                box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
                             }
                         }
+
                         .input-group-append {
                             button {
                                 background-color: #fdbc47;
@@ -185,6 +207,7 @@ button.btn.btn-outline-secondary {
                                 font-weight: bold;
                                 border: none;
                                 transition: all 0.3s ease-in-out;
+
                                 &:hover {
                                     // transform: scale(0.9);
                                 }
