@@ -18,7 +18,7 @@
 
             <div class="d-flex justify-content-center">
                 <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
-                <ShowBox v-else/>
+                <ShowBox v-else />
             </div>
 
             <h6 class="font-weight-bold m-0">Elenco formati disponibili</h6>
@@ -78,6 +78,7 @@ export default {
                 .get("/shop/categories", {})
                 .then((response) => {
                     this.categories = response.data.results.data;
+                    console.log(response.data.results.data);
                     this.currentPageCategories =
                         response.data.results.currentPage;
                     this.lastPageCategories = response.data.results.lastPage;

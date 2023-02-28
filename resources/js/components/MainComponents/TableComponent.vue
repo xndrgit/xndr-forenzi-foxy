@@ -115,8 +115,10 @@ export default {
         },
         sortTable() {},
         getSiblings() {
+            console.log(this.$route);
             Axios.get(
                 `/shop/products/siblings/${this.$route.params.id}`,
+
                 {}
             ).then((res) => {
                 this.siblings = res.data.results;

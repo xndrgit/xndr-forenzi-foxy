@@ -7,6 +7,7 @@
                         <h1>SIGN UP</h1>
                     </div>
                 </div>
+               
                 <div class="col-md-6 offset-md-3">
                     <!-- <div id="details"> -->
                         <form style="background-color: blue;">

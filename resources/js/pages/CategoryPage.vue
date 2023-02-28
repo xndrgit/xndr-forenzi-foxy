@@ -75,10 +75,7 @@ export default {
             loadingProduct: true,
         };
     },
-    mounted() {
-        this.getCategories();
-        this.getProduct();
-    },
+
     methods: {
         goToPersonalizePage() {
             this.$router.push({ path: "/personalize" });
@@ -89,9 +86,10 @@ export default {
                 .get("/shop/categories", {})
                 .then((response) => {
                     this.categories = response.data.results.data;
-                    this.currentPageCategories =
-                        response.data.results.currentPage;
-                    this.lastPageCategories = response.data.results.lastPage;
+                    console.log(response.data.results.data);
+                    // this.currentPageCategories =
+                    //     response.data.results.currentPage;
+                    // this.lastPageCategories = response.data.results.lastPage;
                     this.loadingCategories = false;
                 })
                 .catch((error) => {
@@ -110,6 +108,10 @@ export default {
                     console.warn(error.message);
                 });
         },
+    },
+    created() {
+        this.getCategories();
+        this.getProduct();
     },
 };
 </script>

@@ -31,7 +31,7 @@
                             {{ category.description }}
                         </span>
                     </div>
-                  
+
                     <div class="col-12 col-md-4 position-relative">
                         <img class="img-fluid" :src="category.img" alt="" />
                         <img
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <!-- <div class="row">
+        <div class="row">
             <section
                 class="boxes d-flex flex-wrap justify-content-center"
                 v-for="product in category.products"
@@ -93,7 +93,6 @@
                             <p class="category">
                                 {{ product.subcategory_id }}
                             </p>
-
                         </div>
                         <div class="d-flex align-items-center">
                             <p>
@@ -126,7 +125,7 @@
                     </div>
                 </div>
             </section>
-        </div> -->
+        </div>
     </div>
 </template>
 
