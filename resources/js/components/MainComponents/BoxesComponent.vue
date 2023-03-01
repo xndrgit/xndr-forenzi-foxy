@@ -24,18 +24,18 @@
                     <p v-if="product.price_saled" class="old-price">
                         {{ product.price }} €
                     </p>
-                    <p v-if="!product.price_saled" class="price">
-                        {{ product.price }} €
-                    </p>
                     <p v-if="product.price_saled" class="current-price">
                         {{ product.price_saled }} €
+                    </p>
+                    <p v-else class="price">
+                        {{ product.price }} €
                     </p>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="add-to-cart d-flex col-12">
                     <div class="left">
-                        <button @click="addToCart" class="yellow-button">
+                        <button @click="addToCart" class="yellow-button" :disabled="!product.quantity || product.quantity < 1">
                             AGGIUNGI AL CARRELLO
                         </button>
                     </div>
@@ -44,7 +44,6 @@
                             @update-quantity="updateQuantity"
                             :product="product"
                         />
-                        <!-- <p>Quantity: {{ quantity }}</p> -->
                     </div>
                 </div>
             </div>
@@ -53,7 +52,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import QuantityProductsComponent from "../MainComponents/QuantityProductsComponent.vue";
 import mixinCart from "../../mixins/mixinCart";
 
@@ -92,21 +90,31 @@ export default {
     },
     methods: {
         addToCart() {
-            axios
-                .post("/shop/carts", {
-                    product_id: this.product.id,
-                    quantity: this.quantity,
-                })
-                .then((response) => {
-                    if (response.data.result === 'success') {
-                        alert("Added to Cart");
+            let addedItem = Object.assign({}, this.product);
+            this.items = this.getCartItems();
 
-                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
-                    }
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
+            if (!this.items) {
+                this.items = [];
+            }
+
+            const filterIndex = this.items.findIndex(el => el.id === addedItem.id);
+            if (filterIndex > -1 && filterIndex !== undefined && filterIndex !== null) {
+                let updatedItems = JSON.parse(JSON.stringify(this.items));
+                if (updatedItems[filterIndex]) {
+                    updatedItems[filterIndex].cart_quantity += this.quantity;
+                }
+
+                this.items = updatedItems;
+            } else {
+                addedItem.cart_quantity = this.quantity;
+
+                this.items = [
+                    ...this.items,
+                    addedItem
+                ];
+            }
+
+            alert("Added to Cart");
         },
         updateQuantity(value) {
             this.quantity = value;

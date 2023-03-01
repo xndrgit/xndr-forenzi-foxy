@@ -1,13 +1,21 @@
+import {mapGetters} from "vuex";
+
 export default {
     data: () => ({
-        items: null
+        items: null,
+        isLoggedIn: false,
+        cartTotal: 0,
+        productCount: 0,
     }),
     computed: {
+        ...mapGetters({
+            checkAuth: "checkAuth"
+        }),
         subtotal() {
             let subTotal = 0.00;
             if (this.items) {
                 this.items.map((item) => {
-                    subTotal += (item.pivot.quantity * (item.price_saled ? item.price_saled : item.price));
+                    subTotal += (item.cart_quantity * (item.price_saled ? item.price_saled : item.price));
                 });
             }
 
@@ -17,7 +25,7 @@ export default {
             let conai = 0.00;
             if (this.items) {
                 this.items.map((item) => {
-                    conai += item.pivot.quantity * 4.35;
+                    conai += item.cart_quantity * 4.35;
                 });
             }
 
@@ -27,22 +35,62 @@ export default {
             return (this.subtotal * 22) / 100;
         }
     },
+    mounted() {
+        this.items = this.getCartItems();
+        this.cartTotal = this.$store.state.total;
+        this.productCount = this.$store.state.productCount;
+        this.isLoggedIn = this.checkAuth;
+    },
     methods: {
-        updateCartInfo(productCount, total, products) {
-            this.$store.commit("updateCart", {
-                productCount: productCount,
-                total: parseFloat(total).toFixed(2),
-            });
-
-            this.$store.commit('setCartItems', products);
-
-            if (!products || !products.length) {
-                this.items = null;
+        updateCartInfo(products) {
+            let total = 0.00;
+            if (products && products.length) {
+                window.localStorage.setItem('foxy-cart-items', JSON.stringify(products));
             } else {
-                this.items = JSON.parse(JSON.stringify(products));
+                window.localStorage.removeItem('foxy-cart-items');
             }
 
+            if (this.items && this.items.length) {
+                this.items.map(el => {
+                    total += el.cart_quantity * (el.price_saled ? el.price_saled : el.price);
+
+                    return el;
+                });
+
+                this.productCount = this.items.length;
+            } else {
+                this.productCount = 0;
+            }
+
+            this.cartTotal = total.toFixed(2);
+
+            this.$store.commit("updateCart", {
+                productCount: this.productCount,
+                total: this.cartTotal,
+            });
+
+            window.VBus.fire('update-cart-total', {total: this.cartTotal, count: this.productCount});
+
             this.$forceUpdate();
+        },
+        getCartItems() {
+            if (window.localStorage.getItem('foxy-cart-items')) {
+                return JSON.parse(window.localStorage.getItem('foxy-cart-items'));
+            } else {
+                return null;
+            }
+        }
+    },
+    watch: {
+        items(newItems, oldItems) {
+            if (newItems !== oldItems) {
+                this.updateCartInfo(newItems);
+            }
+        },
+        checkAuth(newCheck, oldCheck) {
+            if (newCheck !== oldCheck) {
+                this.isLoggedIn = newCheck;
+            }
         }
     }
 }

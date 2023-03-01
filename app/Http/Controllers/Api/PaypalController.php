@@ -19,7 +19,8 @@ class PaypalController extends Controller
      * @throws Exception
      * @throws Throwable
      */
-    public function payment(Request $request): RedirectResponse
+    public function payment(Request $request)
+    : RedirectResponse
     {
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
@@ -83,7 +84,8 @@ class PaypalController extends Controller
     /**
      * @throws Throwable
      */
-    public function success(Request $request, $user_id): RedirectResponse
+    public function success(Request $request, $user_id)
+    : RedirectResponse
     {
         $user = User::find($user_id);
 
@@ -105,6 +107,15 @@ class PaypalController extends Controller
 
                     $payment->save();
 
+                    if ($user->products()->count()) {
+                        foreach ($user->products()->get() as $product) {
+                            if ($product->quantity && $product->quantity > 0 && $product->pivot->quantity) {
+                                $product->quantity -= $product->pivot->quantity;
+                                $product->save();
+                            }
+                        }
+                    }
+
                     $user->products()->detach();
 
                     return redirect()->to('/confirm/' . $payment->order_id)
@@ -120,7 +131,8 @@ class PaypalController extends Controller
     /**
      * @throws Throwable
      */
-    public function cancel(Request $request, $user_id): RedirectResponse
+    public function cancel(Request $request, $user_id)
+    : RedirectResponse
     {
         $user = User::find($user_id);
 
@@ -138,6 +150,17 @@ class PaypalController extends Controller
                 $order = Order::find($payment->order_id);
                 $order->status = 'annullato';
                 $order->save();
+
+                if ($user->products()->count()) {
+                    foreach ($user->products()->get() as $product) {
+                        if ($product->pivot->quantity) {
+                            $product->quantity += $product->pivot->quantity;
+                            $product->save();
+                        }
+                    }
+                }
+
+                $user->products()->detach();
 
                 $payment->save();
             }

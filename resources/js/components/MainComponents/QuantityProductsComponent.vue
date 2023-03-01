@@ -1,9 +1,9 @@
 <template>
     <div class="quantity">
-        <button @click="decrementQuantity" id="minus-button">-</button>
+        <button @click="decrementQuantity" id="minus-button" :disabled="quantity < 1">-</button>
         <input class="font-weight-bold" type="number" v-model="quantity" readonly id="quantity-input"
-            @input="updateQuantity" />
-        <button @click="incrementQuantity" id="plus-button">+</button>
+            @input="updateQuantity" :max="product.quantity" :min="1" />
+        <button @click="incrementQuantity" :disabled="quantity >= product.quantity" id="plus-button">+</button>
     </div>
 </template>
 
@@ -23,15 +23,27 @@ export default {
     },
     methods: {
         incrementQuantity() {
-            this.quantity += this.product.purchasable_in_multi_of || 1;
+            if (this.quantity < this.product.quantity) {
+                this.quantity += this.product.purchasable_in_multi_of || 1;
+            }
+
+            if (this.quantity > this.product.quantity) {
+                this.quantity = this.product.quantity;
+            }
+
             this.$emit("update-quantity", this.quantity);
         },
         decrementQuantity() {
-            if (this.quantity >= (this.product.purchasable_in_multi_of || 1)) {
+            if (this.quantity > 1 && this.quantity >= (this.product.purchasable_in_multi_of || 1)) {
                 this.quantity -= this.product.purchasable_in_multi_of || 1;
                 if (this.quantity < this.product.purchasable_in_multi_of)
                     this.quantity = this.product.purchasable_in_multi_of;
             }
+
+            if (this.quantity < 1) {
+                this.quantity = 1;
+            }
+
             this.$emit("update-quantity", this.quantity);
         },
         updateQuantity() {

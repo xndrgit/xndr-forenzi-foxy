@@ -13,17 +13,7 @@ const mutations = {
     currentQuantity(state, info) {
         state.quantity = info.quantity;
     },
-    setCartItems(state, data) {
-        state.cartItems = JSON.parse(JSON.stringify(data));
-
-        if (!data || !data.length) {
-            window.localStorage.removeItem('foxy-cart-items');
-        } else {
-            window.localStorage.setItem('foxy-cart-items', JSON.stringify(data));
-        }
-    },
     clearCartItems(state) {
-        state.cartItems = null;
         state.productCount = 0;
         state.total = 0;
 
