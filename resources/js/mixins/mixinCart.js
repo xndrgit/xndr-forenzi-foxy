@@ -14,18 +14,17 @@ export default {
             return subTotal;
         },
         conai() {
-            return (this.subtotal * 22) / 100;
+            let conai = 0.00;
+            if (this.items) {
+                this.items.map((item) => {
+                    conai += item.pivot.quantity * 4.35;
+                });
+            }
+
+            return conai;
         },
         iva() {
-            // let iva = 0.00;
-            // if (this.items) {
-            //     this.items.map((item) => {
-            //         iva += item.pivot.quantity * 4.35;
-            //     });
-            // }
-            //
-            // return iva;
-            return 4.35;
+            return (this.subtotal * 22) / 100;
         }
     },
     methods: {

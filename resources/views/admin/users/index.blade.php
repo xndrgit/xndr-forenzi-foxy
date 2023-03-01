@@ -24,21 +24,22 @@
 
                 <table class="table table-dark table-hover text-center">
                     <thead>
-                        <tr>
-                            <th scope="col">Admin</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Mail</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Settings</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">Admin</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Settings</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @forelse ($users as $user)
+                    @if($users)
+                        @foreach ($users as $user)
                             <tr>
-                                <th scope="row">{{ $user->user_detail->admin }}</th>
+                                <th scope="row">{{ $user->user_detail && $user->user_detail->admin ? $user->user_detail->admin : '' }}</th>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->user_detail->phone}}</td>
+                                <td>{{ $user->user_detail && $user->user_detail->phone ? $user->user_detail->phone : '' }}</td>
                                 <td>
                                     <a
                                         class="btn btn-sm btn-success rounded-circle"
@@ -65,13 +66,12 @@
                                     </form>
                                 </td>
                             </tr>
-                        @empty
-                            <h1>No users</h1>
-                        @endforelse
-
+                        @endforeach
+                    @else
+                        <h1>No users</h1>
+                    @endif
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>

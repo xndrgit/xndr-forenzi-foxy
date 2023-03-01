@@ -13,6 +13,11 @@ class UserRepository extends Repository
         return app(User::class);
     }
 
+    public function getAllUsersWithDetail()
+    {
+        return $this->model()->with('user_detail')->get();
+    }
+
     /**
      * Get user's added cart items
      *
