@@ -3,9 +3,9 @@
         <div class="container">
             <div class="block-heading">
                 <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
-                <hr class="w-5"/>
+                <hr class="w-5" />
             </div>
-            <hr/>
+            <hr />
             <div class="content">
                 <div class="row">
                     <div class="col-md-12 col-lg-8" v-if="items">
@@ -29,8 +29,8 @@
                                         </a>
                                     </div>
 
-                                    <div class="col-md-10">
-                                        <div class="info">
+                                    <div class="col-md-10 d-flex align-items-center ">
+                                        <div class="info col-12 ">
                                             <div class="row">
                                                 <div
                                                     class="col-md-4 product-name"
@@ -40,33 +40,49 @@
                                                             class="product-info"
                                                         >
                                                             <div>
-                                                                Codice:
                                                                 <span
                                                                     class="value"
                                                                 >
-                                                                    {{
-                                                                        item.code
-                                                                    }}
+                                                                    Codice:
+                                                                    <strong>
+                                                                        {{
+                                                                            item.code
+                                                                        }}
+                                                                    </strong>
                                                                 </span>
                                                             </div>
-                                                            <a href="#">
-                                                                {{ item.name }}
-                                                            </a>
+
                                                             <div>
                                                                 <span
-                                                                    class="value font-weight-bold"
+                                                                    class="value"
                                                                 >
-                                                                    {{
-                                                                        item.length
-                                                                    }}
-                                                                    x
-                                                                    {{
-                                                                        item.height
-                                                                    }}
-                                                                    x
-                                                                    {{
-                                                                        item.width
-                                                                    }}
+                                                                    <a href="#">
+                                                                        <strong>
+                                                                            {{
+                                                                                item.name
+                                                                            }}
+                                                                        </strong>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+
+                                                            <div>
+                                                                <span
+                                                                    class="value"
+                                                                >
+                                                                    <strong>
+                                                                        {{
+                                                                            item.length
+                                                                        }}
+                                                                        x
+                                                                        {{
+                                                                            item.height
+                                                                        }}
+                                                                        x
+                                                                        {{
+                                                                            item.width
+                                                                        }}
+                                                                    </strong>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -91,7 +107,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 quantity">
+                                                <div class="col-md-4 quantity d-flex align-items-center">
                                                     <label
                                                         class="fw-bold"
                                                         for="quantity"
@@ -109,15 +125,10 @@
                                                         "
                                                     />
                                                 </div>
-                                                <div class="col-md-3 price">
-                                                    <div
-                                                        style="
-                                                            white-space: nowrap;
-                                                        "
-                                                    >
-                                                        <label for="id1"
-                                                        >€</label
-                                                        >
+                                                <div class="col-md-2 price">
+                                                 
+                                                  
+                                                        <span>€</span>
                                                         <input
                                                             type="text"
                                                             id="id1"
@@ -141,14 +152,14 @@
                                                             "
                                                             readonly
                                                         />
-                                                    </div>
+                                               
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr/>
+                            <hr />
                         </div>
                         <!-- <div class="d-flex justify-content-between">
 																		<form class="coupon d-flex">
@@ -213,14 +224,14 @@
                                     €{{
                                         parseFloat(
                                             subtotal +
-                                            shipping_cost +
-                                            conai +
-                                            iva
+                                                shipping_cost +
+                                                conai +
+                                                iva
                                         ).toFixed(2)
                                     }}
                                 </span>
                             </div>
-                            <hr/>
+                            <hr />
                             <a
                                 v-if="items"
                                 type="button"
@@ -245,7 +256,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import CartItem from "./CartItem";
 import mixinCart from "../mixins/mixinCart";
 
@@ -385,15 +396,24 @@ a {
 
 .shopping-cart .items .product .info .product-name .product-info .value {
     font-weight: 400;
+    font-size: 0.7rem;
+}
+
+.shopping-cart .items .product .info .product-name .product-info .value a {
+    font-weight: 400;
+    font-size: 0.6rem;
 }
 
 .shopping-cart .items .product .info .quantity .quantity-input {
     margin: auto;
-    width: 80px;
+    width: 68px;
+    height: 32px;
 }
 
 .shopping-cart .items .product .info .price {
-    margin-top: 15px;
+display: flex;
+align-items: center;
+
     font-weight: bold;
 }
 
@@ -435,13 +455,12 @@ a {
 
 @media (min-width: 768px) {
     .shopping-cart .items .product .info {
-        padding-top: 25px;
         text-align: left;
     }
 
     .shopping-cart .items .product .info .price {
         font-weight: bold;
-        top: 17px;
+        font-size: 0.9rem;
     }
 
     .shopping-cart .items .product .info .quantity {
@@ -449,7 +468,6 @@ a {
     }
 
     .shopping-cart .items .product .info .quantity .quantity-input {
-        padding: 4px 10px;
         text-align: center;
     }
 
