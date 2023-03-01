@@ -3,32 +3,42 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\Models\Role;
 use App\Models\UserDetail;
+use App\Repositories\UserRepository;
 use App\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    protected $repository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->repository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|Application|View
      */
     public function index()
     {
-        $users = User::with('user_detail')->get();
-        // dd($users);
+        $users = $this->repository->getAllUsersWithDetail();
+
         return view('admin.users.index', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -40,14 +50,15 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @return RedirectResponse
      */
     public function store(Request $request)
+    : RedirectResponse
     {
 
         $data = $request->all();
-        dd($data);
 
         // dd($data);
         $oldData = new User();
@@ -66,8 +77,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return Application|Factory|View
      */
     public function show($id)
     {
@@ -78,8 +90,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
@@ -91,9 +104,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -102,21 +116,21 @@ class UserController extends Controller
         // dd($data);
 
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $oldData->id,
-            'password' => 'max:16',
-            'surname' => 'required|string|max:255',
+            'name'          => 'required|string|max:255',
+            'email'         => 'required|string|email|max:255|unique:users,email,' . $oldData->id,
+            'password'      => 'max:16',
+            'surname'       => 'required|string|max:255',
             'business_name' => 'string|max:255',
-            'address' => 'required|string|max:255',
-            'cap' => 'required|string',
-            'city' => 'required|string|max:255',
-            'province' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'pec' => 'required|string|max:255',
-            'code_sdi' => 'required|integer',
-            'notes' => 'string|max:255',
-            'admin' => 'required'
+            'address'       => 'required|string|max:255',
+            'cap'           => 'required|string',
+            'city'          => 'required|string|max:255',
+            'province'      => 'required|string|max:255',
+            'state'         => 'required|string|max:255',
+            'phone'         => 'required|string|max:15',
+            'pec'           => 'required|string|max:255',
+            'code_sdi'      => 'required|integer',
+            'notes'         => 'string|max:255',
+            'admin'         => 'required'
         ]);
 
         // i already have a column admin for the user
@@ -176,7 +190,6 @@ class UserController extends Controller
         $oldData->user_detail->save();
 
 
-
         return redirect()
             ->route('admin.users.show', ['user' => $oldData])
             ->with('edited', $oldData['name']);
@@ -185,10 +198,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
+    : RedirectResponse
     {
         $user = User::findOrFail($id);
         $user->delete();
