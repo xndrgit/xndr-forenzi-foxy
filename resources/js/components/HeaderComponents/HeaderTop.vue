@@ -53,13 +53,13 @@
                                 <p>
                                     <strong>
                                         {{
-                                            this.$store.state.isAuth
+                                            checkAuth
                                                 ? "DISCONNETTITI"
                                                 : "ACCEDI O"
                                         }}
                                     </strong>
                                 </p>
-                                <p>{{ this.$store.state.name }}</p>
+                                <p>{{ $store.state.name }}</p>
                             </div>
                         </div>
                     </a>
@@ -78,8 +78,8 @@
                                     <strong> CARRELLO </strong>
                                 </p>
                                 <p>
-                                    {{ this.$store.state.total }} € /
-                                    {{ this.$store.state.productCount }}
+                                    {{ cartTotal }} € /
+                                    {{ productCount }}
                                     PRODOTTI
                                 </p>
                             </div>
@@ -92,7 +92,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import mixinCart from "../../mixins/mixinCart";
 
 export default {
@@ -103,10 +102,12 @@ export default {
             text: "REGISTRATI",
         };
     },
-    computed: {
-        ...mapGetters({
-            checkAuth: "checkAuth",
-        }),
+    beforeDestroy() {
+        window.VBus.stop('update-cart-total', this.setCartTotal);
+    },
+    mounted() {
+        this.getUserInfo();
+        window.VBus.listen('update-cart-total', this.setCartTotal);
     },
     methods: {
         getUserInfo() {
@@ -131,20 +132,17 @@ export default {
             });
         },
         getCartInfo() {
-            axios.get("shop/carts", {}).then((response) => {
+            axios.get("shop/carts").then((response) => {
                 if (response.data.result === "success") {
-                    this.updateCartInfo(
-                        response.data.productCount,
-                        response.data.total,
-                        response.data.products
-                    );
+                    this.updateCartInfo(this.items);
                 }
             });
         },
-    },
-    mounted() {
-        this.getUserInfo();
-    },
+        setCartTotal({total, count}) {
+            this.cartTotal = total;
+            this.productCount = count;
+        }
+    }
 };
 </script>
 

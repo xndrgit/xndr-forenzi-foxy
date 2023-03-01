@@ -6,7 +6,7 @@
                     <img
                         class="img-fluid mx-auto d-block image"
                         src="../../../public/Links/category-fogli-di-cartone.png"
-                    />
+                        alt=""/>
                 </div>
                 <div class="col-md-8">
                     <div class="info">
@@ -18,7 +18,7 @@
                                         <div>
                                             Dimensioni:
                                             <span class="value"
-                                                >{{ detail.length }} x
+                                            >{{ detail.length }} x
                                                 {{ detail.height }} x
                                                 {{ detail.width }}</span
                                             >
@@ -26,8 +26,8 @@
                                         <div>
                                             Codice:
                                             <span class="value">{{
-                                                detail.code
-                                            }}</span>
+                                                    detail.code
+                                                }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +40,6 @@
                                     class="form-control quantity-input"
                                     id="quantity"
                                     type="number"
-                                    @change="test"
                                     v-model="quantity"
                                 />
                             </div>
@@ -80,7 +79,7 @@ export default {
         };
     },
     mounted() {
-        this.quantity = this.detail.pivot.quantity;
+        this.quantity = this.detail.cart_quantity;
     },
     watch: {
         quantity() {

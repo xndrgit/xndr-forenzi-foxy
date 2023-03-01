@@ -105,7 +105,7 @@
                                                         min="0"
                                                         ref="totalQuantity"
                                                         :value="
-                                                            item.pivot.quantity
+                                                            item.cart_quantity
                                                         "
                                                     />
                                                 </div>
@@ -132,8 +132,7 @@
                                                             "
                                                             :value="
                                                                 (
-                                                                    item.pivot
-                                                                        .quantity *
+                                                                    item.cart_quantity *
                                                                     (item.price_saled
                                                                         ? item.price_saled
                                                                         : item.price)
@@ -150,22 +149,6 @@
                             </div>
                             <hr/>
                         </div>
-                        <!-- <div class="d-flex justify-content-between">
-																		<form class="coupon d-flex">
-																						<input
-																										placeholder="Codice Coupon"
-																										type="text"
-																						/>
-																						<button class="btn bg-yellow" type="submit">
-																										APPLICA COUPON
-																						</button>
-																		</form>
-																		<form class="coupon d-flex">
-																						<button class="btn bg-yellow" type="submit">
-																										AGGIORNA IL CARRELLO
-																						</button>
-																		</form>
-														</div> -->
                     </div>
                     <div class="col-md-12 col-lg-8" v-else></div>
                     <div class="col-md-12 col-lg-4">
@@ -177,16 +160,6 @@
                                     €{{ parseFloat(subtotal).toFixed(2) }}
                                 </span>
                             </div>
-                            <!-- <div class="summary-item">
-																						<span class="text">FOXTOP - SCONTO 5%</span>
-																						<span class="price">€0</span>
-																		</div> -->
-                            <!-- <div class="summary-item">
-																						<span class="text"
-																										>ABBONAMENTO FOXTOP - VALIDO 1 ANNO</span
-																						>
-																						<span class="price">€0</span>
-																		</div> -->
                             <div class="summary-item">
                                 <span class="text">SPEDIZIONE GRATUITA</span>
                                 <span class="price">
@@ -245,14 +218,9 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-import CartItem from "./CartItem";
 import mixinCart from "../mixins/mixinCart";
 
 export default {
-    components: {
-        CartItem,
-    },
     mixins: [mixinCart],
     data() {
         return {
@@ -260,9 +228,6 @@ export default {
         };
     },
     computed: {
-        ...mapGetters({
-            cartItems: "getCartItems",
-        }),
         productImage() {
             return function (product) {
                 if (/^http/.test(product.img)) {
@@ -273,35 +238,59 @@ export default {
             };
         },
     },
-    mounted() {
-        this.items = [...this.cartItems];
-    },
     methods: {
         checkout() {
+            this.items = this.getCartItems();
+
+            if (!this.isLoggedIn) {
+                window.location.href = "/login";
+
+                return;
+            }
+
             if (!this.items) {
                 return false;
             }
 
-            alert("Procedi Al Checkout");
-
-            window.location.href = "/checkout";
-        },
-
-        deleteProduct(item) {
             axios
-                .delete(`/shop/carts/${item.id}`)
+                .post('/shop/carts', {
+                    items: this.items
+                })
                 .then((response) => {
                     if (response.data.result === "success") {
-                        this.updateCartInfo(
-                            response.data.productCount,
-                            response.data.total,
-                            response.data.products
-                        );
+                        this.items = response.data.products;
+
+                        alert("Procedi Al Checkout");
+
+                        window.location.href = "/checkout";
                     }
                 })
                 .catch((err) => {
                     console.error(err);
                 });
+        },
+
+        deleteProduct(item) {
+            this.items = this.getCartItems();
+
+            if (this.items) {
+                const deletedIndex = this.items.findIndex(el => el.id === item.id);
+
+                this.items.splice(deletedIndex, 1);
+            }
+
+            if (this.isLoggedIn) {
+                axios
+                    .delete(`/shop/carts/${item.id}`)
+                    .then((response) => {
+                        if (response.data.result === "success") {
+                            this.items = response.data.products;
+                        }
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    });
+            }
         },
     },
 };

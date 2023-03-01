@@ -13,9 +13,6 @@
                         {{ product.height }} cm
                     </h6>
                     <hr class="w-5" />
-                    <!-- <div class="stars">
-                        <i v-for="n in 5" :key="n" class="far fa-star"></i>
-                    </div> -->
                     <div class="d-flex align-items-center">
                         <h4 v-if="product.price_saled" class="old-price">
                             € {{ product.price }}
@@ -57,28 +54,10 @@
                             @update-quantity="updateQuantity"
                             :product="product"
                         />
-                        <!-- <p>Quantity: {{ quantity }}</p> -->
                         <div @click="addToCart" class="yellow-button mx-2">
                             AGGIUNGI AL CARRELLO
                         </div>
                     </div>
-                    <!-- <div class="orange w-100 p-2 m-1">
-                        <i class="fas fa-info-circle"></i>
-                        <strong>SCONTO</strong>
-                        <span>FOX</span>
-                        <strong>TOP</strong>
-                        <span
-                            >> Seleziona per vedere il prezzo in anteprima</span
-                        >
-                    </div> -->
-                    <!-- <div class="orange w-100 p-2 m-1">
-                        <input type="checkbox" />
-                        <strong>SCONTO 5%</strong>
-                        Totale ordine fino a €999
-                        <input type="checkbox" />
-                        <strong>SCONTO 10%</strong>
-                        Totale ordine da €1.000
-                    </div> -->
                 </div>
 
                 <div class="overflow-table">
@@ -127,8 +106,6 @@
 
         <nav>
             <a href="#" class="active">CARATTERISTICHE SCATOLA</a>
-            <!-- <a href="#">SCATOLA CONSEGNA</a>
-            <a href="#">SPEDIZIONE</a> -->
         </nav>
         <table class="alternating-rows table table-hover mb-5" v-if="product">
             <tr>
@@ -159,7 +136,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import LoadingRollComponent from "../MainComponents/LoadingRollComponent.vue";
 import QuantityProductsComponent from "../MainComponents/QuantityProductsComponent.vue";
 import mixinCart from "../../mixins/mixinCart";
@@ -229,30 +205,31 @@ export default {
                 });
         },
         addToCart() {
-            // code to add item to cart, for example
-            // using this.product and this.quantity to add the product to the cart
+            let addedItem = Object.assign({}, this.product);
+            this.items = this.getCartItems();
 
-            if (!this.$store.state.isAuth) {
-                window.location.href = "/login";
-                return;
+            if (!this.items) {
+                this.items = [];
             }
 
-            axios
-                .post("/shop/carts", {
-                    product_id: this.product.id,
-                    quantity: this.quantity,
-                })
-                .then((response) => {
-                    if (response.data.result === 'success') {
-                        alert("Added to Cart");
+            const filterIndex = this.items.findIndex(el => el.id === addedItem.id);
+            if (filterIndex > -1 && filterIndex !== undefined && filterIndex !== null) {
+                let updatedItems = JSON.parse(JSON.stringify(this.items));
+                if (updatedItems[filterIndex]) {
+                    updatedItems[filterIndex].cart_quantity += this.quantity;
+                }
 
-                        this.updateCartInfo(response.data.productCount, response.data.total, response.data.products);
-                    }
-                })
-                .catch((err) => {
-                    //handle error
-                    console.error(err);
-                });
+                this.items = updatedItems;
+            } else {
+                addedItem.cart_quantity = this.quantity;
+
+                this.items = [
+                    ...this.items,
+                    addedItem
+                ];
+            }
+
+            alert("Added to Cart");
         },
     }
 };
