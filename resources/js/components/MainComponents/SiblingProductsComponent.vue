@@ -83,39 +83,51 @@ export default {
             this.value = this.product.purchasable_in_multi_of;
         },
         increaseValue() {
-            this.value += this.product.purchasable_in_multi_of || 1;
+            if (this.value < this.product.quantity) {
+                this.value += this.product.purchasable_in_multi_of || 1;
+            }
+
+            if (this.value > this.product.quantity) {
+                this.value = this.product.quantity;
+            }
         },
         decreaseValue() {
-            if (this.value >= (this.product.purchasable_in_multi_of || 1)) {
+            if (this.value > 1 && this.value >= (this.product.purchasable_in_multi_of || 1)) {
                 this.value -= this.product.purchasable_in_multi_of || 1;
                 if (this.value < this.product.purchasable_in_multi_of)
                     this.value = this.product.purchasable_in_multi_of;
             }
+
+            if (this.value < 1) {
+                this.value = 1;
+            }
         },
         addToCart() {
-            if (!this.$store.state.isAuth) {
-                window.location.href = "/login";
-                return;
-            }
-            axios
-                .post("/shop/carts", {
-                    product_id: this.product.id,
-                    quantity: this.value,
-                })
-                .then((response) => {
-                    if (response.data.result === "success") {
-                        alert("Added to Cart");
+            let addedItem = Object.assign({}, this.product);
+            this.items = this.getCartItems();
 
-                        this.updateCartInfo(
-                            response.data.productCount,
-                            response.data.total,
-                            response.data.products
-                        );
-                    }
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
+            if (!this.items) {
+                this.items = [];
+            }
+
+            const filterIndex = this.items.findIndex(el => el.id === addedItem.id);
+            if (filterIndex > -1 && filterIndex !== undefined && filterIndex !== null) {
+                let updatedItems = JSON.parse(JSON.stringify(this.items));
+                if (updatedItems[filterIndex]) {
+                    updatedItems[filterIndex].cart_quantity += this.value;
+                }
+
+                this.items = updatedItems;
+            } else {
+                addedItem.cart_quantity = this.value;
+
+                this.items = [
+                    ...this.items,
+                    addedItem
+                ];
+            }
+
+            alert("Added to Cart");
         },
     },
 };

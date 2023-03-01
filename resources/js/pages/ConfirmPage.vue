@@ -66,14 +66,14 @@
                                                 alt=""/>
                                         </td>
                                         <td style="width: 60%;">
-                                                <span
-                                                    class="font-weight-bold"
-                                                >
-                                                    {{ item.name }}
-                                                </span>
+                                            <span
+                                                class="font-weight-bold"
+                                            >
+                                                {{ item.name }}
+                                            </span>
                                             <div class="product-qty">
                                                 <span class="d-block">
-                                                    {{ item.pivot.quantity }}
+                                                    {{ item.cart_quantity }}
                                                 </span>
                                                 <span>
                                                     Color:{{ item.color }}
@@ -216,6 +216,14 @@ export default {
             surname: "",
         };
     },
+    created() {
+        window.localStorage.removeItem('foxy-cart-items');
+    },
+    mounted() {
+        this.getUser();
+        this.getOrder();
+        window.VBus.fire('update-cart-total', {total: 0, count: 0});
+    },
     methods: {
         getOrder() {
             axios
@@ -247,10 +255,6 @@ export default {
                 .catch((error) => {
                 });
         },
-    },
-    mounted() {
-        this.getUser();
-        this.getOrder();
     },
 };
 </script>

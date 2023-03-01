@@ -32,6 +32,7 @@ class UserRepository extends Repository
             $category = $product->category;
             $subcategory = $product->subcategory;
 
+            $product->cart_quantity = $product->pivot->quantity;
             $product->category = $category;
             $product->subcategory = $subcategory;
 
@@ -53,7 +54,7 @@ class UserRepository extends Repository
 
         $subtotal = 0.00;
         foreach ($products as $product) {
-            $subtotal += ($product->price_saled ?: $product->price) * $product->pivot->quantity;
+            $subtotal += ($product->price_saled ?: $product->price) * $product->cart_quantity;
         }
 
         return [$products, $subtotal, sizeof($products->toArray())];

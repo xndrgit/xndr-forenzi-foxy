@@ -40,20 +40,17 @@ class UserCartController extends Controller
     public function store(Request $request)
     : JsonResponse
     {
-        $request->validate([
-            'product_id' => 'required',
-            'quantity'   => 'required|integer'
-        ]);
-
-        $product_id = $request->input('product_id');
-
-        $request->user()->products()->attach([
-            $product_id => [
-                'quantity'   => $request->input('quantity'),
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
-        ]);
+        $cartItems = $request->input('items');
+        $request->user()->products()->detach();
+        foreach ($cartItems as $cartItem) {
+            $request->user()->products()->attach([
+                $cartItem['id'] => [
+                    'quantity'   => $cartItem['cart_quantity'],
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
+            ]);
+        }
 
         return $this->getCartsList($request->user());
     }
@@ -86,13 +83,11 @@ class UserCartController extends Controller
     private function getCartsList($user)
     : JsonResponse
     {
-        [$products, $subtotal, $product_count] = $this->repository->getAddedProductsDetails($user);
+        $products = $this->repository->getCartItems($user);
 
         return response()->json([
             'result'       => 'success',
-            'total'        => $subtotal,
-            'products'     => $products,
-            'productCount' => $product_count
+            'products'     => $products
         ]);
     }
 }

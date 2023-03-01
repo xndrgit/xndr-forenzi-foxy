@@ -35,7 +35,7 @@ const router = new VueRouter({
             name: "cart",
             component: CartPage,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             },
         },
         {
