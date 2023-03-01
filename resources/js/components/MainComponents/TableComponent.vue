@@ -128,6 +128,20 @@ export default {
                 });
             });
         },
+        getCategory() {
+            this.loadingCategory = true;
+            axios
+                .get(`/shop/categories/${this.$route.params.id}`)
+                .then((response) => {
+                    this.category = response.data.results;
+                    setTimeout(() => {
+                        this.loadingCategory = false;
+                    }, 1000);
+                })
+                .catch((error) => {
+                    console.warn(error.message);
+                });
+        },
     },
     mounted() {
         this.getSiblings();
