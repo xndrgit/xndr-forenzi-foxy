@@ -126,8 +126,8 @@
                                                     />
                                                 </div>
                                                 <div class="col-md-2 price">
-                                                 
-                                                  
+
+
                                                         <span>€</span>
                                                         <input
                                                             type="text"
@@ -151,7 +151,7 @@
                                                             "
                                                             readonly
                                                         />
-                                               
+
                                                 </div>
                                             </div>
                                         </div>
@@ -229,11 +229,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import { mapGetters } from "vuex";
-import CartItem from "./CartItem";
-=======
->>>>>>> c934d5857da89dd20fc31c008588fbf57e3a60f9
 import mixinCart from "../mixins/mixinCart";
 
 export default {
