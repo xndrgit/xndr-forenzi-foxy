@@ -95,6 +95,13 @@ export default {
     },
     methods: {
         search() {
+            if (this.$route.name !== 'home') {
+                this.$router.push({
+                    path: '/',
+                    name: 'home'
+                });
+            }
+
             window.VBus.fire('search-products', {
                 length: this.length,
                 width: this.width,

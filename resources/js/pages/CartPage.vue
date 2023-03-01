@@ -3,9 +3,9 @@
         <div class="container">
             <div class="block-heading">
                 <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
-                <hr class="w-5" />
+                <hr class="w-5"/>
             </div>
-            <hr />
+            <hr/>
             <div class="content">
                 <div class="row">
                     <div class="col-md-12 col-lg-8" v-if="items">
@@ -116,7 +116,7 @@
                                                         "
                                                     >
                                                         <label for="id1"
-                                                            >€</label
+                                                        >€</label
                                                         >
                                                         <input
                                                             type="text"
@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr />
+                            <hr/>
                         </div>
                         <!-- <div class="d-flex justify-content-between">
 																		<form class="coupon d-flex">
@@ -213,14 +213,14 @@
                                     €{{
                                         parseFloat(
                                             subtotal +
-                                                shipping_cost +
-                                                conai +
-                                                iva
+                                            shipping_cost +
+                                            conai +
+                                            iva
                                         ).toFixed(2)
                                     }}
                                 </span>
                             </div>
-                            <hr />
+                            <hr/>
                             <a
                                 v-if="items"
                                 type="button"
@@ -245,7 +245,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 import CartItem from "./CartItem";
 import mixinCart from "../mixins/mixinCart";
 
@@ -313,6 +313,7 @@ export default {
 .btn {
     font-size: 0.8rem;
 }
+
 .price {
     font-size: 0.6rem;
 }
