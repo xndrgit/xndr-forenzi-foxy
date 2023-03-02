@@ -21,8 +21,14 @@
                         />
 
                         <img
-                            style="position: absolute; right: -40px"
+                            class="maschera_dx"
                             src="../../../../public/Links/maschera_dx.png"
+                            alt=""
+                        />
+
+                        <img
+                            class="maschera_sx"
+                            src="../../../../public/Links/maschera_sx.png"
                             alt=""
                         />
 
@@ -195,6 +201,16 @@ div.VueCarousel-pagination {
         height: -webkit-fill-available;
         .carousel-image-container {
             position: relative;
+        }
+
+        .maschera_dx {
+            position: absolute;
+            right: -40px;
+        }
+             .maschera_sx {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
         }
 
         .carousel-content {

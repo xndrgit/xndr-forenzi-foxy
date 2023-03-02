@@ -6,24 +6,23 @@
                 <hr class="w-5" />
             </div>
 
-         
-                <div class="col-md-12 col-lg-8 d-flex align-items-end">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <span class="cart-header">PRODOTTO</span>
-                        </div>
-                        <div class="col-md-3">
-                            <span class="cart-header">PREZZO</span>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="cart-header">QUANTITA'</span>
-                        </div>
-                        <div class="col-md-2">
-                            <span class="cart-header">SUBTOTALE</span>
-                        </div>
+            <div class="col-md-12 col-lg-8 d-none align-items-end cart-info d-md-flex">
+                <div class="row">
+                    <div class="col-md-5">
+                        <span class="cart-header">PRODOTTO</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="cart-header">PREZZO</span>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="cart-header">QUANTITA'</span>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="cart-header">SUBTOTALE</span>
                     </div>
                 </div>
-      
+            </div>
+
             <hr />
             <div class="content">
                 <div class="row">
@@ -332,10 +331,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
 
-.cart-header{
+.cart-header {
     font-weight: bold;
     padding-bottom: 0px;
-    font-size: .8rem;
+    font-size: 0.8rem;
 }
 
 .btn {
@@ -527,4 +526,6 @@ a {
         }
     }
 }
+
+
 </style>
