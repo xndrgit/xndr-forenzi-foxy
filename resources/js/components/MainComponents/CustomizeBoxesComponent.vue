@@ -9,8 +9,8 @@
                         <div class="up">
                             <img
                                 class="card-img-top"
-                                src="https://i.imgur.com/hwYBtqv.png"
-                                alt="category-img"
+                                src="../../../../public/Links/categories/scatole-personalizzate.png"
+                                alt=""
                             />
                             <div class="litlogo position-absolute">
                                 <img class="img-fluid" src="" alt="" />

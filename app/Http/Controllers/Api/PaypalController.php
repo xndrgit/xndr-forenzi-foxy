@@ -29,6 +29,7 @@ class PaypalController extends Controller
         $user = $request->user();
         $params = $request->all();
         $orderId = $params['order_id'];
+        $amount = round($params['amount'], 2);
 
         $response = $provider->createOrder([
             "intent"              => "CAPTURE",
@@ -40,7 +41,7 @@ class PaypalController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "EUR",
-                        "value"         => round($params['amount'], 2)
+                        "value"         => floatval(number_format($amount, 2))
                     ]
                 ]
             ]
@@ -57,7 +58,7 @@ class PaypalController extends Controller
             $payment->order_id = $orderId;
             $payment->transaction_id = $response['id'];
             $payment->payment_method = $paymentMethods[$params['payment_method']];
-            $payment->amount = round($params['amount'], 2);
+            $payment->amount =$amount;
             $payment->payment_status = 'in attesa';  // set static
             $payment->created_at = now();
             $payment->updated_at = now();

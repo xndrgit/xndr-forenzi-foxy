@@ -13,9 +13,11 @@
                             <a :href="`/category/${category.id}`">
                                 <img
                                     class="card-img-top"
-                                    :src="category.img"
-                                    alt="category-img"
-                                    @click="$router.go(`/category/${category.id}`)"
+                                    src="https://www.freepnglogos.com/uploads/box-png/box-asf-revision-incubator-ooo-symphony-trunk-main-16.png"
+                                    alt=""
+                                    @click="
+                                        $router.go(`/category/${category.id}`)
+                                    "
                                 />
                             </a>
                             <div class="litlogo position-absolute">
@@ -39,7 +41,6 @@
                 </div>
             </nav>
         </div>
-
     </div>
 </template>
 
@@ -93,7 +94,7 @@ export default {
             display: flex;
             align-items: center;
 
-            .card-text{
+            .card-text {
                 font-weight: 700;
             }
 
@@ -103,7 +104,6 @@ export default {
             }
         }
     }
-
 
     .orange-box {
         background-color: rgb(245, 134, 47);

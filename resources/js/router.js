@@ -27,7 +27,7 @@ const router = new VueRouter({
             name: "personalize",
             component: PersonalizePage,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         },
         {
