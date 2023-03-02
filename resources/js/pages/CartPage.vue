@@ -5,6 +5,25 @@
                 <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
                 <hr class="w-5" />
             </div>
+
+         
+                <div class="col-md-12 col-lg-8 d-flex align-items-end">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="cart-header">PRODOTTO</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="cart-header">PREZZO</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="cart-header">QUANTITA'</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="cart-header">SUBTOTALE</span>
+                        </div>
+                    </div>
+                </div>
+      
             <hr />
             <div class="content">
                 <div class="row">
@@ -29,8 +48,10 @@
                                         </a>
                                     </div>
 
-                                    <div class="col-md-10 d-flex align-items-center ">
-                                        <div class="info col-12 ">
+                                    <div
+                                        class="col-md-10 d-flex align-items-center"
+                                    >
+                                        <div class="info col-12">
                                             <div class="row">
                                                 <div
                                                     class="col-md-4 product-name"
@@ -107,7 +128,9 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 quantity d-flex align-items-center">
+                                                <div
+                                                    class="col-md-4 quantity d-flex align-items-center"
+                                                >
                                                     <label
                                                         class="fw-bold"
                                                         for="quantity"
@@ -126,32 +149,29 @@
                                                     />
                                                 </div>
                                                 <div class="col-md-2 price">
-
-
-                                                        <span>€</span>
-                                                        <input
-                                                            type="text"
-                                                            id="id1"
-                                                            class="priceLabel"
-                                                            :id="item.id"
-                                                            ref="subTotalPrice"
-                                                            style="
-                                                                border: none;
-                                                                box-shadow: none;
-                                                                background-color: white;
-                                                                pointer-events: none;
-                                                            "
-                                                            :value="
-                                                                (
-                                                                    item.cart_quantity *
-                                                                    (item.price_saled
-                                                                        ? item.price_saled
-                                                                        : item.price)
-                                                                ).toFixed(2)
-                                                            "
-                                                            readonly
-                                                        />
-
+                                                    <span>€</span>
+                                                    <input
+                                                        type="text"
+                                                        id="id1"
+                                                        class="priceLabel"
+                                                        :id="item.id"
+                                                        ref="subTotalPrice"
+                                                        style="
+                                                            border: none;
+                                                            box-shadow: none;
+                                                            background-color: white;
+                                                            pointer-events: none;
+                                                        "
+                                                        :value="
+                                                            (
+                                                                item.cart_quantity *
+                                                                (item.price_saled
+                                                                    ? item.price_saled
+                                                                    : item.price)
+                                                            ).toFixed(2)
+                                                        "
+                                                        readonly
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -161,7 +181,7 @@
                             <hr />
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-8" v-else></div>
+                    <div class="col-md-12 col-lg-8" v-else>Nessun Prodotto</div>
                     <div class="col-md-12 col-lg-4">
                         <div class="summary d-flex flex-column">
                             <h3>TOTALE A CARRELLO</h3>
@@ -264,8 +284,8 @@ export default {
             }
 
             axios
-                .post('/shop/carts', {
-                    items: this.items
+                .post("/shop/carts", {
+                    items: this.items,
                 })
                 .then((response) => {
                     if (response.data.result === "success") {
@@ -285,7 +305,9 @@ export default {
             this.items = this.getCartItems();
 
             if (this.items) {
-                const deletedIndex = this.items.findIndex(el => el.id === item.id);
+                const deletedIndex = this.items.findIndex(
+                    (el) => el.id === item.id
+                );
 
                 this.items.splice(deletedIndex, 1);
             }
@@ -309,6 +331,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
+
+.cart-header{
+    font-weight: bold;
+    padding-bottom: 0px;
+    font-size: .8rem;
+}
 
 .btn {
     font-size: 0.8rem;
@@ -400,8 +428,8 @@ a {
 }
 
 .shopping-cart .items .product .info .price {
-display: flex;
-align-items: center;
+    display: flex;
+    align-items: center;
 
     font-weight: bold;
 }
