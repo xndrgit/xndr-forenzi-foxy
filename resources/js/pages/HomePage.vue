@@ -2,7 +2,7 @@
     <div class="home">
         <div class="container">
             <div class="row justify-content-center">
-                <loadingComponent v-if="loadingCategories"/>
+                <loadingComponent v-if="loadingCategories" />
 
                 <div
                     class="d-flex flex-wrap justify-content-between col-12"
@@ -14,12 +14,12 @@
                         :category="category"
                     />
                     <div @click="goToPersonalizePage">
-                        <CustomizeBoxesComponent/>
+                        <CustomizeBoxesComponent />
                     </div>
                 </div>
 
-                <JumboComponent/>
-                <BannerNewsComponent/>
+                <JumboComponent />
+                <BannerNewsComponent />
                 <BannerTextComponent
                     v-for="element in txtbanners"
                     :key="element.title"
@@ -29,7 +29,7 @@
                     :descriptionBold="element.descriptionBold"
                 />
 
-                <LoadingRollComponent v-if="loadingProducts"/>
+                <LoadingRollComponent v-if="loadingProducts" />
                 <div class="d-flex justify-content-center flex-wrap" v-else>
                     <BoxesComponent
                         v-for="product in products"
@@ -59,7 +59,7 @@
             :notes="element.notes"
             :button="element.button"
         />
-        <ClassicRight/>
+        <ClassicRight />
     </div>
 </template>
 
@@ -136,17 +136,17 @@ export default {
                 length: null,
                 width: null,
                 height: null,
-                searchStr: null
-            }
+                searchStr: null,
+            },
         };
     },
     beforeDestroy() {
-        window.VBus.stop('search-products', this.searchProducts);
+        window.VBus.stop("search-products", this.searchProducts);
     },
     mounted() {
         this.getCategories();
         this.getProducts();
-        window.VBus.listen('search-products', this.searchProducts);
+        window.VBus.listen("search-products", this.searchProducts);
     },
     methods: {
         loadMore() {
@@ -159,8 +159,8 @@ export default {
             this.loadingProducts = true;
             axios
                 .post("/shop/products", {
-                    page: (this.pagination.current_page + 1),
-                    searchParams: this.searchParams
+                    page: this.pagination.current_page + 1,
+                    searchParams: this.searchParams,
                 })
                 .then((response) => {
                     this.loadingProducts = false;
@@ -170,17 +170,23 @@ export default {
                     ];
                     this.pagination.current_page = response.data.current_page;
                     this.pagination.last_page = response.data.last_page;
-                    this.pagination.prev_page_url = this.pagination.current_page > 1 ? (this.pagination.current_page - 1) : 1;
-                    this.pagination.next_page_url = (!response.data.results || !response.data.results.length) || (this.pagination.current_page === response.data.last_page)
-                        ? null
-                        : (this.pagination.current_page + 1);
+                    this.pagination.prev_page_url =
+                        this.pagination.current_page > 1
+                            ? this.pagination.current_page - 1
+                            : 1;
+                    this.pagination.next_page_url =
+                        !response.data.results ||
+                        !response.data.results.length ||
+                        this.pagination.current_page === response.data.last_page
+                            ? null
+                            : this.pagination.current_page + 1;
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
         goToPersonalizePage() {
-            this.$router.push({path: "/personalize"});
+            this.$router.push({ path: "/personalize" });
         },
         getCategories(pageCategories = 1) {
             this.loadingCategories = true;
@@ -203,7 +209,7 @@ export default {
             this.loadingProducts = true;
             axios
                 .post("/shop/products", {
-                    searchParams: this.searchParams
+                    searchParams: this.searchParams,
                 })
                 .then((response) => {
                     this.products = response.data.results;
@@ -216,7 +222,7 @@ export default {
         searchProducts(data) {
             this.searchParams = Object.assign({}, data);
             this.getProducts();
-        }
+        },
     },
 };
 </script>

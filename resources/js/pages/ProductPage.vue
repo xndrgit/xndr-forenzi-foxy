@@ -26,7 +26,15 @@
             <BannerNewsComponent />
         </div>
 
-        <ClassicLeft />
+        <ClassicLeft
+            v-for="(element, index) in txtleft"
+            :key="index"
+            :title="element.title"
+            :description="element.description"
+            :subdescription="element.subdescription"
+            :notes="element.notes"
+            :button="element.button"
+        />
         <ClassicRight />
     </div>
 </template>

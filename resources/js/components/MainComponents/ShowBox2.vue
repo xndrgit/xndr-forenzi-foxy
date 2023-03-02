@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <section
                 class="boxes d-flex flex-wrap justify-content-center"
                 v-for="product in category.products"
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        </div> -->
     </div>
 </template>
 
