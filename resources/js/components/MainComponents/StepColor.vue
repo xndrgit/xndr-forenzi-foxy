@@ -97,10 +97,6 @@ export default {
         // this.selectedCategory.id = this.componentId;
         // this.selectedColor.id = this.componentId;
     },
-    computed: {
-        isActiveFirst() {},
-        isActiveSecond() {},
-    },
 };
 </script>
 

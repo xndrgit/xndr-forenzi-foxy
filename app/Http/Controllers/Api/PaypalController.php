@@ -48,16 +48,11 @@ class PaypalController extends Controller
         ]);
 
         if (isset($response['id']) && $response['id'] != null) {
-            $paymentMethods = [
-                'bonifico'      => 'Bonifico',
-                'alla-consegna' => 'Alla-Consegna',
-                'paypal'        => 'PayPal',
-            ];
             // update payment table
             $payment = new Payment();
             $payment->order_id = $orderId;
             $payment->transaction_id = $response['id'];
-            $payment->payment_method = $paymentMethods[$params['payment_method']];
+            $payment->payment_method = 'PayPal';
             $payment->amount =$amount;
             $payment->payment_status = 'in attesa';  // set static
             $payment->created_at = now();

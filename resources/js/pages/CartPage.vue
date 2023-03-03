@@ -319,11 +319,6 @@ export default {
             if (this.isLoggedIn) {
                 axios
                     .delete(`/shop/carts/${item.id}`)
-                    .then((response) => {
-                        if (response.data.result === "success") {
-                            this.items = response.data.products;
-                        }
-                    })
                     .catch((err) => {
                         console.error(err);
                     });

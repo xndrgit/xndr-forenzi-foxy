@@ -928,12 +928,22 @@ export default {
                             pec: this.pec,
                             code_sdi: this.code_sdi,
                         },
+                        payment: {
+                            paymentMethod: this.paymentMethod,
+                            amount: total
+                        }
                     })
                     .then((res) => {
                         if (res.data.result === "success" && res.data.id) {
-                            setTimeout(() => {
-                                window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}&payment_method=${this.paymentMethod}`;
-                            }, 500);
+                            if (this.paymentMethod === 'paypal') {
+                                this.$nextTick(() => {
+                                    window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}`;
+                                });
+                            } else {
+                                this.$nextTick(() => {
+                                    window.location.href = `/confirm/${res.data.id}`;
+                                });
+                            }
                         } else {
                             alert("Failed!");
                             this.pending = false;
