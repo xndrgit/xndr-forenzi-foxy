@@ -13,7 +13,7 @@
                             <a :href="`/category/${category.id}`">
                                 <img
                                     class="card-img-top"
-                                    src="https://www.freepnglogos.com/uploads/box-png/box-asf-revision-incubator-ooo-symphony-trunk-main-16.png"
+                                    :src="category.img"
                                     alt=""
                                     @click="
                                         $router.go(`/category/${category.id}`)
