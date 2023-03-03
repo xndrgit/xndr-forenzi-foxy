@@ -58,6 +58,13 @@ class OrderController extends Controller
 
         $orderId = $this->repository->createOrder($user_id);
 
+        if ($request->has('payment')) {
+            $payment = $request->input('payment');
+            if (isset($payment['paymentMethod']) && $payment['paymentMethod'] != 'paypal') {
+                $this->repository->createPayment($user_id, $orderId, $payment);
+            }
+        }
+
         return response()->json([
             'result' => 'success',
             'id' => $orderId

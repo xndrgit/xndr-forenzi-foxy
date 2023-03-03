@@ -41,16 +41,16 @@ class UserCartController extends Controller
     : JsonResponse
     {
         $cartItems = $request->input('items');
-        $request->user()->products()->detach();
+        $items = [];
         foreach ($cartItems as $cartItem) {
-            $request->user()->products()->attach([
-                $cartItem['id'] => [
-                    'quantity'   => $cartItem['cart_quantity'],
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]
-            ]);
+            $items[$cartItem['id']] = [
+                'quantity'   => $cartItem['cart_quantity'],
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
         }
+
+        $request->user()->products()->sync($items);
 
         return $this->getCartsList($request->user());
     }
@@ -70,7 +70,9 @@ class UserCartController extends Controller
         $user = User::find($user_id);
         $user->products()->detach($id);
 
-        return $this->getCartsList($user);
+        return response()->json([
+            'result' => 'success'
+        ]);
     }
 
     /**
@@ -86,8 +88,8 @@ class UserCartController extends Controller
         $products = $this->repository->getCartItems($user);
 
         return response()->json([
-            'result'       => 'success',
-            'products'     => $products
+            'result'   => 'success',
+            'products' => $products
         ]);
     }
 }
