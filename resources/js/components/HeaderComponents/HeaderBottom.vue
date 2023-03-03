@@ -126,7 +126,7 @@ export default {
 
 span {
     color: black;
-    font-weight: 900;
+    font-weight: 600;
     height: 38px;
 
     border: none;
