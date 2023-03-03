@@ -5,10 +5,8 @@
             <div>
                 <!-- Title goes here -->
                 <div class="d-flex justify-content-start align-items-start">
-                    <div class="w-10 bg-yellow px-3 py-2 mx-2">
-                        STEP {{ step }}
-                    </div>
-                    <div class="w-90">
+                    <div class="bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
+                    <div class="">
                         <span class="title-create">{{ title }}</span>
                         <div
                             class="d-flex align-items-center justify-content-between col-12"
@@ -161,11 +159,12 @@ export default {
 @import "../../../sass/global.scss";
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .sub {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
+    font-weight: 600;
 }
 
 .inputs {
@@ -194,7 +193,7 @@ h2 {
     font-weight: bold;
     height: 50px;
     width: 30%;
-    margin: 1rem 0px;
+    margin: 0.2rem 0px;
     font-size: 1.5rem;
     border: none;
     background-color: #f1f1f1;
@@ -206,9 +205,11 @@ h2 {
 .image {
     display: flex;
     flex-direction: column;
+    img {
+        height: 156px;
+        max-width: 70%;
+    }
 }
-
-
 
 .step {
     margin-bottom: 5rem;
@@ -221,6 +222,6 @@ h2 {
 
 .title-create {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 </style>

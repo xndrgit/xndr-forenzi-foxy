@@ -18,15 +18,21 @@
             </div>
             <div class="summary-item">
                 <span class="text">COLORE SCATOLA</span>
-                <span class="price">{{ selectedColor.value }}</span>
+                <span class="price"
+                    ><strong>{{ selectedColor.value }}</strong>
+                </span>
             </div>
             <div class="summary-item">
                 <span class="text">TIPO DI CARTONE</span>
-                <span class="price">{{ selectedType.value }}</span>
+                <span class="price"
+                    ><strong>{{ selectedType.value }}</strong>
+                </span>
             </div>
             <div class="summary-item">
                 <span class="text">STAMPA</span>
-                <span class="price">{{ radioValue }}</span>
+                <span class="price"
+                    ><strong>{{ radioValue }}</strong>
+                </span>
             </div>
 
             <div class="summary-item">
@@ -137,9 +143,9 @@ export default {
 .shopping-cart .summary h3 {
     text-align: start;
     font-size: 1.3em;
-    font-weight: 600;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    font-weight: 900;
+    padding-top: 0px;
+    padding-bottom: 10px;
 }
 
 .shopping-cart .summary .summary-item:not(:last-of-type) {
@@ -149,7 +155,7 @@ export default {
 }
 
 .shopping-cart .summary .text {
-    font-size: 1em;
+    font-size: 0.7em;
     font-weight: 600;
 }
 
@@ -185,7 +191,7 @@ i {
 
 .title-create {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .step {
@@ -199,7 +205,7 @@ i {
 }
 
 label {
-    font-size: 1rem;
+    font-size: 0.6rem;
     font-weight: bold;
     margin: 0px;
 }
@@ -213,6 +219,10 @@ input {
 
 .form-group input {
     width: 100%;
+    margin: 0px;
+}
+.form-group {
+    margin: 0px;
 }
 
 .image img {

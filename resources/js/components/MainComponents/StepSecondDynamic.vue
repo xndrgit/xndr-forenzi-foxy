@@ -139,6 +139,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title-create {
+    font-weight: bold;
+    font-size: 1rem;
+}
 .titlebox {
     font-size: 0.8rem;
 }

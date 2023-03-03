@@ -149,9 +149,10 @@ export default {
         th {
             min-width: 60px;
             border: 1px solid #ddd;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-align: center;
             vertical-align: middle;
+            font-weight: 600;
 
             img {
                 max-height: 50px;

@@ -6,17 +6,22 @@
                 <hr class="w-5" />
             </div>
 
-            <div class="col-md-12 col-lg-8 d-none align-items-end cart-info d-md-flex">
+            <div
+                class="col-md-12 col-lg-8 d-none align-items-end cart-info d-md-flex ml-4"
+            >
                 <div class="row">
                     <div class="col-md-5">
                         <span class="cart-header">PRODOTTO</span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <span class="cart-header">PREZZO</span>
                     </div>
-                    <div class="col-md-2">
+                    <div
+                        class="col-md-2 d-flex align-items-center justify-content-end"
+                    >
                         <span class="cart-header">QUANTITA'</span>
                     </div>
+                    <div class="col-md-1"></div>
                     <div class="col-md-2">
                         <span class="cart-header">SUBTOTALE</span>
                     </div>
@@ -290,7 +295,7 @@ export default {
                     if (response.data.result === "success") {
                         this.items = response.data.products;
 
-                        alert("Procedi Al Checkout");
+                        // alert("Procedi Al Checkout");
 
                         window.location.href = "/checkout";
                     }
@@ -422,8 +427,8 @@ a {
 
 .shopping-cart .items .product .info .quantity .quantity-input {
     margin: auto;
-    width: 68px;
-    height: 32px;
+    width: 70px;
+    height: 20px;
 }
 
 .shopping-cart .items .product .info .price {
@@ -526,6 +531,4 @@ a {
         }
     }
 }
-
-
 </style>

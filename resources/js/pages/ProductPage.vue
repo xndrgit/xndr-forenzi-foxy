@@ -74,6 +74,15 @@ export default {
             categories: [],
             loadingCategories: true,
             loadingProduct: true,
+            txtleft: [
+                {
+                    title: "Scegli FoxyBox, qualità dei prodotti, consegna rapida e assistenza dedicata.",
+                    description:
+                        "Semplifica il tuo rifornimento di scatole, sono tutte in pronta consegna e le acquisti in pochi e semplici click!",
+                    subdescription: "In più, la spedizione è sempre gratuita!",
+                    button: "SCOPRI IL PRODOTTO",
+                },
+            ],
         };
     },
     methods: {

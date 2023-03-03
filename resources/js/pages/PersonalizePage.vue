@@ -1,28 +1,27 @@
 <template>
     <div>
-        <div class="d-flex flex-column align-items-center p-2">
+        <div class="d-flex flex-column align-items-center mb-4">
             <h2 class="text-center font-weight-bold my-2">
                 Configura la tua scatola su misura in meno di un minuto!
             </h2>
-            <hr class="w-5" />
         </div>
         <div class="bg-gray">
             <div class="container-lg">
-                <div class="row">
-                    <div>
-                        <div
-                            class="create-images d-flex flex-wrap justify-content-center"
-                        >
-                            <img
-                                v-for="(image, index) in images"
-                                :key="index"
-                                class="personalize-img img-fluid col-6 col-md-3"
-                                :alt="image.title"
-                                :src="image.src"
-                            />
-                        </div>
+                <div class="row justify-content-center">
+                    <div
+                        class="create-images col-10 d-flex flex-wrap justify-content-center"
+                    >
+                        <img
+                            v-for="(image, index) in images"
+                            :key="index"
+                            class="personalize-img img-fluid col-6 col-md-3"
+                            :alt="image.title"
+                            :src="image.src"
+                        />
                     </div>
+                </div>
 
+                <div class="row">
                     <div>
                         <div
                             class="row flex-wrap justify-content-center col-12"
@@ -80,6 +79,7 @@
                                 <StepThirdDynamic
                                     @printSelected="setPrintValue"
                                     :radio-value="radioValue"
+                              
                                 />
                             </div>
                             <div class="col-xl-4 col-lg-* col-md-* col-sm-*">
@@ -232,11 +232,17 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
 
+.create-images {
+    padding: 1rem;
+    img {
+        height: 180px;
+    }
+}
+
 h2 {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: bold;
-    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
-        0px -5px 35px rgba(255, 255, 255, 0.3);
+    margin: 0px;
 }
 
 .active {

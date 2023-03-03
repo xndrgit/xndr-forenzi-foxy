@@ -2,7 +2,7 @@
     <div class="step">
         <fieldset>
             <div class="d-flex align-items-start">
-                <div class="w-10 bg-yellow px-3 py-2 mx-2">STEP 5</div>
+                <div class="bg-yellow px-2 py-2 mx-2">STEP 5</div>
 
                 <div class="w-90">
                     <span class="title-create"
@@ -140,7 +140,7 @@ i {
 
 .title-create {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .step {

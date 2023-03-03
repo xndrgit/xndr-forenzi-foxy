@@ -15,7 +15,7 @@
                         <div
                             class="box d-flex flex-column align-items-center col-12"
                         >
-                            <img class="img-fluid" alt="Image" :src="imgOne" />
+                            <img class="img-fluid image" alt="" :src="imgOne" />
                             <i
                                 v-if="isActiveFirst"
                                 class="fa-sharp fa-solid fa-check"
@@ -37,7 +37,7 @@
                         <div
                             class="box d-flex flex-column align-items-center col-12"
                         >
-                            <img class="img-fluid" alt="Image" :src="imgTwo" />
+                            <img class="img-fluid image" alt="" :src="imgTwo" />
 
                             <i
                                 v-if="isActiveSecond"
@@ -105,18 +105,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img {
+    height: 160px;
+    max-width: 90%;
+}
+
+.title-create {
+    font-weight: bold;
+    font-size: 1rem;
+}
 .box {
     position: relative;
     border: none;
-    transition: .5s;
-    &:hover{
-        transform: scale(.89);
+    transition: 0.5s;
+    &:hover {
+        transform: scale(0.89);
     }
 }
 i {
     position: absolute;
-    font-size: 10rem;
-    top: 80px;
+    font-size: 6rem;
+    top: 50px;
     right: 80px;
     color: #fdbc48;
     font-weight: bold;
