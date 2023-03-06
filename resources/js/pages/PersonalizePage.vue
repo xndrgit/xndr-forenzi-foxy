@@ -79,7 +79,7 @@
                                 <StepThirdDynamic
                                     @printSelected="setPrintValue"
                                     :radio-value="radioValue"
-                              
+
                                 />
                             </div>
                             <div class="col-xl-4 col-lg-* col-md-* col-sm-*">
@@ -91,6 +91,8 @@
                                     :selectedColor="selectedColor"
                                     :selectedType="selectedType"
                                     :radioValue="radioValue"
+                                    @update-sender="updateSenderAddress"
+                                    @send-email="sendEmail"
                                 />
                             </div>
                         </div>
@@ -107,6 +109,7 @@ import StepColor from "../components/MainComponents/StepColor.vue";
 import StepType from "../components/MainComponents/StepType.vue";
 import StepThirdDynamic from "../components/MainComponents/StepThirdDynamic.vue";
 import SummaryPersonalize from "../components/MainComponents/SummaryPersonalize.vue";
+
 export default {
     components: {
         StepFirstDynamic,
@@ -124,6 +127,13 @@ export default {
             radioValue: "",
             selectedColor: "",
             selectedType: "",
+
+            sender_email: '',
+            first_name: '',
+            last_name: '',
+            business_name: '',
+            address: '',
+            phone: '',
 
             boxone: [
                 {
@@ -219,12 +229,35 @@ export default {
             this.selectedType = type;
         },
 
-        // setSelectedColor(color) {
-        //     this.selectedColor = color;
-        // },
-        // setSelectedCategory(category) {
-        //     this.selectedCategory = category;
-        // },
+        updateSenderAddress(data) {
+            this.sender_email = data.sender_email;
+            this.first_name = data.first_name;
+            this.last_name = data.last_name;
+            this.business_name = data.business_name;
+            this.address = data.address;
+            this.phone = data.phone;
+        },
+
+        sendEmail() {
+            axios.post('/shop/personalizes', {
+                sender_email: this.sender_email,
+                first_name: this.first_name,
+                last_name: this.last_name,
+                business_name: this.business_name,
+                address: this.address,
+                phone: this.phone,
+                length: this.inputL,
+                width: this.inputP,
+                height: this.inputH,
+                quantity: this.inputQ,
+                color: this.selectedColor.value,
+                cardboard_type: this.selectedType.value,
+                press_type: this.radioValue,
+            })
+                .catch((e) => {
+
+                });
+        }
     },
 };
 </script>
@@ -234,6 +267,7 @@ export default {
 
 .create-images {
     padding: 1rem;
+
     img {
         height: 180px;
     }
@@ -254,6 +288,7 @@ h2 {
     position: relative;
     border: none;
 }
+
 i {
     position: absolute;
     font-size: 12rem;

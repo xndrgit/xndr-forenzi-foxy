@@ -5,7 +5,7 @@
             <div class="summary-item">
                 <span class="text">MISURE</span>
                 <span class="price"
-                    ><strong>{{ inputL }} L x</strong>
+                ><strong>{{ inputL }} L x</strong>
                     <strong>{{ inputP }} P x</strong>
                     <strong>{{ inputH }} H</strong>
                 </span>
@@ -13,25 +13,25 @@
             <div class="summary-item">
                 <span class="text">QUANTITÀ</span>
                 <span class="price"
-                    ><strong>{{ inputQ }} PEZZI</strong>
+                ><strong>{{ inputQ }} PEZZI</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">COLORE SCATOLA</span>
                 <span class="price"
-                    ><strong>{{ selectedColor.value }}</strong>
+                ><strong>{{ selectedColor.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">TIPO DI CARTONE</span>
                 <span class="price"
-                    ><strong>{{ selectedType.value }}</strong>
+                ><strong>{{ selectedType.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">STAMPA</span>
                 <span class="price"
-                    ><strong>{{ radioValue }}</strong>
+                ><strong>{{ radioValue }}</strong>
                 </span>
             </div>
 
@@ -46,7 +46,11 @@
                             <div
                                 class="d-flex jusify-content-start align-items-center"
                             >
-                                <input type="text" value="" />
+                                <input
+                                    type="text"
+                                    v-model="first_name"
+                                    @input="updateSender"
+                                />
                             </div>
                         </div>
                         <div class="form-group col-12">
@@ -54,7 +58,11 @@
                             <div
                                 class="d-flex jusify-content-start align-items-center"
                             >
-                                <input type="text" value="" />
+                                <input
+                                    type="text"
+                                    v-model="last_name"
+                                    @input="updateSender"
+                                />
                             </div>
                         </div>
 
@@ -63,7 +71,11 @@
                             <div
                                 class="d-flex jusify-content-start align-items-center"
                             >
-                                <input type="text" value="" />
+                                <input
+                                    type="text"
+                                    v-model="business_name"
+                                    @input="updateSender"
+                                />
                             </div>
                         </div>
 
@@ -72,7 +84,11 @@
                             <div
                                 class="d-flex jusify-content-start align-items-center"
                             >
-                                <input type="text" value="" />
+                                <input
+                                    type="text"
+                                    v-model="address"
+                                    @input="updateSender"
+                                />
                             </div>
                         </div>
 
@@ -82,7 +98,11 @@
                                 <div
                                     class="d-flex jusify-content-start align-items-center"
                                 >
-                                    <input type="text" value="" />
+                                    <input
+                                        type="text"
+                                        v-model="phone"
+                                        @input="updateSender"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -92,7 +112,11 @@
                                 <div
                                     class="d-flex jusify-content-start align-items-center"
                                 >
-                                    <input type="text" value="" />
+                                    <input
+                                        type="text"
+                                        v-model="sender_email"
+                                        @input="updateSender"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -103,6 +127,8 @@
             <button
                 class="btn bg-yellow fw-bold btn-lg btn-block"
                 type="button"
+                @click="sendEmail"
+                :disabled="!sender_email && !first_name"
             >
                 INVIA IL PREVENTIVO
             </button>
@@ -123,10 +149,31 @@ export default {
         "radioValue",
     ],
     data() {
-        return {};
+        return {
+            sender_email: '',
+            first_name: '',
+            last_name: '',
+            business_name: '',
+            address: '',
+            phone: '',
+        };
     },
 
-    computed: {},
+    methods: {
+        updateSender() {
+            this.$emit('update-sender', {
+                sender_email: this.sender_email,
+                first_name: this.first_name,
+                last_name: this.last_name,
+                business_name: this.business_name,
+                address: this.address,
+                phone: this.phone,
+            })
+        },
+        sendEmail() {
+            this.$emit('send-email');
+        }
+    },
 };
 </script>
 
@@ -181,6 +228,7 @@ h2 {
     position: relative;
     border: none;
 }
+
 i {
     position: absolute;
     font-size: 8rem;
@@ -221,6 +269,7 @@ input {
     width: 100%;
     margin: 0px;
 }
+
 .form-group {
     margin: 0px;
 }
