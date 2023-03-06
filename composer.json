@@ -19,7 +19,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "srmklive/paypal": "~3.0",
-        "swiftmailer/swiftmailer": "^6.3"
+        "swiftmailer/swiftmailer": " ^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
