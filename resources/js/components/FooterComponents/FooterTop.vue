@@ -28,7 +28,7 @@
                 </div>
                 <div class="footer-section col-3">
                     <h3>Seguici sui social</h3>
-                    <ul class="wrapper">
+                    <ul class="wrapper icons">
                         <li class="icon facebook">
                             <span class="tooltip">Facebook</span>
                             <span><i class="fa-sm fab fa-facebook-f"></i></span>
@@ -103,7 +103,7 @@
             padding: 0;
             li {
                 font-size: 0.7rem;
-                margin: 0px;
+            
                 font-weight: 500;
                 a {
                     color: black;
