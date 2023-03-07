@@ -228,7 +228,7 @@ class ProductController extends Controller
             'fourth_price' => 'numeric',
             'purchasable_in_multi_of' => 'required|integer',
             'category_id' => 'required|integer|exists:categories,id',
-            'subcategory_id' => 'required|integer|exists:subcategories,id',
+            'subcategory_id' => 'required',
         ]);
 
 
@@ -253,7 +253,7 @@ class ProductController extends Controller
 
         $product->price = $data['price'];
         $product->price_saled = $data['price_saled'];
-      
+
         $product->quantity = $data['quantity'];
         $product->weight = $data['weight'];
 
@@ -265,7 +265,7 @@ class ProductController extends Controller
         $product->description = $data['description'];
 
         $product->save();
-        
+
 
         return redirect()
             // rinominiamo la variabile post

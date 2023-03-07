@@ -54,7 +54,10 @@
                     class="navbar-brand"
                     href="{{ url('/') }}"
                 >
-                    Foxy
+                    <img
+                        alt=""
+                        src="{{ asset('img/logo.png') }}"
+                    >
                     {{-- {{ config('app.name', 'Foxy') }} --}}
                 </a>
                 <button
@@ -80,15 +83,10 @@
                         @else
                             <li class="nav-item dropdown mx-1">
                                 <a
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
+                                    class="nav-link "
+                                    href="{{ route('admin.users.index') }}"
                                 >
-                                    Users
+                                    Utenti
                                 </a>
                                 <div
                                     aria-labelledby="navbarDropdown"
@@ -97,82 +95,74 @@
                                     <a
                                         class="dropdown-item"
                                         href="{{ route('admin.users.index') }}"
-                                    >View All Users</a>
+                                    >Visualizza tutti gli utenti</a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown mx-1">
 
+                            {{-- <li class="nav-item dropdown mx-1">
                                 <a
                                     aria-expanded="false"
                                     aria-haspopup="true"
                                     class="nav-link dropdown-toggle"
                                     data-toggle="dropdown"
+                                    href="{{ route('admin.users.index') }}"
                                     href="#"
                                     id="navbarDropdown"
                                     role="button"
                                 >
-                                    Products
+                                    Utenti
                                 </a>
                                 <div
+                                    aria-labelledby="navbarDropdown"
+                                    class="dropdown-menu"
+                                >
+                                    <a
+                                        class="dropdown-item"
+                                        href="{{ route('admin.users.index') }}"
+                                    >Visualizza tutti gli utenti</a>
+                                </div>
+                            </li> --}}
+                            <li class="nav-item dropdown mx-1">
+
+                                <a
+                                    class="nav-link "
+                                    href="{{ route('admin.products.index') }}"
+                                >
+                                    Prodotti
+                                </a>
+                                {{-- <div
                                     aria-labelledby="navbarDropdown"
                                     class="dropdown-menu"
                                 >
                                     <a
                                         class="dropdown-item"
                                         href="{{ route('admin.products.index') }}"
-                                    >View All Products</a>
+                                    >Visualizza tutti i prodotti</a>
                                     <a
                                         class="dropdown-item"
                                         href="{{ route('admin.products.create') }}"
-                                    >Add New Product</a>
-                                </div>
+                                    >Aggiungi un nuovo prodotto</a>
+                                </div> --}}
                             </li>
 
                             <li class="nav-item dropdown mx-1">
                                 <a
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
+                                    class="nav-link"
+                                    href="{{ route('admin.categories.index') }}"
                                 >
-                                    Categories
+                                    Categorie
                                 </a>
 
-                                <div
-                                    aria-labelledby="navbarDropdown"
-                                    class="dropdown-menu"
-                                >
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('admin.categories.index') }}"
-                                    >View All Categories</a>
-                                </div>
                             </li>
 
                             <li class="nav-item dropdown mx-1">
                                 <a
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
+                                    class="nav-link"
+                                    href="{{ route('admin.orders.index') }}"
                                 >
-                                    Orders
+                                    Ordini
                                 </a>
-                                <div
-                                    aria-labelledby="navbarDropdown"
-                                    class="dropdown-menu"
-                                >
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('admin.orders.index') }}"
-                                    >View All Orders</a>
-                                </div>
+                             
                             </li>
 
                         @endguest
@@ -183,17 +173,22 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
+
                                 <a
-                                    class="nav-link"
+                                    class="nav-link d-flex align-items-center"
                                     href="{{ route('login') }}"
-                                >{{ __('Login') }}</a>
+                                >
+                                    <i class="fa-sm fa-sharp fa-solid fa-right-to-bracket"></i>
+                                    {{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a
-                                        class="nav-link"
+                                        class="nav-link d-flex align-items-center"
                                         href="{{ route('register') }}"
-                                    >{{ __('Register') }}</a>
+                                    >
+                                        <i class="fa-sm fas fa-user-plus"></i>
+                                        {{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -249,3 +244,41 @@
 </body>
 
 </html>
+
+<style
+    lang="scss"
+    scoped
+>
+    .navbar {
+        width: 100%;
+        height: fit-content;
+        background-color: rgb(245, 133, 47);
+        color: white;
+        padding: 0px;
+    }
+
+    .navbar img {
+        height: 20px;
+        transition: .3s;
+    }
+
+    .navbar img:hover {
+        transform: scale(1.01)
+    }
+
+    .navbar i {
+        margin-right: .8rem;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: .2s ease-in;
+    }
+
+    .navbar a:hover {
+        color: black;
+        transform: scale(1.2)
+    }
+</style>
