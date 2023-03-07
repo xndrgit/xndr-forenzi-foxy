@@ -28,25 +28,28 @@
                 </div>
                 <div class="footer-section col-3">
                     <h3>Seguici sui social</h3>
-                    <div class="d-flex">
-                        <a href="https://www.facebook.com/">
-                            <div>
-                                <img
-                                    src="../../../../public/Links/fb-Icon.png"
-                                    alt=""
-                                />
-                            </div>
-                        </a>
-
-                        <a href="https://www.instagram.com/">
-                            <div>
-                                <img
-                                    src="../../../../public/Links/ig.png"
-                                    alt=""
-                                />
-                            </div>
-                        </a>
-                    </div>
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <span><i class="fa-sm fab fa-facebook-f"></i></span>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <span><i class="fa-sm fab fa-twitter"></i></span>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <span><i class="fa-sm fab fa-instagram"></i></span>
+                        </li>
+                        <!-- <li class="icon github">
+                            <span class="tooltip">Github</span>
+                            <span><i class="fa-sm fab fa-github"></i></span>
+                        </li> -->
+                        <li class="icon youtube">
+                            <span class="tooltip">Youtube</span>
+                            <span><i class="fa-sm fab fa-youtube"></i></span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="footer-section col-3">
                     <h3>Newsletter</h3>
