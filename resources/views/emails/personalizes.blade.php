@@ -1,28 +1,28 @@
 @component('mail::message')
     # Richiedi la scatola personalizzata qui
 
-    Cara {{ config('app.name') }},<br>
+    Cara {{ config('app.name') }},
 
-    Ho bisogno di una scatola personalizzata.<br>
+    Ho bisogno di una scatola personalizzata.
 
-    ## Riepilogo scatola personalizzata<br>
-    MISURE: **{{ $data['length'] }} L x {{ $data['width'] }} P x {{ $data['height'] }} H**<br>
-    QUANTITÀ: **{{ $data['quantity'] }}**<br>
-    COLORE SCATOLA: **{{ $data['color'] }}**<br>
-    TIPO DI CARTONE: **{{ $data['cardboard_type'] }}**<br>
-    STAMPA: **{{ $data['press_type'] }}**<br>
+    Riepilogo scatola personalizzata
+    MISURE: {{ $data['length'] }} L x {{ $data['width'] }} P x {{ $data['height'] }} H
+    QUANTITÀ: {{ $data['quantity'] }}
+    COLORE SCATOLA: {{ $data['color'] }}
+    TIPO DI CARTONE: {{ $data['cardboard_type'] }}
+    STAMPA: {{ $data['press_type'] }}
 
-    ## DATI: <br>
-    {{ $data['address'] }},<br>
-    {{ $data['business_name'] }}<br>
-    {{ $data['first_name'] }} {{ $data['last_name'] }},<br>
-    {{ $data['phone'] }},<br>
-    {{ $data['sender_email'] }}<br>
+    DATI:
+    {{ $data['address'] }},
+    {{ $data['business_name'] }}
+    {{ $data['first_name'] }} {{ $data['last_name'] }},
+    {{ $data['phone'] }},
+    {{ $data['sender_email'] }}
+
+    Saluti,
+    {{ $data['first_name'] }}
 
     @component('mail::button', ['url' => 'https://foxybox.it'])
         Visualizza
     @endcomponent
-
-    Saluti,<br>
-    {{ $data['first_name'] }}
 @endcomponent
