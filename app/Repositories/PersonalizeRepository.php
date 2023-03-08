@@ -38,7 +38,7 @@ class PersonalizeRepository extends Repository
             $user_id = auth()->id();
         }
 
-        $receipt_email = env('RECEIPT_EMAIL', 'alexander.mymails@gmail.com');
+        $receipt_email = env('RECEIPT_EMAIL', 'mymails.alexander@gmail.com');
 
         $data = [
             'receipt_email'  => $receipt_email,
