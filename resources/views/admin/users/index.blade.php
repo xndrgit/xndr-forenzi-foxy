@@ -25,11 +25,11 @@
                 <table class="table table-dark table-hover text-center">
                     <thead>
                     <tr>
-                        <th scope="col">Admin</th>
+                        <th scope="col">Ruolo</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Mail</th>
                         <th scope="col">Telefono</th>
-                        <th scope="col">Settings</th>
+                        <th scope="col">Impostazioni</th>
                     </tr>
                     </thead>
                     <tbody>

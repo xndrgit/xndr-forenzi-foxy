@@ -18,7 +18,7 @@ class SubcategoryTableSeeder extends Seeder
 
         $subcategories = [
             'subcategory1', 'subcategory2', 'subcategory3', 'subcategory4', 'subcategory5', 'subcategory6', 'subcategory7', 'subcategory8', 'subcategory9', 'subcategory10',
-            'subcategory11', 'subcategory12', 'subcategory13', 'subcategory14', 'subcategory15', 'subcategory16', 'subcategory17', 'subcategory18', 'subcategory19',
+            'subcategory11', 'subcategory12'
         ];
 
         foreach ($subcategories as $subcategory) {

@@ -61,6 +61,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $product = new Product;
         $categories = Category::all();
         $subcategories = Subcategory::all();
 
@@ -68,7 +69,7 @@ class ProductController extends Controller
         $colors = Product::select('color')->distinct()->get();
         $purchasable_in_multi_of = Product::select('purchasable_in_multi_of')->distinct()->get();
         //* dd($colors);
-        return view('admin.products.create', compact('colors', 'prints', 'categories', 'subcategories', 'purchasable_in_multi_of'));
+        return view('admin.products.create', compact('product', 'colors', 'prints', 'categories', 'subcategories', 'purchasable_in_multi_of'));
     }
 
     /**
@@ -81,15 +82,10 @@ class ProductController extends Controller
     {
         // $validation = $request->validate($this->validation, $this->validationCustom);
         $data = $request->all();
-        // dd($data);
+        dd($data);
 
         $validatedData = $request->validate([
-            'code' => [
-                'required',
-                'min:3',
-                'max:10',
-                Rule::unique('products')
-            ],
+            'code' => 'required|min:3|max:10|unique:products',
             'name' => 'required|min:3|max:255',
             'length' => 'required|numeric',
             'height' => 'required|numeric',
@@ -99,8 +95,8 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
-            'img' => 'required|max:256',
-            'mini_description' => 'required|string|max:255',
+            'img' => 'nullable|max:260',
+            'mini_description' => 'required|string',
             'price_saled' => 'nullable|numeric',
             'weight' => 'required|numeric',
             'first_price' => 'numeric',
@@ -108,11 +104,9 @@ class ProductController extends Controller
             'third_price' => 'numeric',
             'fourth_price' => 'numeric',
             'purchasable_in_multi_of' => 'required|integer',
-            'category_id' => 'required|integer|exists:categories,id',
-            'subcategory_id' => 'required|integer|exists:subcategories,id',
+            'category_id' => 'required|integer',
+            'subcategory_id' => 'required',
         ]);
-
-        // dd($data);
 
         $product = new Product();
 
@@ -140,12 +134,16 @@ class ProductController extends Controller
 
         $product->purchasable_in_multi_of = $data['purchasable_in_multi_of'];
 
-        $product->img = $data['img'];
+        if (isset($data['img'])) {
+            $product->img = $data['img'];
+        }
 
         $product->mini_description = $data['mini_description'];
         $product->description = $data['description'];
 
         $product->save();
+
+        $product->subcategories()->sync($data['subcategory_id']);
 
 
         return redirect()
@@ -199,6 +197,8 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $data = $request->all();
 
+        // dd($data);
+
 
         // $validation = $request->validate($this->validation, $this->validationCustom);
 
@@ -218,7 +218,7 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
-            'img' => 'required',
+            'img' => 'nullable|max:260',
             'mini_description' => 'required|string',
             'price_saled' => 'nullable|numeric',
             'weight' => 'required|numeric',
@@ -227,16 +227,18 @@ class ProductController extends Controller
             'third_price' => 'numeric',
             'fourth_price' => 'numeric',
             'purchasable_in_multi_of' => 'required|integer',
-            'category_id' => 'required|integer|exists:categories,id',
+            'category_id' => 'required|integer',
             'subcategory_id' => 'required',
         ]);
 
 
-        $data['img'] = Storage::put('uploadedProducts', $data['img']);
+        if (isset($data['img'])) {
+            $data['img'] = Storage::put('uploadedProducts', $data['img']);
+        }
 
         //! non dobbiamo creare un new product ma modificare quello scelto
         $product->category_id = $data['category_id'];
-        $product->subcategory_id = $data['subcategory_id'];
+
 
         $product->code = $data['code'];
         $product->name = $data['name'];
@@ -259,12 +261,15 @@ class ProductController extends Controller
 
         $product->purchasable_in_multi_of = $data['purchasable_in_multi_of'];
 
-        $product->img = $data['img'];
+        if (isset($data['img'])) {
+            $product->img = $data['img'];
+        }
 
         $product->mini_description = $data['mini_description'];
         $product->description = $data['description'];
 
         $product->save();
+        $product->subcategories()->sync($data['subcategory_id']);
 
 
         return redirect()

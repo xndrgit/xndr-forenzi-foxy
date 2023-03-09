@@ -72,6 +72,7 @@ Route::middleware('auth')
         Route::resource('/payments', 'PaymentController');
         Route::resource('/users', 'UserController');
         Route::resource('/categories', 'CategoryController');
+        Route::resource('/subcategories', 'SubcategoryController');
     });
 
 Route::middleware('auth')

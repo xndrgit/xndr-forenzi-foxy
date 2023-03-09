@@ -58,11 +58,12 @@
                                         <div class="badge badge-pill px-3 py-2 rounded-pill badge-dark">
                                             {{ $product->category->name }}
                                         </div>
-                                        <div class="badge badge-pill px-3 py-2 rounded-pill badge-dark">
-                                            {{ $product->subcategory->name }}
-                                        </div>
 
-                                        <p class="card-title fw-bold small p-2 text-muted">CODICE: {{ $product->code }}</p>
+                                        <p class="card-title fw-bold small p-2 text-muted">
+
+                                            CODICE: {{ $product->code }}
+                                         
+                                        </p>
 
                                         <div>
                                             <div class="badge">

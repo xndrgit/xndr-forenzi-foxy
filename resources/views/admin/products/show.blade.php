@@ -30,7 +30,7 @@
                             <img
                                 alt="local"
                                 class="postcard__img"
-                                src="{{ Storage::url($product->img) }}"
+                                src="{{ asset('storage/' . $product->img) }}"
                             />
                         @endif
 
@@ -48,8 +48,17 @@
                                 {{ $product->code }}</div>
                             <div class="postcard__preview-txt h6 small"><span class="text-muted">CATEGORIA:</span>
                                 {{ $product->category->name }}</div>
-                            <div class="postcard__preview-txt h6 small"><span class="text-muted">SOTTOCATEGORIA:</span>
-                                {{ $product->subcategory->name }}</div>
+                            <div class="postcard__preview-txt h6 small">
+                                <span class="text-muted">
+                                    SOTTOCATEGORIE:
+                                </span>
+                                <span>
+                                    @foreach ($product->subcategories as $subcategory)
+                                        {{ ucwords($subcategory->name) }} ☆
+                                    @endforeach
+                                </span>
+
+                            </div>
                             <div class="postcard__preview-txt h6 small"><span class="text-muted">PESO:</span>
                                 {{ $product->weight }}kg</div>
                             <div class="postcard__preview-txt h6 small"><span class="text-muted">COLORE:</span>

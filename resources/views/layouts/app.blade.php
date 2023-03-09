@@ -158,11 +158,21 @@
                             <li class="nav-item dropdown mx-1">
                                 <a
                                     class="nav-link"
+                                    href="{{ route('admin.subcategories.index') }}"
+                                >
+                                    Sottocategorie
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item dropdown mx-1">
+                                <a
+                                    class="nav-link"
                                     href="{{ route('admin.orders.index') }}"
                                 >
                                     Ordini
                                 </a>
-                             
+
                             </li>
 
                         @endguest

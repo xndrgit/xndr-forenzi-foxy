@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
 
                 ProductsTableSeeder::class,
 
+                ProductSubcategoryTableSeeder::class,
+
                 OrdersTableSeeder::class,
                 PaymentsTableSeeder::class,
 

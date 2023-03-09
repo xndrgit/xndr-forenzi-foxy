@@ -12,7 +12,7 @@ class UserDetailsTableSeeder extends Seeder
         //! prendo tutti gli utenti
         $users = User::all();
 
-        $levels = ['admin', 'vip-member',  'registered'];
+        $levels = ['registered'];
 
         //! per ogni utente inserisco un dettaglio utente
         foreach ($users as $user) {
@@ -32,7 +32,7 @@ class UserDetailsTableSeeder extends Seeder
             $userDetail->pec = $faker->email();
             $userDetail->code_sdi = $faker->randomNumber(8);
 
-            if ($user->email === 'alexander.mymails@gmail.com') {
+            if ($user->email === 'info@foxybox.it') {
                 $userDetail->admin = 'super admin';
             } else {
                 $userDetail->admin = $faker->randomElement($levels);

@@ -25,16 +25,15 @@
                 <table class="table table-dark table-hover text-center">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Settings</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Colore</th>
+                            <th scope="col">Impostazioni</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($categories as $category)
                             <tr>
-                                <th scope="row">{{ $category->id }}</th>
+
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->color }}</td>
                                 <td>
