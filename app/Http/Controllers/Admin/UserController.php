@@ -84,6 +84,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+
+        if (!$user->user_detail) {
+            $this->createUserDetail($user);
+        }
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -97,6 +102,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        if (!$user->user_detail) {
+            $this->createUserDetail($user);
+        }
         $levels = UserDetail::select('admin')->distinct()->get();
         return view('admin.users.edit', compact('user', 'levels'));
     }
@@ -210,5 +218,22 @@ class UserController extends Controller
         return redirect()
             ->route('admin.users.index')
             ->with('deleted', $user['name']);
+    }
+
+    private function createUserDetail($user) {
+        $user->user_detail()->create([
+            'surname' => '',
+            'business_name' => '',
+            'notes' => '',
+            'address' => '',
+            'phone' => '',
+            'city' => '',
+            'cap' => '',
+            'province' => '',
+            'state' => '',
+            'pec' => '',
+            'code_sdi' => '',
+            'admin' => 'registered'
+        ]);
     }
 }

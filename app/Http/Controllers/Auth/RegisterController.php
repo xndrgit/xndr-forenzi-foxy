@@ -73,6 +73,21 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
+        $user->user_detail()->create([
+            'surname' => '',
+            'business_name' => '',
+            'notes' => '',
+            'address' => '',
+            'phone' => '',
+            'city' => '',
+            'cap' => '',
+            'province' => '',
+            'state' => '',
+            'pec' => '',
+            'code_sdi' => '',
+            'admin' => 'registered'
+        ]);
+
         $user->roles()->attach(8, [
             'created_at' => now(),
             'updated_at' => now()

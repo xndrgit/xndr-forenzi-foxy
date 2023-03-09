@@ -58,7 +58,7 @@ Route::get('/shop/user', function (Request $request) {
 Auth::routes();
 
 // ! proteggo tutte le rotte con il middleware: devo essere autenticato altrimenti non mi viene restituita la pagina di login
-Route::middleware('auth')
+Route::middleware(['auth', 'admin'])
     //! aggiorna ogni url
     ->prefix('admin')
     //! aggiorna la cartella all'interno della quale si trovano i controller
@@ -66,6 +66,7 @@ Route::middleware('auth')
     //! aggiorna la cartella all'interno della quale si trovani i blade
     ->name('admin.')
     ->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
         Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('/products', 'ProductController');
         Route::resource('/orders', 'OrderController');
