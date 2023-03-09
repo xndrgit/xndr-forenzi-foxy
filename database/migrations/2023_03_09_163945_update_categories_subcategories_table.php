@@ -22,6 +22,11 @@ class UpdateCategoriesSubcategoriesTable extends Migration
             $table->dropForeign(['category_id']);
             $table->dropColumn(['category_id']);
         });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['subcategory_id']);
+            $table->dropColumn(['subcategory_id']);
+        });
     }
 
     /**
@@ -39,6 +44,11 @@ class UpdateCategoriesSubcategoriesTable extends Migration
         Schema::table('subcategories', function (Blueprint $table) {
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreignId('subcategory_id');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
         });
     }
 }
