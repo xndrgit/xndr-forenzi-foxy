@@ -3,128 +3,126 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\Subcategory;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
         $subcategories = Subcategory::all();
+
         return view('admin.subcategories.index', compact('subcategories'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        $categories = Category::all();
-        $subcategory = new Subcategory;
-        return view('admin.subcategories.create', compact('subcategory', 'categories'));
+        $subcategory = new Subcategory();
+
+        return view('admin.subcategories.create', compact('subcategory'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @return RedirectResponse
      */
     public function store(Request $request)
+    : RedirectResponse
     {
-        $data = $request->all();
-        // dd($data);
-
-        $validatedData = $request->validate([
-            'name' => 'required|min:3|max:255',
-            'category_id' => 'required|integer',
+        $request->validate([
+            'name' => 'required|min:3|max:255'
         ]);
 
         $subcategory = new Subcategory();
-        $subcategory->name = $data['name'];
-        $subcategory->category_id = $data['category_id'];
+        $subcategory->name = $request->input('name') ?: '';
+        $subcategory->description = $request->input('description') ?: '';
+        $subcategory->created_at = now();
+        $subcategory->updated_at = now();
         $subcategory->save();
 
         return redirect()
-            // rinominiamo la variabile post
-            ->route('admin.subcategories.index', ['subcategory' => $subcategory])
-            ->with('created', $data['name']);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+            ->route('admin.subcategories.index')
+            ->with('created', $request->input('name'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Subcategory $subcategory
+     *
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(Subcategory $subcategory)
     {
-        $product = Product::findOrFail($id);
-        $categories = Category::all();
-        $subcategory = Subcategory::findOrFail($id);
-        return view('admin.subcategories.edit', compact('subcategory', 'categories', 'product'));
+        return view('admin.subcategories.edit', compact('subcategory'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request     $request
+     * @param Subcategory $subcategory
+     *
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subcategory $subcategory)
+    : RedirectResponse
     {
-        $subcategory = Subcategory::findOrFail($id);
-        $data = $request->all();
-        // dd($data);
-
-        $validatedData = $request->validate([
-            'name' => 'required|min:3|max:255',
-            'category_id' => 'required|integer',
+        $request->validate([
+            'name' => 'required|min:3|max:255'
         ]);
 
-        $subcategory->name = $data['name'];
-        $subcategory->category_id = $data['category_id'];
+        $subcategory->name = $request->input('name') ?: '';
+        $subcategory->description = $request->input('description') ?: '';
+        $subcategory->updated_at = now();
         $subcategory->save();
 
         return redirect()
-            // rinominiamo la variabile post
-            ->route('admin.subcategories.index', ['subcategory' => $subcategory])
-            ->with('edited', $data['name']);
+            ->route('admin.subcategories.index')
+            ->with('edited', $request->input('name'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Subcategory $subcategory
+     *
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Subcategory $subcategory)
+    : RedirectResponse
     {
-        $subcategory = Subcategory::findOrFail($id);
-        $subcategory->delete();
-        return redirect()
-            ->route('admin.subcategories.index')
-            ->with('deleted', $subcategory['name']);
+        if ($subcategory->products()->count() > 0 || $subcategory->categories()->count() > 0) {
+            return redirect()
+                ->route('admin.subcategories.index')
+                ->with('error', "$subcategory->name cannot be deleted because it is used in the categories and products table. Please unlink from them.");
+        } else {
+            $deletedCategoryName = $subcategory->name;
+
+            $subcategory->delete();
+
+            return redirect()
+                ->route('admin.subcategories.index')
+                ->with('deleted', $deletedCategoryName);
+        }
     }
 }

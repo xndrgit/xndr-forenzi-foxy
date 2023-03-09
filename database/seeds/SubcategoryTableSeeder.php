@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Subcategory;
-use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class SubcategoryTableSeeder extends Seeder
 {
@@ -14,8 +13,6 @@ class SubcategoryTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $categories = Category::all();
-
         $subcategories = [
             'subcategory1', 'subcategory2', 'subcategory3', 'subcategory4', 'subcategory5', 'subcategory6', 'subcategory7', 'subcategory8', 'subcategory9', 'subcategory10',
             'subcategory11', 'subcategory12'
@@ -25,7 +22,6 @@ class SubcategoryTableSeeder extends Seeder
             $newSubcategory = new Subcategory();
             $newSubcategory->name = $subcategory;
             $newSubcategory->description = $faker->paragraph;
-            $newSubcategory->category_id = $faker->randomElement($categories)->id;
             $newSubcategory->save();
         }
     }

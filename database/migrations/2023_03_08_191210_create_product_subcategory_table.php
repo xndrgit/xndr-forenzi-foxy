@@ -15,9 +15,9 @@ class CreateProductSubcategoryTable extends Migration
     {
         Schema::create('product_subcategory', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('product_id');
+            $table->foreignId('product_id')->unsigned();
+            $table->foreignId('subcategory_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedBigInteger('subcategory_id');
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
 
 

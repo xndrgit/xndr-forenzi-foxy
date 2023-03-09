@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -46,7 +50,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -57,7 +61,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -75,43 +79,43 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return RedirectResponse
      */
     public function store(Request $request)
+    : RedirectResponse
     {
         // $validation = $request->validate($this->validation, $this->validationCustom);
         $data = $request->all();
-        dd($data);
 
-        $validatedData = $request->validate([
-            'code' => 'required|min:3|max:10|unique:products',
-            'name' => 'required|min:3|max:255',
-            'length' => 'required|numeric',
-            'height' => 'required|numeric',
-            'width' => 'required|numeric',
-            'color' => 'required|string',
-            'print' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
-            'img' => 'nullable|max:260',
-            'mini_description' => 'required|string',
-            'price_saled' => 'nullable|numeric',
-            'weight' => 'required|numeric',
-            'first_price' => 'numeric',
-            'second_price' => 'numeric',
-            'third_price' => 'numeric',
-            'fourth_price' => 'numeric',
+        $request->validate([
+            'code'                    => 'required|min:3|max:10|unique:products',
+            'name'                    => 'required|min:3|max:255',
+            'length'                  => 'required|numeric',
+            'height'                  => 'required|numeric',
+            'width'                   => 'required|numeric',
+            'color'                   => 'required|string',
+            'print'                   => 'required|string',
+            'description'             => 'required|string',
+            'price'                   => 'required|numeric',
+            'quantity'                => 'required|integer',
+            'img'                     => 'nullable|max:260',
+            'mini_description'        => 'required|string',
+            'price_saled'             => 'nullable|numeric',
+            'weight'                  => 'required|numeric',
+            'first_price'             => 'numeric',
+            'second_price'            => 'numeric',
+            'third_price'             => 'numeric',
+            'fourth_price'            => 'numeric',
             'purchasable_in_multi_of' => 'required|integer',
-            'category_id' => 'required|integer',
-            'subcategory_id' => 'required',
+            'category_id'             => 'required|integer',
+            'subcategory_id'          => 'required',
         ]);
 
         $product = new Product();
 
         $product->category_id = $data['category_id'];
-        $product->subcategory_id = $data['subcategory_id'];
 
         $product->code = $data['code'];
         $product->name = $data['name'];
@@ -143,9 +147,6 @@ class ProductController extends Controller
 
         $product->save();
 
-        $product->subcategories()->sync($data['subcategory_id']);
-
-
         return redirect()
             ->route('admin.products.show', $product->id)
             // ->route('admin.products.index')
@@ -155,8 +156,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return Application|Factory|View
      */
     public function show($id)
     {
@@ -168,28 +170,30 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $product = Product::findOrFail($id);
 
         $categories = Category::all();
-        $subcategories = Subcategory::all();
 
         $prints = Product::select('print')->distinct()->get();
         $colors = Product::select('color')->distinct()->get();
         $purchasable_in_multi_of = Product::select('purchasable_in_multi_of')->distinct()->get();
 
-        return view('admin.products.edit', compact('product', 'categories', 'subcategories', 'colors', 'prints', 'purchasable_in_multi_of'));
+        return view('admin.products.edit', compact('product', 'categories', 'colors', 'prints', 'purchasable_in_multi_of'));
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -203,32 +207,32 @@ class ProductController extends Controller
         // $validation = $request->validate($this->validation, $this->validationCustom);
 
         $validatedData = $request->validate([
-            'code' => [
+            'code'                    => [
                 'required',
                 'min:3',
                 'max:10',
                 Rule::unique('products')->ignore($product->id)
             ],
-            'name' => 'required|min:3|max:255',
-            'length' => 'required|numeric',
-            'height' => 'required|numeric',
-            'width' => 'required|numeric',
-            'color' => 'required|string',
-            'print' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
-            'img' => 'nullable|max:260',
-            'mini_description' => 'required|string',
-            'price_saled' => 'nullable|numeric',
-            'weight' => 'required|numeric',
-            'first_price' => 'numeric',
-            'second_price' => 'numeric',
-            'third_price' => 'numeric',
-            'fourth_price' => 'numeric',
+            'name'                    => 'required|min:3|max:255',
+            'length'                  => 'required|numeric',
+            'height'                  => 'required|numeric',
+            'width'                   => 'required|numeric',
+            'color'                   => 'required|string',
+            'print'                   => 'required|string',
+            'description'             => 'required|string',
+            'price'                   => 'required|numeric',
+            'quantity'                => 'required|integer',
+            'img'                     => 'nullable|max:260',
+            'mini_description'        => 'required|string',
+            'price_saled'             => 'nullable|numeric',
+            'weight'                  => 'required|numeric',
+            'first_price'             => 'numeric',
+            'second_price'            => 'numeric',
+            'third_price'             => 'numeric',
+            'fourth_price'            => 'numeric',
             'purchasable_in_multi_of' => 'required|integer',
-            'category_id' => 'required|integer',
-            'subcategory_id' => 'required',
+            'category_id'             => 'required|integer',
+            'subcategory_id'          => 'required',
         ]);
 
 
@@ -269,7 +273,6 @@ class ProductController extends Controller
         $product->description = $data['description'];
 
         $product->save();
-        $product->subcategories()->sync($data['subcategory_id']);
 
 
         return redirect()
@@ -281,8 +284,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

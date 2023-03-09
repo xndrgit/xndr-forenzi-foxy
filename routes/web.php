@@ -68,12 +68,12 @@ Route::middleware(['auth', 'admin'])
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/home', 'HomeController@index')->name('home');
-        Route::resource('/products', 'ProductController');
-        Route::resource('/orders', 'OrderController');
-        Route::resource('/payments', 'PaymentController');
-        Route::resource('/users', 'UserController');
-        Route::resource('/categories', 'CategoryController');
-        Route::resource('/subcategories', 'SubcategoryController');
+        Route::resource('users', 'UserController');
+        Route::resource('products', 'ProductController');
+        Route::resource('orders', 'OrderController');
+        Route::resource('payments', 'PaymentController');
+        Route::resource('categories', 'CategoryController');
+        Route::resource('subcategories', 'SubcategoryController')->except(['show']);
     });
 
 Route::middleware('auth')

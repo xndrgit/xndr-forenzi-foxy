@@ -24,33 +24,33 @@
 
                 <table class="table table-dark table-hover text-center">
                     <thead>
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Colore</th>
-                            <th scope="col">Impostazioni</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Colore</th>
+                        <th scope="col">Impostazioni</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @forelse ($categories as $category)
-                            <tr>
+                    @forelse ($categories as $category)
+                        <tr>
 
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->color }}</td>
-                                <td>
-                                    <a
-                                        class="btn btn-sm btn-success rounded-circle"
-                                        href="{{ route('admin.categories.show', $category->id) }}"
-                                    ><i class="fas fa-eye "></i></a>
-                                    <a
-                                        class="btn btn-sm btn-primary rounded-circle"
-                                        href="{{ route('admin.categories.edit', $category->id) }}"
-                                    ><i class="fas fa-edit"></i></a>
+                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->color }}</td>
+                            <td>
+                                <a
+                                    class="btn btn-sm btn-success rounded-circle"
+                                    href="{{ route('admin.categories.show', ['category' => $category->id]) }}"
+                                ><i class="fas fa-eye "></i></a>
+                                <a
+                                    class="btn btn-sm btn-primary rounded-circle"
+                                    href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
+                                ><i class="fas fa-edit"></i></a>
 
-                                </td>
-                            </tr>
-                        @empty
-                            <h1>No Categories</h1>
-                        @endforelse
+                            </td>
+                        </tr>
+                    @empty
+                        <h1>No Categories</h1>
+                    @endforelse
 
                     </tbody>
                 </table>

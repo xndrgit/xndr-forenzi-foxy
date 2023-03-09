@@ -9,22 +9,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
-    public function orders(): BelongsToMany
+    public function orders()
+    : BelongsToMany
     {
         return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id')->withPivot('quantity');
     }
 
-    public function category(): BelongsTo
+    public function category()
+    : BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function subcategories()
-    {
-        return $this->belongsToMany(Subcategory::class);
-    }
-
-    public function users(): BelongsToMany
+    public function users()
+    : BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_carts', 'product_id', 'user_id')->withPivot('quantity');
     }

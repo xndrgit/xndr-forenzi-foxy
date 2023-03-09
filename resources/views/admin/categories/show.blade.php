@@ -62,7 +62,7 @@
                                         <p class="card-title fw-bold small p-2 text-muted">
 
                                             CODICE: {{ $product->code }}
-                                         
+
                                         </p>
 
                                         <div>
@@ -103,31 +103,10 @@
                     <h1>No Products For This category</h1>
                 @endif
 
-                {{-- @if ($category->products->count() > 0)
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($category->products as $product)
-                                <tr>
-                                    <td>{{ $product->name }}</td>
-                                    <td>{{ $product->pivot->quantity }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <h1>No Products For This category</h1>
-                @endif --}}
-
             </div>
             <a
                 class="btn btn-sm btn-primary rounded-circle btn-floating"
-                href="{{ route('admin.categories.edit', $category->id) }}"
+                href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
             ><i class="fas fa-edit"></i></a>
         </div>
 

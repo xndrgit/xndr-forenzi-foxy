@@ -20,7 +20,7 @@ class ProductRepository extends Repository
      */
     public function getProducts($request)
     {
-        $query = $this->model()->with('category');
+        $query = $this->model()->with(['category', 'category.subcategories']);
 
         if ($request->has('searchParams')) {
             $search = $request->input('searchParams');
