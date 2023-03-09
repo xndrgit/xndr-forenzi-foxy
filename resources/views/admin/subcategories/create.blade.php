@@ -17,7 +17,8 @@
                                 <label
                                     class="form-label"
                                     for="name"
-                                >Nome
+                                >
+                                    Nome
                                 </label>
                                 <input
                                     class="form-control"
@@ -30,34 +31,30 @@
                                 />
 
                                 @error('name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
                                 @enderror
 
                             </div>
                             <div class="form-outline col-6">
                                 <label
                                     class="form-label"
-                                    for="category_name"
-                                >Categoria
-                                </label>
-                                <select
-                                    class="form-control"
-                                    name="category_id"
+                                    for="description"
                                 >
-                                    @foreach ($categories as $category)
-                                        <option
-                                            {{ $category->id == old('category_id', $subcategory->category_id) ? 'selected' : '' }}
-                                            value="{{ $category->id }}"
-                                        >{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
+                                    Descrizione
+                                </label>
+                                <textarea
+                                    class="form-control"
+                                    id="description"
+                                    name="description"
+                                    rows="2"
+                                >{{ old('name', $subcategory->description) }}</textarea>
 
-                                @error('category_id')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                @error('description')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
                                 @enderror
 
                             </div>

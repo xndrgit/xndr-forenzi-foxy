@@ -2,10 +2,10 @@
 
 @section('content')
     <form
-        action="{{ route('admin.categories.update', ['category' => $category->id]) }}"
+        action="{{ route('admin.categories.store') }}"
         method="post"
-    > @csrf @method('PUT')
-
+    >
+        @csrf
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -29,7 +29,6 @@
                                             >
                                         @else
                                             <input
-                                                {{ $category->subcategories->contains($subcategory) ? 'checked' : '' }}
                                                 class="form-check-input"
                                                 id="input-tags-{{ $subcategory->id }}"
                                                 name="subcategory_id[]"
@@ -51,7 +50,8 @@
                                         <label
                                             class="form-label"
                                             for="name"
-                                        >Nome
+                                        >
+                                            Nome
                                         </label>
                                         <input
                                             class="form-control"
@@ -74,7 +74,8 @@
                                         <label
                                             class="form-label"
                                             for="description"
-                                        >Descrizione
+                                        >
+                                            Descrizione
                                         </label>
                                         <input
                                             class="form-control"
@@ -90,29 +91,10 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
-                                    </div>
 
-                                    <div class="form-outline">
-                                        <label
-                                            class="form-label"
-                                            for="color"
-                                        >Colore
-                                        </label>
-                                        <input
-                                            class="form-control"
-                                            id="color"
-                                            name="color"
-                                            type="text"
-                                            value="{{ old('color', $category->color) }}"
-                                        />
-
-                                        @error('color')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
                                     </div>
                                 </div>
+
                                 <div class="col">
                                     <div class="form-outline">
                                         <label
@@ -147,7 +129,6 @@
                                             id="img2"
                                             name="img2"
                                             type="text"
-                                            max="190"
                                             value="{{ old('img2', $category->img2) }}"
                                         />
 

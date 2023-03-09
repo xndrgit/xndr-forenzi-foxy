@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Category;
-use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class CategoryTableSeeder extends Seeder
 {

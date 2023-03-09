@@ -53,7 +53,7 @@
                                     SOTTOCATEGORIE:
                                 </span>
                                 <span>
-                                    @foreach ($product->subcategories as $subcategory)
+                                    @foreach ($product->category->subcategories as $subcategory)
                                         {{ ucwords($subcategory->name) }} ☆
                                     @endforeach
                                 </span>

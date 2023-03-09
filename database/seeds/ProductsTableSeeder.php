@@ -4,8 +4,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Carbon\Carbon;
-use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 
 class ProductsTableSeeder extends Seeder
 {

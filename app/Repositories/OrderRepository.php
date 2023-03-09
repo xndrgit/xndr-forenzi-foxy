@@ -86,14 +86,14 @@ class OrderRepository extends Repository
       $payment->transaction_id = $transaction_id;
       $payment->payment_method = $paymentMethods[$params['paymentMethod']];
       $payment->amount = round($params['amount'], 2);
-      $payment->payment_status = 'successo';  // set static
+      $payment->payment_status = 'in attesa';  // set static
       $payment->created_at = now();
       $payment->updated_at = now();
       $payment->save();
 
       $order = Order::find($orderId);
       $order->order_number = $transaction_id;
-      $order->status = 'consegnato';
+      $order->status = 'spedito';
       $order->save();
 
       $user = User::find($user_id);
