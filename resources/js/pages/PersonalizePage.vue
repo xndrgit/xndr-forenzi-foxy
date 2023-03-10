@@ -118,7 +118,8 @@ export default {
         StepThirdDynamic,
         SummaryPersonalize,
     },
-    data() {
+    data()
+    {
         return {
             inputH: "",
             inputP: "",
@@ -209,27 +210,33 @@ export default {
         };
     },
     methods: {
-        setPrintValue(print) {
+        setPrintValue(print)
+        {
             this.radioValue = print;
         },
 
-        setInputValues(inputValues) {
+        setInputValues(inputValues)
+        {
             this.inputL = inputValues.inputL;
             this.inputH = inputValues.inputH;
             this.inputP = inputValues.inputP;
         },
-        setInputQuantity(inputQuantity) {
+        setInputQuantity(inputQuantity)
+        {
             this.inputQ = inputQuantity.inputQ;
         },
 
-        setSelectedColor(color) {
+        setSelectedColor(color)
+        {
             this.selectedColor = color;
         },
-        setSelectedType(type) {
+        setSelectedType(type)
+        {
             this.selectedType = type;
         },
 
-        updateSenderAddress(data) {
+        updateSenderAddress(data)
+        {
             this.sender_email = data.sender_email;
             this.first_name = data.first_name;
             this.last_name = data.last_name;
@@ -238,7 +245,8 @@ export default {
             this.phone = data.phone;
         },
 
-        sendEmail() {
+        sendEmail()
+        {
             axios.post('/shop/personalizes', {
                 sender_email: this.sender_email,
                 first_name: this.first_name,
@@ -254,7 +262,12 @@ export default {
                 cardboard_type: this.selectedType.value,
                 press_type: this.radioValue,
             })
-                .catch((e) => {
+                .then(r =>
+                {
+                    this.$router.push({path: '/congratulation', name: 'congratulation'})
+                })
+                .catch((e) =>
+                {
 
                 });
         }
