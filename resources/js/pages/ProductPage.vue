@@ -85,6 +85,12 @@ export default {
             ],
         };
     },
+    created() {
+        this.getCategories();
+        this.getProduct();
+        // let subcategories = this.product.subcategories;
+        // let categorySubcategories = this.category.subcategoriesZ
+    },
     methods: {
         goToPersonalizePage() {
             this.$router.push({ path: "/personalize" });
@@ -117,11 +123,7 @@ export default {
                     console.warn(error.message);
                 });
         },
-    },
-    created() {
-        this.getCategories();
-        this.getProduct();
-    },
+    }
 };
 </script>
 

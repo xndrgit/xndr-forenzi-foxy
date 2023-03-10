@@ -6,10 +6,13 @@
                     <div class="card">
                         <div class="congratulation contain">
                             <div class="congrats">
-                                <h1>Congrat<span class="hide">ulation</span>s!</h1>
-                                <h3>We sent an email successfully.</h3>
+                                <h1>Congratulazioni!</h1>
+                                <h3>E' stata mandata una mail con successo!</h3>
                                 <div class="done">
-                                    <img src="/images/congratulations-envelope.gif" alt=""/>
+                                    <img
+                                        src="/images/congratulations-envelope.gif"
+                                        alt=""
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -18,13 +21,12 @@
             </div>
         </div>
     </main>
-
 </template>
 
 <script>
 export default {
-    name: 'CongratulationPage'
-}
+    name: "CongratulationPage",
+};
 </script>
 
 <style lang="scss" scoped>
