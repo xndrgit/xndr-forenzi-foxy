@@ -274,6 +274,10 @@ class ProductController extends Controller
 
         $product->save();
 
+        if ($request->has('subcategory_id')) {
+            $product->subcategories()->sync($request->input('subcategory_id'));
+        }
+
 
         return redirect()
             // rinominiamo la variabile post

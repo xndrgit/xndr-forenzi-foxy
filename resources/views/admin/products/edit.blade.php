@@ -136,12 +136,15 @@
 
                         @foreach ( $product->category->subcategories as $subcategory)
                             <div class="form-check">
-                                <input
+                               <input
+                                    {{ $product->subcategories->contains($subcategory) ? 'checked' : '' }}
                                     class="form-check-input"
-                                    disabled
+                                    id="input-tags-{{ $subcategory->id }}"
+                                    name="subcategory_id[]"
+                                    readonly
                                     type="checkbox"
-                                    checked
-                                >
+                                    value="{{ $subcategory->id }}"
+                                />
 
                                 <input
                                     class="form-control form-check-label"

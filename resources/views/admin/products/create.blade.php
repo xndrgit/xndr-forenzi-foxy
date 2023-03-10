@@ -130,6 +130,30 @@
             <div class="row">
 
                 <div class="col-12 d-flex">
+
+                    <div class="form-outline col-2">
+                        <label for="subcategory_id">Sottocategoria</label>
+
+                        @foreach ($categories[0]->subcategories as $subcategory)
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    id="input-tags-{{ $subcategory->id }}"
+                                    name="subcategory_id[]"
+                                    readonly
+                                    type="checkbox"
+                                    value="{{ $subcategory->id }}"
+                                />
+
+                                <input
+                                    class="form-control form-check-label"
+                                    readonly
+                                    type="text"
+                                    value="{{ $subcategory->name }}"
+                                >
+                            </div>
+                        @endforeach
+                    </div>
                     <div class="col-10 d-flex flex-wrap">
                         <div class="form-outline col-4">
                             <label for="category_id">Categoria</label>
@@ -491,7 +515,7 @@
                         @enderror
 
                     </div>
-                    <div class="form-outline col-3">
+                    <div class="form-group col-3">
                         <label
                             class="form-label"
                             for="img"
@@ -502,7 +526,10 @@
                             name="img"
                             type="file"
                         >
-                        {{-- <div class="card mt-3">
+                        <div
+                            class="card mt-3"
+                            style="max-width: 300px;"
+                        >
                             @if (filter_var($product->img, FILTER_VALIDATE_URL))
                                 <img
                                     alt="standard"
@@ -517,7 +544,7 @@
                                 >
                             @endif
 
-                        </div> --}}
+                        </div>
                         @error('img')
                             <div class="alert alert-danger mt-3">{{ $message }}</div>
                         @enderror
