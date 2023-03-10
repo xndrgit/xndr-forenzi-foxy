@@ -26,9 +26,9 @@
                         />
 
                         @error('code')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -48,9 +48,9 @@
                         />
 
                         @error('name')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -71,9 +71,9 @@
                         />
 
                         @error('length')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -94,9 +94,9 @@
                         />
 
                         @error('width')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -116,9 +116,9 @@
                         />
 
                         @error('height')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -134,23 +134,24 @@
                     <div class="form-outline col-2">
                         <label for="subcategory_id">Sottocategoria</label>
 
-                        @foreach ($categories[0]->subcategories as $subcategory)
-                            <div class="form-check">
-                                <input
-                                    class="form-check-input"
-                                    id="input-tags-{{ $subcategory->id }}"
-                                    name="subcategory_id[]"
-                                    readonly
-                                    type="checkbox"
-                                    value="{{ $subcategory->id }}"
-                                />
+                        @foreach ($categories as $key => $category)
+                            <div
+                                class="form-check"
+                                id="subcategory-pack-{{ $category->id }}"
+                                style="{{ $key == 0 ? '' : 'display: none;' }}"
+                            >
+                                @foreach ( $category->subcategories as $subcategory)
+                                    <label class="form-check-label px-2">
+                                        <input
+                                            class="form-check-input subcategory-form-checkbox"
+                                            name="subcategory_id[]"
+                                            type="checkbox"
+                                            value="{{ $subcategory->id }}"
+                                        />
 
-                                <input
-                                    class="form-control form-check-label"
-                                    readonly
-                                    type="text"
-                                    value="{{ $subcategory->name }}"
-                                >
+                                        <span class="badge badge-secondary h4 p-2">{{ $subcategory->name }}</span>
+                                    </label>
+                                @endforeach
                             </div>
                         @endforeach
                     </div>
@@ -159,7 +160,9 @@
                             <label for="category_id">Categoria</label>
                             <select
                                 class="form-control"
+                                id="select-product-category"
                                 name="category_id"
+                                onchange="changeCategory(this)"
                             >
                                 @foreach ($categories as $category)
                                     <option
@@ -193,9 +196,9 @@
                             </select>
 
                             @error('color')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -223,9 +226,9 @@
                             </select>
 
                             @error('print')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -246,9 +249,9 @@
                             />
 
                             @error('first_price')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -269,9 +272,9 @@
                             />
 
                             @error('second_price')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -292,9 +295,9 @@
                             />
 
                             @error('third_price')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -315,9 +318,9 @@
                             />
 
                             @error('third_price')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -338,9 +341,9 @@
                             />
 
                             @error('fourth_price')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -371,9 +374,9 @@
                         />
 
                         @error('price')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -393,9 +396,9 @@
                         />
 
                         @error('price_saled')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -416,9 +419,9 @@
                         />
 
                         @error('weight')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -438,9 +441,9 @@
                         />
 
                         @error('quantity')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -460,9 +463,9 @@
                             value="{{ old('purchasable_in_multi_of', $product->purchasable_in_multi_of) }}"
                         >
                         @error('purchasable_in_multi_of')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -480,14 +483,14 @@
                             name="description"
                             required
                             rows="10"
-                            style="white-space: wrap !important;"
+                            style="white-space: pre-wrap !important;"
                             type="text"
                         >{{ old('description', $product->description) }}</textarea>
 
                         @error('description')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -504,14 +507,14 @@
                             name="mini_description"
                             required
                             rows="4"
-                            style="white-space: wrap !important;"
+                            style="white-space: pre-wrap !important;"
                             type="text"
                         >{{ old('mini_description', $product->mini_description) }}</textarea>
 
                         @error('mini_description')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
                         @enderror
 
                     </div>
@@ -546,7 +549,7 @@
 
                         </div>
                         @error('img')
-                            <div class="alert alert-danger mt-3">{{ $message }}</div>
+                        <div class="alert alert-danger mt-3">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -566,3 +569,33 @@
 
     </form>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        let oldCategoryID = document.getElementById('select-product-category').value;
+
+        // update subcategory dynamic
+        function changeCategory(param)
+        {
+            const selectedCategoryID = param.value;
+            hideOldSubcategories(selectedCategoryID);
+            oldCategoryID = selectedCategoryID;
+        }
+
+        // hide old subcategories
+        function hideOldSubcategories(selectedCategoryID)
+        {
+            let subcategoryCheckboxes = document.querySelectorAll("input[type='checkbox'].subcategory-form-checkbox");
+            if (subcategoryCheckboxes && subcategoryCheckboxes.length)
+            {
+                for (let subcategoryCheckbox of subcategoryCheckboxes)
+                {
+                    subcategoryCheckbox.checked = false;
+                }
+            }
+
+            document.querySelector("#subcategory-pack-" + oldCategoryID).style.display = 'none';
+            document.querySelector("#subcategory-pack-" + selectedCategoryID).style.display = '';
+        }
+    </script>
+@endpush

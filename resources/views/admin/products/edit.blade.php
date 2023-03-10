@@ -133,25 +133,25 @@
 
                     <div class="form-outline col-2">
                         <label for="subcategory_id">Sottocategoria</label>
+                        @foreach ($categories as $category)
+                            <div
+                                class="form-check"
+                                id="subcategory-pack-{{ $category->id }}"
+                                style="{{ $category->id == $product->category->id ? '' : 'display: none;' }}"
+                            >
+                                @foreach ( $category->subcategories as $subcategory)
+                                    <label class="form-check-label px-2">
+                                        <input
+                                            {{ $product->subcategories->contains($subcategory) ? 'checked' : '' }}
+                                            class="form-check-input subcategory-form-checkbox"
+                                            name="subcategory_id[]"
+                                            type="checkbox"
+                                            value="{{ $subcategory->id }}"
+                                        />
 
-                        @foreach ( $product->category->subcategories as $subcategory)
-                            <div class="form-check">
-                               <input
-                                    {{ $product->subcategories->contains($subcategory) ? 'checked' : '' }}
-                                    class="form-check-input"
-                                    id="input-tags-{{ $subcategory->id }}"
-                                    name="subcategory_id[]"
-                                    readonly
-                                    type="checkbox"
-                                    value="{{ $subcategory->id }}"
-                                />
-
-                                <input
-                                    class="form-control form-check-label"
-                                    readonly
-                                    type="text"
-                                    value="{{ $subcategory->name }}"
-                                >
+                                        <span class="badge badge-secondary h4 p-2">{{ $subcategory->name }}</span>
+                                    </label>
+                                @endforeach
                             </div>
                         @endforeach
                     </div>
@@ -160,7 +160,9 @@
                             <label for="category_id">Categoria</label>
                             <select
                                 class="form-control"
+                                id="select-product-category"
                                 name="category_id"
+                                onchange="changeCategory(this)"
                             >
                                 @foreach ($categories as $category)
                                     <option
@@ -481,7 +483,7 @@
                             name="description"
                             required
                             rows="10"
-                            style="white-space: wrap !important;"
+                            style="white-space: pre-wrap !important;"
                             type="text"
                         >{{ old('description', $product->description) }}</textarea>
 
@@ -505,7 +507,7 @@
                             name="mini_description"
                             required
                             rows="4"
-                            style="white-space: wrap !important;"
+                            style="white-space: pre-wrap !important;"
                             type="text"
                         >{{ old('mini_description', $product->mini_description) }}</textarea>
 
@@ -567,3 +569,33 @@
 
     </form>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        let oldCategoryID = document.getElementById('select-product-category').value;
+
+        // update subcategory dynamic
+        function changeCategory(param)
+        {
+            const selectedCategoryID = param.value;
+            hideOldSubcategories(selectedCategoryID);
+            oldCategoryID = selectedCategoryID;
+        }
+
+        // hide old subcategories
+        function hideOldSubcategories(selectedCategoryID)
+        {
+            let subcategoryCheckboxes = document.querySelectorAll("input[type='checkbox'].subcategory-form-checkbox");
+            if (subcategoryCheckboxes && subcategoryCheckboxes.length)
+            {
+                for (let subcategoryCheckbox of subcategoryCheckboxes)
+                {
+                    subcategoryCheckbox.checked = false;
+                }
+            }
+
+            document.querySelector("#subcategory-pack-" + oldCategoryID).style.display = 'none';
+            document.querySelector("#subcategory-pack-" + selectedCategoryID).style.display = '';
+        }
+    </script>
+@endpush
