@@ -10,6 +10,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import ConfirmPage from "./pages/ConfirmPage";
+import CongratulationPage from "./pages/CongratulationPage";
 
 const router = new VueRouter({
     mode: "history",
@@ -68,6 +69,14 @@ const router = new VueRouter({
             component: ConfirmPage,
             meta: {
                 requiresAuth: true
+            },
+        },
+        {
+            path: "/congratulation",
+            name: "congratulation",
+            component: CongratulationPage,
+            meta: {
+                requiresAuth: false
             },
         },
     ],
