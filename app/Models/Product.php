@@ -26,4 +26,10 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class, 'user_carts', 'product_id', 'user_id')->withPivot('quantity');
     }
+
+    public function subcategories()
+    : BelongsToMany
+    {
+        return $this->belongsToMany(Subcategory::class, 'product_subcategory', 'product_id', 'subcategory_id');
+    }
 }

@@ -52,7 +52,6 @@ class ProductsTableSeeder extends Seeder
 
             $newProduct->purchasable_in_multi_of = $faker->randomElement($purchasable_in_multi_of);
             $newProduct->category_id = $faker->randomElement($categories)->id;
-            $newProduct->subcategory_id = $faker->randomElement($subcategories)->id;
             $newProduct->save();
         }
     }
