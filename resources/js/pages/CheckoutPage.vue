@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-wrap">
-                    <div class="col-6">
+                    <div class="col-lg-6">
                         <div class="mobile h5">Billing Address</div>
                         <div class="" id="details">
                             <v-form ref="entryForm">
@@ -297,7 +297,7 @@
                             </v-form>
                         </div>
                     </div>
-                    <div class="summary col-6">
+                    <div class="summary col-lg-6">
                         <div class="bg-white" id="cart">
                             <div
                                 class="d-flex justify-content-between align-items-center"

@@ -1,6 +1,6 @@
 <template>
     <section class="shopping-cart">
-        <div class="container">
+        <div class="container-lg">
             <div class="block-heading">
                 <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
                 <hr class="w-5" />
@@ -30,8 +30,8 @@
 
             <hr />
             <div class="content">
-                <div class="row">
-                    <div class="col-md-12 col-lg-8" v-if="items">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8" v-if="items">
                         <div class="items" v-for="item in items">
                             <div class="product">
                                 <div class="row">
@@ -53,13 +53,11 @@
                                     </div>
 
                                     <div
-                                        class="col-md-10 d-flex align-items-center"
+                                        class="d-sm-block d-none col-md-10 d-flex align-items-center"
                                     >
                                         <div class="info col-12">
                                             <div class="row">
-                                                <div
-                                                    class="col-md-4 product-name"
-                                                >
+                                                <div class="col-4 product-name">
                                                     <div class="product-name">
                                                         <div
                                                             class="product-info"
@@ -113,7 +111,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 price">
+                                                <div class="col-2 price">
                                                     <div>
                                                         <span
                                                             :class="{
@@ -133,7 +131,7 @@
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="col-md-4 quantity d-flex align-items-center"
+                                                    class="col-4 quantity d-flex align-items-center"
                                                 >
                                                     <label
                                                         class="fw-bold"
@@ -152,7 +150,7 @@
                                                         "
                                                     />
                                                 </div>
-                                                <div class="col-md-2 price">
+                                                <div class="col-2 price">
                                                     <span>€</span>
                                                     <input
                                                         type="text"
@@ -186,7 +184,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-8" v-else>Nessun Prodotto</div>
-                    <div class="col-md-12 col-lg-4">
+                    <div class="col-md-4">
                         <div class="summary d-flex flex-column">
                             <h3>TOTALE A CARRELLO</h3>
                             <div class="summary-item">
@@ -317,11 +315,9 @@ export default {
             }
 
             if (this.isLoggedIn) {
-                axios
-                    .delete(`/shop/carts/${item.id}`)
-                    .catch((err) => {
-                        console.error(err);
-                    });
+                axios.delete(`/shop/carts/${item.id}`).catch((err) => {
+                    console.error(err);
+                });
             }
         },
     },
@@ -467,30 +463,6 @@ a {
 
 .shopping-cart .summary button {
     margin-top: 20px;
-}
-
-@media (min-width: 768px) {
-    .shopping-cart .items .product .info {
-        text-align: left;
-    }
-
-    .shopping-cart .items .product .info .price {
-        font-weight: bold;
-        font-size: 0.9rem;
-    }
-
-    .shopping-cart .items .product .info .quantity {
-        text-align: center;
-    }
-
-    .shopping-cart .items .product .info .quantity .quantity-input {
-        text-align: center;
-    }
-
-    input {
-        border: 1px solid lightgray;
-        outline: none;
-    }
 }
 
 .item img {

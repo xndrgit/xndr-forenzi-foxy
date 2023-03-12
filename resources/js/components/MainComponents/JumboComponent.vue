@@ -291,7 +291,7 @@ div.VueCarousel-pagination {
 
         .delivery {
             height: fit-content;
-            margin-top: 10px;
+            margin-top: 17px;
 
             border: 10px solid rgb(246, 134, 48);
 

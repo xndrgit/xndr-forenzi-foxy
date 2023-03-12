@@ -32,7 +32,7 @@ export default {};
     color: white;
 
     img {
-        height: 25px;
+        height: 20px;
         margin: 10px;
     }
     .policy {
@@ -55,7 +55,7 @@ export default {};
             height: 12px; /* Height for screens less than 1000px */
         }
         .policy {
-            font-size: 0.3rem;
+            font-size: 0.25rem;
             height: 20px;
         }
     }

@@ -136,7 +136,7 @@ export default {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
 
-    margin: 1.2rem;
+    margin: 1rem 3rem;
 
     &:hover {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
