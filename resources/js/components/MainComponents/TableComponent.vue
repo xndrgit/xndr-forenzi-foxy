@@ -151,12 +151,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../sass/global.scss";
-.overflow-table::-webkit-scrollbar {
-    background-color: transparent;
-}
 
 .overflow-table {
-    overflow-x: scroll;
+    overflow-x: auto !important;
 
     table {
         td,

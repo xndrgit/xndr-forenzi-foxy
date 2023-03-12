@@ -1,11 +1,11 @@
 <template>
     <div class="home">
-        <div class="container">
+        <div class="container-lg">
             <!-- <loadingComponent v-if="loadingCategories" /> -->
 
             <div
                 v-if="categories"
-                class="d-flex flex-wrap justify-content-between col-12"
+                class="d-flex flex-wrap justify-content-around justify-content-sm-between col-12"
             >
                 <NavBoxesComponent
                     v-for="item in categories"
@@ -26,7 +26,7 @@
             </div>
         </div>
         <!-- <ClassicRight /> -->
-        <div class="container">
+        <div class="container-lg">
             <hr class="my-4" />
 
             <TableComponentCategories />
@@ -113,4 +113,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

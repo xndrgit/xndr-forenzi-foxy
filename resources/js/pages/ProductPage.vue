@@ -1,9 +1,12 @@
 <template>
     <div class="home">
-        <div class="container">
+        <div class="container-lg">
             <loadingComponent v-if="loadingCategories" />
 
-            <div class="d-flex flex-wrap justify-content-center" v-else>
+            <div
+                class="d-flex flex-wrap justify-content-around justify-content-sm-between col-12"
+                v-else
+            >
                 <NavBoxesComponent
                     v-for="category in categories"
                     :key="category.name"
@@ -16,7 +19,7 @@
 
             <hr />
 
-            <div class="d-flex justify-content-center">
+            <div class="">
                 <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
                 <ShowBox v-else />
             </div>
@@ -123,7 +126,7 @@ export default {
                     console.warn(error.message);
                 });
         },
-    }
+    },
 };
 </script>
 

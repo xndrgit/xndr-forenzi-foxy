@@ -154,15 +154,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+
 .current-price {
     color: #f68630;
     font-weight: bold;
 }
-.overflow-table::-webkit-scrollbar {
-}
+
 
 .overflow-table {
-    overflow-x: scroll;
+    overflow-x: auto;
 
     table {
         td,

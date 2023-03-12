@@ -7,7 +7,7 @@
             </div>
 
             <div
-                class="col-md-12 col-lg-8 d-none align-items-end cart-info d-md-flex ml-4"
+                class="col-sm-12 col-md-8 d-none align-items-end cart-info d-md-flex ml-4"
             >
                 <div class="row">
                     <div class="col-md-5">
@@ -53,9 +53,11 @@
                                     </div>
 
                                     <div
-                                        class="d-sm-block d-none col-md-10 d-flex align-items-center"
+                                        class="col-md-10 d-flex align-items-center"
                                     >
-                                        <div class="info col-12">
+                                        <div
+                                            class="info col-12 d-md-block d-none"
+                                        >
                                             <div class="row">
                                                 <div class="col-4 product-name">
                                                     <div class="product-name">

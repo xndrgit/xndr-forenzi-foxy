@@ -1,11 +1,11 @@
 <template>
     <div>
         <LoadingRollComponent v-if="loadingProduct" />
-        <div class="d-flex justify-content-center" v-if="product">
-            <div class="left col-5 d-flex justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center" v-if="product">
+            <div class="left col-12 col-lg-5 d-flex justify-content-center">
                 <img class="img-fluid" :src="imageSource" :alt="product.name" />
             </div>
-            <div class="right col-7">
+            <div class="right col-12 col-lg-7">
                 <div>
                     <h2 class="font-weight-bold">{{ product.name }}</h2>
                     <h6 class="price font-weight-bold">
@@ -43,13 +43,14 @@
 
                         <div class="d-flex">
                             <span>CATEGORIA:</span>
-                            <strong v-if="product.category"><span class="fw-bold">{{
+                            <strong v-if="product.category"
+                                ><span class="fw-bold">{{
                                     product.category.name
                                 }}</span></strong
                             >
                         </div>
                     </div>
-                    <div class="d-flex align-items-center productAdd ">
+                    <div class="d-flex align-items-center productAdd">
                         <QuantityProductsComponent
                             @update-quantity="updateQuantity"
                             :product="product"
@@ -97,41 +98,48 @@
                     <h6 class="font-weight-bold">
                         PREZZO TOTALE CON IVA E CONAI:
                     </h6>
-                    <h6 class="font-weight-bold mx-2" style="color: orange">
+                    <h6 class="font-weight-bold mx-1" style="color: orange">
                         € {{ totalPrice.toFixed(2) }}
                     </h6>
                 </div>
             </div>
         </div>
 
-        <nav>
-            <a href="#" class="active">CARATTERISTICHE SCATOLA</a>
-        </nav>
-        <table class="alternating-rows table table-hover mb-5" v-if="product">
-            <tr>
-                <td class="td1">Tipologia:</td>
-                <td class="td2" v-if="product.category">{{ product.category.name }}</td>
-            </tr>
-            <tr>
-                <td class="td1">Cartone:</td>
-                <td class="td2">{{ product.color }}</td>
-            </tr>
-            <tr>
-                <td class="td1">Misure (cm):</td>
-                <td class="td2">
-                    {{ product.length }} L x {{ product.width }} P x
-                    {{ product.height }} H
-                </td>
-            </tr>
-            <tr>
-                <td class="td1">Stampa esterna:</td>
-                <td class="td2">{{ product.print }}</td>
-            </tr>
-            <tr>
-                <td class="td1">Peso scatola:</td>
-                <td class="td2">{{ product.weight }} kg</td>
-            </tr>
-        </table>
+        <div class="d-none">
+            <nav>
+                <a href="#" class="active">CARATTERISTICHE SCATOLA</a>
+            </nav>
+            <table
+                class="alternating-rows table table-hover mb-5"
+                v-if="product"
+            >
+                <tr>
+                    <td class="td1">Tipologia:</td>
+                    <td class="td2" v-if="product.category">
+                        {{ product.category.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">Cartone:</td>
+                    <td class="td2">{{ product.color }}</td>
+                </tr>
+                <tr>
+                    <td class="td1">Misure (cm):</td>
+                    <td class="td2">
+                        {{ product.length }} L x {{ product.width }} P x
+                        {{ product.height }} H
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">Stampa esterna:</td>
+                    <td class="td2">{{ product.print }}</td>
+                </tr>
+                <tr>
+                    <td class="td1">Peso scatola:</td>
+                    <td class="td2">{{ product.weight }} kg</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -212,8 +220,14 @@ export default {
                 this.items = [];
             }
 
-            const filterIndex = this.items.findIndex(el => el.id === addedItem.id);
-            if (filterIndex > -1 && filterIndex !== undefined && filterIndex !== null) {
+            const filterIndex = this.items.findIndex(
+                (el) => el.id === addedItem.id
+            );
+            if (
+                filterIndex > -1 &&
+                filterIndex !== undefined &&
+                filterIndex !== null
+            ) {
                 let updatedItems = JSON.parse(JSON.stringify(this.items));
                 if (updatedItems[filterIndex]) {
                     updatedItems[filterIndex].cart_quantity += this.quantity;
@@ -223,24 +237,16 @@ export default {
             } else {
                 addedItem.cart_quantity = this.quantity;
 
-                this.items = [
-                    ...this.items,
-                    addedItem
-                ];
+                this.items = [...this.items, addedItem];
             }
 
             alert("Added to Cart");
         },
-    }
+    },
 };
 </script>
 
 <style lang="scss" scoped>
-
-.productAdd{
-    transform: scale(1.2);
-    margin-left: 4rem;
-}
 .overflow-table::-webkit-scrollbar {
     background-color: transparent;
 }
@@ -250,8 +256,7 @@ export default {
 }
 .current-price {
     font-weight: bold;
-    color:#f68630;
-
+    color: #f68630;
 }
 
 .old-price {
@@ -339,6 +344,7 @@ td {
     font-size: 0.8rem;
     padding: 1rem;
     border: 1px solid white;
+    min-width: 80px;
 }
 
 .td1 {

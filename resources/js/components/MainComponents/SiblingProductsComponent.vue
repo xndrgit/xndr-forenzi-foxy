@@ -144,11 +144,12 @@ export default {
     font-weight: bold;
 }
 .overflow-table::-webkit-scrollbar {
-    background-color: transparent;
+    background-color: gray;
 }
 
 .overflow-table {
     overflow-x: auto;
+   
 
     table {
         td,

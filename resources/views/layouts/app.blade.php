@@ -49,17 +49,8 @@
 <body>
     <div id="app">
         <nav class="HeaderTop navbar navbar-expand-md navbar shadow-sm">
-            <div class="container">
-                <a
-                    class="navbar-brand"
-                    href="{{ url('/') }}"
-                >
-                    <img
-                        alt=""
-                        src="{{ asset('img/logo.png') }}"
-                    >
-                    {{-- {{ config('app.name', 'Foxy') }} --}}
-                </a>
+            <div class="container-lg justify-content-around">
+
                 <button
                     aria-controls="navbarSupportedContent"
                     aria-expanded="false"
@@ -69,13 +60,20 @@
                     data-toggle="collapse"
                     type="button"
                 >
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon">
+                        <i class="fas fa-bars"></i>
+                    </span>
                 </button>
 
                 <div
                     class="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
+                    <span class="font-weight-bold text-white mr-3">
+                        <i class="fa-2x fas fa-box"></i>
+                        FoxyBox
+                    </span>
+
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
@@ -245,8 +243,28 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main class="py-4 ">
+
+            <div class="container-lg">
+
+                <div class="d-flex col-12 justify-content-center ">
+                    <a
+                        class="navbar-brand"
+                        href="{{ url('/') }}"
+                    >
+                        <img
+                            alt=""
+                            class="img-fluid my-5"
+                            src="{{ asset('img/logo.png') }}"
+                        >
+                        {{-- {{ config('app.name', 'Foxy') }} --}}
+                    </a>
+
+                </div>
+
+                @yield('content')
+
+            </div>
 
         </main>
         {{-- <footer>
@@ -267,12 +285,11 @@
         width: 100%;
         height: 41px;
         background-color: rgb(245, 133, 47);
-        color: white;
-        padding: 0px;
+        color: black padding: 0px;
     }
 
     .navbar img {
-        height: 20px;
+        height: 25px;
         transition: .3s;
     }
 
@@ -286,13 +303,12 @@
 
     .navbar a {
         text-decoration: none;
-        color: white;
+        color: black;
         font-weight: bold;
         transition: .2s ease-in;
     }
 
     .navbar a:hover {
-        color: black;
-        transform: scale(1.2)
+        color: #fdbc48;
     }
 </style>

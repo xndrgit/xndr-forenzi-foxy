@@ -155,9 +155,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../sass/global.scss";
-.overflow-table::-webkit-scrollbar {
-   
-}
+
 
 .overflow-table {
     overflow-x: auto;
