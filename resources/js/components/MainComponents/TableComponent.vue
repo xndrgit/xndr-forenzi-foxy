@@ -156,7 +156,7 @@ export default {
 }
 
 .overflow-table {
-    overflow-x: auto;
+    overflow-x: scroll;
 
     table {
         td,

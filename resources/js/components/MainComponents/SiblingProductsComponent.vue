@@ -92,7 +92,10 @@ export default {
             }
         },
         decreaseValue() {
-            if (this.value > 1 && this.value >= (this.product.purchasable_in_multi_of || 1)) {
+            if (
+                this.value > 1 &&
+                this.value >= (this.product.purchasable_in_multi_of || 1)
+            ) {
                 this.value -= this.product.purchasable_in_multi_of || 1;
                 if (this.value < this.product.purchasable_in_multi_of)
                     this.value = this.product.purchasable_in_multi_of;
@@ -110,8 +113,14 @@ export default {
                 this.items = [];
             }
 
-            const filterIndex = this.items.findIndex(el => el.id === addedItem.id);
-            if (filterIndex > -1 && filterIndex !== undefined && filterIndex !== null) {
+            const filterIndex = this.items.findIndex(
+                (el) => el.id === addedItem.id
+            );
+            if (
+                filterIndex > -1 &&
+                filterIndex !== undefined &&
+                filterIndex !== null
+            ) {
                 let updatedItems = JSON.parse(JSON.stringify(this.items));
                 if (updatedItems[filterIndex]) {
                     updatedItems[filterIndex].cart_quantity += this.value;
@@ -121,10 +130,7 @@ export default {
             } else {
                 addedItem.cart_quantity = this.value;
 
-                this.items = [
-                    ...this.items,
-                    addedItem
-                ];
+                this.items = [...this.items, addedItem];
             }
 
             alert("Added to Cart");
@@ -147,7 +153,7 @@ export default {
     table {
         td,
         th {
-            min-width: 60px;
+            min-width: 100px;
             border: 1px solid #ddd;
             font-size: 0.7rem;
             text-align: center;

@@ -29,7 +29,7 @@
         <div class="container">
             <hr class="my-4" />
 
-            <TableComponent />
+            <TableComponentCategories />
             <BannerNewsComponent />
         </div>
     </div>
@@ -41,30 +41,27 @@ import ShowBox2 from "../components/MainComponents/ShowBox2.vue";
 import NavBoxesComponent from "../components/MainComponents/NavBoxesComponent.vue";
 import CustomizeBoxesComponent from "../components/MainComponents/CustomizeBoxesComponent.vue";
 
-import TableComponent from "../components/MainComponents/TableComponent.vue";
+import TableComponentCategory from "../components/MainComponents/TableComponentCategories.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
 
 import ClassicRight from "../components/MainComponents/ClassicRight.vue";
 
 import LoadingRollComponent from "../components/MainComponents/LoadingRollComponent.vue";
 import LoadingComponent from "../components/MainComponents/LoadingComponent.vue";
+import TableComponentCategories from "../components/MainComponents/TableComponentCategories.vue";
 
 export default {
-    name: "UnOnda",
     components: {
-        ShowBox2,
-
-        NavBoxesComponent,
-        CustomizeBoxesComponent,
-
-        TableComponent,
-        BannerNewsComponent,
-
-        ClassicRight,
-
-        LoadingRollComponent,
-        LoadingComponent,
-    },
+    ShowBox2,
+    NavBoxesComponent,
+    CustomizeBoxesComponent,
+    TableComponentCategories,
+    BannerNewsComponent,
+    ClassicRight,
+    LoadingRollComponent,
+    LoadingComponent,
+    TableComponentCategory
+},
     data() {
         return {
             loadingCategory: true,
