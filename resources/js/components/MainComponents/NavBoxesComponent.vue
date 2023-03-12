@@ -59,12 +59,12 @@ export default {
 <style lang="scss" scoped>
 .HeaderBoxes {
     .card {
-        width: 8rem;
+        width: 7.5rem;
         border-radius: 0px;
         border: 0px;
         transition: transform 0.2s;
         padding: 0px;
-        margin: 8px 2px;
+        margin: 8px 0px;
         min-height: 150px;
         max-height: 150px;
 

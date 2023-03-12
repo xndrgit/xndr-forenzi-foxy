@@ -412,14 +412,30 @@
                                             class="form-control"
                                             name="admin"
                                         >
-                                            @foreach ($levels as $level)
+
+                                            <option
+                                                {{ old('admin', $user->user_detail->admin) == 'super admin' ? 'selected' : '' }}
+                                                value="super admin"
+                                            >
+                                                super admin
+                                            </option>
+
+                                            <option
+                                                {{ old('admin', $user->user_detail->admin) == 'registered' ? 'selected' : '' }}
+                                                value="registered"
+                                            >
+                                                registered
+                                            </option>
+
+                                            {{-- @foreach ($levels as $level)
                                                 <option
                                                     {{ old('admin', $user->user_detail->admin) == $level->admin ? 'selected' : '' }}
                                                     value="{{ $level->admin }}"
                                                 >
                                                     {{ $level->admin }}
                                                 </option>
-                                            @endforeach
+                                            @endforeach --}}
+
                                         </select>
                                     </td>
                                 </tr>

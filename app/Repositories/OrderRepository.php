@@ -33,9 +33,18 @@ class OrderRepository extends Repository
       $user = User::find($user_id);
       $products = $user->products()->get();
       $subtotal = 0;
+      $total_weight = 0;
+      $conai = 0; // Initialize the conai variable to 0
+
       if ($products) {
          foreach ($products as $product) {
-            $subtotal += ($product->price_saled ?: $product->price) * $product->pivot->quantity;
+            $price = $product->price_saled ?: $product->price;
+            $subtotal += $price * $product->pivot->quantity;
+            $total_weight += $product->pivot->quantity * $product->weight;
+
+            // Calculate the conai for each product
+            $product_conai = ceil(($product->pivot->quantity * $product->weight) / 5000) * 5 * 0.22;
+            $conai += $product_conai;
          }
       } else {
          return null;
@@ -49,9 +58,9 @@ class OrderRepository extends Repository
       $order->status = 'in attesa';
       $order->subtotal = $subtotal;
       $order->shipping_cost = 0;
-      $order->conai = 4.35;
+      $order->conai = $conai; // Assign the calculated conai to the order
       $order->iva = $iva;
-      $order->total = round(($subtotal + 4.35 + $iva), 2);
+      $order->total = round(($subtotal + $conai + $iva), 2);
       $order->order_date = now();
       $order->created_at = now();
       $order->updated_at = now();
@@ -60,18 +69,16 @@ class OrderRepository extends Repository
       foreach ($products as $product) {
          $order->products()->attach([
             $product->id => [
-               'quantity'   => $product->pivot->quantity,
+               'quantity' => $product->pivot->quantity,
                'created_at' => now(),
                'updated_at' => now()
             ]
          ]);
-
-         $order->conai = 4.35 * $product->pivot->quantity;
-         $order->save();
       }
 
       return $order->id;
    }
+
 
    public function createPayment($user_id, $orderId, $params)
    {

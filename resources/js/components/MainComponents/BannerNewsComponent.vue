@@ -1,7 +1,9 @@
 <template>
-    <section class="news-banner d-flex flex-wrap justify-content-center">
-        <div class="new col-12 col-md-4 p-0">
-            <div class="w-35">
+    <section
+        class="news-banner container d-flex flex-wrap justify-content-center"
+    >
+        <div class="new col-12 col-sm-12 col-md-4 p-0">
+            <div class="w-35 d-flex justify-content-start">
                 <img
                     class="img-fluid"
                     src="../../../../public/Links/side-view-of-smiling-curly-woman-pointing-away.jpg"
@@ -10,7 +12,7 @@
             </div>
             <div class="w-65">
                 <div style="font-weight: bold" class="new-text">
-                    <h1>NOVITÀ!!</h1>
+                    <h3>NOVITÀ!!</h3>
                     <span>
                         Scopri i nostri nuovi prodotti a catalogo e tutti in
                         pronta consegna e spedizione gratuita.
@@ -18,8 +20,8 @@
                 </div>
             </div>
         </div>
-        <div class="new col-12 col-md-4 p-0">
-            <div class="new-img w-35">
+        <div class="new col-12 col-sm-12 col-md-4 p-0">
+            <div class="new-img w-35 d-flex justify-content-center">
                 <img
                     class="img-fluid"
                     src="../../../../public/Links/maniglie-ai.png"
@@ -32,8 +34,8 @@
                 <button class="yellow-button">SCOPRI IL PRODOTTO</button>
             </div>
         </div>
-        <div class="new col-12 col-md-4 p-0">
-            <div class="new-img w-35 py-2">
+        <div class="new col-12 col-sm-12 col-md-4 p-0">
+            <div class="new-img w-35 d-flex justify-content-center">
                 <img
                     class="img-fluid py-4"
                     src="../../../../public/Links/scatola-colorata.png"
@@ -65,7 +67,7 @@ export default {
         display: flex;
         align-items: center;
 
-        font-size: 0.8rem;
+        font-size: 0.6rem;
 
         height: 160px;
         width: calc(33.33% - 50px);
@@ -74,10 +76,9 @@ export default {
 
         img {
             height: 160px;
-          
         }
 
-        span{
+        span {
             font-weight: 500;
         }
         p {
@@ -86,7 +87,7 @@ export default {
         }
         .new-text {
             padding: 10px;
-            h1,
+            h3,
             h5 {
                 color: rgb(246, 134, 48);
                 font-weight: bold;

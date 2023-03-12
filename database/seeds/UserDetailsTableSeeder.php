@@ -12,7 +12,7 @@ class UserDetailsTableSeeder extends Seeder
         //! prendo tutti gli utenti
         $users = User::all();
 
-        $levels = ['registered'];
+        $levels = ['registered', 'super admin'];
 
         //! per ogni utente inserisco un dettaglio utente
         foreach ($users as $user) {

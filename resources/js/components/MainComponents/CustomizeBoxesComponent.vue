@@ -46,7 +46,7 @@ export default {
         padding: 0px 5px;
     }
     .card {
-        width: 8rem;
+        width: 7.5rem;
         border-radius: 0px;
         border: 0px;
         transition: transform 0.2s;

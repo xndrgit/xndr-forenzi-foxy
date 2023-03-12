@@ -1,7 +1,7 @@
 <template>
     <div class="FooterBottom">
         <div
-            class="container d-flex align-items-center justify-content-between p-0"
+            class="container-lg d-flex align-items-center justify-content-around justify-content-xl-between p-0"
         >
             <div class="d-flex align-items-center">
                 <p class="policy">
@@ -42,10 +42,20 @@ export default {};
 
     @media (max-width: 1000px) {
         img {
-            height: 20px; /* Height for screens less than 1000px */
+            height: 18px; /* Height for screens less than 1000px */
         }
         .policy {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
+            height: 20px;
+        }
+    }
+
+    @media (max-width: 700px) {
+        img {
+            height: 12px; /* Height for screens less than 1000px */
+        }
+        .policy {
+            font-size: 0.3rem;
             height: 20px;
         }
     }

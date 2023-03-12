@@ -7,13 +7,25 @@
                         <div class="congratulation contain">
                             <div class="congrats">
                                 <h1>Congratulazioni!</h1>
-                                <h3>E' stata mandata una mail con successo!</h3>
-                                <div class="done">
+                                <span>Mail spedita con successo.</span>
+                                <br />
+                                <span
+                                    >Data e ora di invio:
+                                    <strong>{{ sentTime }}</strong></span
+                                >
+                                <div class="done position-relative">
                                     <img
                                         src="/images/congratulations-envelope.gif"
                                         alt=""
                                     />
+                                    <div
+                                        class="countdown position-absolute"
+                                        v-if="showCountdown"
+                                    >
+                                        {{ countdown }}
+                                    </div>
                                 </div>
+                                <span>By FoxyBox ♥</span>
                             </div>
                         </div>
                     </div>
@@ -25,7 +37,26 @@
 
 <script>
 export default {
-    name: "CongratulationPage",
+    data() {
+        return {
+            sentTime: "",
+            showCountdown: true,
+            countdown: 10,
+        };
+    },
+    created() {
+        const now = new Date();
+        this.sentTime = now.toLocaleString();
+
+        const intervalId = setInterval(() => {
+            this.countdown--;
+            if (this.countdown <= 0) {
+                clearInterval(intervalId);
+                this.showCountdown = false;
+                this.$router.push("/");
+            }
+        }, 1000);
+    },
 };
 </script>
 
@@ -42,7 +73,9 @@ export default {
     h1 {
         font-family: "Julius Sans One", sans-serif;
         font-size: 1.4em;
-        color: #02b3e4;
+        font-weight: 800;
+        margin-top: 10px;
+        color: #f68630;
     }
 }
 
@@ -56,6 +89,13 @@ export default {
         width: 50%;
         height: auto;
     }
+
+    .countdown {
+        font-weight: 900;
+        color: #f68630;
+        font-size: 2rem;
+        bottom: 50px;
+    }
 }
 
 .congrats {
@@ -66,8 +106,14 @@ export default {
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.3);
     text-align: center;
     font-size: 2em;
-    color: #189086;
+    color: black;
     background: white;
+    span {
+        font-size: 1rem;
+    }
+    strong {
+        color: #f68630;
+    }
 }
 
 @media (max-width: 600px) {
@@ -76,8 +122,7 @@ export default {
     }
 
     .done {
-        width: 80px;
-        height: 80px;
+        width: 100%;
     }
 }
 
@@ -87,8 +132,7 @@ export default {
     }
 
     .done {
-        width: 70px;
-        height: 70px;
+        width: 100%;
     }
 }
 
@@ -106,8 +150,7 @@ export default {
     }
 
     .done {
-        width: 50px;
-        height: 50px;
+        width: 100%;
     }
 }
 </style>

@@ -64,9 +64,9 @@ export default {
     h1 {
         color: rgb(246, 135, 46);
         font-weight: bold;
-        font-size: 2rem;
+        font-size: 1.8rem;
 
-        margin-right: 5rem;
+        margin-right: 2rem;
     }
 }
 </style>

@@ -1,8 +1,11 @@
 <template>
-    <div class="jumbo d-flex flex-wrap col-xl-12">
-        <div id="slider" class="jumbo1 col-xl-7">
+    <div class="jumbo d-flex flex-wrap justify-content-center col-12">
+        <div
+            id="slider"
+            class="jumbo1 col-12 col-sm-10 col-md-8 col-lg-7 col-xl-7 d-none d-md-block"
+        >
             <carousel
-                class="align-items-center justify-content-start"
+                class="align-items-center justify-content-center"
                 :perPageCustom="[
                     [0, 1],
                     [480, 1],
@@ -14,7 +17,7 @@
                 <slide v-for="(image, index) in images" :key="index">
                     <div class="carousel-image-container">
                         <img
-                            style="width: 80%"
+                            style="width: 85%"
                             class="img-fluid jumbo-image"
                             :src="image.src"
                             alt="Slider image"
@@ -45,7 +48,7 @@
                 </slide>
             </carousel>
         </div>
-        <div class="jumbo2 col-xl-5">
+        <div class="jumbo2 col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5">
             <div class="clock p-2 d-none d-lg-flex d-flex flex-column">
                 <h6 class="m-0 font-weight-bold">
                     EFFETUA IL TUO ORDINE ENTRO
@@ -106,7 +109,7 @@
                 </div>
                 <div class="w-40 d-flex justify-content-start">
                     <img
-                        class="delivery-image"
+                        class="delivery-image d-none d-sm-block"
                         src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
                         alt=""
                     />
@@ -205,9 +208,9 @@ div.VueCarousel-pagination {
 
         .maschera_dx {
             position: absolute;
-            right: -40px;
+            right: -60px;
         }
-             .maschera_sx {
+        .maschera_sx {
             position: absolute;
             left: 0px;
             bottom: 0px;
@@ -225,18 +228,18 @@ div.VueCarousel-pagination {
 
             color: black;
             padding: 20px;
-            margin-left: 55%;
+            margin-left: 60%;
             text-align: end;
         }
 
         .carousel-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
             font-weight: bold;
         }
 
         .carousel-description {
-            font-size: 1rem;
+            font-size: 0.6rem;
             margin-bottom: 20px;
             margin-left: 10%;
             font-weight: 400;

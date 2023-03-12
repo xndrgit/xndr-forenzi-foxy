@@ -46,12 +46,12 @@ export default {
     padding: 2rem;
     width: 100%;
     .text {
-        font-size: 1rem;
+        font-size: .8rem;
     }
 
     h1 {
         font-weight: bolder;
-        font-size: 2.2rem;
+        font-size: 1.8rem;
     }
 }
 </style>

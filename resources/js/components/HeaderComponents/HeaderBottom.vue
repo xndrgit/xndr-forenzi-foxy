@@ -2,8 +2,8 @@
     <div class="HeaderBottom py-4">
         <div class="HeaderSearch">
             <div class="container-lg">
-                <div class="row d-flex">
-                    <div class="col-md-3 logo">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-3 col-sm-10 logo">
                         <a href="/">
                             <img
                                 class="img-fluid mb-4"
@@ -13,10 +13,10 @@
                         </a>
                     </div>
 
-                    <div class="d-none d-md-block col-md-1"></div>
+                    <div class="d-none d-lg-block col-md-1"></div>
 
                     <div
-                        class="col-md-8 d-flex align-items-center justify-content-end"
+                        class="col-md-8 col-sm-10 d-flex align-items-center justify-content-center"
                     >
                         <div
                             class="inputs d-flex flex-wrap flex-md-nowrap flex-sm-row"
@@ -90,32 +90,32 @@ export default {
             length: "",
             width: "",
             height: "",
-            searchStr: ""
+            searchStr: "",
         };
     },
     methods: {
         search() {
-            if (this.$route.name !== 'home') {
+            if (this.$route.name !== "home") {
                 this.$router.push({
-                    path: '/',
-                    name: 'home'
+                    path: "/",
+                    name: "home",
                 });
             }
 
-            window.VBus.fire('search-products', {
+            window.VBus.fire("search-products", {
                 length: this.length,
                 width: this.width,
                 height: this.height,
-                searchStr: this.searchStr
+                searchStr: this.searchStr,
             });
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .divCm {
-    background-color: #f1f1f1;
+    background-color: rgb(220, 220, 220);
     box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
     border-radius: 0;
 
@@ -139,7 +139,6 @@ span {
 }
 
 .inputs .input-group {
-    background-color: #f1f1f1;
 }
 
 input {
@@ -164,7 +163,6 @@ input::placeholder {
     color: black;
     font-size: 60%;
     font-weight: 600;
-
 }
 
 button.btn.btn-outline-secondary {

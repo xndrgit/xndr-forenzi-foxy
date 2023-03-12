@@ -1,11 +1,12 @@
 <template>
     <div class="home">
-        <div class="container">
+        <div class="container-lg">
             <div class="row justify-content-center">
                 <loadingComponent v-if="loadingCategories" />
 
                 <div
-                    class="d-flex flex-wrap justify-content-between col-12"
+                    class="d-flex flex-wrap justify-content-around justify-content-sm-between
+ col-12"
                     v-else
                 >
                     <NavBoxesComponent

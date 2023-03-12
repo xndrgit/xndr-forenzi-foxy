@@ -247,7 +247,11 @@
 
         <main class="py-4">
             @yield('content')
+
         </main>
+        {{-- <footer>
+            @include('layouts.footer')
+        </footer> --}}
     </div>
 
     @stack('scripts')
@@ -261,7 +265,7 @@
 >
     .navbar {
         width: 100%;
-        height: fit-content;
+        height: 41px;
         background-color: rgb(245, 133, 47);
         color: white;
         padding: 0px;

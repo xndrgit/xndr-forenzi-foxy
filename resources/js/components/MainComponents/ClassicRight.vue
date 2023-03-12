@@ -21,7 +21,7 @@
                         />
                     </div>
                     <div
-                        class="classic-text col-12 col-md-4 d-flex flex-column justify-content-center align-items-start"
+                        class="classic-text col-12 col-md-4 d-flex flex-column justify-content-center align-items-end"
                     >
                         <h1 class="text-white fw-bold display-5">
                             Desideri una scatola su misura con colori e stampa
@@ -32,7 +32,7 @@
                             responsabile ti ricontatterà per comunicarti la
                             quotazione!
                         </p>
-                        <div class="d-flex justify-content-end classic-btn">
+                        <div class="d-flex justify-content-center classic-btn">
                             <button
                                 class="yellow-button"
                                 style="background-color: black"
@@ -52,26 +52,27 @@
 <style lang="scss" scoped>
 .classic {
     background-color: #fdbc48;
+         text-align: center;
     .classic-text {
         width: fit-content;
     }
-    .classic-btn{
+    .classic-btn {
         width: -webkit-fill-available;
     }
     img {
         width: -webkit-fill-available;
-        max-height: 380px;
+        max-height: 250px;
         object-fit: contain;
     }
     p {
-        font-size: 1.1rem;
-        text-align: end;
+        font-size: 0.7rem;
+        text-align: flex-end;
     }
     h1 {
         color: rgb(246, 135, 46);
         font-weight: bold;
         font-size: 1.5rem;
-        text-align: end;
+   
     }
 }
 </style>
