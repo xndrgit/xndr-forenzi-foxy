@@ -27,10 +27,8 @@
     >
 
     <!-- Styles -->
-    <link
-        href="{{ mix('css/app.css') }}"
-        rel="stylesheet"
-    >
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/datatables.bundle.css') }}" rel="stylesheet">
 
     <script>
         window.laravel = '{!! json_encode(['csrfToken' => csrf_token()]) !!}';
@@ -228,6 +226,10 @@
 <!-- Scripts -->
 <script src="{{ mix('js/manifest.js') }}"></script>
 <script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/vendor-jquery.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/datatables.bundle.js') }}"></script>
+<script src="{{ mix('js/admin.js') }}"></script>
 <script type="text/javascript" src="{{ mix('js/app.js') }}" defer></script>
 
 @stack('scripts')
