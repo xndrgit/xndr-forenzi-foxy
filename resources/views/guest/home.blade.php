@@ -1,5 +1,5 @@
 {{-- copypaste of the app.blade.php --}}
-<!doctype html>
+    <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -20,16 +20,6 @@
         {{-- {{ config('app.name', 'Foxy') }} --}}
     </title>
 
-    <!-- Scripts Needs Change -->
-    {{-- here: front.js --}}
-    {{-- webpack.mix: .js("resources/js/front.js", "public/js") --}}
-    {{-- create the file in resources/js{front.js} --}}
-    {{-- copy the app.js and past into front.js --}}
-    <script
-        src="{{ asset('js/front.js') }}"
-        defer
-    ></script>
-
     <!-- Fonts -->
     <link
         href="//fonts.gstatic.com"
@@ -42,14 +32,21 @@
 
     <!-- Styles -->
     <link
-        href="{{ asset('css/app.css') }}"
+        href="{{ mix('css/app.css') }}"
         rel="stylesheet"
     >
 </head>
 
 <body>
-    <div id="app">
-    </div>
+<div id="app">
+</div>
+
+<!-- Scripts -->
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ mix('js/front.js') }}" defer></script>
+
+@stack('scripts')
 </body>
 
 </html>
