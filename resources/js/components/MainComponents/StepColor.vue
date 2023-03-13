@@ -4,16 +4,18 @@
             <div class="bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
             <div class="">
                 <span class="title-create">{{ title }}</span>
-                <div class="d-flex align-items-center justify-content-between">
+                <div
+                    class="d-flex flex-column flex-sm-row flex-wrap align-items-center justify-content-between"
+                >
                     <div
-                        class="col-6"
+                        class="col-12 col-sm-6"
                         @click="selectLeft"
                         :class="{
                             active: selectedColor.value === titleOne,
                         }"
                     >
                         <div
-                            class="box d-flex flex-column align-items-center col-12"
+                            class="box d-flex flex-column align-items-center col-12 p-0"
                         >
                             <img class="img-fluid image" alt="" :src="imgOne" />
                             <i
@@ -28,14 +30,14 @@
                     </div>
 
                     <div
-                        class="col-6"
+                        class="col-12 col-sm-6"
                         @click="selectRight"
                         :class="{
                             active: selectedColor.value === titleTwo,
                         }"
                     >
                         <div
-                            class="box d-flex flex-column align-items-center col-12"
+                            class="box d-flex flex-column align-items-center col-12 p-0"
                         >
                             <img class="img-fluid image" alt="" :src="imgTwo" />
 
@@ -103,12 +105,12 @@ export default {
 <style lang="scss" scoped>
 img {
     height: 160px;
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .title-create {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 .box {
     position: relative;
@@ -122,8 +124,16 @@ i {
     position: absolute;
     font-size: 6rem;
     top: 50px;
-    right: 80px;
+    right: 60px;
     color: #fdbc48;
     font-weight: bold;
+}
+@media screen and (max-width: 500px) {
+    .titlebox {
+        font-size: 0.6rem;
+    }
+    i {
+        right: 50px;
+    }
 }
 </style>

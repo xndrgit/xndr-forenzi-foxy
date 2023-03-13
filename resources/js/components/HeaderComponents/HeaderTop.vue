@@ -32,7 +32,7 @@
                         <div class="d-none d-lg-inline">
                             <p>ORDINA SUBITO E RICEVI LA MERCE</p>
                             <p>
-                                <strong> DOMENICA 26 MARZO 2023 </strong>
+                                <strong> {{ nextDay | formatDate }} </strong>
                             </p>
                         </div>
                     </div>
@@ -100,14 +100,25 @@ export default {
         return {
             isLogin: false,
             text: "REGISTRATI",
+            nextDay: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000), // set to the day after tomorrow
         };
     },
+    filters: {
+        formatDate(date) {
+            const options = {
+                weekday: "long", // spell out the day of the week
+                day: "numeric", // show the day of the month as a number
+                month: "long", // spell out the month name
+            };
+            return date.toLocaleDateString("it-IT", options);
+        },
+    },
     beforeDestroy() {
-        window.VBus.stop('update-cart-total', this.setCartTotal);
+        window.VBus.stop("update-cart-total", this.setCartTotal);
     },
     mounted() {
         this.getUserInfo();
-        window.VBus.listen('update-cart-total', this.setCartTotal);
+        window.VBus.listen("update-cart-total", this.setCartTotal);
     },
     methods: {
         getUserInfo() {
@@ -138,11 +149,11 @@ export default {
                 }
             });
         },
-        setCartTotal({total, count}) {
+        setCartTotal({ total, count }) {
             this.cartTotal = total;
             this.productCount = count;
-        }
-    }
+        },
+    },
 };
 </script>
 

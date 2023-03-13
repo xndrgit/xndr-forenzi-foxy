@@ -176,7 +176,7 @@ export default {
 
                 input {
                     width: 40px;
-                    height: 30px;
+                    height: 32px;
 
                     text-align: center;
 

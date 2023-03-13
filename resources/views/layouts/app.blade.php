@@ -69,7 +69,7 @@
                     class="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
-                    <span class="font-weight-bold text-white mr-3">
+                    <span class="icon font-weight-bold text-white mr-3">
                         <i class="fa-2x fas fa-box"></i>
                         FoxyBox
                     </span>
@@ -281,6 +281,10 @@
     lang="scss"
     scoped
 >
+    .icon {
+        cursor: pointer;
+    }
+
     .navbar {
         width: 100%;
         height: 41px;

@@ -208,7 +208,7 @@ i {
 
 .title-create {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
 }
 
 .step {

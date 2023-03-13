@@ -5,33 +5,33 @@
             <div class="summary-item">
                 <span class="text">MISURE</span>
                 <span class="price"
-                ><strong>{{ inputL }} L x</strong>
-                    <strong>{{ inputP }} P x</strong>
-                    <strong>{{ inputH }} H</strong>
+                    >{{ inputL }} <strong>L x</strong> {{ inputP }}
+                    <strong>P x</strong> {{ inputH }} <strong>H</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">QUANTITÀ</span>
                 <span class="price"
-                ><strong>{{ inputQ }} PEZZI</strong>
+                    >{{ inputQ }}
+                    <strong>PREZZI</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">COLORE SCATOLA</span>
                 <span class="price"
-                ><strong>{{ selectedColor.value }}</strong>
+                    ><strong>{{ selectedColor.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">TIPO DI CARTONE</span>
                 <span class="price"
-                ><strong>{{ selectedType.value }}</strong>
+                    ><strong>{{ selectedType.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">STAMPA</span>
                 <span class="price"
-                ><strong>{{ radioValue }}</strong>
+                    ><strong>{{ radioValue }}</strong>
                 </span>
             </div>
 
@@ -150,35 +150,35 @@ export default {
     ],
     data() {
         return {
-            sender_email: '',
-            first_name: '',
-            last_name: '',
-            business_name: '',
-            address: '',
-            phone: '',
+            sender_email: "",
+            first_name: "",
+            last_name: "",
+            business_name: "",
+            address: "",
+            phone: "",
         };
     },
 
     methods: {
         updateSender() {
-            this.$emit('update-sender', {
+            this.$emit("update-sender", {
                 sender_email: this.sender_email,
                 first_name: this.first_name,
                 last_name: this.last_name,
                 business_name: this.business_name,
                 address: this.address,
                 phone: this.phone,
-            })
+            });
         },
         sendEmail() {
-            this.$emit('send-email');
-        }
+            this.$emit("send-email");
+        },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../../sass/global.scss";
+@import "../../../sass/app.scss";
 
 .shopping-cart .summary {
     border: 1px solid lightgray;
@@ -202,7 +202,7 @@ export default {
 }
 
 .shopping-cart .summary .text {
-    font-size: 0.7em;
+    font-size: 0.5em;
     font-weight: 600;
 }
 
@@ -268,6 +268,7 @@ input {
 .form-group input {
     width: 100%;
     margin: 0px;
+  
 }
 
 .form-group {

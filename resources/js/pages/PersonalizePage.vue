@@ -1,10 +1,13 @@
 <template>
-    <div>
-        <div class="d-flex flex-column align-items-center mb-4">
-            <h2 class="text-center font-weight-bold my-2">
-                Configura la tua scatola su misura in meno di un minuto!
-            </h2>
+    <div class="personalize">
+        <div class="container-lg">
+            <div class="d-flex flex-column align-items-center mb-4">
+                <h2 class="text-center font-weight-bold my-2">
+                    Configura la tua scatola su misura in meno di un minuto!
+                </h2>
+            </div>
         </div>
+
         <div class="bg-gray">
             <div class="container-lg">
                 <div class="row justify-content-center">
@@ -14,87 +17,80 @@
                         <img
                             v-for="(image, index) in images"
                             :key="index"
-                            class="personalize-img img-fluid col-6 col-md-3"
+                            class="personalize-img img-fluid d-none d-sm-block col-sm-3"
                             :alt="image.title"
                             :src="image.src"
                         />
                     </div>
                 </div>
 
-                <div class="row">
-                    <div>
-                        <div
-                            class="row flex-wrap justify-content-center col-12"
-                        >
-                            <div
-                                class="steps col-xl-8 col-lg-* col-md-* col-sm-*"
-                            >
-                                <!-- Left side content goes here -->
-                                <StepFirstDynamic
-                                    v-for="(element, index) in boxone"
-                                    @inputValuesChanged="setInputValues"
-                                    @inputQuantityChanged="setInputQuantity"
-                                    class="step"
-                                    :key="element.id"
-                                    :step="element.step"
-                                    :title="element.title"
-                                    :letter-q="element.letterQ"
-                                    :letter-one="element.letterOne"
-                                    :letter-two="element.letterTwo"
-                                    :letter-three="element.letterThree"
-                                    :txt-q="element.txtQ"
-                                    :txt-one="element.txtOne"
-                                    :txt-two="element.txtTwo"
-                                    :txt-three="element.txtThree"
-                                    :txt-banner="element.txtBanner"
-                                    :img="element.img"
-                                />
-                                <StepColor
-                                    v-for="(element, index) in colorData"
-                                    @selectedColor="setSelectedColor"
-                                    :key="element.id"
-                                    :step="element.step"
-                                    :title="element.title"
-                                    :title-one="element.titleOne"
-                                    :title-two="element.titleTwo"
-                                    :txt-one="element.txtOne"
-                                    :txt-two="element.txtTwo"
-                                    :img-one="element.imgOne"
-                                    :img-two="element.imgTwo"
-                                />
-                                <StepType
-                                    v-for="(element, index) in typeData"
-                                    @selectedType="setSelectedType"
-                                    :key="element.id"
-                                    :step="element.step"
-                                    :title="element.title"
-                                    :title-one="element.titleOne"
-                                    :title-two="element.titleTwo"
-                                    :txt-one="element.txtOne"
-                                    :txt-two="element.txtTwo"
-                                    :img-one="element.imgOne"
-                                    :img-two="element.imgTwo"
-                                />
+                <div class="row justify-content-center">
+                    <div class="row flex-wrap justify-content-center col-12">
+                        <div class="steps col-12 col-md-8 col-sm-10">
+                            <!-- Left side content goes here -->
+                            <StepFirstDynamic
+                                v-for="(element, index) in boxone"
+                                @inputValuesChanged="setInputValues"
+                                @inputQuantityChanged="setInputQuantity"
+                                class="step"
+                                :key="element.id"
+                                :step="element.step"
+                                :title="element.title"
+                                :letter-q="element.letterQ"
+                                :letter-one="element.letterOne"
+                                :letter-two="element.letterTwo"
+                                :letter-three="element.letterThree"
+                                :txt-q="element.txtQ"
+                                :txt-one="element.txtOne"
+                                :txt-two="element.txtTwo"
+                                :txt-three="element.txtThree"
+                                :txt-banner="element.txtBanner"
+                                :img="element.img"
+                            />
+                            <StepColor
+                                v-for="(element, index) in colorData"
+                                @selectedColor="setSelectedColor"
+                                :key="element.id"
+                                :step="element.step"
+                                :title="element.title"
+                                :title-one="element.titleOne"
+                                :title-two="element.titleTwo"
+                                :txt-one="element.txtOne"
+                                :txt-two="element.txtTwo"
+                                :img-one="element.imgOne"
+                                :img-two="element.imgTwo"
+                            />
+                            <StepType
+                                v-for="(element, index) in typeData"
+                                @selectedType="setSelectedType"
+                                :key="element.id"
+                                :step="element.step"
+                                :title="element.title"
+                                :title-one="element.titleOne"
+                                :title-two="element.titleTwo"
+                                :txt-one="element.txtOne"
+                                :txt-two="element.txtTwo"
+                                :img-one="element.imgOne"
+                                :img-two="element.imgTwo"
+                            />
 
-                                <StepThirdDynamic
-                                    @printSelected="setPrintValue"
-                                    :radio-value="radioValue"
-
-                                />
-                            </div>
-                            <div class="col-xl-4 col-lg-* col-md-* col-sm-*">
-                                <SummaryPersonalize
-                                    :inputH="inputH"
-                                    :inputP="inputP"
-                                    :inputL="inputL"
-                                    :inputQ="inputQ"
-                                    :selectedColor="selectedColor"
-                                    :selectedType="selectedType"
-                                    :radioValue="radioValue"
-                                    @update-sender="updateSenderAddress"
-                                    @send-email="sendEmail"
-                                />
-                            </div>
+                            <StepThirdDynamic
+                                @printSelected="setPrintValue"
+                                :radio-value="radioValue"
+                            />
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <SummaryPersonalize
+                                :inputH="inputH"
+                                :inputP="inputP"
+                                :inputL="inputL"
+                                :inputQ="inputQ"
+                                :selectedColor="selectedColor"
+                                :selectedType="selectedType"
+                                :radioValue="radioValue"
+                                @update-sender="updateSenderAddress"
+                                @send-email="sendEmail"
+                            />
                         </div>
                     </div>
                 </div>
@@ -118,8 +114,7 @@ export default {
         StepThirdDynamic,
         SummaryPersonalize,
     },
-    data()
-    {
+    data() {
         return {
             inputH: "",
             inputP: "",
@@ -129,12 +124,12 @@ export default {
             selectedColor: "",
             selectedType: "",
 
-            sender_email: '',
-            first_name: '',
-            last_name: '',
-            business_name: '',
-            address: '',
-            phone: '',
+            sender_email: "",
+            first_name: "",
+            last_name: "",
+            business_name: "",
+            address: "",
+            phone: "",
 
             boxone: [
                 {
@@ -160,9 +155,8 @@ export default {
                     txtOne: "",
                     txtTwo: "",
                     txtThree: "",
-                    txtBanner:
-                        "500 è la quantità minima che puoi richiedere per le misure che hai scelto",
-                    img: "",
+                    txtBanner: "50 è la quantità minima che puoi ordinare",
+                    img: require("../../../public/Links/quantity-personalize.png"),
                 },
             ],
             colorData: [
@@ -210,33 +204,27 @@ export default {
         };
     },
     methods: {
-        setPrintValue(print)
-        {
+        setPrintValue(print) {
             this.radioValue = print;
         },
 
-        setInputValues(inputValues)
-        {
+        setInputValues(inputValues) {
             this.inputL = inputValues.inputL;
             this.inputH = inputValues.inputH;
             this.inputP = inputValues.inputP;
         },
-        setInputQuantity(inputQuantity)
-        {
+        setInputQuantity(inputQuantity) {
             this.inputQ = inputQuantity.inputQ;
         },
 
-        setSelectedColor(color)
-        {
+        setSelectedColor(color) {
             this.selectedColor = color;
         },
-        setSelectedType(type)
-        {
+        setSelectedType(type) {
             this.selectedType = type;
         },
 
-        updateSenderAddress(data)
-        {
+        updateSenderAddress(data) {
             this.sender_email = data.sender_email;
             this.first_name = data.first_name;
             this.last_name = data.last_name;
@@ -245,32 +233,31 @@ export default {
             this.phone = data.phone;
         },
 
-        sendEmail()
-        {
-            axios.post('/shop/personalizes', {
-                sender_email: this.sender_email,
-                first_name: this.first_name,
-                last_name: this.last_name,
-                business_name: this.business_name,
-                address: this.address,
-                phone: this.phone,
-                length: this.inputL,
-                width: this.inputP,
-                height: this.inputH,
-                quantity: this.inputQ,
-                color: this.selectedColor.value,
-                cardboard_type: this.selectedType.value,
-                press_type: this.radioValue,
-            })
-                .then(r =>
-                {
-                    this.$router.push({path: '/congratulation', name: 'congratulation'})
+        sendEmail() {
+            axios
+                .post("/shop/personalizes", {
+                    sender_email: this.sender_email,
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    business_name: this.business_name,
+                    address: this.address,
+                    phone: this.phone,
+                    length: this.inputL,
+                    width: this.inputP,
+                    height: this.inputH,
+                    quantity: this.inputQ,
+                    color: this.selectedColor.value,
+                    cardboard_type: this.selectedType.value,
+                    press_type: this.radioValue,
                 })
-                .catch((e) =>
-                {
-
-                });
-        }
+                .then((r) => {
+                    this.$router.push({
+                        path: "/congratulation",
+                        name: "congratulation",
+                    });
+                })
+                .catch((e) => {});
+        },
     },
 };
 </script>

@@ -154,13 +154,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
-
 .current-price {
     color: #f68630;
     font-weight: bold;
 }
-
 
 .overflow-table {
     overflow-x: auto;
@@ -190,7 +187,7 @@ export default {
 
                 input {
                     width: 40px;
-                    height: 30px;
+                    height: 32px;
 
                     text-align: center;
 

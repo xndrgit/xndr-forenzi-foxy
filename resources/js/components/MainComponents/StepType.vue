@@ -4,9 +4,11 @@
             <div class="bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
             <div class="">
                 <span class="title-create">{{ title }}</span>
-                <div class="d-flex align-items-center justify-content-between">
+                <div
+                    class="d-flex flex-column flex-sm-row flex-wrap align-items-center justify-content-between"
+                >
                     <div
-                        class="col-6"
+                        class="col-12 col-sm-6"
                         @click="selectLeft"
                         :class="{
                             active: selectedType.value === titleOne,
@@ -28,7 +30,7 @@
                     </div>
 
                     <div
-                        class="col-6"
+                        class="col-12 col-sm-6"
                         @click="selectRight"
                         :class="{
                             active: selectedType.value === titleTwo,
@@ -109,10 +111,11 @@ export default {
 <style lang="scss" scoped>
 img {
     height: 90px;
-    max-width: 90%;
+    max-width: 100%;
 }
-.title-create{
+.title-create {
     font-weight: bold;
+    font-size: 0.8rem;
 }
 .titlebox {
     font-weight: bold;
@@ -120,7 +123,7 @@ img {
 }
 .textbox {
     font-weight: bold;
-    font-size: .5rem;
+    font-size: 0.5rem;
 }
 .box {
     position: relative;
@@ -137,5 +140,15 @@ i {
     right: 50px;
     color: #fdbc48;
     font-weight: bold;
+}
+@media screen and (max-width: 500px) {
+    .titlebox {
+        font-size: 0.6rem;
+    }
+    i {
+
+        right: 40px;
+ 
+    }
 }
 </style>

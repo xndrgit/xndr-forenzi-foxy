@@ -140,7 +140,7 @@ i {
 
 .title-create {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .step {
@@ -159,5 +159,10 @@ i {
 
 .image img {
     padding: 1rem;
+}
+@media screen and (max-width: 500px) {
+    label {
+        font-size: .7rem;
+    }
 }
 </style>

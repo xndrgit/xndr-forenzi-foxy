@@ -95,7 +95,7 @@
                 </div>
                 <p class="m-0">e ricevi le scatole</p>
                 <h5 class="text-white m-0 font-weight-bold">
-                    Martedì 12 Agosto
+                    {{ nextDay | formatDate }}
                 </h5>
             </div>
             <div
@@ -156,11 +156,32 @@ export default {
             minutes: 0,
             seconds: 0,
             interval: null,
+            nextDay: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000), // set to the day after tomorrow
         };
+    },
+    filters: {
+        formatDate(date) {
+            const options = {
+                weekday: "long", // spell out the day of the week
+                day: "numeric", // show the day of the month as a number
+                month: "long", // spell out the month name
+            };
+            return date.toLocaleDateString("it-IT", options);
+        },
     },
     created() {
         // Set the countdown date
-        const countdownDate = new Date("Mar 5, 2023 00:00:00").getTime();
+        // Get the current date
+        const currentDate = new Date();
+
+        // Add one day to the current date
+        const tomorrow = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
+
+        // Set the time to 00:00:00
+        tomorrow.setHours(0, 0, 0, 0);
+
+        // Set the countdown date to tomorrow at 00:00:00
+        const countdownDate = tomorrow.getTime();
 
         // Update the countdown every second
         this.interval = setInterval(() => {
