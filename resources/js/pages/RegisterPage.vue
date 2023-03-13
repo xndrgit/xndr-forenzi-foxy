@@ -7,49 +7,49 @@
                         <h1>SIGN UP</h1>
                     </div>
                 </div>
-               
+
                 <div class="col-md-6 offset-md-3">
                     <!-- <div id="details"> -->
-                        <form style="background-color: blue;">
-                            <div class="form-group">
-                                <label class="">NAME</label>
-                                <div class="d-flex jusify-content-start align-items-center p-2">
-                                    <input type="text" value="" />
-                                </div>
+                    <form style="background-color: blue;">
+                        <div class="form-group">
+                            <label class="">NAME</label>
+                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                <input type="text" value=""/>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="">E-MAIL ADDRESS</label>
-                                <div class="d-flex jusify-content-start align-items-center p-2">
-                                    <input type="email" value="" />
-                                </div>
+                        <div class="form-group">
+                            <label class="">E-MAIL ADDRESS</label>
+                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                <input type="email" value=""/>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="">PASSWORD</label>
-                                <div class="d-flex jusify-content-start align-items-center p-2">
-                                    <input type="password" value="" />
-                                </div>
+                        <div class="form-group">
+                            <label class="">PASSWORD</label>
+                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                <input type="password" value=""/>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="">CONFIRM PASSWORD</label>
-                                <div class="d-flex jusify-content-start align-items-center p-2">
-                                    <input type="password" value="" />
-                                </div>
+                        <div class="form-group">
+                            <label class="">CONFIRM PASSWORD</label>
+                            <div class="d-flex jusify-content-start align-items-center p-2">
+                                <input type="password" value=""/>
                             </div>
+                        </div>
 
-                            <div class="col-md-12 my-4 d-flex justify-content-center w-100">
-                                <div class="btn btn-primary">
-                                    <router-link to="/register">
-                                        REGISTER
-                                    </router-link>
-                                </div>
-                                <div class="btn btn-default">
-                                    CANCEL
-                                </div>
+                        <div class="col-md-12 my-4 d-flex justify-content-center w-100">
+                            <div class="btn btn-primary">
+                                <router-link to="/register">
+                                    REGISTER
+                                </router-link>
                             </div>
-                        </form>
+                            <div class="btn btn-default">
+                                CANCEL
+                            </div>
+                        </div>
+                    </form>
                     <!-- </div> -->
                 </div>
             </div>

@@ -30,6 +30,7 @@
                     <div class="footer-section col-10 col-sm-3">
                         <h3>Seguici sui social</h3>
                         <ul class="wrapper icons">
+<<<<<<< HEAD
                             <a href="https://www.facebook.com/FoxyBox.scatole">
                                 <li class="icon facebook">
                                     <span class="tooltip">Facebook</span>
@@ -39,6 +40,14 @@
                                 </li>
                             </a>
 
+=======
+                            <li class="icon facebook">
+                                <span class="tooltip">Facebook</span>
+                                <span
+                                ><i class="fa-sm fab fa-facebook-f"></i
+                                ></span>
+                            </li>
+>>>>>>> a9857c95b3f98804610973a860fe5757582262a3
                             <!-- <li class="icon twitter">
                                 <span class="tooltip">Twitter</span>
                                 <span
@@ -48,7 +57,7 @@
                             <li class="icon instagram">
                                 <span class="tooltip">Instagram</span>
                                 <span
-                                    ><i class="fa-sm fab fa-instagram"></i
+                                ><i class="fa-sm fab fa-instagram"></i
                                 ></span>
                             </li>
                             <!-- <li class="icon github">
@@ -70,8 +79,8 @@
                             molto altro.
                         </p>
                         <form>
-                            <input type="email" placeholder="" />
-                            <br />
+                            <input placeholder="" type="email"/>
+                            <br/>
                             <button
                                 class="dark-button text-white"
                                 type="submit"
@@ -86,29 +95,36 @@
     </div>
 </template>
 
-<script></script>
+<script>
+export default {};
+</script>
 
 <style lang="scss" scoped>
 .FooterTop {
     padding: 3rem 0;
     background-color: white;
+
     input {
         background-color: #f1f1f1;
         border: none;
     }
+
     button {
         padding: 8px 2rem;
     }
+
     .footer-section {
         h3 {
             font-weight: bold;
             font-size: 1rem;
             margin-bottom: 20px;
         }
+
         p {
             font-size: 0.7rem;
             font-weight: 500;
         }
+
         img {
             height: 30px;
             margin-right: 2px;
@@ -117,18 +133,21 @@
         ul {
             list-style: none;
             padding: 0;
+
             li {
                 font-size: 0.7rem;
 
                 font-weight: 500;
+
                 a {
                     color: black;
-                    margin: 0px 0px;
+                    margin: 0 0;
                 }
             }
         }
+
         @media (max-width: 991px) {
-            margin: 0px 20px;
+            margin: 0 20px;
         }
     }
 }

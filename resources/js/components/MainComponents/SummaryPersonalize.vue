@@ -5,33 +5,33 @@
             <div class="summary-item">
                 <span class="text">MISURE</span>
                 <span class="price"
-                    >{{ inputL }} <strong>L x</strong> {{ inputP }}
+                >{{ inputL }} <strong>L x</strong> {{ inputP }}
                     <strong>P x</strong> {{ inputH }} <strong>H</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">QUANTITÀ</span>
                 <span class="price"
-                    >{{ inputQ }}
+                >{{ inputQ }}
                     <strong>PREZZI</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">COLORE SCATOLA</span>
                 <span class="price"
-                    ><strong>{{ selectedColor.value }}</strong>
+                ><strong>{{ selectedColor.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">TIPO DI CARTONE</span>
                 <span class="price"
-                    ><strong>{{ selectedType.value }}</strong>
+                ><strong>{{ selectedType.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">STAMPA</span>
                 <span class="price"
-                    ><strong>{{ radioValue }}</strong>
+                ><strong>{{ radioValue }}</strong>
                 </span>
             </div>
 
@@ -47,8 +47,8 @@
                                 class="d-flex jusify-content-start align-items-center"
                             >
                                 <input
-                                    type="text"
                                     v-model="first_name"
+                                    type="text"
                                     @input="updateSender"
                                 />
                             </div>
@@ -59,8 +59,8 @@
                                 class="d-flex jusify-content-start align-items-center"
                             >
                                 <input
-                                    type="text"
                                     v-model="last_name"
+                                    type="text"
                                     @input="updateSender"
                                 />
                             </div>
@@ -72,8 +72,8 @@
                                 class="d-flex jusify-content-start align-items-center"
                             >
                                 <input
-                                    type="text"
                                     v-model="business_name"
+                                    type="text"
                                     @input="updateSender"
                                 />
                             </div>
@@ -85,8 +85,8 @@
                                 class="d-flex jusify-content-start align-items-center"
                             >
                                 <input
-                                    type="text"
                                     v-model="address"
+                                    type="text"
                                     @input="updateSender"
                                 />
                             </div>
@@ -99,8 +99,8 @@
                                     class="d-flex jusify-content-start align-items-center"
                                 >
                                     <input
-                                        type="text"
                                         v-model="phone"
+                                        type="text"
                                         @input="updateSender"
                                     />
                                 </div>
@@ -113,8 +113,8 @@
                                     class="d-flex jusify-content-start align-items-center"
                                 >
                                     <input
-                                        type="text"
                                         v-model="sender_email"
+                                        type="text"
                                         @input="updateSender"
                                     />
                                 </div>
@@ -125,10 +125,10 @@
             </div>
 
             <button
+                :disabled="!sender_email && !first_name"
                 class="btn bg-yellow fw-bold btn-lg btn-block"
                 type="button"
                 @click="sendEmail"
-                :disabled="!sender_email && !first_name"
             >
                 INVIA IL PREVENTIVO
             </button>
@@ -191,7 +191,7 @@ export default {
     text-align: start;
     font-size: 1.3em;
     font-weight: 900;
-    padding-top: 0px;
+    padding-top: 0;
     padding-bottom: 10px;
 }
 
@@ -255,7 +255,7 @@ i {
 label {
     font-size: 0.6rem;
     font-weight: bold;
-    margin: 0px;
+    margin: 0;
 }
 
 input {
@@ -267,12 +267,12 @@ input {
 
 .form-group input {
     width: 100%;
-    margin: 0px;
-  
+    margin: 0;
+
 }
 
 .form-group {
-    margin: 0px;
+    margin: 0;
 }
 
 .image img {

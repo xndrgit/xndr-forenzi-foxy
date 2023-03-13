@@ -18,6 +18,7 @@
 :root {
     font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
 }
+
 .pl,
 .pl__ball,
 .pl__ball-inner-shadow,
@@ -28,11 +29,13 @@
 .pl__track-cover {
     border-radius: 50%;
 }
+
 .pl {
     position: relative;
     width: 16em;
     height: 16em;
 }
+
 .pl__ball,
 .pl__ball-inner-shadow,
 .pl__ball-outer-shadow,
@@ -44,6 +47,7 @@
 .pl__track-cover {
     position: absolute;
 }
+
 .pl__ball,
 .pl__ball-inner-shadow,
 .pl__ball-outer-shadow,
@@ -51,6 +55,7 @@
 .pl__track-cover {
     animation: ball 2s linear infinite;
 }
+
 .pl__ball {
     top: calc(50% - 1.25em);
     left: calc(50% - 1.25em);
@@ -58,19 +63,21 @@
     width: 2.5em;
     height: 2.5em;
 }
+
 .pl__ball-inner-shadow {
     animation-name: ballInnerShadow;
     box-shadow: 0 0.1em 0.2em hsla(0, 0%, 0%, 0.3),
-        0 0 0.2em hsla(0, 0%, 0%, 0.1) inset,
-        0 -1em 0.5em hsla(0, 0%, 0%, 0.15) inset;
+    0 0 0.2em hsla(0, 0%, 0%, 0.1) inset,
+    0 -1em 0.5em hsla(0, 0%, 0%, 0.15) inset;
     width: 100%;
     height: 100%;
 }
+
 .pl__ball-outer-shadow {
     animation-name: ballOuterShadow;
     background-image: linear-gradient(
-        hsla(0, 0%, 0%, 0.15),
-        hsla(0, 0%, 0%, 0)
+            hsla(0, 0%, 0%, 0.15),
+            hsla(0, 0%, 0%, 0)
     );
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
     filter: blur(2px);
@@ -82,6 +89,7 @@
     transform-origin: 50% 0;
     z-index: -2;
 }
+
 .pl__ball-side-shadows {
     background-color: hsla(0, 0%, 0%, 0.1);
     filter: blur(2px);
@@ -90,12 +98,14 @@
     transform: scale(0.75, 1.1);
     z-index: -1;
 }
+
 .pl__ball-texture {
     overflow: hidden;
     width: 100%;
     height: 100%;
     transform: translate3d(0, 0, 0);
 }
+
 .pl__ball-texture:before {
     animation-name: ballTexture;
     animation-duration: 0.25s;
@@ -108,31 +118,34 @@
     width: 200%;
     height: 100%;
 }
+
 .pl__inner-ring {
     box-shadow: 0 -0.25em 0.5em hsla(0, 0%, 100%, 0.4),
-        0 0.5em 0.75em hsla(0, 0%, 100%, 0.4) inset,
-        0 0.5em 0.375em hsla(0, 0%, 0%, 0.15),
-        0 -0.5em 0.75em hsla(0, 0%, 0%, 0.15) inset;
+    0 0.5em 0.75em hsla(0, 0%, 100%, 0.4) inset,
+    0 0.5em 0.375em hsla(0, 0%, 0%, 0.15),
+    0 -0.5em 0.75em hsla(0, 0%, 0%, 0.15) inset;
     top: 2.375em;
     left: 2.375em;
     width: calc(100% - 4.75em);
     height: calc(100% - 4.75em);
 }
+
 .pl__outer-ring {
     box-shadow: 0 -0.45em 0.375em hsla(0, 0%, 0%, 0.15),
-        0 0.5em 0.75em hsla(0, 0%, 0%, 0.15) inset,
-        0 0.25em 0.5em hsla(0, 0%, 100%, 0.4),
-        0 -0.5em 0.75em hsla(0, 0%, 100%, 0.4) inset;
+    0 0.5em 0.75em hsla(0, 0%, 0%, 0.15) inset,
+    0 0.25em 0.5em hsla(0, 0%, 100%, 0.4),
+    0 -0.5em 0.75em hsla(0, 0%, 100%, 0.4) inset;
     top: 0.75em;
     left: 0.75em;
     width: calc(100% - 1.5em);
     height: calc(100% - 1.5em);
 }
+
 .pl__track-cover {
     animation-name: trackCover;
     background-image: conic-gradient(
-        rgb(255, 255, 255) 210deg,
-        hsla(223, 90%, 95%, 0) 270deg
+            rgb(255, 255, 255) 210deg,
+            hsla(223, 90%, 95%, 0) 270deg
     );
     top: 0;
     left: 0;
@@ -152,6 +165,7 @@
         transform: rotate(360deg) translateY(-6.5em);
     }
 }
+
 @keyframes ballInnerShadow {
     from {
         transform: rotate(0);
@@ -160,6 +174,7 @@
         transform: rotate(-360deg);
     }
 }
+
 @keyframes ballOuterShadow {
     from {
         transform: rotate(20deg);
@@ -168,6 +183,7 @@
         transform: rotate(-340deg);
     }
 }
+
 @keyframes ballTexture {
     from {
         transform: translateX(0);
@@ -176,6 +192,7 @@
         transform: translateX(50%);
     }
 }
+
 @keyframes trackCover {
     from {
         transform: rotate(0);

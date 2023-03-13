@@ -4,87 +4,87 @@
             <div class="overflow-table">
                 <table class="table table-fixed my-4">
                     <thead>
-                        <tr class="header-top">
-                            <th class="bg-dark text-white" colspan="2">
-                                SCATOLE 1 ONDA
-                            </th>
-                            <th class="bg-secondary text-white" colspan="3">
-                                MISURE IN CM
-                            </th>
-                            <th
-                                style="
+                    <tr class="header-top">
+                        <th class="bg-dark text-white" colspan="2">
+                            SCATOLE 1 ONDA
+                        </th>
+                        <th class="bg-secondary text-white" colspan="3">
+                            MISURE IN CM
+                        </th>
+                        <th
+                            style="
                                     position: relative;
-                                    padding: 0px;
+                                    padding: 0;
                                     background-color: rgb(246, 134, 48);
                                     border: 1px solid rgb(246, 134, 48);
                                 "
-                            >
-                                <img
-                                    style="
+                        >
+                            <img
+                                alt=""
+                                class="img-fluid"
+                                src="../../../../public/Links/scatola-personalizzata-per-tabella.png"
+                                style="
                                         position: absolute;
                                         width: 30px;
                                         top: 50%;
                                         left: 50%;
                                         transform: translate(-50%, -50%);
                                     "
-                                    class="img-fluid"
-                                    src="../../../../public/Links/scatola-personalizzata-per-tabella.png"
-                                    alt=""
-                                />
-                            </th>
-                            <th class="bg-dark text-white" colspan="5"></th>
+                            />
+                        </th>
+                        <th class="bg-dark text-white" colspan="5"></th>
 
-                            <th
-                                style="
+                        <th
+                            style="
                                     position: relative;
-                                    padding: 0px;
+                                    padding: 0;
                                     background-color: rgb(246, 134, 48);
                                     border: 1px solid rgb(246, 134, 48);
                                 "
-                            >
-                                <img
-                                    style="
+                        >
+                            <img
+                                alt=""
+                                class="img-fluid"
+                                src="../../../../public/Links/bancale-per-tabella.png"
+                                style="
                                         position: absolute;
                                         width: 30px;
                                         top: 50%;
                                         left: 50%;
                                         transform: translate(-50%, -50%);
                                     "
-                                    class="img-fluid"
-                                    src="../../../../public/Links/bancale-per-tabella.png"
-                                    alt=""
-                                />
-                            </th>
-                            <th class="bg-dark text-white">
-                                CONSEGNA IN 24/48 ORE
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="th-sm">SCHEDA PRODOTTO</th>
-                            <th>CODICE</th>
-                            <th>LATO LUNGO</th>
-                            <th>LATO CORTO</th>
-                            <th>ALTEZZA</th>
-                            <th style="background-color: rgb(246, 134, 48)">
-                                PERSONALIZZA LA SCATOLA
-                            </th>
-                            <th>DA 1+</th>
-                            <th>DA 100+</th>
-                            <th>DA 300+</th>
-                            <th>DA 500+</th>
-                            <th>DA 1000+</th>
-                            <th style="background-color: rgb(246, 134, 48)">
-                                AGGIUNGI UN BANCALE DA
-                            </th>
-                            <th>QUANTITÀ</th>
-                        </tr>
+                            />
+                        </th>
+                        <th class="bg-dark text-white">
+                            CONSEGNA IN 24/48 ORE
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="th-sm">SCHEDA PRODOTTO</th>
+                        <th>CODICE</th>
+                        <th>LATO LUNGO</th>
+                        <th>LATO CORTO</th>
+                        <th>ALTEZZA</th>
+                        <th style="background-color: rgb(246, 134, 48)">
+                            PERSONALIZZA LA SCATOLA
+                        </th>
+                        <th>DA 1+</th>
+                        <th>DA 100+</th>
+                        <th>DA 300+</th>
+                        <th>DA 500+</th>
+                        <th>DA 1000+</th>
+                        <th style="background-color: rgb(246, 134, 48)">
+                            AGGIUNGI UN BANCALE DA
+                        </th>
+                        <th>QUANTITÀ</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <SiblingProductsComponentCategory
-                            v-for="(product, index) in category.products"
-                            :product="product"
-                            :key="index"
-                        />
+                    <SiblingProductsComponentCategory
+                        v-for="(product, index) in category.products"
+                        :key="index"
+                        :product="product"
+                    />
                     </tbody>
                 </table>
             </div>

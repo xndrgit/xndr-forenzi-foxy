@@ -33,26 +33,25 @@ class OrderRepository extends Repository
       $user = User::find($user_id);
       $products = $user->products()->get();
       $subtotal = 0;
-      $total_weight = 0;
       $conai = 0; // Initialize the conai variable to 0
+      $conai_eur = config('services.site.conai_eur', 5);
+      $conai_kg = config('services.site.conai_kg', 5000);
+      $iva_pro = config('services.site.iva', 0.22);
 
       if ($products) {
          foreach ($products as $product) {
             $price = $product->price_saled ?: $product->price;
             $subtotal += $price * $product->pivot->quantity;
-            $total_weight += $product->pivot->quantity * $product->weight;
 
+            $total_weight = $product->pivot->quantity * $product->weight;
             // Calculate the conai for each product
-            $product_conai = ceil(($product->pivot->quantity * $product->weight) / 5000) * 5 * 0.22;
-
-
-            $conai += $product_conai;
+            $conai += ceil($total_weight / $conai_kg) * $conai_eur * $iva_pro;
          }
       } else {
          return null;
       }
 
-      $iva = round($subtotal * 22.00 / 100, 2);
+      $iva = round($subtotal * $iva_pro, 2);
 
       $order = new Order();
       $order->user_id = $user_id;

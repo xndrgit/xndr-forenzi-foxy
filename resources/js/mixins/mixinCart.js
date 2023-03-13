@@ -1,4 +1,4 @@
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
     data: () => ({
@@ -27,14 +27,15 @@ export default {
             let conai = 0.0;
             if (this.items) {
                 this.items.map((item) => {
-                    conai += item.cart_quantity * 4.35;
+                    const itemConaiWeight = Math.ceil((item.cart_quantity * item.weight) / this.$store.state.conai_kg);
+                    conai += Math.round(itemConaiWeight * this.$store.state.conai_eur * this.$store.state.iva_pro * 100) / 100;
                 });
             }
 
             return conai;
         },
         iva() {
-            return (this.subtotal * 22) / 100;
+            return this.subtotal * this.$store.state.iva_pro;
         },
     },
     mounted() {
@@ -46,12 +47,15 @@ export default {
     methods: {
         updateCartInfo(products) {
             let total = 0.0;
+            let conai = 0.0;
+            let iva = 0.0;
             if (products && products.length) {
                 window.localStorage.setItem(
                     "foxy-cart-items",
                     JSON.stringify(products)
                 );
-            } else {
+            }
+            else {
                 window.localStorage.removeItem("foxy-cart-items");
             }
 
@@ -61,15 +65,21 @@ export default {
                         el.cart_quantity *
                         (el.price_saled ? el.price_saled : el.price);
 
+                    const itemConaiWeight = Math.ceil((el.cart_quantity * el.weight) / this.$store.state.conai_kg);
+                    conai += Math.round(itemConaiWeight * this.$store.state.conai_eur * this.$store.state.iva_pro * 100) / 100;
+
                     return el;
                 });
 
                 this.productCount = this.items.length;
-            } else {
+            }
+            else {
                 this.productCount = 0;
             }
 
-            this.cartTotal = total.toFixed(2);
+            iva = total * this.$store.state.iva_pro;
+
+            this.cartTotal = (total + iva + conai).toFixed(2);
 
             this.$store.commit("updateCart", {
                 productCount: this.productCount,
@@ -88,7 +98,8 @@ export default {
                 return JSON.parse(
                     window.localStorage.getItem("foxy-cart-items")
                 );
-            } else {
+            }
+            else {
                 return null;
             }
         },

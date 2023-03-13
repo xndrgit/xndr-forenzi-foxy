@@ -12,9 +12,9 @@
             </div>
             <div>
                 <img
+                    alt=""
                     class="img-fluid"
                     src="../../../../public/Links/carte-di-pagamento.png"
-                    alt=""
                 />
             </div>
         </div>
@@ -35,6 +35,7 @@ export default {};
         height: 20px;
         margin: 10px;
     }
+
     .policy {
         display: contents;
         font-size: 0.8rem;

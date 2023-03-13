@@ -6,9 +6,9 @@
                     <div class="card">
                         <div class="text-left logo p-2 px-5">
                             <img
+                                alt=""
                                 src="../../../public/img/logo.png"
                                 style="width: 50px;"
-                                alt=""
                             />
                         </div>
                         <div class="invoice p-5">
@@ -39,9 +39,9 @@
                                             <div class="py-2">
                                                 <span class="d-block text-muted">Payment</span>
                                                 <img
+                                                    alt=""
                                                     src="https://img.icons8.com/color/48/000000/mastercard.png"
                                                     width="20"
-                                                    alt=""
                                                 />
                                             </div>
                                         </td>
@@ -61,9 +61,9 @@
                                     <tr v-for="item in order.products">
                                         <td style="width: 20%;">
                                             <img
+                                                alt=""
                                                 src="../../../public/Links/2-onde.jpg"
-                                                style="width: 90px;"
-                                                alt=""/>
+                                                style="width: 90px;"/>
                                         </td>
                                         <td style="width: 60%;">
                                             <span
@@ -237,7 +237,8 @@ export default {
                         this.total = parseFloat(this.order.total);
                         this.order_date = this.order.order_date;
                         this.order_number = this.order.order_number;
-                    } else {
+                    }
+                    else {
                         window.location.href = '/';
                     }
                 })

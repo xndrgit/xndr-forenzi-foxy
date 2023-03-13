@@ -17,9 +17,9 @@
                         <img
                             v-for="(image, index) in images"
                             :key="index"
-                            class="personalize-img img-fluid d-none d-sm-block col-sm-3"
                             :alt="image.title"
                             :src="image.src"
+                            class="personalize-img img-fluid d-none d-sm-block col-sm-3"
                         />
                     </div>
                 </div>
@@ -30,64 +30,64 @@
                             <!-- Left side content goes here -->
                             <StepFirstDynamic
                                 v-for="(element, index) in boxone"
-                                @inputValuesChanged="setInputValues"
-                                @inputQuantityChanged="setInputQuantity"
-                                class="step"
                                 :key="element.id"
+                                :img="element.img"
+                                :letter-one="element.letterOne"
+                                :letter-q="element.letterQ"
+                                :letter-three="element.letterThree"
+                                :letter-two="element.letterTwo"
                                 :step="element.step"
                                 :title="element.title"
-                                :letter-q="element.letterQ"
-                                :letter-one="element.letterOne"
-                                :letter-two="element.letterTwo"
-                                :letter-three="element.letterThree"
-                                :txt-q="element.txtQ"
-                                :txt-one="element.txtOne"
-                                :txt-two="element.txtTwo"
-                                :txt-three="element.txtThree"
                                 :txt-banner="element.txtBanner"
-                                :img="element.img"
+                                :txt-one="element.txtOne"
+                                :txt-q="element.txtQ"
+                                :txt-three="element.txtThree"
+                                :txt-two="element.txtTwo"
+                                class="step"
+                                @inputQuantityChanged="setInputQuantity"
+                                @inputValuesChanged="setInputValues"
                             />
                             <StepColor
                                 v-for="(element, index) in colorData"
-                                @selectedColor="setSelectedColor"
                                 :key="element.id"
+                                :img-one="element.imgOne"
+                                :img-two="element.imgTwo"
                                 :step="element.step"
                                 :title="element.title"
                                 :title-one="element.titleOne"
                                 :title-two="element.titleTwo"
                                 :txt-one="element.txtOne"
                                 :txt-two="element.txtTwo"
-                                :img-one="element.imgOne"
-                                :img-two="element.imgTwo"
+                                @selectedColor="setSelectedColor"
                             />
                             <StepType
                                 v-for="(element, index) in typeData"
-                                @selectedType="setSelectedType"
                                 :key="element.id"
+                                :img-one="element.imgOne"
+                                :img-two="element.imgTwo"
                                 :step="element.step"
                                 :title="element.title"
                                 :title-one="element.titleOne"
                                 :title-two="element.titleTwo"
                                 :txt-one="element.txtOne"
                                 :txt-two="element.txtTwo"
-                                :img-one="element.imgOne"
-                                :img-two="element.imgTwo"
+                                @selectedType="setSelectedType"
                             />
 
                             <StepThirdDynamic
-                                @printSelected="setPrintValue"
                                 :radio-value="radioValue"
+                                @printSelected="setPrintValue"
                             />
                         </div>
                         <div class="col-12 col-md-4">
                             <SummaryPersonalize
                                 :inputH="inputH"
-                                :inputP="inputP"
                                 :inputL="inputL"
+                                :inputP="inputP"
                                 :inputQ="inputQ"
+                                :radioValue="radioValue"
                                 :selectedColor="selectedColor"
                                 :selectedType="selectedType"
-                                :radioValue="radioValue"
                                 @update-sender="updateSenderAddress"
                                 @send-email="sendEmail"
                             />
@@ -276,7 +276,7 @@ export default {
 h2 {
     font-size: 1.7rem;
     font-weight: bold;
-    margin: 0px;
+    margin: 0;
 }
 
 .active {
@@ -318,7 +318,7 @@ label {
 
 input {
     width: 30%;
-    margin: 1rem 0px;
+    margin: 1rem 0;
     height: 30px;
     font-size: 1.5rem;
     border: none;

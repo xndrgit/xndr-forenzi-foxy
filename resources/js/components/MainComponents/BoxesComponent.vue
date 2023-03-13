@@ -6,9 +6,9 @@
                     :to="{ name: 'product', params: { id: product.id } }"
                 >
                     <img
-                        class="img-fluid"
-                        :src="imageSource"
                         :alt="product.name"
+                        :src="imageSource"
+                        class="img-fluid"
                     />
                 </router-link>
             </div>
@@ -35,14 +35,14 @@
             <div class="card-footer">
                 <div class="add-to-cart d-flex col-12">
                     <div class="left">
-                        <button @click="addToCart" class="yellow-button" :disabled="!product.quantity || product.quantity < 1">
+                        <button :disabled="!product.quantity || product.quantity < 1" class="yellow-button" @click="addToCart">
                             AGGIUNGI AL CARRELLO
                         </button>
                     </div>
                     <div class="right">
                         <QuantityProductsComponent
-                            @update-quantity="updateQuantity"
                             :product="product"
+                            @update-quantity="updateQuantity"
                         />
                     </div>
                 </div>
@@ -83,7 +83,8 @@ export default {
         imageSource() {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
-            } else {
+            }
+            else {
                 return "/storage/" + this.product.img;
             }
         },
@@ -105,7 +106,8 @@ export default {
                 }
 
                 this.items = updatedItems;
-            } else {
+            }
+            else {
                 addedItem.cart_quantity = this.quantity;
 
                 this.items = [

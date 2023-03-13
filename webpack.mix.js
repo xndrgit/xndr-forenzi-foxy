@@ -22,4 +22,11 @@ mix.webpackConfig({
 
 mix.js("resources/js/app.js", "public/js")
     .js("resources/js/front.js", "public/js")
-    .sass("resources/sass/app.scss", "public/css");
+    .sass("resources/sass/app.scss", "public/css")
+    .extract(['vue', 'bootstrap', 'vuex', 'axios', 'jquery', 'vuetify']);
+
+if (mix.inProduction()) {
+    mix.version();
+} else {
+    mix.sourceMaps();
+}

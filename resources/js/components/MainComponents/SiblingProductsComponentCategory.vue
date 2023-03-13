@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td>
-            <img class="img-fluid" :src="imageSource" :alt="product.name" />
+            <img :alt="product.name" :src="imageSource" class="img-fluid"/>
         </td>
 
         <td class="font-weight-bold">{{ product.code }}</td>
@@ -11,9 +11,9 @@
         <td>
             <a href="/personalize">
                 <img
+                    alt="PersonaliseImage"
                     class="img-fluid p-2"
                     src="../../../../public/Links/misure-personalizzate-per-tabella.png"
-                    alt="PersonaliseImage"
                 />
             </a>
         </td>
@@ -36,14 +36,14 @@
         <td>
             <div class="d-flex align-items-center">
                 <div class="quantity d-flex">
-                    <input type="text" id="input" v-model="value" />
+                    <input id="input" v-model="value" type="text"/>
                     <div class="d-flex flex-column">
                         <button @click="increaseValue()">+</button>
                         <button @click="decreaseValue()">-</button>
                     </div>
                 </div>
 
-                <div @click="addToCart" class="yellow-button">AGGIUNGI</div>
+                <div class="yellow-button" @click="addToCart">AGGIUNGI</div>
             </div>
         </td>
     </tr>
@@ -73,7 +73,8 @@ export default {
         imageSource() {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
-            } else {
+            }
+            else {
                 return "/storage/" + this.product.img;
             }
         },
@@ -142,7 +143,8 @@ export default {
                 }
 
                 this.items = updatedItems;
-            } else {
+            }
+            else {
                 addedItem.cart_quantity = this.value;
 
                 this.items = [...this.items, addedItem];
@@ -196,7 +198,7 @@ export default {
 
                 button {
                     border: 1px solid lightgray;
-                    padding: 0px 0.5rem;
+                    padding: 0 0.5rem;
 
                     font-size: 0.6rem;
 

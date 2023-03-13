@@ -8,8 +8,8 @@
                         <div class="col-lg-8 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1">
                             <div class="mobile h5">Billing Address</div>
                             <div
-                                class="py-5"
                                 id="details"
+                                class="py-5"
                             >
                                 <form>
                                     <div class="row">
@@ -175,8 +175,8 @@
                                         <label class="">NOTE ORDINE (opzionale)</label>
                                         <div class="d-flex jusify-content-start align-items-center p-2">
                                             <textarea
-                                                cols="200"
                                                 id=""
+                                                cols="200"
                                                 name=""
                                                 rows="5"
                                             ></textarea>
@@ -188,8 +188,8 @@
                         <div
                             class="summary col-lg-4 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
                             <div
-                                class="bg-white"
                                 id="cart"
+                                class="bg-white"
                             >
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="h6">RIEPILOGO ORDINE</div>
@@ -297,35 +297,42 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="display-5">SUBTOTALE</div>
                                         <div class="ml-auto font-weight-bold">
-                                            $80.9</div>
+                                            $80.9
+                                        </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="display-5">FOXTOP - SCONTO
                                         </div>
                                         <div class="ml-auto font-weight-bold">
-                                            $80.9</div>
+                                            $80.9
+                                        </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="display-5">ABBONAMENTO</div>
                                         <div class="ml-auto font-weight-bold">
-                                            $80.9</div>
+                                            $80.9
+                                        </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="display-5">SPEDIZIONE
-                                            GRATUITA</div>
+                                            GRATUITA
+                                        </div>
                                         <div class="ml-auto font-weight-bold">
-                                            $80.9</div>
+                                            $80.9
+                                        </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="display-5">CONTRIBUTO CONAI
                                         </div>
                                         <div class="ml-auto font-weight-bold">
-                                            $80.9</div>
+                                            $80.9
+                                        </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="display-5">IVA</div>
                                         <div class="ml-auto font-weight-bold">
-                                            $80.9</div>
+                                            $80.9
+                                        </div>
                                     </div>
                                     <div
                                         class="total border-top d-flex justify-content-between align-items-center ml-2 font-weight-bold">
@@ -336,7 +343,7 @@
                                 </div>
                                 <div class="pay ">
                                     <h5 class="fw-bold">MODALITÀ DI PAGAMENTO</h5>
-                                    <br />
+                                    <br/>
                                     <h6 class="">BONIFICO BANCARIO</h6>
                                     <p>
                                         Effettua il pagamento tramite
@@ -347,11 +354,11 @@
                                         trasferiti nel nostro
                                         conto corrente.
                                     </p>
-                                    <hr />
+                                    <hr/>
                                     <h6 class="">PAGAMENTO ALLA CONSEGNA</h6>
                                     <p>Pagamento in contanti al momento
                                         della consegna.</p>
-                                    <hr />
+                                    <hr/>
                                     <div class="d-flex">
                                         <h6>PAYPAL E CARTE DI CREDITO</h6>
                                         <i class="fa-brands fa-cc-paypal"></i>
@@ -366,7 +373,7 @@
                                         la tua carta di credito
                                         se non hai un account PayPal.
                                     </p>
-                                    <hr />
+                                    <hr/>
 
                                     <p>
                                         I tuoi dati personali verranno
@@ -378,7 +385,7 @@
                                         <strong>privacy
                                             policy.</strong>
                                     </p>
-                                    <hr />
+                                    <hr/>
 
                                     <input
                                         id="terms"
@@ -409,295 +416,295 @@
 </template>
 
 <script>
-    export default {};
+export default {};
 </script>
 
 <style
     lang="scss"
     scoped
 >
-    i {
-        margin-left: .4rem;
-        font-size: .8rem;
-    }
+i {
+    margin-left: .4rem;
+    font-size: .8rem;
+}
 
-    .pay {
-        h6 {
-            font-weight: bold;
-        }
-    }
-
-    .circle {
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        border-radius: 0.5em;
-        background-color: #007bff;
-        color: white;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .square {
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        background-color: #6c757d;
-        color: white;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    #details {
-        min-height: 300px;
-    }
-
-    input {
-        border: none;
-        outline: none;
-        padding: .2rem;
-        font-size: 1.5rem;
-    }
-
-    textarea {
-        border: none;
-        outline: none;
-        font-size: 1.5rem;
-    }
-
-    .form-group .d-flex {
-        border: 1px solid lightgrey;
-        font-size: 0.8rem;
-        margin: 0.5rem 0rem;
-    }
-
-    .form-group .d-flex input {
-        width: 100%;
-    }
-
-    .form-group .d-flex:hover {
-        color: #000;
-        cursor: pointer;
-        border: 1px solid #008000;
-    }
-
-    select {
-        width: 100%;
-        padding: 8px 5px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    input[type="checkbox"]+label {
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    #address,
-    #cart,
-    #summary {
-        padding: 20px 50px;
-        font-size: 0.8rem;
-    }
-
-    #address .d-md-flex p.text-justify,
-    #register p.text-muted {
-        margin: 0;
-    }
-
-    #register {
-        background-color: #d9ecf2;
-    }
-
-    #register a {
-        text-decoration: none;
-        color: #333;
-    }
-
-    #cart,
-    #summary {
-        max-width: 500px;
-        border: 1px solid lightgrey;
-    }
-
-    .h6 {
-        font-size: 1rem;
-        font-weight: 700;
-    }
-
-    .h6 a {
-        text-decoration: none;
-        font-size: .6rem;
-    }
-
-    .item img {
-        object-fit: cover;
-        border-radius: 5px;
-    }
-
-    .item {
-        position: relative;
-    }
-
-    .number {
-        position: absolute;
-        font-weight: 800;
-        color: #fff;
-        background-color: orange;
-        padding-left: 7px;
-        border-radius: 50%;
-        border: 1px solid #fff;
-        width: 25px;
-        height: 25px;
-        top: -5px;
-        right: -5px;
-    }
-
-    .display-5 {
-        font-size: 0.8rem;
+.pay {
+    h6 {
         font-weight: bold;
     }
+}
 
-    #cart~p.text-muted {
-        margin: 0;
-        font-size: 0.9rem;
+.circle {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.square {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: #6c757d;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+#details {
+    min-height: 300px;
+}
+
+input {
+    border: none;
+    outline: none;
+    padding: .2rem;
+    font-size: 1.5rem;
+}
+
+textarea {
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+}
+
+.form-group .d-flex {
+    border: 1px solid lightgrey;
+    font-size: 0.8rem;
+    margin: 0.5rem 0rem;
+}
+
+.form-group .d-flex input {
+    width: 100%;
+}
+
+.form-group .d-flex:hover {
+    color: #000;
+    cursor: pointer;
+    border: 1px solid #008000;
+}
+
+select {
+    width: 100%;
+    padding: 8px 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="checkbox"] + label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+#address,
+#cart,
+#summary {
+    padding: 20px 50px;
+    font-size: 0.8rem;
+}
+
+#address .d-md-flex p.text-justify,
+#register p.text-muted {
+    margin: 0;
+}
+
+#register {
+    background-color: #d9ecf2;
+}
+
+#register a {
+    text-decoration: none;
+    color: #333;
+}
+
+#cart,
+#summary {
+    max-width: 500px;
+    border: 1px solid lightgrey;
+}
+
+.h6 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.h6 a {
+    text-decoration: none;
+    font-size: .6rem;
+}
+
+.item img {
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.item {
+    position: relative;
+}
+
+.number {
+    position: absolute;
+    font-weight: 800;
+    color: #fff;
+    background-color: orange;
+    padding-left: 7px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    width: 25px;
+    height: 25px;
+    top: -5px;
+    right: -5px;
+}
+
+.display-5 {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+#cart ~ p.text-muted {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+tr.text-muted td {
+    border: none;
+}
+
+.fa-minus,
+.fa-plus {
+    font-size: 0.7rem;
+}
+
+.table td {
+    padding: 0.3rem;
+}
+
+.btn.text-uppercase {
+    border: 1px solid #333;
+    font-weight: 600;
+    border-radius: 0;
+}
+
+.btn.text-uppercase:hover {
+    background-color: #333;
+    color: #eee;
+}
+
+.btn.text-white {
+    background-color: #66cdaa;
+    border-radius: 0;
+}
+
+.btn.text-white:hover {
+    background-color: #3cb371;
+}
+
+.wrapper .row + div.text-muted {
+    font-size: 0.9rem;
+}
+
+.mobile,
+#mobile {
+    display: none;
+}
+
+.buttons {
+    vertical-align: text-bottom;
+}
+
+#register {
+    width: 50%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .progress .progress-bar {
+        width: 33%;
     }
 
-    tr.text-muted td {
-        border: none;
+    #cart,
+    #summary {
+        max-width: 100%;
     }
 
-    .fa-minus,
-    .fa-plus {
-        font-size: 0.7rem;
-    }
-
-    .table td {
-        padding: 0.3rem;
-    }
-
-    .btn.text-uppercase {
-        border: 1px solid #333;
-        font-weight: 600;
-        border-radius: 0px;
-    }
-
-    .btn.text-uppercase:hover {
-        background-color: #333;
-        color: #eee;
-    }
-
-    .btn.text-white {
-        background-color: #66cdaa;
-        border-radius: 0px;
-    }
-
-    .btn.text-white:hover {
-        background-color: #3cb371;
-    }
-
-    .wrapper .row+div.text-muted {
-        font-size: 0.9rem;
-    }
-
-    .mobile,
-    #mobile {
+    .wrapper div.h5.large,
+    .wrapper .row + div.text-muted {
         display: none;
     }
 
+    .mobile.h5,
+    #mobile {
+        display: block;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .progress .progress-bar {
+        width: 29%;
+    }
+
+    #cart,
+    #summary {
+        max-width: 100%;
+    }
+
+    .wrapper div.h5.large,
+    .wrapper .row + div.text-muted {
+        display: none;
+    }
+
+    .mobile.h5,
+    #mobile {
+        display: block;
+    }
+
     .buttons {
-        vertical-align: text-bottom;
+        width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .progress .progress-bar {
+        width: 38%;
+    }
+
+    #cart,
+    #summary {
+        max-width: 100%;
+    }
+
+    nav,
+    .wrapper {
+        padding: 10px 30px;
     }
 
     #register {
-        width: 50%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 424px) {
+    body {
+        width: fit-content;
+    }
+}
+
+@media (max-width: 375px) {
+    .progress .progress-bar {
+        width: 35%;
     }
 
-    @media (min-width: 768px) and (max-width: 991px) {
-        .progress .progress-bar {
-            width: 33%;
-        }
-
-        #cart,
-        #summary {
-            max-width: 100%;
-        }
-
-        .wrapper div.h5.large,
-        .wrapper .row+div.text-muted {
-            display: none;
-        }
-
-        .mobile.h5,
-        #mobile {
-            display: block;
-        }
+    body {
+        width: fit-content;
     }
+}
 
-    @media (min-width: 576px) and (max-width: 767px) {
-        .progress .progress-bar {
-            width: 29%;
-        }
-
-        #cart,
-        #summary {
-            max-width: 100%;
-        }
-
-        .wrapper div.h5.large,
-        .wrapper .row+div.text-muted {
-            display: none;
-        }
-
-        .mobile.h5,
-        #mobile {
-            display: block;
-        }
-
-        .buttons {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 575px) {
-        .progress .progress-bar {
-            width: 38%;
-        }
-
-        #cart,
-        #summary {
-            max-width: 100%;
-        }
-
-        nav,
-        .wrapper {
-            padding: 10px 30px;
-        }
-
-        #register {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 424px) {
-        body {
-            width: fit-content;
-        }
-    }
-
-    @media (max-width: 375px) {
-        .progress .progress-bar {
-            width: 35%;
-        }
-
-        body {
-            width: fit-content;
-        }
-    }
-
-    .total * {
-        color: orange;
-        font-size: 1rem;
-        font-weight: bold;
-    }
+.total * {
+    color: orange;
+    font-size: 1rem;
+    font-weight: bold;
+}
 </style>

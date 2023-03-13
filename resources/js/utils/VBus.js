@@ -11,7 +11,8 @@ const VBus = class
             event.forEach(
                 eventName => this.vue.$on(eventName, (callback))
             );
-        } else {
+        }
+        else {
             this.vue.$on(event, (callback));
         }
         return this;
@@ -27,7 +28,8 @@ const VBus = class
             event.forEach(
                 eventName => this.vue.$off(eventName, (callback))
             );
-        } else {
+        }
+        else {
             this.vue.$off(event, (callback));
         }
         return this;

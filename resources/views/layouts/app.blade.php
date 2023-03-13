@@ -14,16 +14,7 @@
         name="csrf-token"
     >
 
-    <title>
-        Foxy
-        {{-- {{ config('app.name', 'Foxy') }} --}}
-    </title>
-
-    <!-- Scripts -->
-    <script
-        src="{{ asset('js/app.js') }}"
-        defer
-    ></script>
+    <title>Foxy</title>
 
     <!-- Fonts -->
     <link
@@ -37,7 +28,7 @@
 
     <!-- Styles -->
     <link
-        href="{{ asset('css/app.css') }}"
+        href="{{ mix('css/app.css') }}"
         rel="stylesheet"
     >
 
@@ -47,239 +38,206 @@
 </head>
 
 <body>
-    <div id="app">
-        <nav class="HeaderTop navbar navbar-expand-md navbar shadow-sm">
-            <div class="container-lg justify-content-around">
+<div id="app">
+    <nav class="HeaderTop navbar navbar-expand-md navbar shadow-sm">
+        <div class="container-lg justify-content-around">
 
-                <button
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}"
-                    class="navbar-toggler"
-                    data-target="#navbarSupportedContent"
-                    data-toggle="collapse"
-                    type="button"
-                >
+            <button
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="{{ __('Toggle navigation') }}"
+                class="navbar-toggler"
+                data-target="#navbarSupportedContent"
+                data-toggle="collapse"
+                type="button"
+            >
                     <span class="navbar-toggler-icon">
                         <i class="fas fa-bars"></i>
                     </span>
-                </button>
+            </button>
 
-                <div
-                    class="collapse navbar-collapse"
-                    id="navbarSupportedContent"
-                >
+            <div
+                class="collapse navbar-collapse"
+                id="navbarSupportedContent"
+            >
                     <span class="icon font-weight-bold text-white mr-3">
                         <i class="fa-2x fas fa-box"></i>
                         FoxyBox
                     </span>
 
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
 
-                        @guest
-                        @else
-                            <li class="nav-item dropdown mx-1">
+                    @guest
+                    @else
+                        <li class="nav-item dropdown mx-1">
+                            <a
+                                class="nav-link "
+                                href="{{ route('admin.users.index') }}"
+                            >
+                                Utenti
+                            </a>
+                            <div
+                                aria-labelledby="navbarDropdown"
+                                class="dropdown-menu"
+                            >
                                 <a
-                                    class="nav-link "
+                                    class="dropdown-item"
                                     href="{{ route('admin.users.index') }}"
-                                >
-                                    Utenti
-                                </a>
-                                <div
-                                    aria-labelledby="navbarDropdown"
-                                    class="dropdown-menu"
-                                >
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('admin.users.index') }}"
-                                    >Visualizza tutti gli utenti</a>
-                                </div>
-                            </li>
+                                >Visualizza tutti gli utenti</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown mx-1">
 
-                            {{-- <li class="nav-item dropdown mx-1">
-                                <a
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    href="{{ route('admin.users.index') }}"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                >
-                                    Utenti
-                                </a>
-                                <div
-                                    aria-labelledby="navbarDropdown"
-                                    class="dropdown-menu"
-                                >
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('admin.users.index') }}"
-                                    >Visualizza tutti gli utenti</a>
-                                </div>
-                            </li> --}}
-                            <li class="nav-item dropdown mx-1">
+                            <a
+                                class="nav-link "
+                                href="{{ route('admin.products.index') }}"
+                            >
+                                Prodotti
+                            </a>
+                        </li>
 
-                                <a
-                                    class="nav-link "
-                                    href="{{ route('admin.products.index') }}"
-                                >
-                                    Prodotti
-                                </a>
-                                {{-- <div
-                                    aria-labelledby="navbarDropdown"
-                                    class="dropdown-menu"
-                                >
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('admin.products.index') }}"
-                                    >Visualizza tutti i prodotti</a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('admin.products.create') }}"
-                                    >Aggiungi un nuovo prodotto</a>
-                                </div> --}}
-                            </li>
+                        <li class="nav-item dropdown mx-1">
+                            <a
+                                class="nav-link"
+                                href="{{ route('admin.categories.index') }}"
+                            >
+                                Categorie
+                            </a>
 
-                            <li class="nav-item dropdown mx-1">
-                                <a
-                                    class="nav-link"
-                                    href="{{ route('admin.categories.index') }}"
-                                >
-                                    Categorie
-                                </a>
+                        </li>
 
-                            </li>
+                        <li class="nav-item dropdown mx-1">
+                            <a
+                                class="nav-link"
+                                href="{{ route('admin.subcategories.index') }}"
+                            >
+                                Sottocategorie
+                            </a>
 
-                            <li class="nav-item dropdown mx-1">
-                                <a
-                                    class="nav-link"
-                                    href="{{ route('admin.subcategories.index') }}"
-                                >
-                                    Sottocategorie
-                                </a>
+                        </li>
 
-                            </li>
+                        <li class="nav-item dropdown mx-1">
+                            <a
+                                class="nav-link"
+                                href="{{ route('admin.orders.index') }}"
+                            >
+                                Ordini
+                            </a>
 
-                            <li class="nav-item dropdown mx-1">
-                                <a
-                                    class="nav-link"
-                                    href="{{ route('admin.orders.index') }}"
-                                >
-                                    Ordini
-                                </a>
+                        </li>
 
-                            </li>
+                    @endguest
+                </ul>
 
-                        @endguest
-                    </ul>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li class="nav-item">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                            <a
+                                class="nav-link d-flex align-items-center"
+                                href="{{ route('login') }}"
+                            >
+                                <i class="fa-sm fa-sharp fa-solid fa-right-to-bracket"></i>
+                                {{ __('Accedi') }}</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item">
-
                                 <a
                                     class="nav-link d-flex align-items-center"
-                                    href="{{ route('login') }}"
+                                    href="{{ route('register') }}"
                                 >
-                                    <i class="fa-sm fa-sharp fa-solid fa-right-to-bracket"></i>
-                                    {{ __('Accedi') }}</a>
+                                    <i class="fa-sm fas fa-user-plus"></i>
+                                    {{ __('Registrati') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link d-flex align-items-center"
-                                        href="{{ route('register') }}"
-                                    >
-                                        <i class="fa-sm fas fa-user-plus"></i>
-                                        {{ __('Registrati') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                class="nav-link dropdown-toggle"
+                                data-toggle="dropdown"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                v-pre
+                            >
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div
+                                aria-labelledby="navbarDropdown"
+                                class="dropdown-menu dropdown-menu-right"
+                            >
                                 <a
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
-                                    class="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    v-pre
+                                    class="dropdown-item"
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
                                 >
-                                    {{ Auth::user()->name }}
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div
-                                    aria-labelledby="navbarDropdown"
-                                    class="dropdown-menu dropdown-menu-right"
+                                <form
+                                    action="{{ route('logout') }}"
+                                    class="d-none"
+                                    id="logout-form"
+                                    method="POST"
                                 >
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-                                    >
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form
-                                        action="{{ route('logout') }}"
-                                        class="d-none"
-                                        id="logout-form"
-                                        method="POST"
-                                    >
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="py-4 ">
+    <main class="py-4 ">
 
-            <div class="container-lg">
+        <div class="container-lg">
 
-                <div class="d-flex col-12 justify-content-center ">
-                    <a
-                        class="navbar-brand"
-                        href="{{ url('/') }}"
+            <div class="d-flex col-12 justify-content-center ">
+                <a
+                    class="navbar-brand"
+                    href="{{ url('/') }}"
+                >
+                    <img
+                        alt=""
+                        class="img-fluid my-5"
+                        src="{{ asset('img/logo.png') }}"
                     >
-                        <img
-                            alt=""
-                            class="img-fluid my-5"
-                            src="{{ asset('img/logo.png') }}"
-                        >
-                        {{-- {{ config('app.name', 'Foxy') }} --}}
-                    </a>
-
-                </div>
-
-                @yield('content')
+                    {{-- {{ config('app.name', 'Foxy') }} --}}
+                </a>
 
             </div>
 
-        </main>
-        {{-- <footer>
-            @include('layouts.footer')
-        </footer> --}}
-    </div>
+            @yield('content')
 
-    @stack('scripts')
+        </div>
+
+    </main>
+    {{-- <footer>
+        @include('layouts.footer')
+    </footer> --}}
+</div>
+
+<!-- Scripts -->
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ mix('js/app.js') }}" defer></script>
+
+@stack('scripts')
 </body>
 
 </html>
 
 <style
     lang="scss"
-    scoped
 >
     .icon {
         cursor: pointer;
@@ -289,7 +247,8 @@
         width: 100%;
         height: 41px;
         background-color: rgb(245, 133, 47);
-        color: black padding: 0px;
+        color: black;
+        padding: 0;
     }
 
     .navbar img {

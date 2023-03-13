@@ -5,7 +5,6 @@
             class="jumbo1 col-12 col-sm-10 col-md-8 col-lg-7 col-xl-7 d-none d-md-block"
         >
             <carousel
-                class="align-items-center justify-content-center"
                 :perPageCustom="[
                     [0, 1],
                     [480, 1],
@@ -13,26 +12,27 @@
                     [1024, 1],
                     [1200, 1],
                 ]"
+                class="align-items-center justify-content-center"
             >
                 <slide v-for="(image, index) in images" :key="index">
                     <div class="carousel-image-container">
                         <img
-                            style="width: 85%"
-                            class="img-fluid jumbo-image"
                             :src="image.src"
                             alt="Slider image"
+                            class="img-fluid jumbo-image"
+                            style="width: 85%"
                         />
 
                         <img
+                            alt=""
                             class="maschera_dx"
                             src="../../../../public/Links/maschera_dx.png"
-                            alt=""
                         />
 
                         <img
+                            alt=""
                             class="maschera_sx"
                             src="../../../../public/Links/maschera_sx.png"
-                            alt=""
                         />
 
                         <div class="carousel-content position-absolute">
@@ -109,9 +109,9 @@
                 </div>
                 <div class="w-40 d-flex justify-content-start">
                     <img
+                        alt=""
                         class="delivery-image d-none d-sm-block"
                         src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
-                        alt=""
                     />
                 </div>
             </div>
@@ -120,7 +120,8 @@
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
+import {Carousel, Slide} from "vue-carousel";
+
 export default {
     components: {
         Carousel,
@@ -219,10 +220,15 @@ div.VueCarousel-pagination {
     position: absolute !important;
     bottom: 20px;
 }
+
 .jumbo {
     display: flex;
+
     .jumbo1 {
         height: -webkit-fill-available;
+        height: -moz-available;
+        height: stretch;
+
         .carousel-image-container {
             position: relative;
         }
@@ -231,10 +237,11 @@ div.VueCarousel-pagination {
             position: absolute;
             right: -60px;
         }
+
         .maschera_sx {
             position: absolute;
-            left: 0px;
-            bottom: 0px;
+            left: 0;
+            bottom: 0;
         }
 
         .carousel-content {
@@ -282,6 +289,8 @@ div.VueCarousel-pagination {
             font-size: 0.9rem;
 
             height: -webkit-fill-available;
+            height: -moz-available;
+            height: stretch;
             background-color: rgb(246, 134, 48);
 
             .countdown {
@@ -319,14 +328,22 @@ div.VueCarousel-pagination {
             .h1 {
                 color: rgb(246, 134, 48);
             }
+
             span {
                 font-size: 0.8rem;
                 font-weight: 500;
             }
+
             .delivery-image {
                 height: -webkit-fill-available;
+                height: -moz-available;
+                height: stretch;
                 width: -webkit-fill-available;
+                width: -moz-available;
+                width: stretch;
                 min-height: -webkit-fill-available;
+                min-height: -moz-available;
+                min-height: stretch;
             }
         }
     }

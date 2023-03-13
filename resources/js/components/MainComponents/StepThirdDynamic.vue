@@ -6,15 +6,15 @@
 
                 <div class="w-90">
                     <span class="title-create"
-                        >NEUTRA O CON LA STAMPA PERSONALIZZATA?</span
+                    >NEUTRA O CON LA STAMPA PERSONALIZZATA?</span
                     >
                     <div class="mt-5 d-flex flex-column justify-content-center">
                         <div class="">
                             <input
-                                v-bind:checked="radioValue === 'NEUTRA'"
                                 id="NEUTRA"
                                 name="drone"
                                 type="radio"
+                                v-bind:checked="radioValue === 'NEUTRA'"
                                 value="NEUTRA"
                                 @change="emitRadioValue"
                             />
@@ -23,33 +23,33 @@
 
                         <div>
                             <input
-                                v-bind:checked="
-                                    radioValue === 'STAMPA A 1 COLORE'
-                                "
                                 id="STAMPA A 1 COLORE"
                                 name="drone"
                                 type="radio"
+                                v-bind:checked="
+                                    radioValue === 'STAMPA A 1 COLORE'
+                                "
                                 value="STAMPA A 1 COLORE"
                                 @change="emitRadioValue"
                             />
                             <label for="STAMPA A 1 COLORE"
-                                >STAMPA A 1 COLORE
+                            >STAMPA A 1 COLORE
                             </label>
                         </div>
 
                         <div>
                             <input
-                                v-bind:checked="
-                                    radioValue === 'STAMPA A 2 COLORI'
-                                "
                                 id="STAMPA A 2 COLORI"
                                 name="drone"
                                 type="radio"
+                                v-bind:checked="
+                                    radioValue === 'STAMPA A 2 COLORI'
+                                "
                                 value="STAMPA A 2 COLORI"
                                 @change="emitRadioValue"
                             />
                             <label for="STAMPA A 2 COLORI"
-                                >STAMPA A 2 COLORI
+                            >STAMPA A 2 COLORI
                             </label>
                         </div>
                     </div>
@@ -84,9 +84,11 @@ label {
 .bg-yellow {
     min-width: fit-content;
 }
+
 h2 {
     font-size: 1.5rem;
 }
+
 .shopping-cart .summary {
     border: 1px solid lightgray;
     background-color: white;
@@ -121,6 +123,7 @@ h2 {
 .shopping-cart .summary button {
     margin-top: 20px;
 }
+
 .active {
     transition: 1s;
     transform: scale(0.9);
@@ -130,6 +133,7 @@ h2 {
     position: relative;
     border: none;
 }
+
 i {
     position: absolute;
     font-size: 8rem;
@@ -160,6 +164,7 @@ i {
 .image img {
     padding: 1rem;
 }
+
 @media screen and (max-width: 500px) {
     label {
         font-size: .7rem;

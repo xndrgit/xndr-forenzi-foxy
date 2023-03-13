@@ -6,9 +6,9 @@
                     <div id="free" class="d-flex align-items-center">
                         <div>
                             <img
+                                alt=""
                                 class="img-fluid"
                                 src="../../../../public/Links/header/consegna-gratuita.png"
-                                alt=""
                             />
                         </div>
                         <div class="d-none d-lg-inline">
@@ -25,8 +25,8 @@
                     <div id="clock" class="d-flex align-items-center">
                         <div>
                             <img
-                                src="../../../../public/Links/header/ordina-subito.png"
                                 alt=""
+                                src="../../../../public/Links/header/ordina-subito.png"
                             />
                         </div>
                         <div class="d-none d-lg-inline">
@@ -45,18 +45,14 @@
                         <div id="login" class="d-flex align-items-center">
                             <div>
                                 <img
-                                    src="../../../../public/Links/header/account.png"
                                     alt=""
+                                    src="../../../../public/Links/header/account.png"
                                 />
                             </div>
                             <div class="d-none d-lg-inline">
                                 <p>
                                     <strong>
-                                        {{
-                                            checkAuth
-                                                ? "DISCONNETTITI"
-                                                : "ACCEDI O"
-                                        }}
+                                        {{ checkAuth ? "DISCONNETTITI" : "ACCEDI O" }}
                                     </strong>
                                 </p>
                                 <p>{{ $store.state.name }}</p>
@@ -69,8 +65,8 @@
                         <div id="carriage" class="d-flex align-items-center">
                             <div>
                                 <img
-                                    src="../../../../public/Links/header/carrello.png"
                                     alt=""
+                                    src="../../../../public/Links/header/carrello.png"
                                 />
                             </div>
                             <div class="d-none d-lg-inline">
@@ -132,7 +128,8 @@ export default {
                     });
 
                     this.getCartInfo();
-                } else {
+                }
+                else {
                     window.localStorage.removeItem("user");
 
                     this.$store.commit("updateUser", {
@@ -149,7 +146,7 @@ export default {
                 }
             });
         },
-        setCartTotal({ total, count }) {
+        setCartTotal({total, count}) {
             this.cartTotal = total;
             this.productCount = count;
         },

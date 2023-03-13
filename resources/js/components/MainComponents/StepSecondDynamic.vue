@@ -9,19 +9,19 @@
 
                     <div class="left-right col-12">
                         <div
-                            class="left col-6"
-                            @click="selectLeft"
                             :class="{
                                 active: selectedImage.value === titleOne,
                             }"
+                            class="left col-6"
+                            @click="selectLeft"
                         >
                             <div
                                 class="box d-flex flex-column align-items-center"
                             >
                                 <img
-                                    class="img-fluid"
-                                    alt="Image"
                                     :src="imgOne"
+                                    alt="Image"
+                                    class="img-fluid"
                                 />
                                 <!-- <i
                                     v-if="isActiveFirst"
@@ -35,16 +35,16 @@
                         </div>
 
                         <div
-                            class="right col-6"
-                            @click="selectRight"
                             :class="{
                                 active: selectedImage.value === titleTwo,
                             }"
+                            class="right col-6"
+                            @click="selectRight"
                         >
                             <div
                                 class="box d-flex flex-column align-items-center"
                             >
-                                <img alt="Image" :src="imgTwo" />
+                                <img :src="imgTwo" alt="Image"/>
 
                                 <!-- <i
                                     v-if="isActiveSecond"
@@ -143,18 +143,23 @@ export default {
     font-weight: bold;
     font-size: 1rem;
 }
+
 .titlebox {
     font-size: 0.8rem;
 }
+
 .textbox {
     font-size: 0.6rem;
 }
+
 .bg-yellow {
     min-width: fit-content;
 }
+
 h2 {
     font-size: 1.5rem;
 }
+
 .shopping-cart .summary {
     border: 1px solid lightgray;
     background-color: white;
@@ -189,6 +194,7 @@ h2 {
 .shopping-cart .summary button {
     margin-top: 20px;
 }
+
 .active {
     transition: 1s;
     transform: scaleY(0.9);
@@ -198,6 +204,7 @@ h2 {
     position: relative;
     border: none;
 }
+
 i {
     position: absolute;
     font-size: 8rem;
@@ -227,7 +234,7 @@ label {
 
 input {
     width: 30%;
-    margin: 1rem 0px;
+    margin: 1rem 0;
     height: 30px;
     font-size: 1.5rem;
     border: none;

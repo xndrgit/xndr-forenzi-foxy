@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <img
+                        alt=""
                         class="img-fluid mx-auto d-block image"
-                        src="../../../public/Links/category-fogli-di-cartone.png"
-                        alt=""/>
+                        src="../../../public/Links/category-fogli-di-cartone.png"/>
                 </div>
                 <div class="col-md-8">
                     <div class="info">
@@ -17,17 +17,17 @@
                                     <div class="product-info">
                                         <div>
                                             Dimensioni:
-                                            <span class="value"
-                                            >{{ detail.length }} x
+                                            <span class="value">
+                                                {{ detail.length }} x
                                                 {{ detail.height }} x
-                                                {{ detail.width }}</span
-                                            >
+                                                {{ detail.width }}
+                                            </span>
                                         </div>
                                         <div>
                                             Codice:
-                                            <span class="value">{{
-                                                    detail.code
-                                                }}</span>
+                                            <span class="value">
+                                                {{ detail.code }}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -37,27 +37,27 @@
                                     Quantity:
                                 </label>
                                 <input
-                                    class="form-control quantity-input"
                                     id="quantity"
-                                    type="number"
                                     v-model="quantity"
+                                    class="form-control quantity-input"
+                                    type="number"
                                 />
                             </div>
                             <div class="col-md-3 price">
                                 <div style="white-space: nowrap">
                                     <label for="id1">$</label>
                                     <input
-                                        type="text"
                                         id="id1"
+                                        :value="computedPrice"
                                         class="priceLabel"
+                                        readonly
                                         style="
                                             border: none;
                                             box-shadow: none;
                                             background-color: white;
                                             pointer-events: none;
                                         "
-                                        :value="computedPrice"
-                                        readonly
+                                        type="text"
                                     />
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ export default {
 }
 
 .shopping-cart .items .product .info {
-    padding-top: 0px;
+    padding-top: 0;
     text-align: center;
 }
 

@@ -5,15 +5,15 @@
                 <div class="col-lg-12">
                     <div class="h6 mx-4 large">
                         <h2 class="font-weight-bold">CHECKOUT</h2>
-                        <hr class="w-5" />
+                        <hr class="w-5"/>
                         <span> DETTAGLI DI FATTURAZIONE </span>
-                        <hr />
+                        <hr/>
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-wrap">
                     <div class="col-lg-6">
                         <div class="mobile h5">Billing Address</div>
-                        <div class="" id="details">
+                        <div id="details" class="">
                             <v-form ref="entryForm">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -23,16 +23,16 @@
                                                 class="d-flex jusify-content-start align-items-center"
                                             >
                                                 <v-text-field
-                                                    label="NOME"
                                                     v-model="first_name"
                                                     :error-messages="
                                                         firstNameErrors
                                                     "
+                                                    label="NOME"
                                                     required
-                                                    @input="
+                                                    @blur="
                                                         $v.first_name.$touch()
                                                     "
-                                                    @blur="
+                                                    @input="
                                                         $v.first_name.$touch()
                                                     "
                                                 ></v-text-field>
@@ -46,16 +46,16 @@
                                                 class="d-flex jusify-content-start align-items-center"
                                             >
                                                 <v-text-field
-                                                    label="COGNOME"
                                                     v-model="last_name"
                                                     :error-messages="
                                                         lastNameErrors
                                                     "
+                                                    label="COGNOME"
                                                     required
-                                                    @input="
+                                                    @blur="
                                                         $v.last_name.$touch()
                                                     "
-                                                    @blur="
+                                                    @input="
                                                         $v.last_name.$touch()
                                                     "
                                                 ></v-text-field>
@@ -72,12 +72,12 @@
                                         <!-- COGNOME
                                         <input type="text" v-model="business_name" /> -->
                                         <v-text-field
-                                            label="RAGIONE SOCIALE"
                                             v-model="business_name"
                                             :error-messages="businessNameErrors"
+                                            label="RAGIONE SOCIALE"
                                             required
-                                            @input="$v.business_name.$touch()"
                                             @blur="$v.business_name.$touch()"
+                                            @input="$v.business_name.$touch()"
                                         ></v-text-field>
                                     </div>
                                 </div>
@@ -89,12 +89,12 @@
                                     >
                                         <!-- <input type="text" v-model="address" /> -->
                                         <v-text-field
-                                            label="INDIRIZZO"
                                             v-model="address"
                                             :error-messages="addressErrors"
+                                            label="INDIRIZZO"
                                             required
-                                            @input="$v.address.$touch()"
                                             @blur="$v.address.$touch()"
+                                            @input="$v.address.$touch()"
                                         ></v-text-field>
                                     </div>
                                 </div>
@@ -115,12 +115,12 @@
                                             >
                                                 <!-- <input type="text" v-model="cap" /> -->
                                                 <v-text-field
-                                                    label="CAP"
                                                     v-model="cap"
                                                     :error-messages="capErrors"
+                                                    label="CAP"
                                                     required
-                                                    @input="$v.cap.$touch()"
                                                     @blur="$v.cap.$touch()"
+                                                    @input="$v.cap.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -133,12 +133,12 @@
                                             >
                                                 <!-- <input type="text" v-model="city" /> -->
                                                 <v-text-field
-                                                    label="CITTÀ"
                                                     v-model="city"
                                                     :error-messages="cityErrors"
+                                                    label="CITTÀ"
                                                     required
-                                                    @input="$v.city.$touch()"
                                                     @blur="$v.city.$touch()"
+                                                    @input="$v.city.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -154,16 +154,16 @@
                                             >
                                                 <!-- <input type="text" v-model="province" /> -->
                                                 <v-text-field
-                                                    label="PROVINCIA"
                                                     v-model="province"
                                                     :error-messages="
                                                         provinceErrors
                                                     "
+                                                    label="PROVINCIA"
                                                     required
+                                                    @blur="$v.province.$touch()"
                                                     @input="
                                                         $v.province.$touch()
                                                     "
-                                                    @blur="$v.province.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -176,14 +176,14 @@
                                             >
                                                 <!-- <input type="text" v-model="state" /> -->
                                                 <v-text-field
-                                                    label="STATO"
                                                     v-model="state"
                                                     :error-messages="
                                                         stateErrors
                                                     "
+                                                    label="STATO"
                                                     required
-                                                    @input="$v.state.$touch()"
                                                     @blur="$v.state.$touch()"
+                                                    @input="$v.state.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -199,14 +199,14 @@
                                             >
                                                 <!-- <input type="text" v-model="phone" /> -->
                                                 <v-text-field
-                                                    label="TELEFONO"
                                                     v-model="phone"
                                                     :error-messages="
                                                         phoneErrors
                                                     "
+                                                    label="TELEFONO"
                                                     required
-                                                    @input="$v.phone.$touch()"
                                                     @blur="$v.phone.$touch()"
+                                                    @input="$v.phone.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -219,8 +219,8 @@
                                             >
                                                 <!-- <input type="text" value="" /> -->
                                                 <v-text-field
-                                                    label="MAIL"
                                                     :value="mail"
+                                                    label="MAIL"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -236,12 +236,12 @@
                                             >
                                                 <!-- <input type="text" v-model="pec" /> -->
                                                 <v-text-field
-                                                    label="PEC"
                                                     v-model="pec"
                                                     :error-messages="pecErrors"
+                                                    label="PEC"
                                                     required
-                                                    @input="$v.pec.$touch()"
                                                     @blur="$v.pec.$touch()"
+                                                    @input="$v.pec.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -254,16 +254,16 @@
                                             >
                                                 <!-- <input type="text" v-model="code_sdi" /> -->
                                                 <v-text-field
-                                                    label="CODICE SDI"
                                                     v-model="code_sdi"
                                                     :error-messages="
                                                         codeSdiErrors
                                                     "
+                                                    label="CODICE SDI"
                                                     required
+                                                    @blur="$v.code_sdi.$touch()"
                                                     @input="
                                                         $v.code_sdi.$touch()
                                                     "
-                                                    @blur="$v.code_sdi.$touch()"
                                                 ></v-text-field>
                                             </div>
                                         </div>
@@ -285,12 +285,12 @@
                                             v-model="notes"
                                         ></v-textarea> -->
                                         <v-textarea
-                                            label="NOTE ORDINE (opzionale)"
                                             v-model="notes"
                                             :error-messages="notesErrors"
+                                            label="NOTE ORDINE (opzionale)"
                                             required
-                                            @input="$v.notes.$touch()"
                                             @blur="$v.notes.$touch()"
+                                            @input="$v.notes.$touch()"
                                         ></v-textarea>
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@
                         </div>
                     </div>
                     <div class="summary col-lg-6">
-                        <div class="bg-white" id="cart">
+                        <div id="cart" class="bg-white">
                             <div
                                 class="d-flex justify-content-between align-items-center"
                             >
@@ -314,9 +314,9 @@
                                     >
                                         <div class="item pr-2">
                                             <img
+                                                :src="productImage(item)"
                                                 alt=""
                                                 height="80"
-                                                :src="productImage(item)"
                                                 width="80"
                                             />
                                         </div>
@@ -324,7 +324,7 @@
                                         <div class="d-flex flex-column px-3">
                                             <b class="">{{ item.name }}</b>
                                             <strong
-                                                >CODICE:
+                                            >CODICE:
                                                 <span> </span>
                                                 <a
                                                     class="text-warnings"
@@ -334,7 +334,7 @@
                                                 </a>
                                             </strong>
                                             <strong
-                                                >DIMENSIONI:
+                                            >DIMENSIONI:
                                                 <span> </span>
                                                 <a
                                                     class="text-warnings"
@@ -353,7 +353,7 @@
                                                 </a>
                                             </strong>
                                             <strong
-                                                >QUANTITA'
+                                            >QUANTITA'
                                                 <span> </span>
                                                 <a
                                                     class="text-warnings"
@@ -417,7 +417,7 @@
                                         € {{ this.subtotal.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
                                 <!-- <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -444,7 +444,7 @@
                                         € {{ this.shipping_cost.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
                                 <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -455,7 +455,7 @@
                                         € {{ this.conai.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
                                 <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -464,7 +464,7 @@
                                         € {{ this.iva.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
                                 <div
                                     class="total d-flex justify-content-between align-items-center font-weight-bold"
                                 >
@@ -481,20 +481,20 @@
                                         }}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
                             </div>
                             <div class="pay">
                                 <h5 class="fw-bold">MODALITÀ DI PAGAMENTO</h5>
-                                <br />
+                                <br/>
 
                                 <div class="form-check">
                                     <input
-                                        class="form-check-input"
-                                        type="radio"
-                                        name="paymentMethod"
                                         id="bonifico"
-                                        value="bonifico"
                                         v-model="paymentMethod"
+                                        class="form-check-input"
+                                        name="paymentMethod"
+                                        type="radio"
+                                        value="bonifico"
                                     />
                                     <label
                                         class="form-check-label"
@@ -509,17 +509,17 @@
                                         finché i fondi non risulteranno
                                         trasferiti nel nostro conto corrente.
                                     </p>
-                                    <hr />
+                                    <hr/>
                                 </div>
 
                                 <div class="form-check">
                                     <input
-                                        class="form-check-input"
-                                        type="radio"
-                                        name="paymentMethod"
                                         id="alla-consegna"
-                                        value="alla-consegna"
                                         v-model="paymentMethod"
+                                        class="form-check-input"
+                                        name="paymentMethod"
+                                        type="radio"
+                                        value="alla-consegna"
                                     />
                                     <label
                                         class="form-check-label"
@@ -531,17 +531,17 @@
                                         Pagamento in contanti al momento della
                                         consegna.
                                     </p>
-                                    <hr />
+                                    <hr/>
                                 </div>
 
                                 <div class="form-check">
                                     <input
-                                        class="form-check-input"
-                                        type="radio"
-                                        name="paymentMethod"
                                         id="paypal"
-                                        value="paypal"
                                         v-model="paymentMethod"
+                                        class="form-check-input"
+                                        name="paymentMethod"
+                                        type="radio"
+                                        value="paypal"
                                     />
 
                                     <div class="d-flex justify-content-between">
@@ -575,7 +575,7 @@
                                         carta di credito se non hai un account
                                         PayPal.
                                     </p>
-                                    <hr />
+                                    <hr/>
                                 </div>
 
                                 <p>
@@ -587,22 +587,22 @@
                                         <a href="">privacy policy.</a>
                                     </strong>
                                 </p>
-                                <hr />
+                                <hr/>
 
                                 <div class="form-check">
                                     <input
-                                        type="checkbox"
-                                        class="form-check-input"
                                         id="terms"
-                                        v-model="agree"
                                         ref="checkTerm"
+                                        v-model="agree"
+                                        class="form-check-input"
+                                        type="checkbox"
                                     />
                                     <label class="form-check-label" for="terms">
                                         Ho letto e accetto
                                         <strong
-                                            ><a href=""
-                                                >termini e condizioni</a
-                                            ></strong
+                                        ><a href=""
+                                        >termini e condizioni</a
+                                        ></strong
                                         >
                                         del sito web *
                                     </label>
@@ -611,9 +611,9 @@
                                     class="col-md-12 my-4 d-flex justify-content-center w-100"
                                 >
                                     <button
+                                        :disabled="pending"
                                         class="yellow-button text-uppercase"
                                         @click="send()"
-                                        :disabled="pending"
                                     >
                                         PROCEDI CON L'ORDINE
                                     </button>
@@ -628,7 +628,7 @@
 </template>
 
 <script>
-import { maxLength, required } from "vuelidate/lib/validators";
+import {maxLength, required} from "vuelidate/lib/validators";
 import mixinCart from "../mixins/mixinCart";
 
 export default {
@@ -677,18 +677,18 @@ export default {
     },
 
     validations: {
-        first_name: { required, maxLength: maxLength(10) },
-        last_name: { required, maxLength: maxLength(10) },
-        business_name: { required, maxLength: maxLength(15) },
-        address: { required },
-        cap: { required },
-        city: { required },
-        province: { required },
-        state: { required },
-        phone: { required },
-        pec: { required },
-        code_sdi: { required },
-        notes: { required },
+        first_name: {required, maxLength: maxLength(10)},
+        last_name: {required, maxLength: maxLength(10)},
+        business_name: {required, maxLength: maxLength(15)},
+        address: {required},
+        cap: {required},
+        city: {required},
+        province: {required},
+        state: {required},
+        phone: {required},
+        pec: {required},
+        code_sdi: {required},
+        notes: {required},
     },
 
     computed: {
@@ -696,7 +696,8 @@ export default {
             return function (product) {
                 if (/^http/.test(product.img)) {
                     return product.img;
-                } else {
+                }
+                else {
                     return "/storage/" + product.img;
                 }
             };
@@ -709,11 +710,11 @@ export default {
                 return errors;
             }
             !this.$v.first_name.maxLength &&
-                errors.push("Must be at most 10 characters long") &&
-                this.first_name_error.push("error");
+            errors.push("Must be at most 10 characters long") &&
+            this.first_name_error.push("error");
             !this.$v.first_name.required &&
-                errors.push("First Name is required.") &&
-                this.first_name_error.push("error");
+            errors.push("First Name is required.") &&
+            this.first_name_error.push("error");
             return errors;
         },
 
@@ -725,11 +726,11 @@ export default {
                 return errors;
             }
             !this.$v.last_name.maxLength &&
-                errors.push("Must be at most 10 characters long") &&
-                this.last_name_error.push("error");
+            errors.push("Must be at most 10 characters long") &&
+            this.last_name_error.push("error");
             !this.$v.last_name.required &&
-                errors.push("Last Name is required.") &&
-                this.last_name_error.push("error");
+            errors.push("Last Name is required.") &&
+            this.last_name_error.push("error");
             return errors;
         },
 
@@ -741,11 +742,11 @@ export default {
                 return errors;
             }
             !this.$v.business_name.maxLength &&
-                errors.push("Must be at most 10 characters long") &&
-                this.business_name_error.push("error");
+            errors.push("Must be at most 10 characters long") &&
+            this.business_name_error.push("error");
             !this.$v.business_name.required &&
-                errors.push("Business Name is required.") &&
-                this.business_name_error.push("error");
+            errors.push("Business Name is required.") &&
+            this.business_name_error.push("error");
             return errors;
         },
 
@@ -757,8 +758,8 @@ export default {
                 return errors;
             }
             !this.$v.address.required &&
-                errors.push("ADDRESS is required.") &&
-                this.address_error.push("error");
+            errors.push("ADDRESS is required.") &&
+            this.address_error.push("error");
             return errors;
         },
 
@@ -770,8 +771,8 @@ export default {
                 return errors;
             }
             !this.$v.cap.required &&
-                errors.push("POSTAL CODE is required.") &&
-                this.cap_error.push("error");
+            errors.push("POSTAL CODE is required.") &&
+            this.cap_error.push("error");
             return errors;
         },
 
@@ -783,8 +784,8 @@ export default {
                 return errors;
             }
             !this.$v.city.required &&
-                errors.push("CITY is required.") &&
-                this.city_error.push("error");
+            errors.push("CITY is required.") &&
+            this.city_error.push("error");
             return errors;
         },
 
@@ -796,8 +797,8 @@ export default {
                 return errors;
             }
             !this.$v.province.required &&
-                errors.push("PROVINCE is required.") &&
-                this.province_error.push("error");
+            errors.push("PROVINCE is required.") &&
+            this.province_error.push("error");
             return errors;
         },
 
@@ -809,8 +810,8 @@ export default {
                 return errors;
             }
             !this.$v.state.required &&
-                errors.push("STATE is required.") &&
-                this.state_error.push("error");
+            errors.push("STATE is required.") &&
+            this.state_error.push("error");
             return errors;
         },
 
@@ -822,8 +823,8 @@ export default {
                 return errors;
             }
             !this.$v.phone.required &&
-                errors.push("TELEPHONE is required.") &&
-                this.phone_error.push("error");
+            errors.push("TELEPHONE is required.") &&
+            this.phone_error.push("error");
             return errors;
         },
 
@@ -835,8 +836,8 @@ export default {
                 return errors;
             }
             !this.$v.pec.required &&
-                errors.push("PEC is required.") &&
-                this.pec_error.push("error");
+            errors.push("PEC is required.") &&
+            this.pec_error.push("error");
             return errors;
         },
 
@@ -848,8 +849,8 @@ export default {
                 return errors;
             }
             !this.$v.code_sdi.required &&
-                errors.push("SDI CODE is required.") &&
-                this.code_sdi_error.push("error");
+            errors.push("SDI CODE is required.") &&
+            this.code_sdi_error.push("error");
             return errors;
         },
 
@@ -861,8 +862,8 @@ export default {
                 return errors;
             }
             !this.$v.notes.required &&
-                errors.push("NOTES is required.") &&
-                this.notes_error.push("error");
+            errors.push("NOTES is required.") &&
+            this.notes_error.push("error");
             return errors;
         },
     },
@@ -939,12 +940,14 @@ export default {
                                 this.$nextTick(() => {
                                     window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}`;
                                 });
-                            } else {
+                            }
+                            else {
                                 this.$nextTick(() => {
                                     window.location.href = `/confirm/${res.data.id}`;
                                 });
                             }
-                        } else {
+                        }
+                        else {
                             alert("Failed!");
                             this.pending = false;
                         }
@@ -979,8 +982,8 @@ label {
 }
 
 .v-text-field {
-    padding-left: 0px;
-    margin: 0 0px;
+    padding-left: 0;
+    margin: 0 0;
     font-weight: 900;
     font-size: 0.7rem;
 }
@@ -1145,6 +1148,8 @@ tr.text-muted td {
 
 .yellow-button {
     width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
     font-size: 1.1rem;
 }
 

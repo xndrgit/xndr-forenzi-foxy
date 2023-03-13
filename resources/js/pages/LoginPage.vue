@@ -13,22 +13,22 @@
                             <div class="form-group">
                                 <label class="">E-MAIL ADDRESS</label>
                                 <div class="d-flex usify-content-start align-items-center p-2">
-                                    <input type="email" value="" />
+                                    <input type="email" value=""/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="">PASSWORD</label>
                                 <div class="d-flex usify-content-start align-items-center p-2">
-                                    <input type="password" value="" />
+                                    <input type="password" value=""/>
                                 </div>
                             </div>
 
                             <div class="col-md-12 my-4 d-flex justify-content-center w-100">
-                                <div type="submit" @click="register" class="btn btn-primary">
+                                <div class="btn btn-primary" type="submit" @click="register">
                                     SIGN IN
                                 </div>
-                                <div  class="btn btn-default">
+                                <div class="btn btn-default">
                                     <router-link to="/register">
                                         SIGN UP
                                     </router-link>

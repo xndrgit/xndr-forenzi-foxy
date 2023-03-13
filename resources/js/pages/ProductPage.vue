@@ -1,11 +1,11 @@
 <template>
     <div class="home">
         <div class="container-lg">
-            <loadingComponent v-if="loadingCategories" />
+            <loadingComponent v-if="loadingCategories"/>
 
             <div
-                class="d-flex flex-wrap justify-content-around justify-content-sm-between col-12"
                 v-else
+                class="d-flex flex-wrap justify-content-around justify-content-sm-between col-12"
             >
                 <NavBoxesComponent
                     v-for="category in categories"
@@ -13,32 +13,32 @@
                     :category="category"
                 />
                 <div @click="goToPersonalizePage">
-                    <CustomizeBoxesComponent />
+                    <CustomizeBoxesComponent/>
                 </div>
             </div>
 
-            <hr />
+            <hr/>
 
             <div class="">
-                <loadingRollComponent class="py-5 my-5" v-if="loadingProduct" />
-                <ShowBox v-else />
+                <loadingRollComponent v-if="loadingProduct" class="py-5 my-5"/>
+                <ShowBox v-else/>
             </div>
 
             <h6 class="font-weight-bold m-0">Elenco formati disponibili</h6>
-            <TableComponent />
-            <BannerNewsComponent />
+            <TableComponent/>
+            <BannerNewsComponent/>
         </div>
 
         <ClassicLeft
             v-for="(element, index) in txtleft"
             :key="index"
-            :title="element.title"
-            :description="element.description"
-            :subdescription="element.subdescription"
-            :notes="element.notes"
             :button="element.button"
+            :description="element.description"
+            :notes="element.notes"
+            :subdescription="element.subdescription"
+            :title="element.title"
         />
-        <ClassicRight />
+        <ClassicRight/>
     </div>
 </template>
 
@@ -56,8 +56,10 @@ import BannerNewsComponent from "../components/MainComponents/BannerNewsComponen
 import ClassicLeft from "../components/MainComponents/ClassicLeft.vue";
 import ClassicRight from "../components/MainComponents/ClassicRight.vue";
 
+import Categories from "../mixins/categories";
+
 export default {
-    name: "UnOnda",
+    name: "ProductPage",
     components: {
         ClassicRight,
         ClassicLeft,
@@ -72,10 +74,9 @@ export default {
         TableComponent,
         BannerNewsComponent,
     },
+    mixins: [Categories],
     data() {
         return {
-            categories: [],
-            loadingCategories: true,
             loadingProduct: true,
             txtleft: [
                 {
@@ -89,30 +90,11 @@ export default {
         };
     },
     created() {
-        this.getCategories();
         this.getProduct();
-        // let subcategories = this.product.subcategories;
-        // let categorySubcategories = this.category.subcategoriesZ
     },
     methods: {
         goToPersonalizePage() {
-            this.$router.push({ path: "/personalize" });
-        },
-        getCategories() {
-            this.loadingCategories = true;
-            axios
-                .get("/shop/categories", {})
-                .then((response) => {
-                    this.categories = response.data.results.data;
-                    console.log(response.data.results.data);
-                    this.currentPageCategories =
-                        response.data.results.currentPage;
-                    this.lastPageCategories = response.data.results.lastPage;
-                    this.loadingCategories = false;
-                })
-                .catch((error) => {
-                    console.warn(error.message);
-                });
+            this.$router.push({path: "/personalize"});
         },
         getProduct() {
             this.loadingProduct = true;

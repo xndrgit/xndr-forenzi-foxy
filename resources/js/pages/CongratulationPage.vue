@@ -8,19 +8,19 @@
                             <div class="congrats">
                                 <h1>Congratulazioni!</h1>
                                 <span>Mail spedita con successo.</span>
-                                <br />
+                                <br/>
                                 <span
-                                    >Data e ora di invio:
+                                >Data e ora di invio:
                                     <strong>{{ sentTime }}</strong></span
                                 >
                                 <div class="done position-relative">
                                     <img
-                                        src="/images/congratulations-envelope.gif"
                                         alt=""
+                                        src="/images/congratulations-envelope.gif"
                                     />
                                     <div
-                                        class="countdown position-absolute"
                                         v-if="showCountdown"
+                                        class="countdown position-absolute"
                                     >
                                         {{ countdown }}
                                     </div>
@@ -108,9 +108,11 @@ export default {
     font-size: 2em;
     color: black;
     background: white;
+
     span {
         font-size: 1rem;
     }
+
     strong {
         color: #f68630;
     }

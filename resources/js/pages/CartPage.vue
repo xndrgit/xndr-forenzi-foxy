@@ -3,7 +3,7 @@
         <div class="container-lg">
             <div class="block-heading">
                 <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
-                <hr class="w-5" />
+                <hr class="w-5"/>
             </div>
 
             <div
@@ -28,22 +28,22 @@
                 </div>
             </div>
 
-            <hr />
+            <hr/>
             <div class="content">
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-8" v-if="items">
-                        <div class="items" v-for="item in items">
+                    <div v-if="items" class="col-12 col-md-8">
+                        <div v-for="item in items" class="items">
                             <div class="product">
                                 <div class="row">
                                     <div class="col-md-2 item">
                                         <img
-                                            class="img-fluid mx-auto d-block image"
                                             :src="productImage(item)"
                                             alt=""
+                                            class="img-fluid mx-auto d-block image"
                                         />
                                         <a
-                                            type="button"
                                             class="delete"
+                                            type="button"
                                             @click="deleteProduct(item)"
                                         >
                                             <i
@@ -70,9 +70,7 @@
                                                                 >
                                                                     Codice:
                                                                     <strong>
-                                                                        {{
-                                                                            item.code
-                                                                        }}
+                                                                        {{ item.code }}
                                                                     </strong>
                                                                 </span>
                                                             </div>
@@ -83,9 +81,7 @@
                                                                 >
                                                                     <a href="#">
                                                                         <strong>
-                                                                            {{
-                                                                                item.name
-                                                                            }}
+                                                                            {{ item.name }}
                                                                         </strong>
                                                                     </a>
                                                                 </span>
@@ -96,17 +92,11 @@
                                                                     class="value"
                                                                 >
                                                                     <strong>
-                                                                        {{
-                                                                            item.length
-                                                                        }}
+                                                                        {{ item.length }}
                                                                         x
-                                                                        {{
-                                                                            item.height
-                                                                        }}
+                                                                        {{ item.height }}
                                                                         x
-                                                                        {{
-                                                                            item.width
-                                                                        }}
+                                                                        {{ item.width }}
                                                                     </strong>
                                                                 </span>
                                                             </div>
@@ -124,11 +114,7 @@
                                                                     item.price_saled,
                                                             }"
                                                         >
-                                                            €{{
-                                                                item.price_saled
-                                                                    ? item.price_saled
-                                                                    : item.price
-                                                            }}
+                                                            €{{ item.price_saled ? item.price_saled : item.price }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -141,31 +127,23 @@
                                                     ></label>
 
                                                     <input
-                                                        readonly
-                                                        class="form-control quantity-input"
                                                         :id="item.id"
-                                                        type="number"
-                                                        min="0"
                                                         ref="totalQuantity"
                                                         :value="
                                                             item.cart_quantity
                                                         "
+                                                        class="form-control quantity-input"
+                                                        min="0"
+                                                        readonly
+                                                        type="number"
                                                     />
                                                 </div>
                                                 <div class="col-2 price">
                                                     <span>€</span>
                                                     <input
-                                                        type="text"
-                                                        id="id1"
-                                                        class="priceLabel"
                                                         :id="item.id"
+                                                        id="id1"
                                                         ref="subTotalPrice"
-                                                        style="
-                                                            border: none;
-                                                            box-shadow: none;
-                                                            background-color: white;
-                                                            pointer-events: none;
-                                                        "
                                                         :value="
                                                             (
                                                                 item.cart_quantity *
@@ -174,7 +152,15 @@
                                                                     : item.price)
                                                             ).toFixed(2)
                                                         "
+                                                        class="priceLabel"
                                                         readonly
+                                                        style="
+                                                            border: none;
+                                                            box-shadow: none;
+                                                            background-color: white;
+                                                            pointer-events: none;
+                                                        "
+                                                        type="text"
                                                     />
                                                 </div>
                                             </div>
@@ -182,10 +168,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr />
+                            <hr/>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-8" v-else>Nessun Prodotto</div>
+                    <div v-else class="col-md-12 col-lg-8">Nessun Prodotto</div>
                     <div class="col-md-4">
                         <div class="summary d-flex flex-column">
                             <h3>TOTALE A CARRELLO</h3>
@@ -221,26 +207,26 @@
                                     €{{
                                         parseFloat(
                                             subtotal +
-                                                shipping_cost +
-                                                conai +
-                                                iva
+                                            shipping_cost +
+                                            conai +
+                                            iva
                                         ).toFixed(2)
                                     }}
                                 </span>
                             </div>
-                            <hr />
+                            <hr/>
                             <a
                                 v-if="items"
-                                type="button"
                                 class="btn bg-yellow fw-bold btn-lg btn-block"
+                                type="button"
                                 @click="checkout()"
                             >
                                 PROCEDI AL CHECKOUT
                             </a>
                             <a
                                 v-else
-                                type="button"
                                 class="btn bg-yellow fw-bold btn-lg btn-block disabled"
+                                type="button"
                             >
                                 PROCEDI AL CHECKOUT
                             </a>
@@ -267,7 +253,8 @@ export default {
             return function (product) {
                 if (/^http/.test(product.img)) {
                     return product.img;
-                } else {
+                }
+                else {
                     return "/storage/" + product.img;
                 }
             };
@@ -331,7 +318,7 @@ export default {
 
 .cart-header {
     font-weight: bold;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     font-size: 0.8rem;
 }
 
@@ -395,7 +382,7 @@ a {
 }
 
 .shopping-cart .items .product .info {
-    padding-top: 0px;
+    padding-top: 0;
     text-align: center;
 }
 

@@ -8,12 +8,12 @@
                     >
                         <div class="up">
                             <img
+                                alt=""
                                 class="card-img-top"
                                 src="../../../../public/Links/categories/scatole-personalizzate.png"
-                                alt=""
                             />
                             <div class="litlogo position-absolute">
-                                <img class="img-fluid" src="" alt="" />
+                                <img alt="" class="img-fluid" src=""/>
                             </div>
                         </div>
 
@@ -43,14 +43,15 @@ export default {
 <style lang="scss" scoped>
 .HeaderBoxes {
     .container {
-        padding: 0px 5px;
+        padding: 0 5px;
     }
+
     .card {
         width: 7.5rem;
-        border-radius: 0px;
-        border: 0px;
+        border-radius: 0;
+        border: 0;
         transition: transform 0.2s;
-        padding: 0px;
+        padding: 0;
         margin: 8px 2px;
         min-height: 150px;
         max-height: 150px;
@@ -62,11 +63,14 @@ export default {
 
         .up {
             height: 75%;
+
             img {
-                padding: 10px;
                 height: -webkit-fill-available;
-                padding: 1rem 0px;
+                height: -moz-available;
+                height: stretch;
+                padding: 1rem 0;
             }
+
             .litlogo {
                 bottom: 30px;
                 right: -25px;
@@ -80,18 +84,21 @@ export default {
             display: flex;
             align-items: center;
         }
+
         p {
             font-size: 0.8rem;
-            margin: 0px;
+            margin: 0;
         }
     }
 
     .orange-box {
         background-color: rgb(245, 134, 47);
     }
+
     .yellow-box {
         background-color: rgb(253, 188, 72);
     }
+
     .gray-box {
         background-color: rgb(244, 244, 244);
     }

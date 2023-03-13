@@ -18,15 +18,15 @@
                                 {{ letterQ }}
                             </div>
                             <input
-                                required
                                 v-if="letterQ"
                                 v-model="inputQ"
-                                @input="emitQuantity"
-                                type="number"
                                 min="1"
                                 placeholder=""
+                                required
+                                type="number"
+                                @input="emitQuantity"
                             />
-                            <h2  v-if="txtQ" class="mx-2 d-none d-sm-block">
+                            <h2 v-if="txtQ" class="mx-2 d-none d-sm-block">
                                 {{ txtQ }}
                             </h2>
                         </div>
@@ -38,13 +38,13 @@
                                 {{ letterOne }}
                             </div>
                             <input
-                                required
                                 v-if="letterOne"
                                 v-model="inputL"
-                                @input="emitInputValues"
-                                type="number"
                                 min="1"
                                 placeholder=""
+                                required
+                                type="number"
+                                @input="emitInputValues"
                             />
                             <h2 v-if="txtOne" class="mx-2 d-none d-sm-block">
                                 {{ txtOne }}
@@ -58,13 +58,13 @@
                                 {{ letterTwo }}
                             </div>
                             <input
-                                required
-                                v-model="inputP"
-                                @input="emitInputValues"
                                 v-if="letterTwo"
-                                type="number"
+                                v-model="inputP"
                                 min="1"
                                 placeholder=""
+                                required
+                                type="number"
+                                @input="emitInputValues"
                             />
                             <h2 v-if="txtTwo" class="mx-2 d-none d-sm-block">
                                 {{ txtTwo }}
@@ -78,14 +78,14 @@
                                 {{ letterThree }}
                             </div>
                             <input
-                                required
-                                v-model="inputH"
-                                @input="emitInputValues"
                                 v-if="letterThree"
-                                type="number"
+                                v-model="inputH"
                                 min="50"
-                                value="50"
                                 placeholder=""
+                                required
+                                type="number"
+                                value="50"
+                                @input="emitInputValues"
                             />
                             <h2 v-if="txtThree" class="mx-2 d-none d-sm-block">
                                 {{ txtThree }}
@@ -97,9 +97,9 @@
                         <!-- Right side content goes here -->
                         <img
                             v-if="img"
+                            :src="img"
                             alt="image"
                             class="img-fluid"
-                            :src="img"
                         />
                     </div>
                 </div>
@@ -191,11 +191,12 @@ h2 {
     font-weight: bold;
     height: 40px;
     max-width: 60px;
-    margin: 0.2rem 0px;
+    margin: 0.2rem 0;
     font-size: 1rem;
     border: none;
     background-color: #f1f1f1;
 }
+
 .inputs input::placeholder {
     font-size: 0.5rem;
 }
@@ -203,6 +204,7 @@ h2 {
 .image {
     display: flex;
     flex-direction: column;
+
     img {
         height: 156px;
         max-width: fit-content;
@@ -222,6 +224,7 @@ h2 {
     font-weight: bold;
     font-size: 1rem;
 }
+
 @media screen and (max-width: 500px) {
     .title-create {
         font-size: 0.6rem;
