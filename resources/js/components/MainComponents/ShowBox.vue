@@ -43,11 +43,11 @@
 
                         <div class="d-flex">
                             <span>CATEGORIA:</span>
-                            <strong v-if="product.category"
-                                ><span class="fw-bold">{{
-                                    product.category.name
-                                }}</span></strong
-                            >
+                            <strong v-if="product.category">
+                                <span class="fw-bold">
+                                    {{ product.category.name }}
+                                </span>
+                            </strong>
                         </div>
                     </div>
                     <div class="d-flex align-items-center productAdd">
@@ -187,7 +187,14 @@ export default {
             if (this.quantity >= 1000) {
                 this.priceDynamic = this.product.fourth_price;
             }
-            return this.priceDynamic * this.quantity * 1.22;
+
+            let priceSum = this.priceDynamic * this.quantity;
+
+            const itemConaiWeight = Math.ceil((this.quantity * this.product.weight) / this.$store.state.conai_kg);
+            const conai = Math.round(itemConaiWeight * this.$store.state.conai_eur * this.$store.state.iva_pro * 100) / 100;
+            const iva = priceSum * this.$store.state.iva_pro;
+
+            return priceSum + iva + conai;
         },
     },
     created() {
