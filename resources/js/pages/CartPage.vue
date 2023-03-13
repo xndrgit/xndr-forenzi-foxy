@@ -70,9 +70,7 @@
                                                                 >
                                                                     Codice:
                                                                     <strong>
-                                                                        {{
-                                                                            item.code
-                                                                        }}
+                                                                        {{ item.code }}
                                                                     </strong>
                                                                 </span>
                                                             </div>
@@ -83,9 +81,7 @@
                                                                 >
                                                                     <a href="#">
                                                                         <strong>
-                                                                            {{
-                                                                                item.name
-                                                                            }}
+                                                                            {{ item.name }}
                                                                         </strong>
                                                                     </a>
                                                                 </span>
@@ -96,17 +92,11 @@
                                                                     class="value"
                                                                 >
                                                                     <strong>
-                                                                        {{
-                                                                            item.length
-                                                                        }}
+                                                                        {{ item.length }}
                                                                         x
-                                                                        {{
-                                                                            item.height
-                                                                        }}
+                                                                        {{ item.height }}
                                                                         x
-                                                                        {{
-                                                                            item.width
-                                                                        }}
+                                                                        {{ item.width }}
                                                                     </strong>
                                                                 </span>
                                                             </div>
@@ -124,11 +114,7 @@
                                                                     item.price_saled,
                                                             }"
                                                         >
-                                                            €{{
-                                                                item.price_saled
-                                                                    ? item.price_saled
-                                                                    : item.price
-                                                            }}
+                                                            €{{ item.price_saled ? item.price_saled : item.price }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -218,8 +204,7 @@
                             >
                                 <span class="text">TOTALE ORDINE</span>
                                 <span class="price">
-                                    €{{
-                                        parseFloat(
+                                    €{{ parseFloat(
                                             subtotal +
                                                 shipping_cost +
                                                 conai +
@@ -331,7 +316,7 @@ export default {
 
 .cart-header {
     font-weight: bold;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     font-size: 0.8rem;
 }
 
@@ -395,7 +380,7 @@ a {
 }
 
 .shopping-cart .items .product .info {
-    padding-top: 0px;
+    padding-top: 0;
     text-align: center;
 }
 
