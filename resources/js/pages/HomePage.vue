@@ -140,12 +140,14 @@ export default {
             },
         };
     },
+
     beforeDestroy() {
         window.VBus.stop("search-products", this.searchProducts);
     },
     mounted() {
         this.getCategories();
         this.getProducts();
+
         window.VBus.listen("search-products", this.searchProducts);
     },
     methods: {

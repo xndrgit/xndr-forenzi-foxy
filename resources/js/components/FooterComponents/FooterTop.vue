@@ -30,12 +30,15 @@
                     <div class="footer-section col-10 col-sm-3">
                         <h3>Seguici sui social</h3>
                         <ul class="wrapper icons">
-                            <li class="icon facebook">
-                                <span class="tooltip">Facebook</span>
-                                <span
-                                    ><i class="fa-sm fab fa-facebook-f"></i
-                                ></span>
-                            </li>
+                            <a href="https://www.facebook.com/FoxyBox.scatole">
+                                <li class="icon facebook">
+                                    <span class="tooltip">Facebook</span>
+                                    <span>
+                                        <i class="fa-sm fab fa-facebook-f"></i
+                                    ></span>
+                                </li>
+                            </a>
+
                             <!-- <li class="icon twitter">
                                 <span class="tooltip">Twitter</span>
                                 <span
