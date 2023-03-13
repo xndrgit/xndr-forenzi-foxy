@@ -1,4 +1,4 @@
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
     data: () => ({
@@ -54,7 +54,8 @@ export default {
                     "foxy-cart-items",
                     JSON.stringify(products)
                 );
-            } else {
+            }
+            else {
                 window.localStorage.removeItem("foxy-cart-items");
             }
 
@@ -71,7 +72,8 @@ export default {
                 });
 
                 this.productCount = this.items.length;
-            } else {
+            }
+            else {
                 this.productCount = 0;
             }
 
@@ -96,7 +98,8 @@ export default {
                 return JSON.parse(
                     window.localStorage.getItem("foxy-cart-items")
                 );
-            } else {
+            }
+            else {
                 return null;
             }
         },

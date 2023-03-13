@@ -1,9 +1,9 @@
 <template>
     <div>
-        <LoadingRollComponent v-if="loadingProduct" />
-        <div class="d-flex flex-wrap justify-content-center" v-if="product">
+        <LoadingRollComponent v-if="loadingProduct"/>
+        <div v-if="product" class="d-flex flex-wrap justify-content-center">
             <div class="left col-12 col-lg-5 d-flex justify-content-center">
-                <img class="img-fluid" :src="imageSource" :alt="product.name" />
+                <img :alt="product.name" :src="imageSource" class="img-fluid"/>
             </div>
             <div class="right col-12 col-lg-7">
                 <div>
@@ -12,7 +12,7 @@
                         {{ product.length }} x {{ product.width }} x
                         {{ product.height }} cm
                     </h6>
-                    <hr class="w-5" />
+                    <hr class="w-5"/>
                     <div class="d-flex align-items-center">
                         <h4 v-if="product.price_saled" class="old-price">
                             € {{ product.price }}
@@ -52,10 +52,10 @@
                     </div>
                     <div class="d-flex align-items-center productAdd">
                         <QuantityProductsComponent
-                            @update-quantity="updateQuantity"
                             :product="product"
+                            @update-quantity="updateQuantity"
                         />
-                        <div @click="addToCart" class="yellow-button mx-2">
+                        <div class="yellow-button mx-2" @click="addToCart">
                             AGGIUNGI AL CARRELLO
                         </div>
                     </div>
@@ -107,15 +107,15 @@
 
         <div class="">
             <nav>
-                <a href="#" class="active">CARATTERISTICHE SCATOLA</a>
+                <a class="active" href="#">CARATTERISTICHE SCATOLA</a>
             </nav>
             <table
-                class="alternating-rows table table-hover mb-5"
                 v-if="product"
+                class="alternating-rows table table-hover mb-5"
             >
                 <tr>
                     <td class="td1">Tipologia:</td>
-                    <td class="td2" v-if="product.category">
+                    <td v-if="product.category" class="td2">
                         {{ product.category.name }}
                     </td>
                 </tr>
@@ -167,7 +167,8 @@ export default {
         imageSource() {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
-            } else {
+            }
+            else {
                 return "/storage/" + this.product.img;
             }
         },
@@ -241,7 +242,8 @@ export default {
                 }
 
                 this.items = updatedItems;
-            } else {
+            }
+            else {
                 addedItem.cart_quantity = this.quantity;
 
                 this.items = [...this.items, addedItem];
@@ -261,6 +263,7 @@ export default {
 .overflow-table {
     overflow-x: auto;
 }
+
 .current-price {
     font-weight: bold;
     color: #f68630;

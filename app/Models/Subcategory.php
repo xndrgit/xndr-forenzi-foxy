@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Subcategory extends Model
 {
     protected $fillable = ['name', 'description'];
 
     public function products()
-    : HasMany
+    : BelongsToMany
     {
-        return $this->hasMany(Product::class, 'subcategory_id');
+        return $this->belongsToMany(Product::class, 'product_subcategory', 'subcategory_id', 'product_id');
     }
 
     public function categories()

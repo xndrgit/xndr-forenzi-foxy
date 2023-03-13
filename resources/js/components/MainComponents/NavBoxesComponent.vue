@@ -6,15 +6,15 @@
             <nav class="d-flex">
                 <div class="container d-flex flex-wrap">
                     <div
-                        class="card d-flex align-items-center position-relative"
                         :class="category.color"
+                        class="card d-flex align-items-center position-relative"
                     >
                         <div class="up">
                             <a :href="`/category/${category.id}`">
                                 <img
-                                    class="card-img-top"
                                     :src="category.img"
                                     alt=""
+                                    class="card-img-top"
                                     @click="
                                         $router.go(`/category/${category.id}`)
                                     "
@@ -22,9 +22,9 @@
                             </a>
                             <div class="litlogo position-absolute">
                                 <img
-                                    class="img-fluid"
                                     :src="category.img2"
                                     alt=""
+                                    class="img-fluid"
                                 />
                             </div>
                         </div>
@@ -80,6 +80,7 @@ export default {
                 height: -webkit-fill-available;
                 padding: 1rem 0;
             }
+
             .litlogo {
                 bottom: 30px;
                 right: -25px;
@@ -108,9 +109,11 @@ export default {
     .orange-box {
         background-color: rgb(245, 134, 47);
     }
+
     .yellow-box {
         background-color: rgb(253, 188, 72);
     }
+
     .gray-box {
         background-color: rgb(244, 244, 244);
     }

@@ -6,9 +6,9 @@
                     <div class="col-md-3 col-sm-10 logo">
                         <a href="/">
                             <img
+                                alt="Logo"
                                 class="img-fluid mb-4"
                                 src="../../../../public/img/logo.png"
-                                alt="Logo"
                             />
                         </a>
                     </div>
@@ -23,25 +23,25 @@
                         >
                             <div class="input-group mb-3 mx-2">
                                 <input
-                                    type="number"
-                                    class="form-control"
                                     v-model="length"
-                                    placeholder="Lato Lungo"
+                                    class="form-control"
                                     max="99"
+                                    placeholder="Lato Lungo"
+                                    type="number"
                                 />
                                 <input
-                                    type="number"
                                     v-model="height"
                                     class="form-control"
-                                    placeholder="Lato Corto"
                                     max="99"
+                                    placeholder="Lato Corto"
+                                    type="number"
                                 />
                                 <input
-                                    type="number"
-                                    class="form-control"
                                     v-model="width"
-                                    placeholder="Altezza"
+                                    class="form-control"
                                     max="99"
+                                    placeholder="Altezza"
+                                    type="number"
                                 />
                                 <div class="divCm">
                                     <span class="form-control"> CM </span>
@@ -60,9 +60,9 @@
                             <div class="input-group mb-3 mx-2">
                                 <input
                                     v-model="searchStr"
-                                    type="text"
                                     class="form-control"
                                     placeholder="Cerca per prodotto e riferimento"
+                                    type="text"
                                 />
 
                                 <div class="input-group-append">

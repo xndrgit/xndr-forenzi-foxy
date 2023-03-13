@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index(): JsonResponse
     {
-        $categories = Category::with('products')->paginate(7);
+        $categories = Category::with(['products', 'subcategories', 'subcategories.products'])->paginate(7);
 
         return response()->json([
             "response" => true,
@@ -33,7 +33,7 @@ class CategoryController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $category = Category::with('products')->findOrFail($id);
+        $category = Category::with(['products', 'subcategories', 'subcategories.products'])->findOrFail($id);
         return response()->json([
             "response" => true,
             "results"  => $category

@@ -19,7 +19,7 @@
                         <!-- <div class="stars">
                         <i v-for="n in 5" :key="n" class="far fa-star"></i>
                     </div> -->
-                        <hr class="w-5" />
+                        <hr class="w-5"/>
                         <div class="d-flex align-items-center">
                             <span>da </span>
                             <h3 class="p-2 font-weight-bold">
@@ -33,11 +33,11 @@
                     </div>
 
                     <div class="col-12 col-md-4 position-relative">
-                        <img class="img-fluid" :src="category.img" alt="" />
+                        <img :src="category.img" alt="" class="img-fluid"/>
                         <img
-                            class="logo img-fluid position-absolute"
                             :src="category.img2"
                             alt=""
+                            class="logo img-fluid position-absolute"
                         />
                     </div>
                 </div>
