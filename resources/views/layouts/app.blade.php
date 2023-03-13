@@ -38,36 +38,37 @@
 </head>
 
 <body>
-<div id="app">
+<div id="app" class="admin-panel">
     <nav class="HeaderTop navbar navbar-expand-md navbar shadow-sm">
-        <div class="container-lg justify-content-around">
-
+        <div class="d-flex">
             <button
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="{{ __('Toggle navigation') }}"
-                class="navbar-toggler"
+                class="navbar-toggler collapsed"
                 data-target="#navbarSupportedContent"
                 data-toggle="collapse"
                 type="button"
+                id="toggle-nav-button"
             >
-                    <span class="navbar-toggler-icon">
-                        <i class="fas fa-bars"></i>
-                    </span>
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
             </button>
+
+            <div class="nav-item mx-3">
+                <a href="/admin/home" class="navbar-brand font-weight-bold text-white">
+                    <i class="fa-2x fas fa-box"></i>
+                    <span>FoxyBox</span>
+                </a>
+            </div>
 
             <div
                 class="collapse navbar-collapse"
                 id="navbarSupportedContent"
             >
-                    <span class="icon font-weight-bold text-white mr-3">
-                        <i class="fa-2x fas fa-box"></i>
-                        FoxyBox
-                    </span>
-
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-
                     @guest
                     @else
                         <li class="nav-item dropdown mx-1">
@@ -197,33 +198,31 @@
         </div>
     </nav>
 
-    <main class="py-4 ">
-
-        <div class="container-lg">
-
-            <div class="d-flex col-12 justify-content-center ">
-                <a
-                    class="navbar-brand"
-                    href="{{ url('/') }}"
-                >
-                    <img
-                        alt=""
-                        class="img-fluid my-5"
-                        src="{{ asset('img/logo.png') }}"
+    <main class="py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex col-12 justify-content-center">
+                    <a
+                        class="main-logo ml-3 w-75 d-flex justify-content-center"
+                        href="{{ url('/admin/home') }}"
                     >
-                    {{-- {{ config('app.name', 'Foxy') }} --}}
-                </a>
+                        <img
+                            alt=""
+                            class="img-fluid"
+                            src="{{ asset('img/logo.png') }}"
+                        >
+                    </a>
 
+                </div>
             </div>
-
-            @yield('content')
-
         </div>
 
+        <div class="main-content">
+            @yield('content')
+        </div>
     </main>
-    {{-- <footer>
-        @include('layouts.footer')
-    </footer> --}}
+
+    <div id="background-cover"></div>
 </div>
 
 <!-- Scripts -->
@@ -235,43 +234,3 @@
 </body>
 
 </html>
-
-<style
-    lang="scss"
->
-    .icon {
-        cursor: pointer;
-    }
-
-    .navbar {
-        width: 100%;
-        height: 41px;
-        background-color: rgb(245, 133, 47);
-        color: black;
-        padding: 0;
-    }
-
-    .navbar img {
-        height: 25px;
-        transition: .3s;
-    }
-
-    .navbar img:hover {
-        transform: scale(1.01)
-    }
-
-    .navbar i {
-        margin-right: .8rem;
-    }
-
-    .navbar a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        transition: .2s ease-in;
-    }
-
-    .navbar a:hover {
-        color: #fdbc48;
-    }
-</style>
