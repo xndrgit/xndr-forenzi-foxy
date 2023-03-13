@@ -43,15 +43,15 @@ export default {
 <style lang="scss" scoped>
 .HeaderBoxes {
     .container {
-        padding: 0px 5px;
+        padding: 0 5px;
     }
 
     .card {
         width: 7.5rem;
-        border-radius: 0px;
-        border: 0px;
+        border-radius: 0;
+        border: 0;
         transition: transform 0.2s;
-        padding: 0px;
+        padding: 0;
         margin: 8px 2px;
         min-height: 150px;
         max-height: 150px;
@@ -65,9 +65,10 @@ export default {
             height: 75%;
 
             img {
-                padding: 10px;
                 height: -webkit-fill-available;
-                padding: 1rem 0px;
+                height: -moz-available;
+                height: stretch;
+                padding: 1rem 0;
             }
 
             .litlogo {
@@ -86,7 +87,7 @@ export default {
 
         p {
             font-size: 0.8rem;
-            margin: 0px;
+            margin: 0;
         }
     }
 

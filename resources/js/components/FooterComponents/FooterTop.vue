@@ -129,13 +129,13 @@ export default {};
 
                 a {
                     color: black;
-                    margin: 0px 0px;
+                    margin: 0 0;
                 }
             }
         }
 
         @media (max-width: 991px) {
-            margin: 0px 20px;
+            margin: 0 20px;
         }
     }
 }

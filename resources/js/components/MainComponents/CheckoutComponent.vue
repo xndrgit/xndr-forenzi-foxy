@@ -586,7 +586,7 @@ tr.text-muted td {
 .btn.text-uppercase {
     border: 1px solid #333;
     font-weight: 600;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .btn.text-uppercase:hover {
@@ -596,7 +596,7 @@ tr.text-muted td {
 
 .btn.text-white {
     background-color: #66cdaa;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .btn.text-white:hover {

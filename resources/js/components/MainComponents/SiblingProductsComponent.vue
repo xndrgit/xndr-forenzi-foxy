@@ -188,7 +188,7 @@ export default {
 
                 button {
                     border: 1px solid lightgray;
-                    padding: 0px 0.5rem;
+                    padding: 0 0.5rem;
 
                     font-size: 0.6rem;
 

@@ -191,7 +191,7 @@ h2 {
     font-weight: bold;
     height: 40px;
     max-width: 60px;
-    margin: 0.2rem 0px;
+    margin: 0.2rem 0;
     font-size: 1rem;
     border: none;
     background-color: #f1f1f1;

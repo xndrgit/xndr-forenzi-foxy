@@ -234,6 +234,8 @@ nav {
 // TABLE
 table {
     width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
 }
 
 .alternating-rows tr:nth-child(odd) {
@@ -262,13 +264,13 @@ td {
     width: 250px;
     border: 1px solid white;
     overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
 
     margin: 1.2rem;
 
     &:hover {
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         transform: scale(1.05);
     }
 
@@ -279,12 +281,12 @@ td {
     .card-header {
         background-color: white;
 
-        border-bottom: 0px;
+        border-bottom: 0;
     }
 
     .card-body {
         background-color: white;
-        padding: 0px 1rem;
+        padding: 0 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -324,7 +326,7 @@ td {
             align-items: center;
 
             .col-12 {
-                padding: 0px;
+                padding: 0;
             }
         }
 
@@ -342,10 +344,10 @@ td {
 
     .card-footer {
         background-color: white;
-        padding: 0px;
-        margin: 0px;
+        padding: 0;
+        margin: 0;
 
-        border-top: 0px;
+        border-top: 0;
 
         .left {
             width: fit-content;

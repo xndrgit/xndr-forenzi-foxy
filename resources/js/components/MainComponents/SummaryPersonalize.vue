@@ -191,7 +191,7 @@ export default {
     text-align: start;
     font-size: 1.3em;
     font-weight: 900;
-    padding-top: 0px;
+    padding-top: 0;
     padding-bottom: 10px;
 }
 
@@ -255,7 +255,7 @@ i {
 label {
     font-size: 0.6rem;
     font-weight: bold;
-    margin: 0px;
+    margin: 0;
 }
 
 input {
@@ -267,12 +267,12 @@ input {
 
 .form-group input {
     width: 100%;
-    margin: 0px;
+    margin: 0;
 
 }
 
 .form-group {
-    margin: 0px;
+    margin: 0;
 }
 
 .image img {
