@@ -226,6 +226,8 @@ div.VueCarousel-pagination {
 
     .jumbo1 {
         height: -webkit-fill-available;
+        height: -moz-available;
+        height: stretch;
 
         .carousel-image-container {
             position: relative;
@@ -238,8 +240,8 @@ div.VueCarousel-pagination {
 
         .maschera_sx {
             position: absolute;
-            left: 0px;
-            bottom: 0px;
+            left: 0;
+            bottom: 0;
         }
 
         .carousel-content {
@@ -287,6 +289,8 @@ div.VueCarousel-pagination {
             font-size: 0.9rem;
 
             height: -webkit-fill-available;
+            height: -moz-available;
+            height: stretch;
             background-color: rgb(246, 134, 48);
 
             .countdown {
@@ -332,8 +336,14 @@ div.VueCarousel-pagination {
 
             .delivery-image {
                 height: -webkit-fill-available;
+                height: -moz-available;
+                height: stretch;
                 width: -webkit-fill-available;
+                width: -moz-available;
+                width: stretch;
                 min-height: -webkit-fill-available;
+                min-height: -moz-available;
+                min-height: stretch;
             }
         }
     }

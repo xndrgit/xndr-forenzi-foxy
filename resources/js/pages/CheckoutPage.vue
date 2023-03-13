@@ -982,8 +982,8 @@ label {
 }
 
 .v-text-field {
-    padding-left: 0px;
-    margin: 0 0px;
+    padding-left: 0;
+    margin: 0 0;
     font-weight: 900;
     font-size: 0.7rem;
 }
@@ -1148,6 +1148,8 @@ tr.text-muted td {
 
 .yellow-button {
     width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
     font-size: 1.1rem;
 }
 

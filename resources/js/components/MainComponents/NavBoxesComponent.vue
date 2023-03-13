@@ -1,10 +1,12 @@
 <template>
     <div>
         <div class="HeaderBoxes">
-            <!-- <LoadingComponent v-if="LoadingCategories" /> -->
-
             <nav class="d-flex">
-                <div class="container d-flex flex-wrap">
+                <div
+                    class="container d-flex flex-wrap"
+                    @mouseover="toggleSubcategory(true)"
+                    @mouseout="toggleSubcategory(false)"
+                >
                     <div
                         :class="category.color"
                         class="card d-flex align-items-center position-relative"
@@ -51,8 +53,18 @@ export default {
         category: Object,
     },
     data() {
-        return {};
+        return {
+            showSubcategory: false
+        };
     },
+    beforeDestroy() {
+        this.showSubcategory = false;
+    },
+    methods: {
+        toggleSubcategory(flag) {
+            this.showSubcategory = flag;
+        }
+    }
 };
 </script>
 
@@ -60,11 +72,11 @@ export default {
 .HeaderBoxes {
     .card {
         width: 7.5rem;
-        border-radius: 0px;
-        border: 0px;
+        border-radius: 0;
+        border: 0;
         transition: transform 0.2s;
-        padding: 0px;
-        margin: 8px 0px;
+        padding: 0;
+        margin: 8px 0;
         min-height: 150px;
         max-height: 150px;
 
@@ -78,6 +90,8 @@ export default {
 
             img {
                 height: -webkit-fill-available;
+                height: -moz-available;
+                height: stretch;
                 padding: 1rem 0;
             }
 
@@ -101,7 +115,7 @@ export default {
 
             p {
                 font-size: 0.8rem;
-                margin: 0px;
+                margin: 0;
             }
         }
     }

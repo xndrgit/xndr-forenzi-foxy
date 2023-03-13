@@ -234,7 +234,7 @@ label {
 
 input {
     width: 30%;
-    margin: 1rem 0px;
+    margin: 1rem 0;
     height: 30px;
     font-size: 1.5rem;
     border: none;

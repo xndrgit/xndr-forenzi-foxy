@@ -72,7 +72,7 @@ export default {
         height: 160px;
         width: calc(33.33% - 50px);
         background-color: #e5e5e5;
-        margin: 1px 0px;
+        margin: 1px 0;
 
         img {
             height: 160px;
@@ -83,7 +83,7 @@ export default {
         }
 
         p {
-            margin: 0px;
+            margin: 0;
             font-weight: 500;
         }
 

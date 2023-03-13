@@ -14,7 +14,7 @@
                         <th
                             style="
                                     position: relative;
-                                    padding: 0px;
+                                    padding: 0;
                                     background-color: rgb(246, 134, 48);
                                     border: 1px solid rgb(246, 134, 48);
                                 "
@@ -37,7 +37,7 @@
                         <th
                             style="
                                     position: relative;
-                                    padding: 0px;
+                                    padding: 0;
                                     background-color: rgb(246, 134, 48);
                                     border: 1px solid rgb(246, 134, 48);
                                 "

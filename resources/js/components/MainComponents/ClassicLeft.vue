@@ -62,7 +62,7 @@ export default {
 
     p {
         font-size: 0.8rem;
-        margin: 0px;
+        margin: 0;
     }
 
     h1 {

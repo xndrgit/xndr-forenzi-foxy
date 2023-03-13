@@ -60,10 +60,14 @@
 
     .classic-btn {
         width: -webkit-fill-available;
+        width: -moz-available;
+        width: stretch;
     }
 
     img {
         width: -webkit-fill-available;
+        width: -moz-available;
+        width: stretch;
         max-height: 250px;
         object-fit: contain;
     }

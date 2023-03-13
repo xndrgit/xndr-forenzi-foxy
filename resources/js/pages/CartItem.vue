@@ -139,7 +139,7 @@ export default {
 }
 
 .shopping-cart .items .product .info {
-    padding-top: 0px;
+    padding-top: 0;
     text-align: center;
 }
 
