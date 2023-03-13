@@ -21,9 +21,9 @@
                 </div>
                 <div class="classic-image col-lg-7 d-flex justify-content-center align-items-center">
                     <img
+                        alt="img"
                         class="img-fluid"
                         src="../../../../public/Links/scatole.jpg"
-                        alt="img"
                     />
                 </div>
             </div>
@@ -51,16 +51,20 @@ export default {
 <style lang="scss" scoped>
 .classic {
     background-color: #f1f1f1;
+
     .classic-text {
         width: fit-content;
     }
+
     img {
         max-height: 380px;
     }
+
     p {
         font-size: 0.8rem;
         margin: 0px;
     }
+
     h1 {
         color: rgb(246, 135, 46);
         font-weight: bold;

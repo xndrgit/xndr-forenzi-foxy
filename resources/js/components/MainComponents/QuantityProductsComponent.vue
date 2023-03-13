@@ -1,9 +1,9 @@
 <template>
     <div class="quantity">
-        <button @click="decrementQuantity" id="minus-button" :disabled="quantity < 1">-</button>
-        <input class="font-weight-bold" type="number" v-model="quantity" readonly id="quantity-input"
-            @input="updateQuantity" :max="product.quantity" :min="1" />
-        <button @click="incrementQuantity" :disabled="quantity >= product.quantity" id="plus-button">+</button>
+        <button id="minus-button" :disabled="quantity < 1" @click="decrementQuantity">-</button>
+        <input id="quantity-input" v-model="quantity" :max="product.quantity" :min="1" class="font-weight-bold"
+               readonly type="number" @input="updateQuantity"/>
+        <button id="plus-button" :disabled="quantity >= product.quantity" @click="incrementQuantity">+</button>
     </div>
 </template>
 

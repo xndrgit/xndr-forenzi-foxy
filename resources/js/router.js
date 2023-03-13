@@ -1,8 +1,5 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
-
-Vue.use(VueRouter);
-
 import HomePage from "./pages/HomePage";
 import PersonalizePage from "./pages/PersonalizePage";
 import CartPage from "./pages/CartPage";
@@ -11,6 +8,8 @@ import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import ConfirmPage from "./pages/ConfirmPage";
 import CongratulationPage from "./pages/CongratulationPage";
+
+Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: "history",

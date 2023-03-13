@@ -2,11 +2,11 @@
     <div class="home">
         <div class="container-lg">
             <div class="row justify-content-center">
-                <loadingComponent v-if="loadingCategories" />
+                <loadingComponent v-if="loadingCategories"/>
 
                 <div
-                    class="d-flex flex-wrap justify-content-around justify-content-sm-between col-12"
                     v-else
+                    class="d-flex flex-wrap justify-content-around justify-content-sm-between col-12"
                 >
                     <NavBoxesComponent
                         v-for="category in categories"
@@ -14,23 +14,23 @@
                         :category="category"
                     />
                     <div @click="goToPersonalizePage">
-                        <CustomizeBoxesComponent />
+                        <CustomizeBoxesComponent/>
                     </div>
                 </div>
 
-                <JumboComponent />
-                <BannerNewsComponent />
+                <JumboComponent/>
+                <BannerNewsComponent/>
                 <BannerTextComponent
                     v-for="element in txtbanners"
                     :key="element.title"
-                    :title="element.title"
                     :description="element.description"
-                    :descriptionTwo="element.descriptionTwo"
                     :descriptionBold="element.descriptionBold"
+                    :descriptionTwo="element.descriptionTwo"
+                    :title="element.title"
                 />
 
-                <LoadingRollComponent v-if="loadingProducts" />
-                <div class="d-flex justify-content-center flex-wrap" v-else>
+                <LoadingRollComponent v-if="loadingProducts"/>
+                <div v-else class="d-flex justify-content-center flex-wrap">
                     <BoxesComponent
                         v-for="product in products"
                         :key="product.name"
@@ -53,13 +53,13 @@
         <ClassicLeft
             v-for="(element, index) in txtleft"
             :key="index"
-            :title="element.title"
-            :description="element.description"
-            :subdescription="element.subdescription"
-            :notes="element.notes"
             :button="element.button"
+            :description="element.description"
+            :notes="element.notes"
+            :subdescription="element.subdescription"
+            :title="element.title"
         />
-        <ClassicRight />
+        <ClassicRight/>
     </div>
 </template>
 
@@ -78,6 +78,7 @@ import BoxesComponent from "../components/MainComponents/BoxesComponent.vue";
 import ClassicLeft from "../components/MainComponents/ClassicLeft.vue";
 import ClassicRight from "../components/MainComponents/ClassicRight.vue";
 import CustomizeBoxesComponent from "../components/MainComponents/CustomizeBoxesComponent.vue";
+import Categories from "../mixins/categories";
 
 export default {
     name: "HomePage",
@@ -96,13 +97,10 @@ export default {
         ClassicRight,
         CustomizeBoxesComponent,
     },
+    mixins: [Categories],
     data() {
         return {
             products: [],
-            categories: [],
-            // currentPageCategories: 1,
-            // lastPageCategories: null,
-            loadingCategories: true,
             loadingProducts: true,
             pagination: {
                 total: null,
@@ -186,24 +184,7 @@ export default {
                 });
         },
         goToPersonalizePage() {
-            this.$router.push({ path: "/personalize" });
-        },
-        getCategories(pageCategories = 1) {
-            this.loadingCategories = true;
-            axios
-                .get("/shop/categories", {
-                    page: pageCategories,
-                })
-                .then((response) => {
-                    this.categories = response.data.results.data;
-                    this.currentPageCategories =
-                        response.data.results.currentPage;
-                    this.lastPageCategories = response.data.results.lastPage;
-                    this.loadingCategories = false;
-                })
-                .catch((error) => {
-                    console.warn(error.message);
-                });
+            this.$router.push({path: "/personalize"});
         },
         getProducts() {
             this.loadingProducts = true;

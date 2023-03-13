@@ -1,12 +1,12 @@
 <template>
     <div>
-        <HeaderTop />
-        <HeaderBottom />
+        <HeaderTop/>
+        <HeaderBottom/>
 
         <router-view></router-view>
 
-        <FooterTop />
-        <FooterBottom />
+        <FooterTop/>
+        <FooterBottom/>
     </div>
 </template>
 
@@ -46,8 +46,9 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.css";
+
 body * {
     font-family: "Poppins", sans-serif;
-   
+
 }
 </style>

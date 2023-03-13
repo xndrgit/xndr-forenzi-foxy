@@ -5,13 +5,13 @@
         <div class="new col-12 col-sm-12 col-md-4 p-0">
             <div class="w-35 d-flex justify-content-start">
                 <img
+                    alt=""
                     class="img-fluid"
                     src="../../../../public/Links/side-view-of-smiling-curly-woman-pointing-away.jpg"
-                    alt=""
                 />
             </div>
             <div class="w-65">
-                <div style="font-weight: bold" class="new-text">
+                <div class="new-text" style="font-weight: bold">
                     <h3>NOVITÀ!!</h3>
                     <span>
                         Scopri i nostri nuovi prodotti a catalogo e tutti in
@@ -23,9 +23,9 @@
         <div class="new col-12 col-sm-12 col-md-4 p-0">
             <div class="new-img w-35 d-flex justify-content-center">
                 <img
+                    alt=""
                     class="img-fluid"
                     src="../../../../public/Links/maniglie-ai.png"
-                    alt=""
                 />
             </div>
             <div class="new-text w-65">
@@ -37,9 +37,9 @@
         <div class="new col-12 col-sm-12 col-md-4 p-0">
             <div class="new-img w-35 d-flex justify-content-center">
                 <img
+                    alt=""
                     class="img-fluid py-4"
                     src="../../../../public/Links/scatola-colorata.png"
-                    alt=""
                 />
             </div>
             <div class="new-text w-65">
@@ -81,12 +81,15 @@ export default {
         span {
             font-weight: 500;
         }
+
         p {
             margin: 0px;
             font-weight: 500;
         }
+
         .new-text {
             padding: 10px;
+
             h3,
             h5 {
                 color: rgb(246, 134, 48);

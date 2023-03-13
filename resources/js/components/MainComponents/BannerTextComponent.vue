@@ -11,7 +11,7 @@
                 {{ description }}
             </span>
         </div>
-         <div class="mx-5">
+        <div class="mx-5">
             <span class="text">
                 {{ descriptionTwo }}
             </span>
@@ -45,6 +45,7 @@ export default {
 .text-banner {
     padding: 2rem;
     width: 100%;
+
     .text {
         font-size: .8rem;
     }

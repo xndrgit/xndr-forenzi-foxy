@@ -8,16 +8,16 @@
                     class="d-flex flex-column flex-sm-row flex-wrap align-items-center justify-content-between"
                 >
                     <div
-                        class="col-12 col-sm-6"
-                        @click="selectLeft"
                         :class="{
                             active: selectedColor.value === titleOne,
                         }"
+                        class="col-12 col-sm-6"
+                        @click="selectLeft"
                     >
                         <div
                             class="box d-flex flex-column align-items-center col-12 p-0"
                         >
-                            <img class="img-fluid image" alt="" :src="imgOne" />
+                            <img :src="imgOne" alt="" class="img-fluid image"/>
                             <i
                                 v-if="isActiveFirst"
                                 class="fa-sharp fa-solid fa-check"
@@ -30,16 +30,16 @@
                     </div>
 
                     <div
-                        class="col-12 col-sm-6"
-                        @click="selectRight"
                         :class="{
                             active: selectedColor.value === titleTwo,
                         }"
+                        class="col-12 col-sm-6"
+                        @click="selectRight"
                     >
                         <div
                             class="box d-flex flex-column align-items-center col-12 p-0"
                         >
-                            <img class="img-fluid image" alt="" :src="imgTwo" />
+                            <img :src="imgTwo" alt="" class="img-fluid image"/>
 
                             <i
                                 v-if="isActiveSecond"
@@ -112,14 +112,17 @@ img {
     font-weight: bold;
     font-size: 0.8rem;
 }
+
 .box {
     position: relative;
     border: none;
     transition: 0.5s;
+
     &:hover {
         transform: scale(0.89);
     }
 }
+
 i {
     position: absolute;
     font-size: 6rem;
@@ -128,6 +131,7 @@ i {
     color: #fdbc48;
     font-weight: bold;
 }
+
 @media screen and (max-width: 500px) {
     .titlebox {
         font-size: 0.6rem;

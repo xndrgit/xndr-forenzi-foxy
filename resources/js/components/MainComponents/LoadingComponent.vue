@@ -15,6 +15,7 @@
     position: relative;
     overflow: hidden;
 }
+
 .bar::after {
     content: "";
     min-height: 5px;
@@ -23,6 +24,7 @@
     transform: translateX(-100%);
     animation: animate 3s infinite;
 }
+
 .bar::before {
     content: "";
     min-height: 5px;
@@ -41,6 +43,7 @@
     font-family: "roboto";
     font-size: 20px;
 }
+
 @keyframes animate {
     0% {
         transform: translateX(-100%);

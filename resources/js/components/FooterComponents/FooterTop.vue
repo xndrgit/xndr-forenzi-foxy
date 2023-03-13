@@ -33,7 +33,7 @@
                             <li class="icon facebook">
                                 <span class="tooltip">Facebook</span>
                                 <span
-                                    ><i class="fa-sm fab fa-facebook-f"></i
+                                ><i class="fa-sm fab fa-facebook-f"></i
                                 ></span>
                             </li>
                             <!-- <li class="icon twitter">
@@ -45,7 +45,7 @@
                             <li class="icon instagram">
                                 <span class="tooltip">Instagram</span>
                                 <span
-                                    ><i class="fa-sm fab fa-instagram"></i
+                                ><i class="fa-sm fab fa-instagram"></i
                                 ></span>
                             </li>
                             <!-- <li class="icon github">
@@ -67,8 +67,8 @@
                             molto altro.
                         </p>
                         <form>
-                            <input type="email" placeholder="" />
-                            <br />
+                            <input placeholder="" type="email"/>
+                            <br/>
                             <button
                                 class="dark-button text-white"
                                 type="submit"
@@ -83,29 +83,36 @@
     </div>
 </template>
 
-<script></script>
+<script>
+export default {};
+</script>
 
 <style lang="scss" scoped>
 .FooterTop {
     padding: 3rem 0;
     background-color: white;
+
     input {
         background-color: #f1f1f1;
         border: none;
     }
+
     button {
         padding: 8px 2rem;
     }
+
     .footer-section {
         h3 {
             font-weight: bold;
             font-size: 1rem;
             margin-bottom: 20px;
         }
+
         p {
             font-size: 0.7rem;
             font-weight: 500;
         }
+
         img {
             height: 30px;
             margin-right: 2px;
@@ -114,16 +121,19 @@
         ul {
             list-style: none;
             padding: 0;
+
             li {
                 font-size: 0.7rem;
 
                 font-weight: 500;
+
                 a {
                     color: black;
                     margin: 0px 0px;
                 }
             }
         }
+
         @media (max-width: 991px) {
             margin: 0px 20px;
         }
