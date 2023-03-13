@@ -105,7 +105,7 @@
             </div>
         </div>
 
-        <div class="d-none">
+        <div class="">
             <nav>
                 <a href="#" class="active">CARATTERISTICHE SCATOLA</a>
             </nav>

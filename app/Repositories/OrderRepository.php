@@ -44,6 +44,8 @@ class OrderRepository extends Repository
 
             // Calculate the conai for each product
             $product_conai = ceil(($product->pivot->quantity * $product->weight) / 5000) * 5 * 0.22;
+
+
             $conai += $product_conai;
          }
       } else {
