@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="HeaderBoxes">
-            <nav class="d-flex">
+            <nav class="position-relative">
                 <div
                     class="container d-flex flex-wrap"
                     @mouseover="toggleSubcategory(true)"
@@ -39,6 +39,19 @@
                                 </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div
+                    v-if="showSubcategory && category.subcategories && category.subcategories.length"
+                    class="subcategories-group"
+                    :class="category.color"
+                >
+                    <div
+                        v-for="(subcategory, sIndex) in category.subcategories"
+                        :key="`sub-${sIndex}`"
+                        class="sub-item"
+                    >
+                        <a href="#">{{ subcategory.name }}</a>
                     </div>
                 </div>
             </nav>
@@ -130,6 +143,52 @@ export default {
 
     .gray-box {
         background-color: rgb(244, 244, 244);
+    }
+
+    .subcategories-group {
+        position: absolute;
+        top: 160px;
+        left: 8px;
+        z-index: 2;
+        padding: 0.5rem;
+        transition: transform 0.5s;
+        color: #030303;
+
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 0 solid transparent;
+            border-bottom: 15px solid transparent;
+            position: absolute;
+            left: 3px;
+            top: -3px;
+            transform: rotate(45deg);
+        }
+
+        &.orange-box {
+            &:before {
+                border-left: 15px solid rgb(245, 134, 47);
+            }
+        }
+
+        &.yellow-box {
+            &:before {
+                border-left: 15px solid rgb(253, 188, 72);
+            }
+        }
+
+        &.gray-box {
+            &:before {
+                border-left: 15px solid rgb(244, 244, 244);
+            }
+        }
+
+        .sub-item {
+            a {
+                color: #030303;
+            }
+        }
     }
 }
 </style>
