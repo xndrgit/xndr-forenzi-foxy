@@ -9,6 +9,7 @@ require('./bootstrap');
 window.addEventListener('resize', () => {
     if (document.body.getBoundingClientRect().width > 768) {
         $('#navbarSupportedContent').removeClass('show');
+        $('#background-cover').fadeOut();
     }
 });
 
