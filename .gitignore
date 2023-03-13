@@ -267,5 +267,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,sublimetext,notepadpp,visualstudiocode,jetbrains+all,laravel,vue,vuejs
 
 /public/js/*
+/public/js/front.js
 /public/css/*
+/public/css/app.css
 /public/fonts
