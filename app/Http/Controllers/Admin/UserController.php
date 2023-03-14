@@ -55,10 +55,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::all();
         $roles = UserDetail::select('admin')->distinct()->get();
 
-        return view('admin.users.create', compact('users', 'roles'));
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
