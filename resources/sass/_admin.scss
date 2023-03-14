@@ -1,3 +1,9 @@
+.dataTables_wrapper {
+    width: 100%;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .admin-panel {
     padding: 0;
     margin: 0;
@@ -145,5 +151,10 @@
         > .container {
             overflow: auto;
         }
+    }
+
+    .create-btn {
+        position: absolute;
+        z-index: 2;
     }
 }

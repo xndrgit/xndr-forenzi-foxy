@@ -74,6 +74,13 @@ Route::middleware(['auth', 'admin'])
         Route::resource('payments', 'PaymentController');
         Route::resource('categories', 'CategoryController');
         Route::resource('subcategories', 'SubcategoryController')->except(['show']);
+
+        // 👉 Get table data
+        Route::post('/users/data', 'UserController@index');
+        Route::post('/products/data', 'ProductController@index');
+        Route::post('/payments/data', 'PaymentController@index');
+        Route::post('/categories/data', 'CategoryController@index');
+        Route::post('/subcategories/data', 'SubcategoryController@index');
     });
 
 Route::middleware('auth')

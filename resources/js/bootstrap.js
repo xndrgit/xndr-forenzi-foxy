@@ -11,7 +11,8 @@ try {
     window.$ = window.jQuery = require("jquery");
 
     require("bootstrap");
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -21,8 +22,8 @@ try {
 
 window.axios = require("axios");
 
-window.axios.defaults.baseURL = "https://foxybox.it/";
-// window.axios.defaults.baseURL = "http://127.0.0.1:8000/";
+// window.axios.defaults.baseURL = "https://foxybox.it/";
+window.axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
@@ -31,7 +32,8 @@ const token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
-} else {
+}
+else {
     window.axios.defaults.headers.common["X-CSRF-TOKEN"] =
         window.laravel.csrfToken;
 }
