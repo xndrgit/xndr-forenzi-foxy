@@ -1,33 +1,19 @@
-<!-- @if (session('status'))
+<x-app-layout>
+    @section('title', __('| Home'))
 
-@else
-    <script>
-        window.location = "/home";
-    </script>
-@endif -->
-@extends('layouts.app')
+    <x-layout.center-card>
+        <x-slot name="cardHeader">
+            {{ __('Dashboard') }}
+        </x-slot>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+        <x-slot name="cardBody">
+            @if (session('status'))
+                <x-alert.success role="alert">
+                    {{ session('status') }}
+                </x-alert.success>
+            @endif
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                        
-                    @endif
-                    <!-- <script>
-                            window.location = "/home";
-                        </script> -->
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+            {{ __('You are logged in!') }}
+        </x-slot>
+    </x-layout.center-card>
+</x-app-layout>
