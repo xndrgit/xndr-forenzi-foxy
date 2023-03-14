@@ -5,7 +5,5 @@
     "/js/front.js": "/js/front.js",
     "/js/manifest.js": "/js/manifest.js",
     "/js/vendor.js": "/js/vendor.js",
-    "/js/vendor-jquery.js": "/js/vendor-jquery.js",
-    "/js/datatables.bundle.js": "/js/datatables.bundle.js",
     "/css/datatables.bundle.css": "/css/datatables.bundle.css"
 }

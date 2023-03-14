@@ -19,65 +19,21 @@
             </x-alert.danger>
         @endif
 
-        <table class="table table-dark table-hover text-center">
-            <thead>
-            <tr>
-                <th scope="col">Ruolo</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Mail</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Impostazioni</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if($users)
-                @foreach ($users as $user)
-                    <tr>
-                        <th scope="row">
-                            {{ $user->user_detail && $user->user_detail->admin ? $user->user_detail->admin : '' }}
-                        </th>
-                        <td>
-                            {{ $user->name }}
-                        </td>
-                        <td>
-                            {{ $user->email }}
-                        </td>
-                        <td>
-                            {{ $user->user_detail && $user->user_detail->phone ? $user->user_detail->phone : '' }}
-                        </td>
-                        <td>
-                            <x-link
-                                class="btn btn-sm btn-success rounded-circle"
-                                href="{{ route('admin.users.show', $user->id) }}"
-                            >
-                                <i class="fas fa-eye"></i>
-                            </x-link>
-                            <x-link
-                                class="btn btn-sm btn-primary rounded-circle"
-                                href="{{ route('admin.users.edit', $user->id) }}"
-                            >
-                                <i class="fas fa-edit"></i>
-                            </x-link>
-                            <x-form
-                                action="{{ route('admin.users.destroy', $user->id) }}"
-                                class="d-inline"
-                                method="POST"
-                            >
-                                @method('DELETE')
+        <div class="create-btn">
+            <x-link
+                class="btn btn-primary"
+                href="{{ route('admin.users.create') }}"
+            >
+                {{ __('Create User') }}
+            </x-link>
+        </div>
 
-                                <x-button
-                                    class="btn-sm btn-danger rounded-circle"
-                                >
-                                    <i class="fas fa-trash"></i>
-                                </x-button>
-                            </x-form>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <h1>No users</h1>
-            @endif
-            </tbody>
-        </table>
+        <x-datatable
+            tableId="users-list-table"
+            tableClass="table-dark"
+            :columns="$tableColumns"
+        >
+            <x-slot name="tableRows"></x-slot>
+        </x-datatable>
     </x-layout.container>
 </x-app-layout>
