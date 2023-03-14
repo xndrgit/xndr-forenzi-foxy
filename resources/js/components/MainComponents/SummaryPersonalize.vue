@@ -5,33 +5,33 @@
             <div class="summary-item">
                 <span class="text">MISURE</span>
                 <span class="price"
-                >{{ inputL }} <strong>L x</strong> {{ inputP }}
+                    >{{ inputL }} <strong>L x</strong> {{ inputP }}
                     <strong>P x</strong> {{ inputH }} <strong>H</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">QUANTITÀ</span>
                 <span class="price"
-                >{{ inputQ }}
+                    >{{ inputQ }}
                     <strong>PREZZI</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">COLORE SCATOLA</span>
                 <span class="price"
-                ><strong>{{ selectedColor.value }}</strong>
+                    ><strong>{{ selectedColor.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">TIPO DI CARTONE</span>
                 <span class="price"
-                ><strong>{{ selectedType.value }}</strong>
+                    ><strong>{{ selectedType.value }}</strong>
                 </span>
             </div>
             <div class="summary-item">
                 <span class="text">STAMPA</span>
                 <span class="price"
-                ><strong>{{ radioValue }}</strong>
+                    ><strong>{{ radioValue }}</strong>
                 </span>
             </div>
 
@@ -268,7 +268,6 @@ input {
 .form-group input {
     width: 100%;
     margin: 0;
-
 }
 
 .form-group {
