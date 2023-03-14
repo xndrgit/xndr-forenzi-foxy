@@ -5,7 +5,7 @@
         if (userListTbl) {
             window.setCommonDataTable(
                 '#users-list-table',
-                15,
+                10,
                 true,
                 true,
                 '/admin/users/data',

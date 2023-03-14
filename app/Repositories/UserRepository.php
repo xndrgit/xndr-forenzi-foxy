@@ -15,6 +15,11 @@ class UserRepository extends Repository
         return app(User::class);
     }
 
+    /**
+     * 👉 Get user data query
+     *
+     * @return mixed
+     */
     private function getUsersDataQuery()
     {
         return $this->model()
@@ -38,12 +43,6 @@ class UserRepository extends Repository
         $query = $this->getUsersDataQuery();
 
         return DataTables::of($query)
-            ->editColumn('admin', function ($user) {
-                return $user->user_detail && $user->user_detail->admin ? $user->user_detail->admin : '';
-            })
-            ->editColumn('phone', function ($user) {
-                return $user->user_detail && $user->user_detail->phone ? $user->user_detail->phone : '';
-            })
             ->addColumn('action', function ($user) {
                 $actionStr = '<div class="d-flex justify-content-center align-items-center">';
                 $actionStr .= '<a class="btn btn-sm btn-success rounded-circle mr-1" ';

@@ -308,8 +308,7 @@
                             id="notes"
                             name="notes"
                             rows="5"
-                            style="white-space: nowrap !important;"
-                            type="text"
+                            style="word-wrap: break-word;"
                         >{{ old('notes', '') }}</textarea>
 
                         @error('pec')

@@ -128,9 +128,9 @@ class UserController extends Controller
             $this->repository->createUserDetail($user);
         }
 
-        $levels = UserDetail::select('admin')->distinct()->get();
+        $roles = UserDetail::select('admin')->distinct()->get();
 
-        return view('admin.users.edit', compact('user', 'levels'));
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
