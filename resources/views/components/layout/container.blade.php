@@ -1,5 +1,6 @@
 @props([
-'columnWidth' => 'col-12'
+'columnClass' => 'col-12',
+'rowClass' => ''
 ])
 
 <div {{
@@ -7,8 +8,8 @@
        'class' => 'container'
    ]) }}
 >
-    <div class="row">
-        <div class="{{ $columnWidth }}">
+    <div class="row {{ $rowClass }}">
+        <div class="{{ $columnClass }}">
             {{ $slot }}
         </div>
     </div>

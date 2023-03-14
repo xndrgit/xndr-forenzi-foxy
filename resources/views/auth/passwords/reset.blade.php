@@ -13,10 +13,7 @@
                 </div>
             @endif
 
-            <x-form
-                method="POST"
-                action="{{ route('password.update') }}"
-            >
+            <x-form action="{{ route('password.update') }}">
                 <input type="hidden" name="token" value="{{ $token }}">
 
                 <div class="form-group row">

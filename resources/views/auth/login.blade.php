@@ -9,7 +9,6 @@
         <x-slot name="cardBody">
             <x-form
                 action="{{ route('login') }}"
-                method="POST"
             >
                 <div class="form-group row">
                     <label
