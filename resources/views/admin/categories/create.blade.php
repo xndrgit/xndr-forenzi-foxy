@@ -64,9 +64,9 @@
                                         />
 
                                         @error('name')
-                                        <div class="alert alert-danger">
+                                        <x-alert.danger>
                                             {{ $message }}
-                                        </div>
+                                        </x-alert.danger>
                                         @enderror
 
                                     </div>
@@ -87,9 +87,9 @@
                                         />
 
                                         @error('description')
-                                        <div class="alert alert-danger">
+                                        <x-alert.danger>
                                             {{ $message }}
-                                        </div>
+                                        </x-alert.danger>
                                         @enderror
 
                                     </div>
@@ -112,9 +112,9 @@
                                         />
 
                                         @error('img')
-                                        <div class="alert alert-danger">
+                                        <x-alert.danger>
                                             {{ $message }}
-                                        </div>
+                                        </x-alert.danger>
                                         @enderror
                                     </div>
 
@@ -133,9 +133,9 @@
                                         />
 
                                         @error('img2')
-                                        <div class="alert alert-danger">
+                                        <x-alert.danger>
                                             {{ $message }}
-                                        </div>
+                                        </x-alert.danger>
                                         @enderror
                                     </div>
                                 </div>

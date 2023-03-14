@@ -1,28 +1,29 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| Verify'))
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+    <x-layout.center-card>
+        <x-slot name="cardHeader">
+            {{ __('Verify Your Email Address') }}
+        </x-slot>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
+        <x-slot name="cardBody">
+            @if (session('resent'))
+                <x-alert.success role="alert">
+                    {{ __('A fresh verification link has been sent to your email address.') }}
+                </x-alert.success>
+            @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+            {{ __('Before proceeding, please check your email for a verification link.') }}
+            {{ __('If you did not receive the email') }},
+            <x-form
+                class="d-inline"
+                method="POST"
+                action="{{ route('verification.resend') }}"
+            >
+                <x-button class="btn-link p-0 m-0 align-baseline">
+                    {{ __('click here to request another') }}
+                </x-button>
+            </x-form>
+        </x-slot>
+    </x-layout.center-card>
+</x-app-layout>

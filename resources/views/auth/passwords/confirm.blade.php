@@ -1,49 +1,61 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| Confirm Password'))
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+    <x-layout.center-card>
+        <x-slot name="cardHeader">
+            {{ __('Confirm Password') }}
+        </x-slot>
 
-                <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
+        <x-slot name="cardBody">
+            {{ __('Please confirm your password before continuing.') }}
 
-                    <form method="POST" action="{{ route('password.confirm') }}">
-                        @csrf
+            <x-form
+                method="POST"
+                action="{{ route('password.confirm') }}"
+            >
+                <div class="form-group row">
+                    <label
+                        for="password"
+                        class="col-md-4 col-form-label text-md-right"
+                    >
+                        {{ __('Password') }}
+                    </label>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                    <div class="col-md-6">
+                        <input
+                            id="password"
+                            type="password"
+                            class="form-control @error('password') is-invalid @enderror"
+                            name="password"
+                            required
+                            autocomplete="current-password"
+                        >
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+                <div class="form-group row mb-0">
+                    <div class="col-md-8 offset-md-4">
+                        <x-button class="btn btn-primary">
+                            {{ __('Confirm Password') }}
+                        </x-button>
+
+                        @if (Route::has('password.request'))
+                            <x-link
+                                class="btn btn-link"
+                                href="{{ route('password.request') }}"
+                            >
+                                {{ __('Ho dimenticato la password?') }}
+                            </x-link>
+                        @endif
+                    </div>
+                </div>
+            </x-form>
+        </x-slot>
+    </x-layout.center-card>
+</x-app-layout>
