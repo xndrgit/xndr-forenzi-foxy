@@ -26,14 +26,20 @@ window.addEventListener('resize', () => {
     });
 })(jQuery);
 
-window.setCommonDataTable = (tableID, pLength, responsive, fixedHeader, url, columns, dataCallback) => {
+window.setCommonDataTable = (tableID, pLength, responsive, fixedHeader, url, columns, dataCallback, columnDefs = null) => {
     const commonServerDataTable = $(tableID).DataTable({
         pageLength: pLength,
         responsive: responsive,
         order: [[0, "asc"]],
         fixedHeader: fixedHeader,
-        dom: '<"row"<"col-md-12"<"row"<"col-md-6 export-btn"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"d-flex align-items-center justify-content-between"<l><"ml-auto pr-3"p>>> >',
-        columnDefs: [{
+        dom: '<"row"<"col-md-12"<"row"<"col-md-6 export-btn"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"d-flex align-items-center justify-content-between flex-wrap"<l><"ml-auto pr-3 w-sm-100"p>>> >',
+        columnDefs: columnDefs ? [
+            ...columnDefs,
+            {
+                targets: 'no-sort',
+                orderable: false,
+            }
+        ] : [{
             targets: 'no-sort',
             orderable: false,
         }],

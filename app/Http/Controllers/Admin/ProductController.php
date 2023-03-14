@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
+use App\Repositories\ProductRepository;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -16,46 +18,41 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    //! VALIDATION
-    // private $validation = [
-    //     // 'code' =>
-    //     // [
-    //     //     'min:3', 'max:5', 'required',
-    //     //     Rule::unique('products', 'code')->ignore($product->id),
-    //     // ],
-    //     // 'name' =>
-    //     // [
-    //     //     'min:3', 'max:20', 'required',
-    //     //     Rule::unique('products', 'name')->ignore($product->id),
-    //     // ],
-    //     // 'length' => 'min:1|numeric|required',
-    //     // 'width' => 'min:1|numeric|required',
-    //     // 'height' => 'min:1|numeric|required',
-    //     // 'color' => 'min:3|required',
-    //     // 'type' => 'min:3|required',
-    //     // 'print' => 'min:3|required',
-    //     // 'description' => 'max:250',
-    //     // 'price' => 'min:1|numeric|required',
-    //     // 'img' => 'min:3|active_url|url|required',
-    // ];
-    // private $validationCustom = [
-    //     // 'code.required' => ':attribute è necessario.',
-    //     // 'min' => ':attribute non ha raggiunto i caratteri richiesti dal sistema.',
-    //     // 'max' => ':attribute ha superato il limite di caratteri supportati dal sistema.',
-    //     // 'numeric' => ':attribute deve essere un numero. ',
-    //     // 'url' => ':attribute necessita di un url reale e attivo.',
-    // ];
+    protected $repository;
 
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->repository = $productRepository;
+    }
 
     /**
-     * Display a listing of the resource.
+     * 👉 Get all products
      *
-     * @return Application|Factory|View
+     * @param Request $request
+     *
+     * @return Application|Factory|View|mixed
+     * @throws Exception
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('admin.products.index', compact('products'));
+        if ($request->ajax()) {
+            return $this->repository->getAllProducts($request);
+        }
+
+        $tableColumns = [
+            ['label' => 'ID', 'class' => 'text-center'],
+            ['label' => 'Categoria', 'class' => 'text-center'],
+            ['label' => 'Codice', 'class' => 'text-center'],
+            ['label' => 'Nome', 'class' => 'text-center'],
+            ['label' => 'Misure', 'class' => 'text-center'],
+            ['label' => 'Larghezza', 'class' => 'text-center'],
+            ['label' => 'Altezza', 'class' => 'text-center'],
+            ['label' => 'Quantità', 'class' => 'text-center'],
+            ['label' => 'Prezzo', 'class' => 'text-center'],
+            ['label' => 'Impostazioni', 'class' => 'no-sort unsettled-cols text-center']
+        ];
+
+        return view('admin.products.index', compact('tableColumns'));
     }
 
     /**
@@ -79,7 +76,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return RedirectResponse
      */
@@ -148,7 +145,7 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()
-            ->route('admin.products.show', $product->id)
+            ->route('admin.products.show', ['product' => $product->id])
             // ->route('admin.products.index')
             ->with('created', $data['name']);
     }
@@ -156,28 +153,24 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Product $product
      *
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
-        //* dd($product);
         return view('admin.products.show', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Product $product
      *
      * @return Application|Factory|View
      */
-    public function edit(int $id)
+    public function edit(Product $product)
     {
-        $product = Product::findOrFail($id);
-
         $categories = Category::all();
 
         $prints = Product::select('print')->distinct()->get();
@@ -190,15 +183,14 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param Request $request
+     * @param Product $product
      *
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
+    : RedirectResponse
     {
-
-        $product = Product::findOrFail($id);
         $data = $request->all();
 
         // dd($data);
@@ -280,22 +272,21 @@ class ProductController extends Controller
 
 
         return redirect()
-            // rinominiamo la variabile post
-            ->route('admin.products.show', ['product' => $product])
+            ->route('admin.products.show', ['product' => $product->id])
             ->with('edited', $data['name']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Product $product
      *
      * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Product $product)
+    : RedirectResponse
     {
-        // dd($id);
-        $product = Product::findOrFail($id);
         $product->delete();
         return redirect()
             ->route('admin.products.index')

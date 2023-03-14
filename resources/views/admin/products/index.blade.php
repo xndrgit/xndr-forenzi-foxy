@@ -1,81 +1,39 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| Products'))
 
-@section('content')
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-12">
+    <x-layout.container>
+        {{-- if session viene eseguito al ricaricamento della pagina dopodichè viene espulso dal codice --}}
+        @if (session('created'))
+            <x-alert.success>
+                l'elemento *{{ session('created') }}* è stato creato con successo.
+            </x-alert.success>
+        @endif
+        @if (session('edited'))
+            <x-alert.info>
+                l'elemento *{{ session('edited') }}* è stato modificato con successo.
+            </x-alert.info>
+        @endif
+        @if (session('deleted'))
+            <x-alert.danger>
+                l'elemento *{{ session('deleted') }}* è stato rimosso con successo.
+            </x-alert.danger>
+        @endif
 
-                {{-- if session viene eseguito al ricaricamento della pagina dopodichè viene espulso dal codice --}}
-                @if (session('created'))
-                    <div class="alert alert-success">
-                        l'elemento *{{ session('created') }}* è stato creato con successo.
-                    </div>
-                @endif
-                @if (session('edited'))
-                    <div class="alert alert-warning">
-                        l'elemento *{{ session('edited') }}* è stato modificato con successo.
-                    </div>
-                @endif
-                @if (session('deleted'))
-                    <div class="alert alert-danger">
-                        l'elemento *{{ session('deleted') }}* è stato rimosso con successo.
-                    </div>
-                @endif
-
-                <table class="table table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Codice</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Misure</th>
-                            <th scope="col">Quantità</th>
-                            <th scope="col">Prezzo</th>
-                            <th scope="col">Impostazioni</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($products as $product)
-                            <tr>
-                                <th scope="row">{{ $product->category->name }}</th>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->length }} x {{ $product->width }} x {{ $product->height }}</td>
-                                <td>{{ $product->quantity }}</td>
-                                <td>€{{ $product->price }}</td>
-                                <td>
-                                    <a
-                                        class="btn btn-sm btn-success rounded-circle"
-                                        href="{{ route('admin.products.show', $product->id) }}"
-                                    ><i class="fas fa-eye "></i></a>
-                                    <a
-                                        class="btn btn-sm btn-primary rounded-circle"
-                                        href="{{ route('admin.products.edit', $product->id) }}"
-                                    ><i class="fas fa-edit "></i></a>
-                                    <form
-                                        action="{{ route('admin.products.destroy', $product->id) }}"
-                                        class="d-inline"
-                                        method="POST"
-                                    >
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button
-                                            class="btn btn-sm btn-danger rounded-circle"
-                                            type="submit"
-                                        >
-                                            <i class="fas fa-trash "></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <h1>No Products</h1>
-                        @endforelse
-
-                    </tbody>
-                </table>
-            </div>
+        <div class="create-btn">
+            <x-link
+                class="btn btn-primary"
+                href="{{ route('admin.products.create') }}"
+            >
+                {{ __('Create Product') }}
+            </x-link>
         </div>
-    </div>
-@endsection
+
+        <x-datatable
+            tableId="products-list-table"
+            tableClass="table-dark"
+            :columns="$tableColumns"
+        >
+            <x-slot name="tableRows"></x-slot>
+        </x-datatable>
+    </x-layout.container>
+</x-app-layout>
