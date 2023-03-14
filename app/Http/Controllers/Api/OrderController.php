@@ -54,9 +54,9 @@ class OrderController extends Controller
         $params = $request->all();
         $user_id = $request->user()->id;
 
-        $this->userRepo->updateUserDetails($user_id, $params);
+        $this->userRepo->updateDetails($user_id, $params);
 
-        $orderId = $this->repository->createOrder($user_id);
+        $orderId = $this->repository->create($user_id);
 
         if ($request->has('payment')) {
             $payment = $request->input('payment');

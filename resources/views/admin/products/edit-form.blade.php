@@ -1,20 +1,26 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', ($create ? __('| Product Create') : __('| Product Update')))
 
-@section('content')
-    <form
-        action="{{ route('admin.products.update', $product->id) }}"
-        enctype="multipart/form-data"
-        method="post"
-    > @csrf @method('PUT')
+    <x-layout.container>
+        <x-layout.form-header>
+            {{ $create ? 'Create' : 'Update' }} Product
+        </x-layout.form-header>
 
-        <div class="container">
-            <div class="row">
+        <x-form
+            action="{{ $action }}"
+        >
+            @if(!$create)
+                @method('put')
+            @endif
+
+            <div class="form-group row">
                 <div class="col-12 d-flex">
                     <div class="form-outline col-3">
                         <label
                             class="form-label"
                             for="code"
-                        >Codice
+                        >
+                            Codice
                         </label>
                         <input
                             class="form-control"
@@ -26,18 +32,19 @@
                         />
 
                         @error('code')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                     <div class="form-outline col-3">
                         <label
                             class="form-label"
                             for="name"
-                        >Nome Prodotto
+                        >
+                            Nome Prodotto
                         </label>
+
                         <input
                             class="form-control"
                             id="name"
@@ -48,18 +55,18 @@
                         />
 
                         @error('name')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
 
                     <div class="form-outline col-2">
                         <label
                             class="form-label"
                             for="length"
-                        >Lato Lungo in cm
+                        >
+                            Lato Lungo in cm
                         </label>
                         <input
                             class="form-control"
@@ -71,18 +78,18 @@
                         />
 
                         @error('length')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
 
                     <div class="form-outline col-2">
                         <label
                             class="form-label"
                             for="width"
-                        >Lato Corto in cm
+                        >
+                            Lato Corto in cm
                         </label>
                         <input
                             class="form-control"
@@ -94,9 +101,9 @@
                         />
 
                         @error('width')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
 
                     </div>
@@ -104,7 +111,8 @@
                         <label
                             class="form-label"
                             for="height"
-                        >Altezza in cm
+                        >
+                            Altezza in cm
                         </label>
                         <input
                             class="form-control"
@@ -116,34 +124,31 @@
                         />
 
                         @error('height')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                 </div>
             </div>
+            <hr/>
 
-            <hr>
-
-            <div class="row">
-
+            <div class="form-group row">
                 <div class="col-12 d-flex">
-
                     <div class="form-outline col-2">
                         <label for="subcategory_id">Sottocategoria</label>
-                        @foreach ($categories as $category)
+                        @foreach ($categories as $key => $category)
                             <div
                                 class="form-check"
                                 id="subcategory-pack-{{ $category->id }}"
-                                style="{{ $category->id == $product->category->id ? '' : 'display: none;' }}"
+                                style="{{ $create ? ( $key == 0 ? '' : 'display: none;') : ($category->id == $product->category->id ? '' : 'display: none;') }}"
                             >
                                 @foreach ( $category->subcategories as $subcategory)
                                     <label class="form-check-label px-2">
                                         <input
-                                            {{ $product->subcategories->contains($subcategory) ? 'checked' : '' }}
+                                            {{ !$create && ($category->id == $product->category->id && $product->subcategories->contains($subcategory)) ? 'checked' : '' }}
                                             class="form-check-input subcategory-form-checkbox"
+                                            id="subcategory_id"
                                             name="subcategory_id[]"
                                             type="checkbox"
                                             value="{{ $subcategory->id }}"
@@ -155,6 +160,7 @@
                             </div>
                         @endforeach
                     </div>
+
                     <div class="col-10 d-flex flex-wrap">
                         <div class="form-outline col-4">
                             <label for="category_id">Categoria</label>
@@ -162,21 +168,24 @@
                                 class="form-control"
                                 id="select-product-category"
                                 name="category_id"
-                                onchange="changeCategory(this)"
                             >
                                 @foreach ($categories as $category)
                                     <option
                                         {{ $category->id == old('category_id', $product->category_id) ? 'selected' : '' }}
                                         value="{{ $category->id }}"
-                                    >{{ $category->name }}</option>
+                                    >
+                                        {{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-outline col-4">
                             <label
                                 class="form-label"
                                 for="color"
-                            >Colore Prodotto
+                            >
+                                Colore Prodotto
                             </label>
                             <select
                                 class="form-control"
@@ -186,19 +195,18 @@
                             >
                                 @foreach ($colors as $color)
                                     <option
-                                        {{ $color->color == old('color', $product->color) ? 'selected' : '' }}
-                                        {{-- @if (old('color', $product->color) == $color->color)selected@endif --}}
-                                        value="{{ $color->color }}"
+                                        {{ $color == old('color', $product->color) ? 'selected' : '' }}
+                                        value="{{ $color }}"
                                     >
-                                        {{ ucwords($color->color) }}
+                                        {{ ucwords($color) }}
                                     </option>
                                 @endforeach
                             </select>
 
                             @error('color')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
 
                         </div>
@@ -206,7 +214,8 @@
                             <label
                                 class="form-label"
                                 for="print"
-                            >Stampa Prodotto
+                            >
+                                Stampa Prodotto
                             </label>
                             <select
                                 class="form-control"
@@ -216,19 +225,19 @@
                             >
                                 @foreach ($prints as $print)
                                     <option
-                                        {{ $print->print == old('print', $product->print) ? 'selected' : '' }}
-                                        value="{{ $print->print }}"
+                                        {{ $print == old('print', $product->print) ? 'selected' : '' }}
+                                        value="{{ $print }}"
                                     >
-                                        {{ ucwords($print->print) }}
+                                        {{ ucwords($print) }}
                                     </option>
                                 @endforeach
 
                             </select>
 
                             @error('print')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
 
                         </div>
@@ -236,7 +245,8 @@
                             <label
                                 class="form-label"
                                 for="first_price"
-                            >Prezzo Scontato Per 100 Unità
+                            >
+                                Prezzo Scontato Per 100 Unità
                             </label>
                             <input
                                 class="form-control"
@@ -249,9 +259,9 @@
                             />
 
                             @error('first_price')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
 
                         </div>
@@ -259,7 +269,8 @@
                             <label
                                 class="form-label"
                                 for="second_price"
-                            >Prezzo Scontato Per 300 Unità
+                            >
+                                Prezzo Scontato Per 300 Unità
                             </label>
                             <input
                                 class="form-control"
@@ -272,17 +283,18 @@
                             />
 
                             @error('second_price')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
-
                         </div>
+
                         <div class="form-outline col-4">
                             <label
                                 class="form-label"
                                 for="third_price"
-                            >Prezzo Scontato Per 500 Unità
+                            >
+                                Prezzo Scontato Per 500 Unità
                             </label>
                             <input
                                 class="form-control"
@@ -295,9 +307,9 @@
                             />
 
                             @error('third_price')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
 
                         </div>
@@ -305,8 +317,10 @@
                             <label
                                 class="form-label"
                                 for="third_price"
-                            >Prezzo Scontato Per 500 Unità
+                            >
+                                Prezzo Scontato Per 500 Unità
                             </label>
+
                             <input
                                 class="form-control"
                                 id="third_price"
@@ -318,9 +332,9 @@
                             />
 
                             @error('third_price')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
 
                         </div>
@@ -328,7 +342,8 @@
                             <label
                                 class="form-label"
                                 for="fourth_price"
-                            >Prezzo Scontato Per 1000 Unità
+                            >
+                                Prezzo Scontato Per 1000 Unità
                             </label>
                             <input
                                 class="form-control"
@@ -341,19 +356,15 @@
                             />
 
                             @error('fourth_price')
-                            <div class="alert alert-danger">
+                            <x-alert.danger>
                                 {{ $message }}
-                            </div>
+                            </x-alert.danger>
                             @enderror
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-            <hr>
+            <hr/>
 
             <div class="row">
                 <div class="col-12 d-flex flex-wrap">
@@ -361,7 +372,8 @@
                         <label
                             class="form-label"
                             for="price"
-                        >Prezzo
+                        >
+                            Prezzo
                         </label>
                         <input
                             class="form-control"
@@ -374,17 +386,18 @@
                         />
 
                         @error('price')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
+
                     <div class="form-outline col-2">
                         <label
                             class="form-label"
                             for="price_saled"
-                        >Prezzo Scontato
+                        >
+                            Prezzo Scontato
                         </label>
                         <input
                             class="form-control"
@@ -396,17 +409,18 @@
                         />
 
                         @error('price_saled')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
+
                     <div class="form-outline col-2">
                         <label
                             class="form-label"
                             for="weight"
-                        >Peso in kg
+                        >
+                            Peso in kg
                         </label>
                         <input
                             class="form-control"
@@ -419,17 +433,18 @@
                         />
 
                         @error('weight')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
+
                     <div class="form-outline col-2">
                         <label
                             class="form-label"
                             for="quantity"
-                        >Quantità
+                        >
+                            Quantità
                         </label>
                         <input
                             class="form-control"
@@ -441,17 +456,18 @@
                         />
 
                         @error('quantity')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
+
                     <div class="form-outline col-2">
                         <label
                             class="form-label"
                             for="purchasable_in_multi_of"
-                        >In Multi Di
+                        >
+                            In Multi Di
                         </label>
                         <input
                             class="form-control"
@@ -462,19 +478,20 @@
                             type="number"
                             value="{{ old('purchasable_in_multi_of', $product->purchasable_in_multi_of) }}"
                         >
-                        @error('purchasable_in_multi_of')
-                        <div class="alert alert-danger">
-                            {{ $message }}
-                        </div>
-                        @enderror
 
+                        @error('purchasable_in_multi_of')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
                     </div>
 
                     <div class="form-outline col-4">
                         <label
                             class="form-label"
                             for="description"
-                        >Descrizione Prodotto
+                        >
+                            Descrizione Prodotto
                         </label>
                         <textarea
                             class="form-control"
@@ -483,23 +500,24 @@
                             name="description"
                             required
                             rows="10"
-                            style="white-space: pre-wrap !important;"
-                            type="text"
+                            style="word-wrap: break-word;"
                         >{{ old('description', $product->description) }}</textarea>
 
                         @error('description')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
+
                     <div class="form-outline col-3">
                         <label
                             class="form-label"
                             for="mini_description"
-                        >Descrizione Breve
+                        >
+                            Descrizione Breve
                         </label>
+
                         <textarea
                             class="form-control"
                             cols="30"
@@ -507,28 +525,30 @@
                             name="mini_description"
                             required
                             rows="4"
-                            style="white-space: pre-wrap !important;"
-                            type="text"
+                            style="word-wrap: break-word;"
                         >{{ old('mini_description', $product->mini_description) }}</textarea>
 
                         @error('mini_description')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                     <div class="form-group col-3">
                         <label
                             class="form-label"
                             for="img"
-                        >Immagine Prodotto</label>
+                        >
+                            Immagine Prodotto
+                        </label>
+
                         <input
                             class="form-control"
                             id="img"
                             name="img"
                             type="file"
-                        >
+                        />
+
                         <div
                             class="card mt-3"
                             style="max-width: 300px;"
@@ -539,63 +559,23 @@
                                     class="card-img-top"
                                     src="{{ $product->img }}"
                                 >
-                            @else
-                                <img
-                                    alt="current image"
-                                    class="card-img-top"
-                                    src="{{ asset('storage/' . $product->img) }}"
-                                >
                             @endif
-
                         </div>
+
                         @error('img')
-                        <div class="alert alert-danger mt-3">{{ $message }}</div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
                     </div>
-
                 </div>
             </div>
 
             <div class="row justify-content-center m-4">
-                <button
-                    class="btn btn-primary btn-floating rounded-circle"
-                    type="submit"
-                >
-                    <i class="fa-2x fas fa-download "></i>
-                </button>
+                <x-button class="btn btn-primary btn-floating rounded-circle">
+                    <i class="fa-2x fas fa-save"></i>
+                </x-button>
             </div>
-
-        </div>
-
-    </form>
-@endsection
-
-@push('scripts')
-    <script type="text/javascript">
-        let oldCategoryID = document.getElementById('select-product-category').value;
-
-        // update subcategory dynamic
-        function changeCategory(param)
-        {
-            const selectedCategoryID = param.value;
-            hideOldSubcategories(selectedCategoryID);
-            oldCategoryID = selectedCategoryID;
-        }
-
-        // hide old subcategories
-        function hideOldSubcategories(selectedCategoryID)
-        {
-            let subcategoryCheckboxes = document.querySelectorAll("input[type='checkbox'].subcategory-form-checkbox");
-            if (subcategoryCheckboxes && subcategoryCheckboxes.length)
-            {
-                for (let subcategoryCheckbox of subcategoryCheckboxes)
-                {
-                    subcategoryCheckbox.checked = false;
-                }
-            }
-
-            document.querySelector("#subcategory-pack-" + oldCategoryID).style.display = 'none';
-            document.querySelector("#subcategory-pack-" + selectedCategoryID).style.display = '';
-        }
-    </script>
-@endpush
+        </x-form>
+    </x-layout.container>
+</x-app-layout>

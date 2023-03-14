@@ -46,7 +46,7 @@ class PersonalizeController extends Controller
                 ], 422);
         }
 
-        $this->repository->requestCustomBox($request);
+        $this->repository->sendEmail($request);
 
         return response()
             ->json([

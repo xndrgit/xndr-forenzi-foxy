@@ -31,9 +31,9 @@ abstract class Repository
     /**
      * Getting data by given columns and conditions, orders.
      *
-     * @param $columns
-     * @param $where
-     * @param $order
+     * @param null $where
+     * @param null $orders
+     * @param null $columns
      *
      * @return array
      */

@@ -53,7 +53,7 @@ class PaypalController extends Controller
             $payment->order_id = $orderId;
             $payment->transaction_id = $response['id'];
             $payment->payment_method = 'PayPal';
-            $payment->amount =$amount;
+            $payment->amount = $amount;
             $payment->payment_status = 'in attesa';  // set static
             $payment->created_at = now();
             $payment->updated_at = now();
@@ -71,10 +71,11 @@ class PaypalController extends Controller
                     return redirect()->away($link['href']);
                 }
             }
-        } else {
-            Log::error(json_encode($response));
-            return redirect()->to('/checkout');
         }
+
+        Log::error(json_encode($response));
+
+        return redirect()->to('/checkout');
     }
 
     /**
