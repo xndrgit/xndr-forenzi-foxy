@@ -30,7 +30,14 @@ class PersonalizeRepository extends Repository
     }
 
 
-    public function requestCustomBox($request)
+    /**
+     * Send email to request the custom box
+     *
+     * @param $request
+     *
+     * @return mixed
+     */
+    public function sendEmail($request)
     {
         ini_set('max_execution_time', 500);
         $user_id = null;

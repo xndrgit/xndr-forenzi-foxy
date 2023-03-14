@@ -33,7 +33,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return $this->repository->getAllUsersWithDetail($request);
+            return $this->repository->getAll($request);
         }
 
         $tableColumns = [
@@ -92,7 +92,7 @@ class UserController extends Controller
 
         $user = new User();
 
-        $this->repository->saveUser($user, $data, true);
+        $this->repository->save($user, $data, true);
 
         return redirect()
             ->route('admin.users.show', ['user' => $user->id])
@@ -109,7 +109,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         if (!$user->user_detail) {
-            $this->repository->createUserDetail($user);
+            $this->repository->createDetail($user);
         }
 
         return view('admin.users.show', compact('user'));
@@ -125,7 +125,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         if (!$user->user_detail) {
-            $this->repository->createUserDetail($user);
+            $this->repository->createDetail($user);
         }
 
         $roles = UserDetail::select('admin')->distinct()->get();
@@ -164,7 +164,7 @@ class UserController extends Controller
             'admin'         => 'required'
         ]);
 
-        $this->repository->saveUser($user, $data, false);
+        $this->repository->save($user, $data, false);
 
         return redirect()
             ->route('admin.users.show', ['user' => $user->id])

@@ -62,7 +62,6 @@
                             class="form-control"
                             id="business_name"
                             name="business_name"
-                            required
                             type="text"
                             value="{{ old('business_name', '') }}"
                         />

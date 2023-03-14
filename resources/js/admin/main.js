@@ -26,11 +26,11 @@ window.addEventListener('resize', () => {
     });
 })(jQuery);
 
-window.setCommonDataTable = (tableID, pLength, responsive, fixedHeader, url, columns, dataCallback, columnDefs = null) => {
+window.setCommonDataTable = (tableID, pLength, responsive, fixedHeader, url, columns, dataCallback, columnDefs = null, order = "asc") => {
     const commonServerDataTable = $(tableID).DataTable({
         pageLength: pLength,
         responsive: responsive,
-        order: [[0, "asc"]],
+        order: [[0, order]],
         fixedHeader: fixedHeader,
         dom: '<"row"<"col-md-12"<"row"<"col-md-6 export-btn"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"d-flex align-items-center justify-content-between flex-wrap"<l><"ml-auto pr-3 w-sm-100"p>>> >',
         columnDefs: columnDefs ? [

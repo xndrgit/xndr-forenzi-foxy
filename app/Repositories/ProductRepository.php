@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Product;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class ProductRepository extends Repository
@@ -14,7 +15,7 @@ class ProductRepository extends Repository
         return app(Product::class);
     }
 
-    private function productsQuery()
+    private function makeQuery()
     {
         return $this->model()
             ->select(
@@ -31,11 +32,9 @@ class ProductRepository extends Repository
      * @return mixed
      * @throws Exception
      */
-    public function getAllProducts($request)
+    public function getAll($request)
     {
-        $query = $this->productsQuery();
-
-        return DataTables::of($query)
+        return DataTables::of($this->makeQuery())
             ->editColumn('price', function ($product) {
                 return '€' . number_format($product->price, 2);
             })
@@ -73,7 +72,7 @@ class ProductRepository extends Repository
      *
      * @return mixed
      */
-    public function getProducts($request)
+    public function search($request)
     {
         $query = $this->model()->with(['category', 'subcategories', 'category.subcategories']);
 
@@ -101,5 +100,73 @@ class ProductRepository extends Repository
         }
 
         return $query->paginate(12);
+    }
+
+    /**
+     * 👉 Get unique values for the column
+     *
+     * @param $column
+     *
+     * @return mixed
+     */
+    public function getUniqueValues($column)
+    {
+        return $this->model()->distinct()->pluck($column);
+    }
+
+    /**
+     * 👉 Save product values
+     *
+     * @param $product
+     * @param $request
+     *
+     * @return void
+     */
+    public function save(&$product, $request)
+    {
+        $data = $request->all();
+
+        $product->category_id = $data['category_id'] ?: '';
+
+        $product->code = $data['code'] ?: '';
+        $product->name = $data['name'] ?: '';
+        $product->length = $data['length'] ?: 0;
+        $product->height = $data['height'] ?: 0;
+        $product->width = $data['width'] ?: 0;
+        $product->color = $data['color'] ?: '';
+        $product->print = $data['print'] ?: '';
+
+        $product->first_price = $data['first_price'] ?: 0;
+        $product->second_price = $data['second_price'] ?: 0;
+        $product->third_price = $data['third_price'] ?: 0;
+        $product->fourth_price = $data['fourth_price'] ?: 0;
+
+        $product->price = $data['price'] ?: 0;
+        $product->price_saled = $data['price_saled'] ?: 0;
+
+        $product->quantity = $data['quantity'] ?: 0;
+        $product->weight = $data['weight'] ?: 0;
+
+        $product->purchasable_in_multi_of = $data['purchasable_in_multi_of'] ?: '';
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $file_name = $img->getClientOriginalName();
+
+            if ($img->isValid()) {
+                Storage::putFileAs('uploadedProduct/', $img, $file_name);
+
+                $product->img = asset('storage/uploadedProduct') . '/' . $file_name;
+            }
+        }
+
+        $product->mini_description = $data['mini_description'] ?: '';
+        $product->description = $data['description'] ?: '';
+
+        $product->save();
+
+        if ($request->has('subcategory_id')) {
+            $product->subcategories()->sync($request->input('subcategory_id'));
+        }
     }
 }

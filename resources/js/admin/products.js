@@ -27,8 +27,40 @@
                 [{
                     targets: [5, 6],
                     visible: false,
-                }]
+                }],
+                'desc'
             );
+        }
+
+        let oldCategoryID = null;
+
+        const productCategorySel = $('#select-product-category');
+        if (productCategorySel) {
+            oldCategoryID = productCategorySel.val();
+
+            productCategorySel.on('change', function () {
+                changeCategory(this);
+            });
+        }
+
+        // update subcategory dynamic
+        function changeCategory(param) {
+            const selectedCategoryID = param.value;
+            hideOldSubcategories(selectedCategoryID);
+            oldCategoryID = selectedCategoryID;
+        }
+
+        // hide old subcategories
+        function hideOldSubcategories(selectedCategoryID) {
+            let subcategoryCheckboxes = document.querySelectorAll("input[type='checkbox'].subcategory-form-checkbox");
+            if (subcategoryCheckboxes && subcategoryCheckboxes.length) {
+                for (let subcategoryCheckbox of subcategoryCheckboxes) {
+                    subcategoryCheckbox.checked = false;
+                }
+            }
+
+            document.querySelector("#subcategory-pack-" + oldCategoryID).style.display = 'none';
+            document.querySelector("#subcategory-pack-" + selectedCategoryID).style.display = '';
         }
     });
 })(jQuery);

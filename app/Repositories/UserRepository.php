@@ -20,7 +20,7 @@ class UserRepository extends Repository
      *
      * @return mixed
      */
-    private function getUsersDataQuery()
+    private function makeQuery()
     {
         return $this->model()
             ->select(
@@ -38,11 +38,9 @@ class UserRepository extends Repository
      * @return mixed
      * @throws Exception
      */
-    public function getAllUsersWithDetail($request)
+    public function getAll($request)
     {
-        $query = $this->getUsersDataQuery();
-
-        return DataTables::of($query)
+        return DataTables::of($this->makeQuery())
             ->addColumn('action', function ($user) {
                 $actionStr = '<div class="d-flex justify-content-center align-items-center">';
                 $actionStr .= '<a class="btn btn-sm btn-success rounded-circle mr-1" ';
@@ -76,7 +74,7 @@ class UserRepository extends Repository
      *
      * @return void
      */
-    public function saveUser(&$user, $data, $create)
+    public function save(&$user, $data, $create)
     {
         $user->name = $data['name'] ?: '';
         $user->email = $data['email'] ?: '';
@@ -86,9 +84,9 @@ class UserRepository extends Repository
         $user->save();
 
         if ($create) {
-            $this->createUserDetail($user);
+            $this->createDetail($user);
         } else {
-            $this->saveUserDetail($user, $data);
+            $this->saveDetail($user, $data);
         }
     }
 
@@ -100,7 +98,7 @@ class UserRepository extends Repository
      *
      * @return void
      */
-    public function updateUserDetails($user_id, $params)
+    public function updateDetails($user_id, $params)
     {
         if (isset($params['user_detail'])) {
             $user = $this->model()->with('user_detail')->where('id', $user_id)->first();
@@ -108,7 +106,7 @@ class UserRepository extends Repository
             $data = $params['user_detail'];
             $data['admin'] = 'registered';
 
-            $this->saveUserDetail($user, $data);
+            $this->saveDetail($user, $data);
         }
     }
 
@@ -119,7 +117,7 @@ class UserRepository extends Repository
      *
      * @return void
      */
-    public function createUserDetail(&$user)
+    public function createDetail(&$user)
     {
         $user->user_detail()->create([
             'surname'       => '',
@@ -171,7 +169,7 @@ class UserRepository extends Repository
      *
      * @return void
      */
-    private function saveUserDetail(&$user, $data)
+    private function saveDetail(&$user, $data)
     {
         $saveData = [
             'surname'       => $data['surname'] ?: '',
