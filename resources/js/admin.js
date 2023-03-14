@@ -18,3 +18,4 @@ window.DataTable = require('datatables.net-bs4');
 
 require('./admin/main');
 require('./admin/users');
+require('./admin/products');

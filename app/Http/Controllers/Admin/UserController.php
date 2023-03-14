@@ -42,7 +42,7 @@ class UserController extends Controller
             ['label' => 'Nome', 'class' => 'text-center'],
             ['label' => 'Mail', 'class' => 'text-center'],
             ['label' => 'Telefono', 'class' => 'text-center'],
-            ['label' => 'Impostazioni', 'class' => 'no-sort display-none unsettled-cols text-center']
+            ['label' => 'Impostazioni', 'class' => 'no-sort unsettled-cols text-center']
         ];
 
         return view('admin.users.index', compact('tableColumns'));
