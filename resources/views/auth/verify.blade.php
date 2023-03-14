@@ -17,7 +17,6 @@
             {{ __('If you did not receive the email') }},
             <x-form
                 class="d-inline"
-                method="POST"
                 action="{{ route('verification.resend') }}"
             >
                 <x-button class="btn-link p-0 m-0 align-baseline">

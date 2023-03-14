@@ -2,7 +2,7 @@
     {{
    $attributes->merge([
        'action' => '/',
-       'method' => 'POST',
+       'method' => 'post',
        'id' => '',
        'name' => '',
        'class' => '',

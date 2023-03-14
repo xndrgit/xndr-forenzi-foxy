@@ -8,7 +8,6 @@
 
         <x-form
             action="{{ route('admin.users.store') }}"
-            method="post"
         >
             <div class="form-group row">
                 <div class="col">
@@ -308,7 +307,6 @@
                             cols="20"
                             id="notes"
                             name="notes"
-                            required
                             rows="5"
                             style="white-space: nowrap !important;"
                             type="text"
@@ -334,7 +332,8 @@
                             class="form-control"
                             id="password"
                             name="password"
-                            type="text"
+                            type="password"
+                            required
                             value="{{ old('password', '') }}"
                         />
 
@@ -352,7 +351,12 @@
                         >
                             Livello
                         </label>
-                        <select name="admin" class="form-control">
+                        <select
+                            id="admin"
+                            name="admin"
+                            required
+                            class="form-control"
+                        >
                             @foreach ($roles as $role)
                                 <option value="{{ $role->admin }}">{{ $role->admin }}</option>
                             @endforeach

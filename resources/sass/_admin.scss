@@ -156,5 +156,9 @@
     .create-btn {
         position: absolute;
         z-index: 2;
+
+        @media screen and (max-width: 600px) {
+            position: relative;
+        }
     }
 }

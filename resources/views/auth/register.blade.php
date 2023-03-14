@@ -7,10 +7,7 @@
         </x-slot>
 
         <x-slot name="cardBody">
-            <x-form
-                action="{{ route('register') }}"
-                method="POST"
-            >
+            <x-form action="{{ route('register') }}">
                 <div class="form-group row">
                     <label
                         class="col-md-4 col-form-label text-md-right"
