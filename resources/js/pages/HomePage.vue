@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import LoadingComponent from "../components/MainComponents/LoadingComponent.vue";
 import LoadingRollComponent from "../components/MainComponents/LoadingRollComponent.vue";
 
