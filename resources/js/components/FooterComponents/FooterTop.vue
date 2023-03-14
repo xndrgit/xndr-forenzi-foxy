@@ -30,7 +30,6 @@
                     <div class="footer-section col-10 col-sm-3">
                         <h3>Seguici sui social</h3>
                         <ul class="wrapper icons">
-<<<<<<< HEAD
                             <a href="https://www.facebook.com/FoxyBox.scatole">
                                 <li class="icon facebook">
                                     <span class="tooltip">Facebook</span>
@@ -39,15 +38,6 @@
                                     ></span>
                                 </li>
                             </a>
-
-=======
-                            <li class="icon facebook">
-                                <span class="tooltip">Facebook</span>
-                                <span
-                                ><i class="fa-sm fab fa-facebook-f"></i
-                                ></span>
-                            </li>
->>>>>>> a9857c95b3f98804610973a860fe5757582262a3
                             <!-- <li class="icon twitter">
                                 <span class="tooltip">Twitter</span>
                                 <span
@@ -57,7 +47,7 @@
                             <li class="icon instagram">
                                 <span class="tooltip">Instagram</span>
                                 <span
-                                ><i class="fa-sm fab fa-instagram"></i
+                                    ><i class="fa-sm fab fa-instagram"></i
                                 ></span>
                             </li>
                             <!-- <li class="icon github">
@@ -79,8 +69,8 @@
                             molto altro.
                         </p>
                         <form>
-                            <input placeholder="" type="email"/>
-                            <br/>
+                            <input placeholder="" type="email" />
+                            <br />
                             <button
                                 class="dark-button text-white"
                                 type="submit"
