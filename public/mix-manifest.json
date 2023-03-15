@@ -1,11 +1,11 @@
 {
-    "/js/manifest.js": "/js/manifest.js?id=7db827d654313dce4250",
-    "/js/vendor-jquery.js": "/js/vendor-jquery.js?id=7130dd8db67745aa8f5b",
-    "/js/vendor.js": "/js/vendor.js?id=37c647a4e8524b67975f",
-    "/js/admin.js": "/js/admin.js?id=9a6f72c48b0438583457",
-    "/js/app.js": "/js/app.js?id=673e4a4ac380a62612f7",
-    "/css/app.css": "/css/app.css?id=d9b03688119be432f65f",
-    "/js/front.js": "/js/front.js?id=622f2c08a7c92453b2c7",
-    "/js/datatables.bundle.js": "/js/datatables.bundle.js?id=f7235c6094ace21c074c",
-    "/css/datatables.bundle.css": "/css/datatables.bundle.css?id=9344093c6f7f23cd8a41"
+    "/js/admin.js": "/js/admin.js",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/front.js": "/js/front.js",
+    "/js/manifest.js": "/js/manifest.js",
+    "/js/vendor.js": "/js/vendor.js",
+    "/js/vendor-jquery.js": "/js/vendor-jquery.js",
+    "/js/datatables.bundle.js": "/js/datatables.bundle.js",
+    "/css/datatables.bundle.css": "/css/datatables.bundle.css"
 }

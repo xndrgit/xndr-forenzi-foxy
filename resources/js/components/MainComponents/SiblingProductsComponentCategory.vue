@@ -1,7 +1,9 @@
 <template>
     <tr>
         <td>
-            <img :alt="product.name" :src="imageSource" class="img-fluid"/>
+            <a :href="`/product/${product.id}`">
+                <img :alt="product.name" :src="imageSource" class="img-fluid" />
+            </a>
         </td>
 
         <td class="font-weight-bold">{{ product.code }}</td>
@@ -36,7 +38,7 @@
         <td>
             <div class="d-flex align-items-center">
                 <div class="quantity d-flex">
-                    <input id="input" v-model="value" type="text"/>
+                    <input id="input" v-model="value" type="text" />
                     <div class="d-flex flex-column">
                         <button @click="increaseValue()">+</button>
                         <button @click="decreaseValue()">-</button>
@@ -73,8 +75,7 @@ export default {
         imageSource() {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
-            }
-            else {
+            } else {
                 return "/storage/" + this.product.img;
             }
         },
@@ -143,8 +144,7 @@ export default {
                 }
 
                 this.items = updatedItems;
-            }
-            else {
+            } else {
                 addedItem.cart_quantity = this.value;
 
                 this.items = [...this.items, addedItem];
