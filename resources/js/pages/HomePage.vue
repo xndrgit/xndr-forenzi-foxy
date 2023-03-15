@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <div class="container-lg">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-2">
                 <loadingComponent v-if="loadingCategories"/>
 
                 <div

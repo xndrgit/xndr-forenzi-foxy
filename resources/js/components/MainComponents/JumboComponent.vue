@@ -56,15 +56,18 @@
                 <div
                     class="countdown d-flex justify-content-center align-items-center flex-wrap col-12 p-0"
                 >
-                    <div class="square flex-column">
-                        <div class="square-time">
-                            <span>{{ days }}</span>
-                        </div>
+                    <div class="d-none d-sm-block">
+                        <div class="square flex-column">
+                            <div class="square-time">
+                                <span>{{ days }}</span>
+                            </div>
 
-                        <div class="square-text">
-                            <span>GIORNI</span>
+                            <div class="square-text">
+                                <span>GIORNI</span>
+                            </div>
                         </div>
                     </div>
+
                     <div class="square flex-column">
                         <div class="square-time">
                             <span>{{ hours }}</span>
@@ -83,6 +86,7 @@
                             <span>MINUTI</span>
                         </div>
                     </div>
+
                     <div class="square flex-column">
                         <div class="square-time">
                             <span>{{ seconds }}</span>
@@ -98,21 +102,24 @@
                     {{ nextDay | formatDate }}
                 </h5>
             </div>
-            <div
-                class="delivery d-none d-lg-flex d-flex align-items-start position-relative"
-            >
-                <div class="p-2">
-                    <h2 class="txt-orange font-weight-bold">
-                        Spedizione gratuita in tutta Italia
-                    </h2>
-                    <span> per ordini di qualunque importo! </span>
-                </div>
-                <div class="w-40 d-flex justify-content-start">
-                    <img
-                        alt=""
-                        class="delivery-image d-none d-sm-block"
-                        src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
-                    />
+
+            <div class="d-none d-xl-block">
+                <div
+                    class="delivery d-lg-flex d-flex align-items-start position-relative"
+                >
+                    <div class="p-2">
+                        <h3 class="txt-orange font-weight-bold">
+                            Spedizione gratuita in tutta Italia
+                        </h3>
+                        <span> per ordini di qualunque importo! </span>
+                    </div>
+                    <div class="w-40 d-flex justify-content-start">
+                        <img
+                            alt=""
+                            class="delivery-image d-none d-md-block"
+                            src="../../../../public/Links/free-non-stop-delivery-man-with-fallen-boxes_23-2148462373.png"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,7 +127,7 @@
 </template>
 
 <script>
-import {Carousel, Slide} from "vue-carousel";
+import { Carousel, Slide } from "vue-carousel";
 
 export default {
     components: {
@@ -321,7 +328,7 @@ div.VueCarousel-pagination {
 
         .delivery {
             height: fit-content;
-            margin-top: 17px;
+            margin-top: 23px;
 
             border: 10px solid rgb(246, 134, 48);
 

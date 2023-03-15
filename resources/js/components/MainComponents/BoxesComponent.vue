@@ -27,16 +27,26 @@
                     <p v-if="product.price_saled" class="current-price">
                         {{ product.price_saled }} €
                     </p>
-                    <p v-else class="price">
-                        {{ product.price }} €
-                    </p>
+                    <p v-else class="price">{{ product.price }} €</p>
                 </div>
             </div>
             <div class="card-footer">
-                <div class="add-to-cart d-flex col-12">
+                <div class="add-to-cart d-flex col-12 align-items-center">
                     <div class="left">
-                        <button :disabled="!product.quantity || product.quantity < 1" class="yellow-button" @click="addToCart">
-                            AGGIUNGI AL CARRELLO
+                        <button
+                            :disabled="
+                                !product.quantity || product.quantity < 1
+                            "
+                            class="yellow-button"
+                            @click="addToCart"
+                        >
+                            <span class="d-none d-sm-block">
+                                AGGIUNGI AL CARRELLO
+                            </span>
+
+                            <span class="d-sm-none d-block">
+                                <i class="fa-solid fa-plus"></i>
+                            </span>
                         </button>
                     </div>
                     <div class="right">
@@ -83,8 +93,7 @@ export default {
         imageSource() {
             if (/^http/.test(this.product.img)) {
                 return this.product.img;
-            }
-            else {
+            } else {
                 return "/storage/" + this.product.img;
             }
         },
@@ -98,22 +107,24 @@ export default {
                 this.items = [];
             }
 
-            const filterIndex = this.items.findIndex(el => el.id === addedItem.id);
-            if (filterIndex > -1 && filterIndex !== undefined && filterIndex !== null) {
+            const filterIndex = this.items.findIndex(
+                (el) => el.id === addedItem.id
+            );
+            if (
+                filterIndex > -1 &&
+                filterIndex !== undefined &&
+                filterIndex !== null
+            ) {
                 let updatedItems = JSON.parse(JSON.stringify(this.items));
                 if (updatedItems[filterIndex]) {
                     updatedItems[filterIndex].cart_quantity += this.quantity;
                 }
 
                 this.items = updatedItems;
-            }
-            else {
+            } else {
                 addedItem.cart_quantity = this.quantity;
 
-                this.items = [
-                    ...this.items,
-                    addedItem
-                ];
+                this.items = [...this.items, addedItem];
             }
 
             // alert("Added to Cart");
@@ -138,7 +149,7 @@ export default {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
 
-    margin: 1rem 3rem;
+    margin: 0.5rem 0.5rem;
 
     &:hover {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -164,7 +175,7 @@ export default {
 
         .card-title {
             margin: 0;
-            font-size: .8rem;
+            font-size: 0.8rem;
             font-weight: bold;
             line-height: 1.5;
         }
@@ -259,6 +270,151 @@ export default {
             #minus-button:hover,
             #plus-button:hover {
                 background-color: #fdbc48;
+            }
+        }
+    }
+}
+
+@media (max-width: 555px) {
+    .box {
+        width: 155px;
+        border: 1px solid white;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease-in-out;
+
+        margin: 0.2rem 0.2rem;
+
+        &:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            transform: scale(1);
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .card-header {
+            background-color: white;
+            height: 140px;
+            padding: 0.2rem;
+
+            border-bottom: 0;
+        }
+
+        .card-body {
+            background-color: white;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .card-title {
+                margin: 0;
+                font-size: 0.8rem;
+                font-weight: bold;
+                line-height: 1.5;
+            }
+
+            .current-price {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            .old-price {
+                font-size: 0.8rem;
+                font-weight: bold;
+                color: lightgray;
+                margin-right: 5px;
+            }
+
+            .sale-banner {
+                display: none;
+            }
+
+            .price {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            .add-to-cart {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .col-12 {
+                    padding: 0;
+                }
+            }
+
+            #add-to-cart-button {
+                background-color: black;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+            #add-to-cart-button:hover {
+                background-color: #3e8e41;
+            }
+        }
+
+        .card-footer {
+            background-color: white;
+            padding: 0;
+            margin: 0;
+
+            border-top: 0;
+
+            .yellow-button {
+                font-size: 0.5rem;
+            }
+
+            .left {
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .right {
+                margin: 0 5px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                input {
+                    text-align: center;
+                    max-width: 35px;
+                    height: fit-content;
+                }
+
+                input,
+                button {
+                    border: 1px solid lightgrey;
+                    font-size: 0.4rem;
+                }
+
+                #minus-button,
+                #plus-button {
+                    height: fit-content;
+                    background-color: white;
+
+                    text-align: center;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+                #minus-button:hover,
+                #plus-button:hover {
+                    background-color: #fdbc48;
+                }
             }
         }
     }
