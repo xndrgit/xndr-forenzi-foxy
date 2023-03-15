@@ -70,10 +70,10 @@ Route::middleware(['auth', 'admin'])
         Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('users', 'UserController');
         Route::resource('products', 'ProductController');
-        Route::resource('orders', 'OrderController');
+        Route::resource('orders', 'OrderController')->except(['create', 'store']);
         Route::resource('payments', 'PaymentController');
         Route::resource('categories', 'CategoryController');
-        Route::resource('subcategories', 'SubcategoryController')->except(['show']);
+        Route::resource('subcategories', 'SubcategoryController');
 
         // 👉 Get table data
         Route::post('/users/data', 'UserController@index');
@@ -81,6 +81,7 @@ Route::middleware(['auth', 'admin'])
         Route::post('/payments/data', 'PaymentController@index');
         Route::post('/categories/data', 'CategoryController@index');
         Route::post('/subcategories/data', 'SubcategoryController@index');
+        Route::post('/orders/data', 'OrderController@index');
     });
 
 Route::middleware('auth')

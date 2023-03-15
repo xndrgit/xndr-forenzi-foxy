@@ -6,196 +6,113 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
-use App\Models\UserDetail;
-use App\User;
+use App\Repositories\OrderRepository;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
+    protected $repository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->repository = $orderRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
+     * @throws Exception
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::orderBy('id', 'desc')->get();
-        // dd($orders[1]->payment->id);
-        return view('admin.orders.index', compact('orders'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // $products = Product::all();
-        // $statuss = Order::select('status')->distinct()->get();
-        // $paymentStatuses = Payment::select('payment_status')->distinct()->get();
-        // $payment_methods = Payment::select('payment_method')->distinct()->get();
-        // return view('admin.orders.create', compact('statuss', 'products', 'payment_methods', 'paymentStatuses'));
-    }
+        if ($request->ajax()) {
+            return $this->repository->getAll($request);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $tableColumns = [
+            ['label' => 'ID', 'class' => 'text-center'],
+            ['label' => 'Utente', 'class' => 'text-center'],
+            ['label' => 'Numero', 'class' => 'text-center'],
+            ['label' => 'Data', 'class' => 'text-center'],
+            ['label' => 'Stato Ordine', 'class' => 'text-center'],
+            ['label' => 'Stato Pagamento', 'class' => 'text-center'],
+            ['label' => 'Totale', 'class' => 'text-center'],
+            ['label' => 'Impostazioni', 'class' => 'no-sort unsettled-cols text-center']
+        ];
+
+        return view('admin.orders.index', compact('tableColumns'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     *
+     * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        $order = Order::findOrFail($id);
         return view('admin.orders.show', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     *
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(Order $order)
     {
 
-        $order = Order::findOrFail($id);
-
         $products = Product::all();
-        $statuss = Order::select('status')->distinct()->get();
+        $statuses = Order::select('status')->distinct()->get();
         $paymentStatuses = Payment::select('payment_status')->distinct()->get();
         $payment_methods = Payment::select('payment_method')->distinct()->get();
-        return view('admin.orders.edit', compact('order', 'statuss', 'products', 'payment_methods', 'paymentStatuses'));
+
+        return view('admin.orders.edit', compact('order', 'statuses', 'products', 'payment_methods', 'paymentStatuses'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Order   $order
+     *
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
+    : RedirectResponse
     {
-        $data = $request->all();
-        // dd($data);
-        $oldData = Order::findOrFail($id);
-
-
-        // $request->validate(
-        //     [
-        //         'order_number' => [
-        //             'min:3',
-        //             'max:8',
-        //             'required',
-        //             Rule::unique('orders')->ignore($oldData['order_number'], 'order_number'),
-        //         ],
-        //         'status' => [
-        //             'required',
-        //         ],
-        //         'products' => [
-        //             'required',
-        //             'array',
-        //         ],
-        //     ]
-        // );
-
-        //! UPDATE PIVOT TABLE
-
-        foreach ($request->products as $product) {
-
-            $productId = $product['product_id'];
-            $quantity = $product['quantity'];
-            $oldData->products()->updateExistingPivot($productId, compact('quantity'));
-        }
-
-
-
-
-        foreach ($request->products as $product) {
-
-            $productId = $product['product_id'];
-            $thisProduct = Product::findOrFail($productId);
-
-            // dd($thisProduct->code);
-            $thisProduct->code = $product['code'];
-            $thisProduct->name = $product['name'];
-            $thisProduct->price = $product['price'];
-            $thisProduct->save();
-        }
-
-
-
-
-        // dd($request->products);
-
-
-
-
-
-        $oldData->order_number = $data['order_number'];
-        $oldData->status = $data['status'];
-        $oldData->shipping_cost = $data['shipping_cost'];
-        $oldData->conai = $data['conai'];
-        $oldData->iva = $data['iva'];
-        $oldData->subtotal = $data['subtotal'];
-        $oldData->total = $data['total'];
-        $oldData->save();
-
-        $orderId = $data['id'];
-        $thisPayment = Payment::find($orderId);
-        $thisPayment->payment_method = $data['payment_method'];
-        $thisPayment->payment_status = $data['payment_status'];
-        $thisPayment->save();
-
-
-        $oldData->user->name = $data['name'];
-        $oldData->user->email = $data['email'];
-        $oldData->user->save();
-
-        $userId = $oldData->user->id;
-        $userDetail = UserDetail::where('user_id', $userId)->first();
-        $userDetail->surname = $data['surname'];
-        $userDetail->address = $data['address'];
-        $userDetail->business_name = $data['business_name'];
-        $userDetail->cap = $data['cap'];
-        $userDetail->city = $data['city'];
-        $userDetail->state = $data['state'];
-        $userDetail->province = $data['province'];
-        $userDetail->notes = $data['notes'];
-        $userDetail->phone = $data['phone'];
-        $userDetail->pec = $data['pec'];
-        $userDetail->code_sdi = $data['code_sdi'];
-        $userDetail->save();
+        $this->repository->save($order, $request);
 
         return redirect()
-            ->route('admin.orders.show', ['order' => $oldData])
-            ->with('edited', $data['order_number']);
+            ->route('admin.orders.show', ['order' => $order->id])
+            ->with('edited', $request->input('order_number'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     *
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Order $order)
+    : RedirectResponse
     {
-        // dd($id);
-        $order = Order::findOrFail($id);
+        $order->payment()->delete();
         $order->delete();
+
         return redirect()
             ->route('admin.orders.index')
             ->with('deleted', $order['order_number']);

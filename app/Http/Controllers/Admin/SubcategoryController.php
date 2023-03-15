@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subcategory;
+use App\Repositories\SubcategoryRepository;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -13,16 +14,44 @@ use Illuminate\View\View;
 
 class SubcategoryController extends Controller
 {
+    protected $repository;
+
+    public function __construct(SubcategoryRepository $subcategoryRepository)
+    {
+        $this->repository = $subcategoryRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Application|Factory|View
+     * @throws Exception
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subcategories = Subcategory::all();
+        if ($request->ajax()) {
+            return $this->repository->getAll($request);
+        }
 
-        return view('admin.subcategories.index', compact('subcategories'));
+        $tableColumns = [
+            ['label' => 'ID', 'class' => 'text-center'],
+            ['label' => 'Nome', 'class' => 'text-center'],
+            ['label' => 'Impostazioni', 'class' => 'no-sort unsettled-cols text-center']
+        ];
+
+        return view('admin.subcategories.index', compact('tableColumns'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Subcategory $subcategory
+     *
+     * @return Application|Factory|View
+     */
+    public function show(Subcategory $subcategory)
+    {
+        return view('admin.subcategories.show', compact('subcategory'));
     }
 
     /**
@@ -34,7 +63,10 @@ class SubcategoryController extends Controller
     {
         $subcategory = new Subcategory();
 
-        return view('admin.subcategories.create', compact('subcategory'));
+        $action = route('admin.subcategories.store');
+        $create = true;
+
+        return view('admin.subcategories.edit-form', compact('subcategory', 'action', 'create'));
     }
 
     /**
@@ -52,11 +84,8 @@ class SubcategoryController extends Controller
         ]);
 
         $subcategory = new Subcategory();
-        $subcategory->name = $request->input('name') ?: '';
-        $subcategory->description = $request->input('description') ?: '';
-        $subcategory->created_at = now();
-        $subcategory->updated_at = now();
-        $subcategory->save();
+
+        $this->repository->save($subcategory, $request, true);
 
         return redirect()
             ->route('admin.subcategories.index')
@@ -72,7 +101,10 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        return view('admin.subcategories.edit', compact('subcategory'));
+        $action = route('admin.subcategories.update', ['subcategory' => $subcategory->id]);
+        $create = false;
+
+        return view('admin.subcategories.edit-form', compact('subcategory', 'action', 'create'));
     }
 
     /**
@@ -90,10 +122,7 @@ class SubcategoryController extends Controller
             'name' => 'required|min:3|max:255'
         ]);
 
-        $subcategory->name = $request->input('name') ?: '';
-        $subcategory->description = $request->input('description') ?: '';
-        $subcategory->updated_at = now();
-        $subcategory->save();
+        $this->repository->save($subcategory, $request);
 
         return redirect()
             ->route('admin.subcategories.index')
