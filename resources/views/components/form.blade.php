@@ -2,7 +2,9 @@
     {{
    $attributes->merge([
        'action' => '/',
-       'method' => 'POST',
+       'method' => 'post',
+       'id' => '',
+       'name' => '',
        'class' => '',
        'enctype' => 'multipart/form-data'
    ]) }}

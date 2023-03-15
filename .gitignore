@@ -271,3 +271,4 @@ $RECYCLE.BIN/
 /public/css/*
 /public/css/app.css
 /public/fonts
+/public/mix-manifest.json

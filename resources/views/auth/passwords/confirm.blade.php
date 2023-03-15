@@ -9,10 +9,7 @@
         <x-slot name="cardBody">
             {{ __('Please confirm your password before continuing.') }}
 
-            <x-form
-                method="POST"
-                action="{{ route('password.confirm') }}"
-            >
+            <x-form action="{{ route('password.confirm') }}">
                 <div class="form-group row">
                     <label
                         for="password"

@@ -1,3 +1,9 @@
+.dataTables_wrapper {
+    width: 100%;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .admin-panel {
     padding: 0;
     margin: 0;
@@ -144,6 +150,15 @@
     .main-content {
         > .container {
             overflow: auto;
+        }
+    }
+
+    .create-btn {
+        position: absolute;
+        z-index: 2;
+
+        @media screen and (max-width: 600px) {
+            position: relative;
         }
     }
 }

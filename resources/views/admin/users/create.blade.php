@@ -1,404 +1,381 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| User Create'))
 
-@section('content')
-    <form
-        action="{{ route('admin.users.store') }}"
-        method="post"
-    > @csrf @method('POST')
+    <x-layout.container>
+        <x-layout.form-header>
+            Create User
+        </x-layout.form-header>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
+        <x-form
+            action="{{ route('admin.users.store') }}"
+        >
+            <div class="form-group row">
+                <div class="col">
+                    <x-form-outline>
+                        <label class="form-label w-100" for="name">
+                            Nome
+                        </label>
+                        <input
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            required
+                            type="text"
+                            value="{{ old('name', '') }}"
+                        />
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="name"
-                                >Nome
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="name"
-                                    name="name"
-                                    required
-                                    type="text"
-                                    value="{{ old('name', '') }}"
-                                />
+                        @error('name')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+                    </x-form-outline>
+                    <x-form-outline>
+                        <label class="form-label w-100" for="surname">
+                            Cognome
+                        </label>
+                        <input
+                            class="form-control"
+                            id="surname"
+                            name="surname"
+                            required
+                            type="text"
+                            value="{{ old('surname', '') }}"
+                        />
 
-                                @error('name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                        @error('surname')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+                    </x-form-outline>
+                </div>
+                <div class="col">
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="business_name"
+                        >
+                            Ragione Sociale
+                        </label>
+                        <input
+                            class="form-control"
+                            id="business_name"
+                            name="business_name"
+                            type="text"
+                            value="{{ old('business_name', '') }}"
+                        />
 
-                            </div>
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="surname"
-                                >Cognome
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="surname"
-                                    name="surname"
-                                    required
-                                    type="text"
-                                    value="{{ old('surname', '') }}"
-                                />
+                        @error('business_name')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                                @error('name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                    </x-form-outline>
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="address"
+                        >
+                            Indirizzo
+                        </label>
+                        <input
+                            class="form-control"
+                            id="address"
+                            name="address"
+                            required
+                            type="text"
+                            value="{{ old('address', '') }}"
+                        />
 
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="business_name"
-                                >Ragione Sociale
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="business_name"
-                                    name="business_name"
-                                    required
-                                    type="text"
-                                    value="{{ old('business_name', '') }}"
-                                />
+                        @error('address')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                                @error('business_name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                    </x-form-outline>
+                </div>
+                <div class="col">
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="cap"
+                        >
+                            Cap
+                        </label>
+                        <input
+                            class="form-control"
+                            id="cap"
+                            name="cap"
+                            required
+                            type="text"
+                            value="{{ old('cap', '') }}"
+                        />
 
-                            </div>
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="address"
-                                >Indirizzo
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="address"
-                                    name="address"
-                                    required
-                                    type="text"
-                                    value="{{ old('address', '') }}"
-                                />
+                        @error('cap')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                                @error('address')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                    </x-form-outline>
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="city"
+                        >
+                            Città
+                        </label>
+                        <input
+                            class="form-control"
+                            id="city"
+                            name="city"
+                            required
+                            type="text"
+                            value="{{ old('city', '') }}"
+                        />
 
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="cap"
-                                >Cap
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="cap"
-                                    name="cap"
-                                    required
-                                    type="text"
-                                    value="{{ old('cap', '') }}"
-                                />
+                        @error('city')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                                @error('cap')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                    </x-form-outline>
+                </div>
+                <div class="col">
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="province"
+                        >
+                            Provincia
+                        </label>
+                        <input
+                            class="form-control"
+                            id="province"
+                            name="province"
+                            required
+                            type="text"
+                            value="{{ old('province', '') }}"
+                        />
 
-                            </div>
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="city"
-                                >Città
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="city"
-                                    name="city"
-                                    required
-                                    type="city"
-                                    value="{{ old('city', '') }}"
-                                />
+                        @error('province')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+                    </x-form-outline>
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="state"
+                        >
+                            Stato
+                        </label>
+                        <input
+                            class="form-control"
+                            id="state"
+                            name="state"
+                            required
+                            type="text"
+                            value="{{ old('state', '') }}"
+                        />
 
-                                @error('city')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                        @error('state')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="province"
-                                >Provincia
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="province"
-                                    name="province"
-                                    required
-                                    type="text"
-                                    value="{{ old('province', '') }}"
-                                />
+                    </x-form-outline>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="phone"
+                        >
+                            Telefono
+                        </label>
+                        <input
+                            class="form-control"
+                            id="phone"
+                            name="phone"
+                            required
+                            type="text"
+                            value="{{ old('phone', '') }}"
+                        />
 
-                                @error('province')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                        @error('phone')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                            </div>
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="state"
-                                >Stato
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="state"
-                                    name="state"
-                                    required
-                                    type="text"
-                                    value="{{ old('state', '') }}"
-                                />
+                    </x-form-outline>
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="email"
+                        >
+                            Email
+                        </label>
+                        <input
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            required
+                            type="text"
+                            value="{{ old('email', '') }}"
+                        />
 
-                                @error('state')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                        @error('email')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="phone"
-                                >Telefono
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="phone"
-                                    name="phone"
-                                    required
-                                    type="text"
-                                    value="{{ old('phone', '') }}"
-                                />
-
-                                @error('phone')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="email"
-                                >Email
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="email"
-                                    name="email"
-                                    required
-                                    type="text"
-                                    value="{{ old('email', '') }}"
-                                />
-
-                                @error('email')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="pec"
-                                >Pec
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="pec"
-                                    name="pec"
-                                    required
-                                    type="text"
-                                    value="{{ old('pec', '') }}"
-                                />
-
-                                @error('pec')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="code_sdi"
-                                >Codice Sdi
-                                </label>
-                                <input
-                                    class="form-control"
-                                    id="code_sdi"
-                                    name="code_sdi"
-                                    required
-                                    type="text"
-                                    value="{{ old('code_sdi', '') }}"
-                                />
-
-                                @error('code_sdi')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="form-outline">
-                                <label
-                                    class="form-label"
-                                    for="notes"
-                                >Note
-                                </label>
-
-                                <textarea
-                                    class="form-control"
-                                    cols="30"
-                                    id="notes"
-                                    name="notes"
-                                    required
-                                    rows="4"
-                                    style="white-space: nowrap !important;"
-                                    type="text"
-                                >{{ old('notes', '') }}</textarea>
-
-                                @error('pec')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                        </div>
-                    </div>
-
+                    </x-form-outline>
                 </div>
 
                 <div class="col">
-                    <div class="form-outline">
+                    <x-form-outline>
                         <label
-                            class="form-label"
+                            class="form-label w-100"
+                            for="pec"
+                        >
+                            Pec
+                        </label>
+                        <input
+                            class="form-control"
+                            id="pec"
+                            name="pec"
+                            required
+                            type="text"
+                            value="{{ old('pec', '') }}"
+                        />
+
+                        @error('pec')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+
+                    </x-form-outline>
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="code_sdi"
+                        >
+                            Codice Sdi
+                        </label>
+                        <input
+                            class="form-control"
+                            id="code_sdi"
+                            name="code_sdi"
+                            required
+                            type="text"
+                            value="{{ old('code_sdi', '') }}"
+                        />
+
+                        @error('code_sdi')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+
+                    </x-form-outline>
+                </div>
+
+                <div class="col">
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="notes"
+                        >
+                            Note
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            cols="20"
+                            id="notes"
+                            name="notes"
+                            rows="5"
+                            style="word-wrap: break-word;"
+                        >{{ old('notes', '') }}</textarea>
+
+                        @error('pec')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+
+                    </x-form-outline>
+                </div>
+                <div class="col">
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
                             for="password"
-                        >Password
+                        >
+                            Password
                         </label>
                         <input
                             class="form-control"
                             id="password"
                             name="password"
-                            type="text"
+                            type="password"
+                            required
                             value="{{ old('password', '') }}"
                         />
 
                         @error('password')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
+                    </x-form-outline>
 
-                    </div>
-
-                    <table class="table table-striped">
-
-                        <thead>
-
-                            <tr>
-                                <th>Id</th>
-                                <th>Nome</th>
-                                <th>Livello</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <x-form-outline>
+                        <label
+                            class="form-label w-100"
+                            for="admin"
+                        >
+                            Livello
+                        </label>
+                        <select
+                            id="admin"
+                            name="admin"
+                            required
+                            class="form-control"
+                        >
                             @foreach ($roles as $role)
-                                <tr>
-                                    <td>
-                                        <input
-                                            class="form-control"
-                                            name="roles[]"
-                                            readonly
-                                            type="number"
-                                            value=""
-                                        >
-                                    </td>
-                                    <td>
-                                        <input
-                                            class="form-control"
-                                            name="roles[]"
-                                            type="text"
-                                            value=""
-                                        >
-                                    </td>
-                                    <td>
-                                        <input
-                                            class="form-control"
-                                            name="level[]"
-                                            type="number"
-                                            value=""
-                                        >
-                                    </td>
-                                </tr>
+                                <option value="{{ $role->admin }}">{{ $role->admin }}</option>
                             @endforeach
-                        </tbody>
-                    </table>
+                        </select>
+
+                        @error('admin')
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
+                        @enderror
+                    </x-form-outline>
                 </div>
             </div>
-        </div>
 
-        <div class="row justify-content-center m-4">
-            <button
-                class="btn btn-primary btn-floating rounded-circle"
-                type="submit"
-            >
-                <i class="fas fa-download "></i>
-            </button>
-        </div>
-
-    </form>
-@endsection
+            <div class="row justify-content-center m-4">
+                <x-button
+                    class="btn-primary btn-floating rounded-circle"
+                >
+                    <i class="fas fa-save"></i>
+                </x-button>
+            </div>
+        </x-form>
+    </x-layout.container>
+</x-app-layout>

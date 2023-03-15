@@ -1,7 +1,8 @@
 <button {{
    $attributes->merge([
        'type' => 'submit',
-       'class' => 'btn'
+       'class' => 'btn',
+       'id' => '',
    ]) }}
 >
     {{ $slot }}

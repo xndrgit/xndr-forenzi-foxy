@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\UserDetail;
 use App\User;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\DataTables;
 
 class UserRepository extends Repository
 {
@@ -13,13 +15,132 @@ class UserRepository extends Repository
         return app(User::class);
     }
 
-    public function getAllUsersWithDetail()
+    /**
+     * 👉 Get user data query
+     *
+     * @return mixed
+     */
+    private function makeQuery()
     {
-        return $this->model()->with('user_detail')->get();
+        return $this->model()
+            ->select(
+                'users.*',
+                'user_details.admin',
+                'user_details.phone'
+            )
+            ->leftJoin('user_details', 'users.id', '=', 'user_details.user_id')
+            ->with(['user_detail']);
     }
 
     /**
-     * Get user's added cart items
+     * 👉 Get all user's data with details
+     *
+     * @return mixed
+     * @throws Exception
+     */
+    public function getAll($request)
+    {
+        return DataTables::of($this->makeQuery())
+            ->addColumn('action', function ($user) {
+                $actionStr = '<div class="d-flex justify-content-center align-items-center">';
+                $actionStr .= '<a class="btn btn-sm btn-success rounded-circle mr-1" ';
+                $actionStr .= ' href="' . route('admin.users.show', ['user' => $user->id]) . '">';
+                $actionStr .= '<i class="fas fa-eye"></i></a>';
+
+                $actionStr .= '<a class="btn btn-sm btn-primary rounded-circle mr-1" ';
+                $actionStr .= ' href="' . route('admin.users.edit', ['user' => $user->id]) . '">';
+                $actionStr .= '<i class="fas fa-edit"></i></a>';
+
+                $actionStr .= '<form action="' . route('admin.users.destroy', ['user' => $user->id]) . '" ';
+                $actionStr .= ' method="post" class="d-inline">';
+                $actionStr .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+                $actionStr .= '<input type="hidden" name="_method" value="DELETE">';
+                $actionStr .= '<button type="submit" class="btn-sm btn-danger rounded-circle">';
+                $actionStr .= '<i class="fas fa-trash"></i></button>';
+                $actionStr .= '</div>';
+
+                return $actionStr;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    /**
+     * 👉 Create or Update user's data
+     *
+     * @param $user
+     * @param $data
+     * @param $create
+     *
+     * @return void
+     */
+    public function save(&$user, $data, $create)
+    {
+        $user->name = $data['name'] ?: '';
+        $user->email = $data['email'] ?: '';
+        if (isset($data['password']) && !empty($data['password'])) {
+            $user->password = Hash::make($data['password']);
+        }
+        $user->save();
+
+        if ($create) {
+            $this->createDetail($user);
+        } else {
+            $this->saveDetail($user, $data);
+        }
+    }
+
+    /**
+     * 👉 Update user's detail
+     *
+     * @param $user_id
+     * @param $params
+     *
+     * @return void
+     */
+    public function updateDetails($user_id, $params)
+    {
+        if (isset($params['user_detail'])) {
+            $user = $this->model()->with('user_detail')->where('id', $user_id)->first();
+
+            $data = $params['user_detail'];
+            $data['admin'] = 'registered';
+
+            $this->saveDetail($user, $data);
+        }
+    }
+
+    /**
+     * 👉 Create blank user detail info
+     *
+     * @param $user
+     *
+     * @return void
+     */
+    public function createDetail(&$user)
+    {
+        $user->user_detail()->create([
+            'surname'       => '',
+            'business_name' => '',
+            'notes'         => '',
+            'address'       => '',
+            'phone'         => '',
+            'city'          => '',
+            'cap'           => '',
+            'province'      => '',
+            'state'         => '',
+            'pec'           => '',
+            'code_sdi'      => '',
+            'admin'         => 'registered',
+            'created_at'    => now(),
+            'updated_at'    => now()
+        ]);
+
+        $user->user_detail = $user->user_detail()->first();
+    }
+
+    /**
+     * 👉 Get user's added cart items
      *
      * @param User $user
      *
@@ -41,59 +162,41 @@ class UserRepository extends Repository
     }
 
     /**
-     * Get added products details with subtotal
+     * 👉 Update user's detail
      *
-     * @param User $user
-     *
-     * @return array
-     */
-    public function getAddedProductsDetails(User $user)
-    : array
-    {
-        $products = $this->getCartItems($user);
-
-        $subtotal = 0.00;
-        foreach ($products as $product) {
-            $subtotal += ($product->price_saled ?: $product->price) * $product->cart_quantity;
-        }
-
-        return [$products, $subtotal, sizeof($products->toArray())];
-    }
-
-    /**
-     * Update user's detail
-     *
-     * @param $user_id
-     * @param $params
+     * @param $user
+     * @param $data
      *
      * @return void
      */
-    public function updateUserDetails($user_id, $params)
+    private function saveDetail(&$user, $data)
     {
-        if (isset($params['user_detail'])) {
-            $user = $this->model()->with('user_detail')->where('id', $user_id)->first();
-            if (!$user->user_detail) {
-                $user_detail = new UserDetail();
-            } else {
-                $user_detail = $user->user_detail()->first();
-            }
+        $saveData = [
+            'surname'       => $data['surname'] ?: '',
+            'business_name' => $data['business_name'] ?: '',
+            'notes'         => $data['address'] ?: '',
+            'address'       => $data['cap'] ?: '',
+            'phone'         => $data['city'] ?: '',
+            'city'          => $data['province'] ?: '',
+            'cap'           => $data['state'] ?: '',
+            'province'      => $data['phone'] ?: '',
+            'state'         => $data['pec'] ?: '',
+            'pec'           => $data['code_sdi'] ?: '',
+            'code_sdi'      => $data['notes'] ?: '',
+            'admin'         => $data['admin'] ?: 'registered',
+            'updated_at'    => now()
+        ];
 
-            $user_detail->user_id = $user_id;
-            $user_detail->surname = $params['user_detail']['surname'] ?? '';
-            $user_detail->business_name = $params['user_detail']['business_name'] ?? '';
-            $user_detail->notes = $params['user_detail']['notes'] ?? '';
-            $user_detail->address = $params['user_detail']['address'] ?? '';
-            $user_detail->phone = $params['user_detail']['phone'] ?? '';
-            $user_detail->city = $params['user_detail']['city'] ?? '';
-            $user_detail->cap = $params['user_detail']['cap'] ?? '';
-            $user_detail->province = $params['user_detail']['province'] ?? '';
-            $user_detail->state = $params['user_detail']['state'] ?? '';
-            $user_detail->pec = $params['user_detail']['pec'] ?? '';
-            $user_detail->code_sdi = $params['user_detail']['code_sdi'] ?? '';
-            $user_detail->admin = 'registered'; // set static
-            $user_detail->created_at = now();
-            $user_detail->updated_at = now();
-            $user_detail->save();
+        if (!$user->user_detail) {
+            $saveData['created_at'] = now();
+
+            $user->user_detail()
+                ->create($saveData);
+        } else {
+            $user->user_detail()
+                ->update($saveData);
         }
+
+        $user->user_detail = $user->user_detail()->first();
     }
 }

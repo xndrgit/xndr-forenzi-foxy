@@ -13,10 +13,7 @@
                 </x-alert.success>
             @endif
 
-            <x-form
-                method="POST"
-                action="{{ route('password.email') }}"
-            >
+            <x-form action="{{ route('password.email') }}">
                 <div class="form-group row">
                     <label
                         for="email"
