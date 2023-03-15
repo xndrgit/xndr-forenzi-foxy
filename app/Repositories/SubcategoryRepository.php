@@ -48,7 +48,7 @@ class SubcategoryRepository extends Repository
 
                 return $actionStr;
             })
-            ->rawColumns(['action', 'description'])
+            ->rawColumns(['action'])
             ->make(true);
     }
 

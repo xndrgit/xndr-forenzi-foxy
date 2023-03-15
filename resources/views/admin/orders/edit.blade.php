@@ -1,22 +1,26 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| Order Edit'))
 
-@section('content')
-    <form
-        action="{{ route('admin.orders.update', $order->id) }}"
-        method="post"
-    > @csrf @method('PUT')
+    <x-layout.container>
+        <x-layout.form-header>
+            Edit Order
+        </x-layout.form-header>
 
-        <div class="container">
+        <x-form
+            action="{{ route('admin.orders.update', ['order' => $order->id]) }}"
+        >
+            @method('put')
+
             <div class="row">
                 <div class="col-12">
-
                     <div class="row">
                         <div class="col">
                             <div class="form-outline">
                                 <label
                                     class="form-label"
                                     for="name"
-                                >Nome
+                                >
+                                    Nome
                                 </label>
                                 <input
                                     class="form-control"
@@ -28,17 +32,17 @@
                                 />
 
                                 @error('name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                             <div class="form-outline">
                                 <label
                                     class="form-label"
                                     for="surname"
-                                >Cognome
+                                >
+                                    Cognome
                                 </label>
                                 <input
                                     class="form-control"
@@ -50,11 +54,10 @@
                                 />
 
                                 @error('name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
                         <div class="col">
@@ -74,11 +77,10 @@
                                 />
 
                                 @error('business_name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                             <div class="form-outline">
                                 <label
@@ -96,11 +98,10 @@
                                 />
 
                                 @error('address')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
                         <div class="col">
@@ -108,7 +109,8 @@
                                 <label
                                     class="form-label"
                                     for="cap"
-                                >Cap
+                                >
+                                    Cap
                                 </label>
                                 <input
                                     class="form-control"
@@ -120,33 +122,32 @@
                                 />
 
                                 @error('cap')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                             <div class="form-outline">
                                 <label
                                     class="form-label"
                                     for="city"
-                                >Città
+                                >
+                                    Città
                                 </label>
                                 <input
                                     class="form-control"
                                     id="city"
                                     name="city"
                                     required
-                                    type="city"
+                                    type="text"
                                     value="{{ old('city', $order->user->user_detail->city) }}"
                                 />
 
                                 @error('city')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
                         <div class="col">
@@ -154,7 +155,8 @@
                                 <label
                                     class="form-label"
                                     for="province"
-                                >Provincia
+                                >
+                                    Provincia
                                 </label>
                                 <input
                                     class="form-control"
@@ -166,17 +168,17 @@
                                 />
 
                                 @error('province')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                             <div class="form-outline">
                                 <label
                                     class="form-label"
                                     for="state"
-                                >Stato
+                                >
+                                    Stato
                                 </label>
                                 <input
                                     class="form-control"
@@ -188,11 +190,10 @@
                                 />
 
                                 @error('state')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
                     </div>
@@ -214,17 +215,17 @@
                                 />
 
                                 @error('phone')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                             <div class="form-outline">
                                 <label
                                     class="form-label"
                                     for="email"
-                                >Email
+                                >
+                                    Email
                                 </label>
                                 <input
                                     class="form-control"
@@ -236,11 +237,10 @@
                                 />
 
                                 @error('email')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
 
@@ -249,7 +249,8 @@
                                 <label
                                     class="form-label"
                                     for="pec"
-                                >Pec
+                                >
+                                    Pec
                                 </label>
                                 <input
                                     class="form-control"
@@ -261,11 +262,10 @@
                                 />
 
                                 @error('pec')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                             <div class="form-outline">
                                 <label
@@ -283,11 +283,10 @@
                                 />
 
                                 @error('code_sdi')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
 
@@ -296,7 +295,8 @@
                                 <label
                                     class="form-label"
                                     for="notes"
-                                >Note
+                                >
+                                    Note
                                 </label>
 
                                 <textarea
@@ -306,16 +306,14 @@
                                     name="notes"
                                     required
                                     rows="4"
-                                    style="white-space: wrap !important;"
-                                    type="text"
+                                    style="word-wrap: break-word;"
                                 >{{ old('notes', $order->user->user_detail->notes) }}</textarea>
 
                                 @error('pec')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
+                                <x-alert.danger>
+                                    {{ $message }}
+                                </x-alert.danger>
                                 @enderror
-
                             </div>
                         </div>
                     </div>
@@ -325,13 +323,13 @@
             <hr>
 
             <div class="row">
-
-                <div class="col-2 ">
+                <div class="col-2">
                     <div class="form-outline">
                         <label
                             class="form-label"
                             for="id"
-                        >Id
+                        >
+                            Id
                         </label>
                         <input
                             class="form-control"
@@ -344,17 +342,17 @@
                         />
 
                         @error('order_number')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                     <div class="form-outline">
                         <label
                             class="form-label"
                             for="order_number"
-                        >Numero Ordine
+                        >
+                            Numero Ordine
                         </label>
                         <input
                             class="form-control"
@@ -366,11 +364,10 @@
                         />
 
                         @error('order_number')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                 </div>
                 <div class="col">
@@ -379,7 +376,8 @@
                         <label
                             class="form-label"
                             for="status"
-                        >Stato
+                        >
+                            Stato
                         </label>
                         <select
                             class="form-control"
@@ -387,8 +385,7 @@
                             name="status"
                             required
                         >
-
-                            @foreach ($statuss as $status)
+                            @foreach ($statuses as $status)
                                 <option
                                     {{ $status->status == old('status', '') ? 'selected' : '' }}
                                     value="{{ $status->status }}"
@@ -396,13 +393,12 @@
                                     {{ ucwords($status->status) }}
                                 </option>
                             @endforeach
-
                         </select>
 
                         @error('status')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
 
                     </div>
@@ -410,24 +406,24 @@
                         <label
                             class="form-label"
                             for="shipping_cost"
-                        >Costo Di Spedizione
+                        >
+                            Costo Di Spedizione
                         </label>
 
                         <input
                             class="form-control"
                             id="shipping_cost"
                             name="shipping_cost"
-                            rquired
+                            required
                             type="text"
                             value="{{ old('shipping_cost', $order->shipping_cost) }}"
                         />
 
                         @error('shipping_cost')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                 </div>
 
@@ -436,7 +432,8 @@
                         <label
                             class="form-label"
                             for="conai"
-                        >Conai
+                        >
+                            Conai
                         </label>
                         <input
                             class="form-control"
@@ -448,9 +445,9 @@
                         />
 
                         @error('conai')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
 
                     </div>
@@ -458,7 +455,8 @@
                         <label
                             class="form-label"
                             for="iva"
-                        >Iva
+                        >
+                            Iva
                         </label>
                         <input
                             class="form-control"
@@ -470,11 +468,10 @@
                         />
 
                         @error('iva')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                 </div>
 
@@ -483,7 +480,8 @@
                         <label
                             class="form-label"
                             for="subtotal"
-                        >Subtotale
+                        >
+                            Subtotale
                         </label>
                         <input
                             class="form-control"
@@ -495,9 +493,9 @@
                         />
 
                         @error('subtotal')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
 
                     </div>
@@ -505,7 +503,8 @@
                         <label
                             class="form-label"
                             for="total"
-                        >Totale
+                        >
+                            Totale
                         </label>
                         <input
                             class="form-control"
@@ -517,9 +516,9 @@
                         />
 
                         @error('total')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
 
                     </div>
@@ -532,7 +531,8 @@
                         <label
                             class="form-label"
                             for="payment_method"
-                        >Metodo Di Pagamento
+                        >
+                            Metodo Di Pagamento
                         </label>
                         <select
                             class="form-control"
@@ -551,11 +551,10 @@
                         </select>
 
                         @error('payment_method')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                 </div>
                 <div class="col">
@@ -563,7 +562,8 @@
                         <label
                             class="form-label"
                             for="payment_status"
-                        >Stato Pagamento
+                        >
+                            Stato Pagamento
                         </label>
                         <select
                             class="form-control"
@@ -571,7 +571,6 @@
                             name="payment_status"
                             required
                         >
-
                             @foreach ($paymentStatuses as $paymentStatus)
                                 <option
                                     {{ $paymentStatus->payment_status == old('payment_status', $order->payment->payment_status) ? 'selected' : '' }}
@@ -580,102 +579,86 @@
                                     {{ ucwords($paymentStatus->payment_status) }}
                                 </option>
                             @endforeach
-
                         </select>
 
                         @error('payment_status')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
+                        <x-alert.danger>
+                            {{ $message }}
+                        </x-alert.danger>
                         @enderror
-
                     </div>
                 </div>
             </div>
 
             <table class="table table-striped">
-
                 <thead>
-
-                    <tr>
-                        <th>Id</th>
-                        <th>Codice</th>
-                        <th>Nome</th>
-                        <th>Quantità</th>
-                        <th>Prezzo</th>
-                    </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Codice</th>
+                    <th>Nome</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($order->products as $product)
-                        <tr>
+                @foreach ($order->products as $product)
+                    <tr>
+                        <td>
+                            <input
+                                class="form-control"
+                                name="products[{{ $product->id }}][product_id]"
+                                readonly
+                                type="number"
+                                value="{{ old("products.$product->id.product_id", $product->pivot->product_id) }}"
+                            >
+                        </td>
 
-                            <td>
-                                <input
-                                    class="form-control"
-                                    name="products[{{ $product->id }}][product_id]"
-                                    readonly
-                                    type="number"
-                                    value="{{ old("products.$product->id.product_id", $product->pivot->product_id) }}"
-                                >
-                            </td>
-
-                            <td>
-                                <input
-                                    class="form-control"
-                                    name="products[{{ $product->id }}][code]"
-                                    type="number"
-                                    value="{{ old("products.$product->id.code", $product->code) }}"
-                                >
-                            </td>
-                            <td>
-                                <input
-                                    class="form-control"
-                                    name="products[{{ $product->id }}][name]"
-                                    type="text"
-                                    value="{{ old("products.$product->id.name", $product->name) }}"
-                                >
-                            </td>
-                            <td>
-                                <input
-                                    class="form-control"
-                                    name="products[{{ $product->id }}][quantity]"
-                                    type="number"
-                                    value="{{ old("products.$product->id.quantity", $product->pivot->quantity) }}"
-                                >
-                            </td>
-                            <td>
-                                <input
-                                    class="form-control"
-                                    min="1"
-                                    name="products[{{ $product->id }}][price]"
-                                    step="any"
-                                    type="number"
-                                    value="{{ old("products.$product->id.price", $product->price) }}"
-                                >
-                            </td>
-                            {{-- <td>
-                                <button
-                                    class="btn btn-danger"
-                                    name="remove"
-                                    type="submit"
-                                    value="{{ $product->id }}"
-                                >Remove</button>
-                            </td> --}}
-                        </tr>
-                    @endforeach
+                        <td>
+                            <input
+                                class="form-control"
+                                name="products[{{ $product->id }}][code]"
+                                type="number"
+                                value="{{ old("products.$product->id.code", $product->code) }}"
+                            >
+                        </td>
+                        <td>
+                            <input
+                                class="form-control"
+                                name="products[{{ $product->id }}][name]"
+                                type="text"
+                                value="{{ old("products.$product->id.name", $product->name) }}"
+                            >
+                        </td>
+                        <td>
+                            <input
+                                class="form-control"
+                                name="products[{{ $product->id }}][quantity]"
+                                type="number"
+                                value="{{ old("products.$product->id.quantity", $product->pivot->quantity) }}"
+                            >
+                        </td>
+                        <td>
+                            <input
+                                class="form-control"
+                                min="1"
+                                name="products[{{ $product->id }}][price]"
+                                step="any"
+                                type="number"
+                                value="{{ old("products.$product->id.price", $product->price) }}"
+                            >
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 
             <div class="row justify-content-center m-4">
-                <button
-                    class="btn btn-primary btn-floating rounded-circle"
-                    type="submit"
+                <x-button
+                    class="btn-primary btn-floating rounded-circle"
                 >
-                    <i class="fas fa-download "></i>
-                </button>
+                    <i class="fas fa-save"></i>
+                </x-button>
             </div>
-
-        </div>
-
-    </form>
-@endsection
+        </x-form>
+    </x-layout.container>
+</x-app-layout>
