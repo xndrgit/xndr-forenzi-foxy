@@ -1,61 +1,39 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| Categories'))
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
+    <x-layout.container>
+        {{-- if session viene eseguito al ricaricamento della pagina dopodichè viene espulso dal codice --}}
+        @if (session('created'))
+            <x-alert.success>
+                La categoria *{{ session('created') }}* è stato creato con successo.
+            </x-alert.success>
+        @endif
+        @if (session('edited'))
+            <x-alert.info>
+                La categoria *{{ session('edited') }}* è stato modificato con successo.
+            </x-alert.info>
+        @endif
+        @if (session('deleted'))
+            <x-alert.danger>
+                La categoria *{{ session('deleted') }}* è stato rimosso con successo.
+            </x-alert.danger>
+        @endif
 
-                {{-- if session viene eseguito al ricaricamento della pagina dopodichè viene espulso dal codice --}}
-                @if (session('created'))
-                    <div class="alert alert-success">
-                        La categoria *{{ session('created') }}* è stato creato con successo.
-                    </div>
-                @endif
-                @if (session('edited'))
-                    <div class="alert alert-warning">
-                        La categoria *{{ session('edited') }}* è stato modificato con successo.
-                    </div>
-                @endif
-                @if (session('deleted'))
-                    <div class="alert alert-danger">
-                        La categoria *{{ session('deleted') }}* è stato rimosso con successo.
-                    </div>
-                @endif
-
-                <table class="table table-dark table-hover text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Colore</th>
-                        <th scope="col">Impostazioni</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @forelse ($categories as $category)
-                        <tr>
-
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->color }}</td>
-                            <td>
-                                <a
-                                    class="btn btn-sm btn-success rounded-circle"
-                                    href="{{ route('admin.categories.show', ['category' => $category->id]) }}"
-                                ><i class="fas fa-eye "></i></a>
-                                <a
-                                    class="btn btn-sm btn-primary rounded-circle"
-                                    href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
-                                ><i class="fas fa-edit"></i></a>
-
-                            </td>
-                        </tr>
-                    @empty
-                        <h1>No Categories</h1>
-                    @endforelse
-
-                    </tbody>
-                </table>
-
-            </div>
+        <div class="create-btn">
+            <x-link
+                class="btn btn-primary"
+                href="{{ route('admin.categories.create') }}"
+            >
+                {{ __('Create Category') }}
+            </x-link>
         </div>
-    </div>
-@endsection
+
+        <x-datatable
+            tableId="categories-list-table"
+            tableClass="table-dark"
+            :columns="$tableColumns"
+        >
+            <x-slot name="tableRows"></x-slot>
+        </x-datatable>
+    </x-layout.container>
+</x-app-layout>

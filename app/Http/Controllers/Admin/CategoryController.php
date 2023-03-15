@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Repositories\CategoryRepository;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -14,16 +15,33 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+    protected $repository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->repository = $categoryRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Application|Factory|View
+     * @throws Exception
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        if ($request->ajax()) {
+            return $this->repository->getAll($request);
+        }
 
-        return view('admin.categories.index', compact('categories'));
+        $tableColumns = [
+            ['label' => 'ID', 'class' => 'text-center'],
+            ['label' => 'Categoria', 'class' => 'text-center'],
+            ['label' => 'Color', 'class' => 'text-center'],
+            ['label' => 'Impostazioni', 'class' => 'no-sort unsettled-cols text-center']
+        ];
+
+        return view('admin.categories.index', compact('tableColumns'));
     }
 
     /**
@@ -36,7 +54,10 @@ class CategoryController extends Controller
         $subcategories = Subcategory::all();
         $category = new Category();
 
-        return view('admin.categories.create', compact('category', 'subcategories'));
+        $action = route('admin.categories.store');
+        $create = true;
+
+        return view('admin.categories.edit-form', compact('category', 'subcategories', 'action', 'create'));
     }
 
     /**
@@ -53,7 +74,9 @@ class CategoryController extends Controller
             'name' => 'required|min:3|max:255'
         ]);
 
-        $category = $this->saveCategory(new Category(), $request);
+        $category = new Category();
+
+        $this->repository->save($category, $request);
 
         return redirect()
             ->route('admin.categories.index')
@@ -83,7 +106,10 @@ class CategoryController extends Controller
     {
         $subcategories = Subcategory::all();
 
-        return view('admin.categories.edit', compact('category', 'subcategories'));
+        $action = route('admin.categories.update', ['category' => $category->id]);
+        $create = false;
+
+        return view('admin.categories.edit-form', compact('category', 'subcategories', 'action', 'create'));
     }
 
     /**
@@ -101,29 +127,11 @@ class CategoryController extends Controller
             'name' => 'required|min:3|max:255'
         ]);
 
-        $category = $this->saveCategory($category, $request);
+        $this->repository->save($category, $request);
 
         return redirect()
             ->route('admin.categories.show', ['category' => $category->id])
             ->with('edited', $category->name);
-    }
-
-    private function saveCategory($category, $request)
-    {
-        $category->name = $request->input('name') ?: '';
-        $category->description = $request->input('description') ?: '';
-        $category->img = $request->input('img') ?: '';
-        $category->img2 = $request->input('img2') ?: '';
-        $category->color = $request->has('color') ? ($request->input('color') ?: '') : '';
-        $category->mini_description = $request->has('mini_description') ? ($request->input('mini_description') ?: '') : '';
-        $category->updated_at = now();
-        $category->save();
-
-        if ($request->has('subcategory_id')) {
-            $category->subcategories()->sync($request->input('subcategory_id'));
-        }
-
-        return $category;
     }
 
     /**
