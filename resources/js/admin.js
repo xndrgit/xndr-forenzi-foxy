@@ -19,3 +19,6 @@ window.DataTable = require('datatables.net-bs4');
 require('./admin/main');
 require('./admin/users');
 require('./admin/products');
+require('./admin/categories');
+require('./admin/subcategories');
+require('./admin/orders');

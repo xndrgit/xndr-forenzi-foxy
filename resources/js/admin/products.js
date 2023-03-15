@@ -1,6 +1,8 @@
 (function ($) {
     $(function () {
         // 👉 Admin products management
+
+        // 👉 Product list table
         const productsListTbl = $('#products-list-table');
         if (productsListTbl) {
             window.setCommonDataTable(
@@ -32,6 +34,7 @@
             );
         }
 
+        // 👉 Show subcategory when changing category on product create/update page.
         let oldCategoryID = null;
 
         const productCategorySel = $('#select-product-category');
@@ -43,14 +46,14 @@
             });
         }
 
-        // update subcategory dynamic
+        // 👉 update subcategory dynamic
         function changeCategory(param) {
             const selectedCategoryID = param.value;
             hideOldSubcategories(selectedCategoryID);
             oldCategoryID = selectedCategoryID;
         }
 
-        // hide old subcategories
+        // 👉 Hide old subcategories
         function hideOldSubcategories(selectedCategoryID) {
             let subcategoryCheckboxes = document.querySelectorAll("input[type='checkbox'].subcategory-form-checkbox");
             if (subcategoryCheckboxes && subcategoryCheckboxes.length) {
