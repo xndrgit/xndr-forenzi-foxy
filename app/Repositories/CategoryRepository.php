@@ -37,6 +37,13 @@ class CategoryRepository extends Repository
                 $actionStr .= '<a class="btn btn-sm btn-primary rounded-circle mr-1" ';
                 $actionStr .= ' href="' . route('admin.categories.edit', ['category' => $category->id]) . '">';
                 $actionStr .= '<i class="fas fa-edit"></i></a>';
+
+                $actionStr .= '<form action="' . route('admin.categories.destroy', ['category' => $category->id]) . '" ';
+                $actionStr .= ' method="post" class="d-inline">';
+                $actionStr .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+                $actionStr .= '<input type="hidden" name="_method" value="DELETE">';
+                $actionStr .= '<button type="submit" class="btn-sm btn-danger rounded-circle">';
+                $actionStr .= '<i class="fas fa-trash"></i></button>';
                 $actionStr .= '</div>';
 
                 return $actionStr;
@@ -53,7 +60,7 @@ class CategoryRepository extends Repository
      *
      * @return void
      */
-    public function save(&$category, $request)
+    public function save(&$category, $request, bool $create = false)
     {
         $category->name = $request->input('name') ?: '';
         $category->description = $request->input('description') ?: '';
@@ -65,6 +72,8 @@ class CategoryRepository extends Repository
         if ($request->has('mini_description')) {
             $category->mini_description = $request->input('mini_description') ?: '';
         }
+        if ($create)
+            $category->created_at = now();
         $category->updated_at = now();
         $category->save();
 

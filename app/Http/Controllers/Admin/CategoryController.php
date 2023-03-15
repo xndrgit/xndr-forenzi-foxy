@@ -76,7 +76,7 @@ class CategoryController extends Controller
 
         $category = new Category();
 
-        $this->repository->save($category, $request);
+        $this->repository->save($category, $request, true);
 
         return redirect()
             ->route('admin.categories.index')

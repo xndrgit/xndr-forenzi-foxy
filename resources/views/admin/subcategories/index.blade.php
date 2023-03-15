@@ -1,77 +1,39 @@
-@extends('layouts.app')
+<x-app-layout>
+    @section('title', __('| Subcategories'))
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
+    <x-layout.container>
+        {{-- if session viene eseguito al ricaricamento della pagina dopodichè viene espulso dal codice --}}
+        @if (session('created'))
+            <x-alert.success>
+                La categoria *{{ session('created') }}* è stato creato con successo.
+            </x-alert.success>
+        @endif
+        @if (session('edited'))
+            <x-alert.info>
+                La categoria *{{ session('edited') }}* è stato modificato con successo.
+            </x-alert.info>
+        @endif
+        @if (session('deleted'))
+            <x-alert.danger>
+                La categoria *{{ session('deleted') }}* è stato rimosso con successo.
+            </x-alert.danger>
+        @endif
 
-                {{-- if session viene eseguito al ricaricamento della pagina dopodichè viene espulso dal codice --}}
-                @if (session('created'))
-                    <div class="alert alert-success">
-                        La sottocategoria *{{ session('created') }}* è stata creata con successo.
-                    </div>
-                @endif
-                @if (session('edited'))
-                    <div class="alert alert-warning">
-                        La sottocategoria *{{ session('edited') }}* è stata modificata con successo.
-                    </div>
-                @endif
-                @if (session('deleted'))
-                    <div class="alert alert-danger">
-                        La sottocategoria *{{ session('deleted') }}* è stata rimossa con successo.
-                    </div>
-                @endif
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
-                <table class="table table-dark table-hover text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descrizione</th>
-                        <th scope="col">Impostazioni</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    @forelse ($subcategories as $subcategory)
-                        <tr>
-                            <td>{{ $subcategory->name }}</td>
-                            <td class="text-left">{{ $subcategory->description }}</td>
-                            <td>
-                                <a
-                                    class="btn btn-sm btn-primary rounded-circle"
-                                    href="{{ route('admin.subcategories.edit', ['subcategory' => $subcategory->id]) }}"
-                                ><i class="fas fa-edit"></i></a>
-                                <form
-                                    action="{{ route('admin.subcategories.destroy', ['subcategory' => $subcategory->id]) }}"
-                                    class="d-inline"
-                                    method="POST"
-                                >
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button
-                                        class="btn btn-sm btn-danger rounded-circle"
-                                        type="submit"
-                                    >
-                                        <i class="fas fa-trash "></i>
-                                    </button>
-                                </form>
-
-                            </td>
-                        </tr>
-                    @empty
-                        <h1>No Subcategories</h1>
-                    @endforelse
-
-                    </tbody>
-                </table>
-
-            </div>
+        <div class="create-btn">
+            <x-link
+                class="btn btn-primary"
+                href="{{ route('admin.subcategories.create') }}"
+            >
+                {{ __('Create Subcategory') }}
+            </x-link>
         </div>
-    </div>
-@endsection
+
+        <x-datatable
+            tableId="subcategories-list-table"
+            tableClass="table-dark"
+            :columns="$tableColumns"
+        >
+            <x-slot name="tableRows"></x-slot>
+        </x-datatable>
+    </x-layout.container>
+</x-app-layout>

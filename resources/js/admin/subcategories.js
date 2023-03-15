@@ -12,7 +12,6 @@
                 [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'color', name: 'color'},
                     {data: 'action', searchable: false, name: 'action'}
                 ],
                 (d) => {
