@@ -15,6 +15,9 @@ class ProductRepository extends Repository
         return app(Product::class);
     }
 
+    /**
+     * @return mixed
+     */
     private function makeQuery()
     {
         return $this->model()

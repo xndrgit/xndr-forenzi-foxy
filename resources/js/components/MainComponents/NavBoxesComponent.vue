@@ -5,7 +5,6 @@
                 <div
                     class="container d-flex flex-wrap"
                     @mouseover="toggleSubcategory(true)"
-                    @mouseout="toggleSubcategory(false)"
                 >
                     <div
                         :class="category.color"
@@ -45,6 +44,7 @@
                     v-if="showSubcategory && category.subcategories && category.subcategories.length"
                     class="subcategories-group"
                     :class="category.color"
+                    @mouseout="toggleSubcategory(false)"
                 >
                     <div
                         v-for="(subcategory, sIndex) in category.subcategories"
