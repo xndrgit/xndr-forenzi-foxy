@@ -13,7 +13,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'email', name: 'users.email'},
                     {data: 'order_number', name: 'order_number'},
-                    {data: 'order_date', name: 'order_date'},
+                    {data: 'order_date', name: 'order_date', width: '100px'},
                     {data: 'status', name: 'status'},
                     {data: 'payment_status', name: 'payments.payment_status'},
                     {data: 'total', name: 'total'},

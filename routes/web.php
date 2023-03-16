@@ -35,6 +35,7 @@ Route::prefix('shop')
 
         Route::get('/categories', 'CategoryController@index');
         Route::get('/categories/{id}', 'CategoryController@show');
+        Route::get('/jumbos', 'JumboController@index');
 
         Route::resource('/personalizes', 'PersonalizeController')->only(['store', 'destroy']);
     });
@@ -74,6 +75,7 @@ Route::middleware(['auth', 'admin'])
         Route::resource('payments', 'PaymentController');
         Route::resource('categories', 'CategoryController');
         Route::resource('subcategories', 'SubcategoryController');
+        Route::resource('jumbos', 'JumboController');
 
         // 👉 Get table data
         Route::post('/users/data', 'UserController@index');
@@ -82,6 +84,8 @@ Route::middleware(['auth', 'admin'])
         Route::post('/categories/data', 'CategoryController@index');
         Route::post('/subcategories/data', 'SubcategoryController@index');
         Route::post('/orders/data', 'OrderController@index');
+        Route::post('/jumbos/data', 'JumboController@index');
+        Route::post('/jumbos/reorder', 'JumboController@reorder');
     });
 
 Route::middleware('auth')

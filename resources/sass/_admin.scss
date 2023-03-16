@@ -162,3 +162,8 @@
         }
     }
 }
+
+td.table-td-text-wrap, th.text-wrap {
+    word-wrap: break-word;
+    white-space: normal !important;
+}

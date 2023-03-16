@@ -1,6 +1,6 @@
 (function ($) {
     $(function () {
-        // 👉 Admin users management
+        // 👉 Admin categories management
         const categoriesListTbl = $('#categories-list-table');
         if (categoriesListTbl) {
             window.setCommonDataTable(

@@ -900,19 +900,18 @@ export default {
         },
 
         send() {
-            const total =
-                this.subtotal + this.shipping_cost + this.conai + this.iva;
-            if (total <= 0) {
-                alert("Cart Failed!");
-                return;
-            }
-
             // Trigger form validation
             this.$v.$touch();
 
+            const total =
+                this.subtotal + this.shipping_cost + this.conai + this.iva;
+
+            if (total <= 0) {
+                alert("Cart Failed!");
+                return false;
+            }
+
             if (!this.$v.$invalid && this.$refs.checkTerm.checked) {
-                const total =
-                    this.subtotal + this.shipping_cost + this.conai + this.iva;
                 this.pending = true;
                 axios
                     .post(`/shop/orders`, {

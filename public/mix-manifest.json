@@ -4,5 +4,6 @@
     "/css/app.css": "/css/app.css",
     "/js/front.js": "/js/front.js",
     "/js/manifest.js": "/js/manifest.js",
-    "/js/vendor.js": "/js/vendor.js"
+    "/js/vendor.js": "/js/vendor.js",
+    "/css/datatables.bundle.css": "/css/datatables.bundle.css"
 }

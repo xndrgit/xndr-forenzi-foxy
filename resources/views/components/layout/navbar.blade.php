@@ -76,6 +76,15 @@
                             Ordini
                         </x-link>
                     </li>
+
+                    <li class="nav-item dropdown mx-1">
+                        <x-link
+                            class="nav-link"
+                            href="{{ route('admin.jumbos.index') }}"
+                        >
+                            Jumbos
+                        </x-link>
+                    </li>
                 @endguest
             </ul>
 

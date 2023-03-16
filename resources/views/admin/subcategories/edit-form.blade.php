@@ -34,9 +34,9 @@
                         />
 
                         @error('name')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
                     </div>
 
@@ -53,12 +53,12 @@
                             id="description"
                             name="description"
                             rows="2"
-                        >{{ old('name', $subcategory->description) }}</textarea>
+                        >{{ old('description', $subcategory->description) }}</textarea>
 
                         @error('description')
-                        <div class="alert alert-danger">
+                        <x-alert.danger>
                             {{ $message }}
-                        </div>
+                        </x-alert.danger>
                         @enderror
                     </div>
                 </div>
