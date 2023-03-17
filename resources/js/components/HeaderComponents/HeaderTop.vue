@@ -2,7 +2,9 @@
     <div class="HeaderTop d-flex align-items-center">
         <div class="container-lg">
             <div class="row justify-content-between">
-                <section class="col-3 d-flex align-items-center">
+                <section
+                    class="col-3 d-none d-md-block"
+                >
                     <div id="free" class="d-flex align-items-center">
                         <div>
                             <img
@@ -21,7 +23,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="col-3">
+                <section class="col-3 d-none d-md-block">
                     <div id="clock" class="d-flex align-items-center">
                         <div>
                             <img
@@ -52,7 +54,11 @@
                             <div class="d-none d-lg-inline">
                                 <p>
                                     <strong>
-                                        {{ checkAuth ? "DISCONNETTITI" : "ACCEDI O" }}
+                                        {{
+                                            checkAuth
+                                                ? "DISCONNETTITI"
+                                                : "ACCEDI O"
+                                        }}
                                     </strong>
                                 </p>
                                 <p>{{ $store.state.name }}</p>
@@ -128,8 +134,7 @@ export default {
                     });
 
                     this.getCartInfo();
-                }
-                else {
+                } else {
                     window.localStorage.removeItem("user");
 
                     this.$store.commit("updateUser", {
@@ -146,7 +151,7 @@ export default {
                 }
             });
         },
-        setCartTotal({total, count}) {
+        setCartTotal({ total, count }) {
             this.cartTotal = total;
             this.productCount = count;
         },
