@@ -85,7 +85,7 @@
                                             class="dropdown-item text-dark font-weight-bold"
                                             :href="`/category/${category.id}`"
                                         >
-                                            👉{{ category.name }}
+                                            📦{{ category.name }}
                                         </a>
 
                                         <ul v-if="category.subcategories && category.subcategories.length">
@@ -95,7 +95,7 @@
                                                     class="dropdown-item"
                                                     :href="`/subcategory/${subcategory.id}`"
                                                 >
-                                                    👉{{ subcategory.name }}
+                                                    → {{ subcategory.name }}
                                                 </a>
                                             </li>
                                         </ul>

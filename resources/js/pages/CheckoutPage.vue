@@ -5,9 +5,9 @@
                 <div class="col-lg-12">
                     <div class="h6 mx-4 large">
                         <h2 class="font-weight-bold">CHECKOUT</h2>
-                        <hr class="w-5"/>
+                        <hr class="w-5" />
                         <span> DETTAGLI DI FATTURAZIONE </span>
-                        <hr/>
+                        <hr />
                     </div>
                 </div>
                 <div class="col-12 d-flex flex-wrap">
@@ -299,9 +299,7 @@
                     </div>
                     <div class="summary col-lg-6">
                         <div id="cart" class="bg-white">
-                            <div
-                                class="d-flex justify-content-between align-items-center"
-                            >
+                            <div class="d-flex justify-content-between align-items-center">
                                 <div class="h6">RIEPILOGO ORDINE</div>
                                 <div class="h6">
                                     <a href="/cart">Back</a>
@@ -324,7 +322,7 @@
                                         <div class="d-flex flex-column px-3">
                                             <b class="">{{ item.name }}</b>
                                             <strong
-                                            >CODICE:
+                                                >CODICE:
                                                 <span> </span>
                                                 <a
                                                     class="text-warnings"
@@ -334,7 +332,7 @@
                                                 </a>
                                             </strong>
                                             <strong
-                                            >DIMENSIONI:
+                                                >DIMENSIONI:
                                                 <span> </span>
                                                 <a
                                                     class="text-warnings"
@@ -353,7 +351,7 @@
                                                 </a>
                                             </strong>
                                             <strong
-                                            >QUANTITA'
+                                                >QUANTITA'
                                                 <span> </span>
                                                 <a
                                                     class="text-warnings"
@@ -417,7 +415,7 @@
                                         € {{ this.subtotal.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <!-- <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -444,7 +442,7 @@
                                         € {{ this.shipping_cost.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -455,7 +453,7 @@
                                         € {{ this.conai.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div
                                     class="d-flex align-items-center justify-content-between"
                                 >
@@ -464,7 +462,7 @@
                                         € {{ this.iva.toFixed(2) }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div
                                     class="total d-flex justify-content-between align-items-center font-weight-bold"
                                 >
@@ -481,11 +479,11 @@
                                         }}
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                             </div>
                             <div class="pay">
                                 <h5 class="fw-bold">MODALITÀ DI PAGAMENTO</h5>
-                                <br/>
+                                <br />
 
                                 <div class="form-check">
                                     <input
@@ -509,7 +507,7 @@
                                         finché i fondi non risulteranno
                                         trasferiti nel nostro conto corrente.
                                     </p>
-                                    <hr/>
+                                    <hr />
                                 </div>
 
                                 <div class="form-check">
@@ -531,7 +529,7 @@
                                         Pagamento in contanti al momento della
                                         consegna.
                                     </p>
-                                    <hr/>
+                                    <hr />
                                 </div>
 
                                 <div class="form-check">
@@ -575,7 +573,7 @@
                                         carta di credito se non hai un account
                                         PayPal.
                                     </p>
-                                    <hr/>
+                                    <hr />
                                 </div>
 
                                 <p>
@@ -587,7 +585,7 @@
                                         <a href="">privacy policy.</a>
                                     </strong>
                                 </p>
-                                <hr/>
+                                <hr />
 
                                 <div class="form-check">
                                     <input
@@ -600,9 +598,9 @@
                                     <label class="form-check-label" for="terms">
                                         Ho letto e accetto
                                         <strong
-                                        ><a href=""
-                                        >termini e condizioni</a
-                                        ></strong
+                                            ><a href=""
+                                                >termini e condizioni</a
+                                            ></strong
                                         >
                                         del sito web *
                                     </label>
@@ -628,7 +626,7 @@
 </template>
 
 <script>
-import {maxLength, required} from "vuelidate/lib/validators";
+import { maxLength, required } from "vuelidate/lib/validators";
 import mixinCart from "../mixins/mixinCart";
 
 export default {
@@ -677,18 +675,18 @@ export default {
     },
 
     validations: {
-        first_name: {required, maxLength: maxLength(10)},
-        last_name: {required, maxLength: maxLength(10)},
-        business_name: {required, maxLength: maxLength(15)},
-        address: {required},
-        cap: {required},
-        city: {required},
-        province: {required},
-        state: {required},
-        phone: {required},
-        pec: {required},
-        code_sdi: {required},
-        notes: {required},
+        first_name: { required, maxLength: maxLength(10) },
+        last_name: { required, maxLength: maxLength(10) },
+        business_name: { required, maxLength: maxLength(15) },
+        address: { required },
+        cap: { required },
+        city: { required },
+        province: { required },
+        state: { required },
+        phone: { required },
+        pec: { required },
+        code_sdi: { required },
+        notes: { required },
     },
 
     computed: {
@@ -696,8 +694,7 @@ export default {
             return function (product) {
                 if (/^http/.test(product.img)) {
                     return product.img;
-                }
-                else {
+                } else {
                     return "/storage/" + product.img;
                 }
             };
@@ -710,11 +707,11 @@ export default {
                 return errors;
             }
             !this.$v.first_name.maxLength &&
-            errors.push("Must be at most 10 characters long") &&
-            this.first_name_error.push("error");
+                errors.push("Must be at most 10 characters long") &&
+                this.first_name_error.push("error");
             !this.$v.first_name.required &&
-            errors.push("First Name is required.") &&
-            this.first_name_error.push("error");
+                errors.push("First Name is required.") &&
+                this.first_name_error.push("error");
             return errors;
         },
 
@@ -726,11 +723,11 @@ export default {
                 return errors;
             }
             !this.$v.last_name.maxLength &&
-            errors.push("Must be at most 10 characters long") &&
-            this.last_name_error.push("error");
+                errors.push("Must be at most 10 characters long") &&
+                this.last_name_error.push("error");
             !this.$v.last_name.required &&
-            errors.push("Last Name is required.") &&
-            this.last_name_error.push("error");
+                errors.push("Last Name is required.") &&
+                this.last_name_error.push("error");
             return errors;
         },
 
@@ -742,11 +739,11 @@ export default {
                 return errors;
             }
             !this.$v.business_name.maxLength &&
-            errors.push("Must be at most 10 characters long") &&
-            this.business_name_error.push("error");
+                errors.push("Must be at most 10 characters long") &&
+                this.business_name_error.push("error");
             !this.$v.business_name.required &&
-            errors.push("Business Name is required.") &&
-            this.business_name_error.push("error");
+                errors.push("Business Name is required.") &&
+                this.business_name_error.push("error");
             return errors;
         },
 
@@ -758,8 +755,8 @@ export default {
                 return errors;
             }
             !this.$v.address.required &&
-            errors.push("ADDRESS is required.") &&
-            this.address_error.push("error");
+                errors.push("ADDRESS is required.") &&
+                this.address_error.push("error");
             return errors;
         },
 
@@ -771,8 +768,8 @@ export default {
                 return errors;
             }
             !this.$v.cap.required &&
-            errors.push("POSTAL CODE is required.") &&
-            this.cap_error.push("error");
+                errors.push("POSTAL CODE is required.") &&
+                this.cap_error.push("error");
             return errors;
         },
 
@@ -784,8 +781,8 @@ export default {
                 return errors;
             }
             !this.$v.city.required &&
-            errors.push("CITY is required.") &&
-            this.city_error.push("error");
+                errors.push("CITY is required.") &&
+                this.city_error.push("error");
             return errors;
         },
 
@@ -797,8 +794,8 @@ export default {
                 return errors;
             }
             !this.$v.province.required &&
-            errors.push("PROVINCE is required.") &&
-            this.province_error.push("error");
+                errors.push("PROVINCE is required.") &&
+                this.province_error.push("error");
             return errors;
         },
 
@@ -810,8 +807,8 @@ export default {
                 return errors;
             }
             !this.$v.state.required &&
-            errors.push("STATE is required.") &&
-            this.state_error.push("error");
+                errors.push("STATE is required.") &&
+                this.state_error.push("error");
             return errors;
         },
 
@@ -823,8 +820,8 @@ export default {
                 return errors;
             }
             !this.$v.phone.required &&
-            errors.push("TELEPHONE is required.") &&
-            this.phone_error.push("error");
+                errors.push("TELEPHONE is required.") &&
+                this.phone_error.push("error");
             return errors;
         },
 
@@ -836,8 +833,8 @@ export default {
                 return errors;
             }
             !this.$v.pec.required &&
-            errors.push("PEC is required.") &&
-            this.pec_error.push("error");
+                errors.push("PEC is required.") &&
+                this.pec_error.push("error");
             return errors;
         },
 
@@ -849,8 +846,8 @@ export default {
                 return errors;
             }
             !this.$v.code_sdi.required &&
-            errors.push("SDI CODE is required.") &&
-            this.code_sdi_error.push("error");
+                errors.push("SDI CODE is required.") &&
+                this.code_sdi_error.push("error");
             return errors;
         },
 
@@ -862,8 +859,8 @@ export default {
                 return errors;
             }
             !this.$v.notes.required &&
-            errors.push("NOTES is required.") &&
-            this.notes_error.push("error");
+                errors.push("NOTES is required.") &&
+                this.notes_error.push("error");
             return errors;
         },
     },
@@ -930,23 +927,21 @@ export default {
                         },
                         payment: {
                             paymentMethod: this.paymentMethod,
-                            amount: total
-                        }
+                            amount: total,
+                        },
                     })
                     .then((res) => {
                         if (res.data.result === "success" && res.data.id) {
-                            if (this.paymentMethod === 'paypal') {
+                            if (this.paymentMethod === "paypal") {
                                 this.$nextTick(() => {
                                     window.location.href = `/shop/payment?order_id=${res.data.id}&amount=${total}`;
                                 });
-                            }
-                            else {
+                            } else {
                                 this.$nextTick(() => {
                                     window.location.href = `/confirm/${res.data.id}`;
                                 });
                             }
-                        }
-                        else {
+                        } else {
                             alert("Failed!");
                             this.pending = false;
                         }
