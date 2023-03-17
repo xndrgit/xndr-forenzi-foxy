@@ -3,6 +3,7 @@
         <div
             id="slider"
             class="jumbo1 col-12 col-sm-10 col-md-8 col-lg-7 col-xl-7 d-none d-md-block"
+            v-if="images"
         >
             <carousel
                 :perPageCustom="[
@@ -26,13 +27,13 @@
                         <img
                             alt=""
                             class="maschera_dx"
-                            src="../../../../public/Links/maschera_dx.png"
+                            src="/Links/maschera_dx.png"
                         />
 
                         <img
                             alt=""
                             class="maschera_sx"
-                            src="../../../../public/Links/maschera_sx.png"
+                            src="/Links/maschera_sx.png"
                         />
 
                         <div class="carousel-content position-absolute">
@@ -127,7 +128,7 @@
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
+import {Carousel, Slide} from "vue-carousel";
 
 export default {
     components: {
@@ -136,29 +137,7 @@ export default {
     },
     data() {
         return {
-            images: [
-                {
-                    src: require("../../../../public/Links/PHV7570.jpg"),
-                    title: "Scatole per pizza",
-                    description:
-                        "Disponibili in diverse misure e colori. Possibilità di personalizzazione con logo e testi e motivi grafici.",
-                },
-                {
-                    src: require("../../../../public/Links/PHV7570.jpg"),
-                    title: "Title 2",
-                    description: "Description 2",
-                },
-                {
-                    src: require("../../../../public/Links/PHV7570.jpg"),
-                    title: "Title 3",
-                    description: "Description 3",
-                },
-                {
-                    src: require("../../../../public/Links/PHV7570.jpg"),
-                    title: "Title 4",
-                    description: "Description 4",
-                },
-            ],
+            images: null,
             days: 0,
             hours: 0,
             minutes: 0,
@@ -219,6 +198,18 @@ export default {
         // Clear the interval when the component is destroyed
         clearInterval(this.interval);
     },
+    mounted() {
+        this.getJumbos();
+    },
+    methods: {
+        async getJumbos() {
+            let response = await axios.get('/shop/jumbos');
+
+            if (response.data.status === 'success') {
+                this.images = response.data.result;
+            }
+        }
+    }
 };
 </script>
 

@@ -1,10 +1,14 @@
 <template>
-    <div class="HeaderTop d-flex align-items-center">
+    <div class="HeaderTop d-flex align-items-center top-navbar">
         <div class="container-lg">
             <div class="row justify-content-between">
+<<<<<<< HEAD
                 <section
                     class="col-3 d-none d-md-block"
                 >
+=======
+                <section class="col-3 col-lg-3 d-none d-lg-block">
+>>>>>>> 9a5d0f30e7ced8e3615e8b916c19c1a1a8534a68
                     <div id="free" class="d-flex align-items-center">
                         <div>
                             <img
@@ -23,7 +27,11 @@
                         </div>
                     </div>
                 </section>
+<<<<<<< HEAD
                 <section class="col-3 d-none d-md-block">
+=======
+                <section class="col-3 col-lg-3 d-none d-lg-block">
+>>>>>>> 9a5d0f30e7ced8e3615e8b916c19c1a1a8534a68
                     <div id="clock" class="d-flex align-items-center">
                         <div>
                             <img
@@ -39,7 +47,75 @@
                         </div>
                     </div>
                 </section>
-                <div class="col-2">
+                <section class="col-2 d-flex d-lg-none justify-content-center align-items-center front-top-navbar">
+                    <nav class="navbar navbar-expand-lg navbar">
+                        <button
+                            aria-controls="navbarSupportedContent"
+                            :aria-expanded="showNav"
+                            aria-label="Toggle navigation"
+                            class="navbar-toggler border-0"
+                            :class="{'collapsed': showNav}"
+                            type="button"
+                            @click="showCategoryMenu"
+                        >
+                            <span class="navbar-toggler-icon">
+                                <i class="fas fa-bars"></i>
+                            </span>
+                        </button>
+
+                        <div
+                            class="collapse navbar-collapse"
+                            id="navbarSupportedContent"
+                            :class="{'show': showNav}"
+                        >
+                            <!-- Left Side Of Navbar -->
+                            <ul class="navbar-nav mr-auto">
+                                <li
+                                    v-for="category in categories"
+                                    class="nav-item dropdown mx-1"
+                                    :key="`category-${category.id}`"
+                                >
+                                    <a
+                                        aria-expanded="false"
+                                        aria-haspopup="true"
+                                        class="nav-link dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        href="#"
+                                        :id="`navbarDropdown-${category.id}`"
+                                        role="button"
+                                    >
+                                        {{ category.name }}
+                                    </a>
+
+                                    <div
+                                        :aria-labelledby="`navbarDropdown-${category.id}`"
+                                        class="dropdown-menu dropdown-menu-right"
+                                    >
+                                        <a
+                                            class="dropdown-item text-dark font-weight-bold"
+                                            :href="`/category/${category.id}`"
+                                        >
+                                            👉{{ category.name }}
+                                        </a>
+
+                                        <ul v-if="category.subcategories && category.subcategories.length">
+                                            <li v-for="(subcategory, sIndex) in category.subcategories"
+                                                :key="`sub-${sIndex}`" class="nav-item ml-2">
+                                                <a
+                                                    class="dropdown-item"
+                                                    :href="`/subcategory/${subcategory.id}`"
+                                                >
+                                                    👉{{ subcategory.name }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </section>
+                <div class="col-2 col-lg-2">
                     <!-- empty -->
                 </div>
                 <section class="col-2">
@@ -95,11 +171,13 @@
 
 <script>
 import mixinCart from "../../mixins/mixinCart";
+import Categories from "../../mixins/categories";
 
 export default {
-    mixins: [mixinCart],
+    mixins: [mixinCart, Categories],
     data() {
         return {
+            showNav: false,
             isLogin: false,
             text: "REGISTRATI",
             nextDay: new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000), // set to the day after tomorrow
@@ -117,10 +195,12 @@ export default {
     },
     beforeDestroy() {
         window.VBus.stop("update-cart-total", this.setCartTotal);
+        window.VBus.stop("hide-category-menu", this.hideCategoryMenu);
     },
     mounted() {
         this.getUserInfo();
         window.VBus.listen("update-cart-total", this.setCartTotal);
+        window.VBus.listen("hide-category-menu", this.hideCategoryMenu);
     },
     methods: {
         getUserInfo() {
@@ -155,6 +235,13 @@ export default {
             this.cartTotal = total;
             this.productCount = count;
         },
+        showCategoryMenu() {
+            this.showNav = !this.showNav;
+            window.VBus.fire('toggle-background-cover', this.showNav);
+        },
+        hideCategoryMenu() {
+            this.showNav = false;
+        }
     },
 };
 </script>

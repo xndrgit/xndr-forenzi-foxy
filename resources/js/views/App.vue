@@ -7,6 +7,8 @@
 
         <FooterTop/>
         <FooterBottom/>
+
+        <div v-show="showBackCover" @click="showBackgroundCover(false)" class="background-cover"></div>
     </div>
 </template>
 
@@ -40,6 +42,29 @@ export default {
         FooterTop,
         FooterBottom,
     },
+    data: () => ({
+        showBackCover: false
+    }),
+    beforeDestroy() {
+        window.VBus.stop('toggle-background-cover', this.showBackgroundCover);
+    },
+    mounted() {
+        window.VBus.listen('toggle-background-cover', this.showBackgroundCover);
+    },
+    methods: {
+        showBackgroundCover(flag) {
+            this.showBackCover = flag;
+
+            if (!flag) {
+                window.VBus.fire("hide-category-menu");
+                document.querySelector('.background-cover').style.height = 0;
+                document.querySelector('#navbarSupportedContent').style.height = '100vh';
+            } else {
+                document.querySelector('.background-cover').style.height = `${document.body.getBoundingClientRect().height}px`;
+                document.querySelector('#navbarSupportedContent').style.height = `${document.body.getBoundingClientRect().height - 40}px`;
+            }
+        }
+    }
 };
 </script>
 

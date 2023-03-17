@@ -6,7 +6,7 @@
 
 <div class="table-responsive">
     <table id="{{ $tableId }}"
-           class="table table-striped table-hover dt-responsive table-bordered display nowrap dataTable {{ $tableClass }}"
+           class="table table-striped table-hover dt-responsive table-bordered display dataTable {{ $tableClass }}"
            style="width: 100%;"
     >
         <thead>
