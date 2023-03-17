@@ -2,13 +2,7 @@
     <div class="HeaderTop d-flex align-items-center top-navbar">
         <div class="container-lg">
             <div class="row justify-content-between">
-<<<<<<< HEAD
-                <section
-                    class="col-3 d-none d-md-block"
-                >
-=======
                 <section class="col-3 col-lg-3 d-none d-lg-block">
->>>>>>> 9a5d0f30e7ced8e3615e8b916c19c1a1a8534a68
                     <div id="free" class="d-flex align-items-center">
                         <div>
                             <img
@@ -27,11 +21,7 @@
                         </div>
                     </div>
                 </section>
-<<<<<<< HEAD
-                <section class="col-3 d-none d-md-block">
-=======
                 <section class="col-3 col-lg-3 d-none d-lg-block">
->>>>>>> 9a5d0f30e7ced8e3615e8b916c19c1a1a8534a68
                     <div id="clock" class="d-flex align-items-center">
                         <div>
                             <img
