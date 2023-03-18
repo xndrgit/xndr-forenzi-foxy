@@ -9,6 +9,7 @@
                         :alt="product.name"
                         :src="imageSource"
                         class="img-fluid"
+                        alt=""
                     />
                 </router-link>
             </div>

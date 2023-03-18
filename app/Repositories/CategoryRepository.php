@@ -57,7 +57,7 @@ class CategoryRepository extends Repository
      *
      * @param $category
      * @param $request
-     *
+     * @param bool $create
      * @return void
      */
     public function save(&$category, $request, bool $create = false)

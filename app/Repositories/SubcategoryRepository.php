@@ -19,6 +19,11 @@ class SubcategoryRepository extends Repository
             ->with('products');
     }
 
+    public function getItems()
+    {
+        return $this->makeQuery()->get();
+    }
+
     /**
      * @param $request
      *

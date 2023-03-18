@@ -36,6 +36,8 @@ Route::prefix('shop')
         Route::get('/categories', 'CategoryController@index');
         Route::get('/categories/{id}', 'CategoryController@show');
         Route::get('/jumbos', 'JumboController@index');
+        Route::get('/subcategories', 'SubcategoryController@index');
+        Route::get('/subcategories/{subcategory}', 'SubcategoryController@show');
 
         Route::resource('/personalizes', 'PersonalizeController')->only(['store', 'destroy']);
     });

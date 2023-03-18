@@ -6,7 +6,7 @@
                     <thead>
                     <tr class="header-top">
                         <th class="bg-dark text-white" colspan="2">
-                            SCATOLE 1 ONDA
+                          {{ category.name }}
                         </th>
                         <th class="bg-secondary text-white" colspan="3">
                             MISURE IN CM

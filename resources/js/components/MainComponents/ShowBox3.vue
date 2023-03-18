@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-lg">
     <!-- <div class="d-flex justify-content-center" v-if="loadingCategory">
         <LoadingRollComponent />
     </div> -->
@@ -10,10 +10,14 @@
           class="d-flex flex-wrap justify-content-between align-items-center"
         >
           <div class="col-12 col-md-8">
-            <h2 class="font-weight-bold">
-              {{ category.name }}
+            <h2 class="font-weight-bold sub-title">
+              {{ subcategory.name }}
             </h2>
-
+            <h6 v-for="category in subcategory.categories" class="font-weight-bold">
+              <a :href="'/category/' + category.id">
+                → {{ category.name }}
+              </a>
+            </h6>
             <!-- <div class="stars">
             <i v-for="n in 5" :key="n" class="far fa-star"></i>
         </div> -->
@@ -26,17 +30,13 @@
               <span>IVA esclusa</span>
             </div>
             <span>
-              {{ category.description }}
-            </span>
+                            {{ subcategory.description }}
+                        </span>
           </div>
 
           <div class="col-12 col-md-4 position-relative">
-            <img :src="category.img" alt="" class="img-fluid"/>
-            <img
-              :src="category.img2"
-              alt=""
-              class="logo img-fluid position-absolute"
-            />
+            <img src="https://t4.ftcdn.net/jpg/01/08/28/37/360_F_108283790_YYMKdb7m1qdEiPvaJ9we0Bunbf5wvBtK.jpg" alt=""
+                 class="img-fluid"/>
           </div>
         </div>
 
@@ -61,87 +61,34 @@
       </div>
     </div>
 
-    <!-- <div class="row">
-        <section
-            class="boxes d-flex flex-wrap justify-content-center"
-            v-for="product in category.products"
-        >
-            <div class="box">
-                <div class="card-header">
-                    <router-link
-                        :to="{
-                            name: 'product',
-                            params: { id: product.id },
-                        }"
-                    >
-                        <img
-                            class="img-fluid"
-                            src="https://static.wixstatic.com/media/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png/v1/fill/w_320,h_360,q_90/2cd43b_0fe4090271224c51a780c0cccb961b83~mv2_d_2132_2400_s_2.png"
-                            :alt="product.name"
-                        />
-                    </router-link>
-                </div>
-
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <div class="d-flex align-items-center">
-                        <p class="category">
-                            {{ category.name }}
-                        </p>
-                        <p class="category">
-                            {{ product.subcategory_id }}
-                        </p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <p>
-                            CODE:
-                            {{ product.code }}
-                        </p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <p>
-                            <span v-if="!product.price_saled" class="price">
-                                <i class="fas fa-tags"></i>
-                                € {{ product.price }}
-                            </span>
-                            <span
-                                v-if="product.price_saled"
-                                class="current-price text-danger"
-                            >
-                                <i class="fas fa-tags"></i>
-                                € {{ product.price_saled }}
-                            </span>
-                        </p>
-                        <p>
-                            <i class="fas fa-box"></i>
-                            {{ product.quantity }}
-                        </p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <p>{{ product.description.slice(0, 40) }} ...</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div> -->
+    <div class="d-flex justify-content-center flex-wrap">
+      <BoxesComponent
+        v-for="product in subcategory.products"
+        :key="product.name"
+        :product="product"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import BoxesComponent from "./BoxesComponent.vue";
+
 export default {
-  components: {},
+  components: {BoxesComponent},
   data() {
     return {
       value: 100,
       category: {},
+      subcategory: {},
       loadingCategory: true,
     };
   },
   computed: {
     minimumPrice() {
-      if (this.category && this.category.products) {
+      if (this.subcategory && this.subcategory.products) {
         return Math.min(
-          ...this.category.products.map((product) =>
+          ...this.subcategory.products.map((product) =>
             product.price_saled === null
               ? product.price
               : Math.min(product.price, product.price_saled)
@@ -153,7 +100,9 @@ export default {
     },
   },
   created() {
+    this.getSubcategory();
     this.getCategory();
+
   },
   mounted() {
     window.scrollTo(0, 0);
@@ -171,10 +120,19 @@ export default {
         .get(`/shop/categories/${this.$route.params.id}`)
         .then((response) => {
           this.category = response.data.results;
-          console.log(this.category);
           setTimeout(() => {
             this.loadingCategory = false;
           }, 1000);
+        })
+        .catch((error) => {
+          console.warn(error.message);
+        });
+    },
+    getSubcategory() {
+      axios
+        .get(`/shop/subcategories/${this.$route.params.id}`)
+        .then((response) => {
+          this.subcategory = response.data.result;
         })
         .catch((error) => {
           console.warn(error.message);
@@ -186,6 +144,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sub-title {
+  position: relative;
+  text-transform: uppercase;
+}
+
+h6:hover {
+  opacity: 1;
+  transform: translateX(10px);
+
+
+}
+
+h6 {
+  width: fit-content;
+
+  opacity: .5;
+  transform: translateX(0px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
 .logo {
   height: 120px;
   right: 10px;

@@ -34,6 +34,7 @@ class CategoryController extends Controller
     public function show(int $id): JsonResponse
     {
         $category = Category::with(['products', 'subcategories', 'subcategories.products'])->findOrFail($id);
+
         return response()->json([
             "response" => true,
             "results"  => $category

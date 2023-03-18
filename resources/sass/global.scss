@@ -31,7 +31,7 @@ $gray: #f1f1f1;
     min-width: fit-content;
 
     background-color: $orange;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .txt-orange {
@@ -42,21 +42,21 @@ $gray: #f1f1f1;
     min-width: fit-content;
 
     background-color: $yellow;
-    border-radius: 0px;
+    border-radius: 0;
     color: white;
     font-weight: bold;
 }
 
 .bg-gray {
     background-color: $gray;
-    border-radius: 0px;
+    border-radius: 0;
     color: white;
 }
 
 .bg-white * {
     background-color: $white;
     color: $black;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 //! Button styles
@@ -64,7 +64,7 @@ $gray: #f1f1f1;
 .yellow-button {
     background-color: #fdbc48;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     color: $white;
     font-weight: bold;
     padding: 6px 12px;
@@ -91,7 +91,7 @@ $gray: #f1f1f1;
 .orange-button {
     background-color: $orange;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     color: $white;
     font-weight: bold;
     padding: 6px 12px;
@@ -118,7 +118,7 @@ $gray: #f1f1f1;
 .dark-button {
     background-color: #000000;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     color: $white;
     font-weight: bold;
     padding: 8px 10px;
@@ -225,14 +225,14 @@ $gray: #f1f1f1;
 .footer-section {
     ul {
         list-style-type: none;
-        padding: 0px;
+        padding: 50px;
     }
 
     li {
         margin-right: 50px;
 
         i {
-            font-size: 2rem;
+            font-size: 1rem;
         }
     }
 }

@@ -25,18 +25,17 @@ class ProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(Request $request)
-    : JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $products = $this->repository->search($request);
 
         return response()->json([
-            "response"     => true,
-            "count"        => $products->total(),
-            "per_page"     => $products->perPage(),
+            "response" => true,
+            "count" => $products->total(),
+            "per_page" => $products->perPage(),
             "current_page" => $products->currentPage(),
-            "last_page"    => $products->lastPage(),
-            "results"      => $products->items(),
+            "last_page" => $products->lastPage(),
+            "results" => $products->items(),
         ]);
     }
 
@@ -47,14 +46,13 @@ class ProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function show(int $id)
-    : JsonResponse
+    public function show(int $id): JsonResponse
     {
-        $product = Product::with('category')->findOrFail($id);
+        $product = Product::with(['category', 'subcategories'])->findOrFail($id);
 
         return response()->json([
             "response" => true,
-            "results"  => $product
+            "results" => $product
         ]);
     }
 
@@ -65,16 +63,14 @@ class ProductController extends Controller
      *
      * @return Response
      */
-    public function destroy(int $id)
-    : Response
+    public function destroy(int $id): Response
     {
         $product = Product::findOrFail($id);
 
         $product->delete();
     }
 
-    public function siblings($id)
-    : JsonResponse
+    public function siblings($id): JsonResponse
     {
         $product = Product::findOrFail($id);
         $category_id = $product['category_id'];
@@ -86,7 +82,7 @@ class ProductController extends Controller
 
         return response()->json([
             "response" => true,
-            "results"  => $siblings
+            "results" => $siblings
         ]);
     }
 }
