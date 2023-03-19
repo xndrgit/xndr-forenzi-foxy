@@ -49,7 +49,7 @@
                 </slide>
             </carousel>
         </div>
-        <div class="jumbo2 col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5">
+        <div class="jumbo2 col-10 col-sm-10 col-md-8 col-lg-5 col-xl-5">
             <div class="clock p-2 d-none d-lg-flex d-flex flex-column">
                 <h6 class="m-0 font-weight-bold">
                     EFFETUA IL TUO ORDINE ENTRO
@@ -214,10 +214,7 @@ export default {
 </script>
 
 <style lang="scss">
-div.VueCarousel-pagination {
-    position: absolute !important;
-    bottom: 20px;
-}
+
 
 .jumbo {
     display: flex;
@@ -276,6 +273,10 @@ div.VueCarousel-pagination {
             width: 100%;
             height: 360px;
         }
+      div.VueCarousel-pagination {
+        position: absolute !important;
+        bottom: 20px;
+      }
     }
 
     .jumbo2 {
@@ -345,5 +346,153 @@ div.VueCarousel-pagination {
             }
         }
     }
+}
+
+@media (max-width: 576px) {
+  .jumbo {
+    display: flex;
+
+    .jumbo1 {
+      height: -webkit-fill-available;
+      height: -moz-available;
+      height: stretch;
+
+      .carousel-image-container {
+        position: relative;
+      }
+
+      .maschera_dx {
+        position: absolute;
+        right: -60px;
+      }
+
+      .maschera_sx {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      .carousel-content {
+        top: 10px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+
+        color: black;
+        padding: 20px;
+        margin-left: 60%;
+        text-align: end;
+      }
+
+      .carousel-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+        font-weight: bold;
+      }
+
+      .carousel-description {
+        font-size: 0.6rem;
+        margin-bottom: 20px;
+        margin-left: 10%;
+        font-weight: 400;
+      }
+
+      .VueCarousel {
+        object-fit: contain;
+        width: 100%;
+        height: 360px;
+      }
+      div.VueCarousel-pagination {
+        position: absolute !important;
+        bottom: 20px;
+      }
+    }
+
+    .jumbo2 {
+      .clock {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 0.5rem;
+
+        height: -webkit-fill-available;
+        height: -moz-available;
+        height: stretch;
+        background-color: rgb(246, 134, 48);
+
+        transition: 0.2s;
+
+        &:active{
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          transform: scale(0.95);
+        }
+
+
+        h5,
+        h6{
+          font-size: .7rem;
+        }
+
+        .countdown {
+          .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 50px;
+            width: 50px;
+            background-color: rgb(253, 188, 72);
+            margin: 10px;
+            padding: 1.2rem;
+
+            .square-time {
+              font-size: 1.2rem;
+              font-weight: bold;
+              color: black;
+            }
+
+            .square-text {
+              font-size: 0.4rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .delivery {
+        height: fit-content;
+        margin-top: 23px;
+
+        border: 10px solid rgb(246, 134, 48);
+
+        .h1 {
+          color: rgb(246, 134, 48);
+        }
+
+        span {
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .delivery-image {
+          height: -webkit-fill-available;
+          height: -moz-available;
+          height: stretch;
+          width: -webkit-fill-available;
+          width: -moz-available;
+          width: stretch;
+          min-height: -webkit-fill-available;
+          min-height: -moz-available;
+          min-height: stretch;
+        }
+      }
+    }
+  }
 }
 </style>

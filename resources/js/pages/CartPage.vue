@@ -165,6 +165,28 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                      <div
+                                        class="info col-12 d-md-none d-flex flex-column align-items-start"
+                                      >
+
+                                          <span><strong>NOME: </strong> {{ item.name }}</span>
+
+                                        <span><strong>PREZZO: </strong>  €{{ item.price_saled ? item.price_saled : item.price }}</span>
+
+
+                                        <span><strong>QUANTITA': </strong> {{ item.cart_quantity }}</span>
+                                        <span><strong>SUBTOTALE: </strong> {{
+                                            (
+                                              item.cart_quantity *
+                                              (item.price_saled
+                                                ? item.price_saled
+                                                : item.price)
+                                            ).toFixed(2)
+                                          }}</span>
+
+
+                                      </div>
                                     </div>
                                 </div>
                             </div>

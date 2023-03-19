@@ -3,7 +3,7 @@
         <div class="container-lg">
             <div class="row">
                 <div class="col-12 d-flex flex-wrap justify-content-between">
-                    <div class="footer-section col-10 col-sm-3">
+                    <div class="footer-section col-6 col-sm-3">
                         <h3>I nostri recapiti</h3>
                         <ul>
                             <li>Papyra s.r.l.</li>
@@ -15,7 +15,7 @@
                             <li>info@foxbox.it</li>
                         </ul>
                     </div>
-                    <div class="footer-section col-10 col-sm-3">
+                    <div class="footer-section col-6 col-sm-3">
                         <h3>Menu utente</h3>
                         <ul>
                             <li><a href="#">Account</a></li>
@@ -27,17 +27,19 @@
                             <li><a href="#">Contatti</a></li>
                         </ul>
                     </div>
-                    <div class="footer-section col-10 col-sm-3">
+                    <div class="footer-section col-6 col-sm-3">
                         <h3>Seguici sui social</h3>
                         <ul class="wrapper icons">
-                            <a href="https://www.facebook.com/FoxyBox.scatole">
+
                                 <li class="icon facebook">
+                                  <a href="https://www.facebook.com/FoxyBox.scatole">
                                     <span class="tooltip">Facebook</span>
                                     <span>
                                         <i class="fa-sm fab fa-facebook-f"></i
                                     ></span>
-                                </li>
                             </a>
+                                </li>
+
                             <!-- <li class="icon twitter">
                                 <span class="tooltip">Twitter</span>
                                 <span
@@ -62,7 +64,7 @@
                             </li> -->
                         </ul>
                     </div>
-                    <div class="footer-section col-10 col-sm-3">
+                    <div class="footer-section col-6 col-sm-3">
                         <h3>Newsletter</h3>
                         <p>
                             Iscriviti per ricevere email su novità, sconti e
@@ -136,9 +138,59 @@ export default {};
             }
         }
 
-        @media (max-width: 991px) {
-            margin: 0 20px;
-        }
+
     }
+}
+@media (max-width: 576px) {
+  .FooterTop {
+    padding: 3rem 0;
+    background-color: white;
+
+    input {
+      background-color: transparent;
+      border: 1px solid lightgray;
+      width: 140px;
+    }
+
+    button {
+      padding: 8px 2rem;
+    }
+
+    .footer-section {
+      h3 {
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 0.6rem;
+        font-weight: 500;
+      }
+
+      img {
+        height: 30px;
+        margin-right: 2px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          font-size: 0.5rem;
+
+          font-weight: 500;
+
+          a {
+            color: black;
+            margin: 0 0;
+          }
+        }
+      }
+
+
+    }
+  }
 }
 </style>

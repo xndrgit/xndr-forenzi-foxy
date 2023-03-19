@@ -17,7 +17,7 @@
 
       <hr/>
 
-      <div class="row justify-content-center">
+      <div class="row justify-content-center ">
         <ShowBox3/>
       </div>
     </div>

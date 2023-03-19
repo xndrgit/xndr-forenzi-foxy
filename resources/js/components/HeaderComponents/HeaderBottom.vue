@@ -3,7 +3,7 @@
         <div class="HeaderSearch">
             <div class="container-lg">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-md-3 col-sm-10 logo">
+                    <div class="col-md-3 col-sm-10 col-10 logo">
                         <a href="/">
                             <img
                                 alt="Logo"
@@ -115,8 +115,8 @@ export default {
 
 <style lang="scss" scoped>
 .divCm {
-    background-color: rgb(220, 220, 220);
-    box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+    box-shadow: 0 0 6px -2px rgba(0, 0, 0, 0.2);
     border-radius: 0;
 
     display: flex;
@@ -149,13 +149,14 @@ input {
     width: 100%;
     border-radius: 0;
     padding: 0;
-    box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
-    transition: all 1s;
+    box-shadow: 0 0 2px -1px rgba(0, 0, 0, 0.4);
 
-    &:hover {
-        // transform: translateY(-2px);
-        // box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.5);
-    }
+  transition: 0.1s;
+
+  &:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    transform: scale(0.90);
+  }
 }
 
 input::placeholder {
@@ -224,4 +225,6 @@ button.btn.btn-outline-secondary {
         }
     }
 }
+
+
 </style>

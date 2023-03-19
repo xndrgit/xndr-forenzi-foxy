@@ -55,4 +55,27 @@ export default {
         font-size: 1.8rem;
     }
 }
+
+@media (max-width: 576px) {
+  .text-banner {
+    padding: 1.2rem;
+    width: 100%;
+
+    transition: 0.2s;
+
+    &:active{
+
+      transform: scale(0.95);
+    }
+
+    .text {
+      font-size: .6rem;
+    }
+
+    h1 {
+      font-weight: bolder;
+      font-size: 1.3rem;
+    }
+  }
+}
 </style>

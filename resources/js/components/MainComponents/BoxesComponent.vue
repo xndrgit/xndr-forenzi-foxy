@@ -276,20 +276,24 @@ export default {
     }
 }
 
-@media (max-width: 555px) {
+@media (max-width: 576px) {
+  .yellow-button{
+    border-radius: 50% !important;
+    padding: 0.5rem 0.6rem;
+  }
     .box {
         width: 155px;
         border: 1px solid white;
         overflow: hidden;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        transition: all 0.2s ease-in-out;
 
-        margin: 0.2rem 0.2rem;
+        margin: 0.4rem 0.2rem;
+      transition: 0.2s;
 
-        &:hover {
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-            transform: scale(1);
-        }
+      &:active{
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        transform: scale(0.95);
+      }
 
         img {
             object-fit: contain;
@@ -310,20 +314,22 @@ export default {
             flex-direction: column;
             align-items: center;
 
+
+
             .card-title {
                 margin: 0;
-                font-size: 0.8rem;
+                font-size: 0.5rem;
                 font-weight: bold;
                 line-height: 1.5;
             }
 
             .current-price {
-                font-size: 1rem;
+                font-size: .8rem;
                 font-weight: bold;
             }
 
             .old-price {
-                font-size: 0.8rem;
+                font-size: 0.6rem;
                 font-weight: bold;
                 color: lightgray;
                 margin-right: 5px;
@@ -334,7 +340,7 @@ export default {
             }
 
             .price {
-                font-size: 1rem;
+                font-size: .8rem;
                 font-weight: bold;
             }
 
@@ -350,6 +356,8 @@ export default {
 
                 .col-12 {
                     padding: 0;
+
+
                 }
             }
 
@@ -373,7 +381,8 @@ export default {
             border-top: 0;
 
             .yellow-button {
-                font-size: 0.5rem;
+                font-size: 0.6rem;
+              padding: 0.3rem 0.6rem;
             }
 
             .left {

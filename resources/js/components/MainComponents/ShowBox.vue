@@ -52,7 +52,7 @@
               </strong>
             </div>
 
-            <div class="d-flex" v-if="product.subcategories">
+            <div class="d-none d-sm-flex" v-if="product.subcategories">
               <span>SOTTOCATEGORIE:</span>
               <strong>
                                 <span v-for="subcategory in product.subcategories" :key="subcategory.id"
@@ -261,7 +261,7 @@ export default {
         this.items = [...this.items, addedItem];
       }
 
-      alert("Added to Cart");
+      // alert("Added to Cart");
     },
   },
 };
@@ -269,7 +269,7 @@ export default {
 
 <style lang="scss" scoped>
 .overflow-table::-webkit-scrollbar {
-  background-color: transparent;
+
 }
 
 .overflow-table {
@@ -299,9 +299,11 @@ p {
 }
 
 span {
-  font-size: 0.8rem;
-  margin-right: 3px;
+  font-size: 12px;
+  margin-right: 2px;
 }
+
+
 
 strong {
   font-size: 0.6rem;
@@ -378,4 +380,12 @@ td {
   color: orange;
   font-weight: bold;
 }
+
+
+@media (max-width: 576px) {
+  h6{
+    font-size: .8rem;
+  }
+}
+
 </style>

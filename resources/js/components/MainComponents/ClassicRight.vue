@@ -2,9 +2,9 @@
     <section class="classic">
         <div class="container-lg align-items-center">
             <div class="row">
-                <div class="col-12 d-flex align-items-center flex-wrap">
+                <div class="col-12 d-flex justify-content-center align-items-center flex-wrap">
                     <div
-                        class="classic-image col-12 col-md-5 d-flex justify-content-center"
+                        class="classic-image d-none col-md-5 d-lg-flex justify-content-center"
                     >
                         <img
                             alt=""
@@ -13,7 +13,7 @@
                         />
                     </div>
 
-                    <div class="classic-image col-12 col-md-3">
+                    <div class="classic-image d-none d-lg-block col-md-3">
                         <img
                             alt=""
                             class="img-fluid"
@@ -21,7 +21,7 @@
                         />
                     </div>
                     <div
-                        class="classic-text col-12 col-md-4 d-flex flex-column justify-content-center align-items-end"
+                        class="classic-text col-12 col-md-4 d-flex flex-column justify-content-center align-items-center"
                     >
                         <h1 class="text-white fw-bold display-5">
                             Desideri una scatola su misura con colori e stampa
@@ -74,7 +74,7 @@
 
     p {
         font-size: 0.7rem;
-        text-align: flex-end;
+        text-align: end;
     }
 
     h1 {

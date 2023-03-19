@@ -151,7 +151,7 @@ export default {
     left: 30px;
     z-index: 2;
     padding: 0.5rem;
-    transition: transform 0.5s;
+    transition: 0.5s;
 
 
     &:hover{

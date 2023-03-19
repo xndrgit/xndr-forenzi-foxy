@@ -30,7 +30,7 @@
                 />
 
                 <LoadingRollComponent v-if="loadingProducts"/>
-                <div v-else class="d-flex justify-content-center flex-wrap">
+                <div v-else class="d-flex justify-content-around justify-content-sm-center flex-wrap">
                     <BoxesComponent
                         v-for="product in products"
                         :key="product.name"

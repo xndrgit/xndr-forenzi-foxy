@@ -13,10 +13,10 @@
             <div class="w-65">
                 <div class="new-text" style="font-weight: bold">
                     <h3>NOVITÀ!!</h3>
-                    <span>
+                    <p>
                         Scopri i nostri nuovi prodotti a catalogo e tutti in
                         pronta consegna e spedizione gratuita.
-                    </span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 />
             </div>
             <div class="new-text w-65">
-                <h5>Scatole con maniglie</h5>
+                <h6>Scatole con maniglie</h6>
                 <p>Disponibili bianche e avana</p>
                 <button class="yellow-button">SCOPRI IL PRODOTTO</button>
             </div>
@@ -43,7 +43,7 @@
                 />
             </div>
             <div class="new-text w-65">
-                <h5>Scatole colorate</h5>
+                <h6>Scatole colorate</h6>
                 <p>Varie forme e colori</p>
                 <button class="yellow-button">SCOPRI IL PRODOTTO</button>
             </div>
@@ -97,5 +97,57 @@ export default {
             }
         }
     }
+}
+
+@media (max-width: 576px) {
+  .news-banner {
+    .new {
+
+
+      display: flex;
+      align-items: center;
+
+      font-size: 0.6rem;
+
+      height: 120px;
+      width: calc(33.33% - 50px);
+      background-color: #e5e5e5;
+      margin: 1px 0;
+
+      transition: 0.2s;
+
+      &:active{
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        transform: scale(0.95);
+      }
+
+      img {
+        border-radius: 10px;
+        height: 120px;
+      }
+
+      span {
+        font-weight: 500;
+      }
+
+      p {
+        font-size: .5rem;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .new-text {
+        margin-right: 20px;
+
+        h3,
+        h5,
+        h6{
+
+          color: rgb(246, 134, 48);
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 </style>

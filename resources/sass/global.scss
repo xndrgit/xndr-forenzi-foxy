@@ -61,6 +61,32 @@ $gray: #f1f1f1;
 
 //! Button styles
 
+.yellow-button-radius {
+  background-color: #fdbc48;
+  border-radius: 50%;
+  color: $white;
+  font-weight: bold;
+  padding: 1px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    transform: scale(1);
+    // box-shadow: 0 0 10px #000;
+    background-color: $orange;
+  }
+}
+
 .yellow-button {
     background-color: #fdbc48;
     border: none;

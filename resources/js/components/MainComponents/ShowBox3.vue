@@ -34,7 +34,7 @@
                         </span>
           </div>
 
-          <div class="col-12 col-md-4 position-relative">
+          <div class="d-none d-lg-block col-12 col-md-4 position-relative">
             <img src="https://t4.ftcdn.net/jpg/01/08/28/37/360_F_108283790_YYMKdb7m1qdEiPvaJ9we0Bunbf5wvBtK.jpg" alt=""
                  class="img-fluid"/>
           </div>
@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-center flex-wrap">
+    <div class="d-flex justify-content-around justify-content-sm-center flex-wrap my-4">
       <BoxesComponent
         v-for="product in subcategory.products"
         :key="product.name"
