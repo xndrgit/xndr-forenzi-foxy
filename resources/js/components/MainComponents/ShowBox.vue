@@ -45,11 +45,16 @@
 
             <div class="d-flex" v-if="product.category">
               <span>CATEGORIA:</span>
-              <strong>
+
+                <strong>
+                  <a :href="`/category/${product.category.id}`">
                                 <span class="fw-bold">
                                     {{ product.category.name }}
                                 </span>
-              </strong>
+                  </a>
+                </strong>
+
+
             </div>
 
             <div class="d-none d-sm-flex" v-if="product.subcategories">
@@ -118,13 +123,13 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="d-flex flex-column justify-content-center align-items-center">
       <nav>
         <a class="active" href="#">CARATTERISTICHE SCATOLA</a>
       </nav>
       <table
         v-if="product"
-        class="alternating-rows table table-hover mb-5"
+        class="alternating-rows table table-hover mb-5 col-11 col-sm-12"
       >
         <tr>
           <td class="td1">Tipologia:</td>
@@ -383,8 +388,24 @@ td {
 
 
 @media (max-width: 576px) {
+
+  h2{
+    font-size: 1.2rem;
+
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   h6{
     font-size: .8rem;
+  }
+  img{
+    transition: .2s;
+    &:active {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      transform: scale(1.05);
+    }
   }
 }
 

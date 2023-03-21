@@ -219,10 +219,6 @@ export default {
             border: none;
             cursor: pointer;
         }
-
-        #add-to-cart-button:hover {
-            background-color: #3e8e41;
-        }
     }
 
     .card-footer {
@@ -268,19 +264,11 @@ export default {
                 cursor: pointer;
             }
 
-            #minus-button:hover,
-            #plus-button:hover {
-                background-color: #fdbc48;
-            }
         }
     }
 }
 
 @media (max-width: 576px) {
-  .yellow-button{
-    border-radius: 50% !important;
-    padding: 0.5rem 0.6rem;
-  }
     .box {
         width: 155px;
         border: 1px solid white;
@@ -292,7 +280,7 @@ export default {
 
       &:active{
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        transform: scale(0.95);
+
       }
 
         img {
@@ -318,9 +306,13 @@ export default {
 
             .card-title {
                 margin: 0;
-                font-size: 0.5rem;
+                font-size: 0.8rem;
                 font-weight: bold;
                 line-height: 1.5;
+              max-width: 130px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
             .current-price {
@@ -367,10 +359,6 @@ export default {
                 border: none;
                 cursor: pointer;
             }
-
-            #add-to-cart-button:hover {
-                background-color: #3e8e41;
-            }
         }
 
         .card-footer {
@@ -381,8 +369,39 @@ export default {
             border-top: 0;
 
             .yellow-button {
+              border-radius: 50% !important;
+              padding: 0.3rem 0.5rem;
                 font-size: 0.6rem;
-              padding: 0.3rem 0.6rem;
+
+
+              &:hover{
+
+                animation: roll .5s;
+                animation-fill-mode: forwards;
+                color:  black;
+
+              }
+
+              @keyframes roll {
+                0% {
+                  transform: scale(1);
+
+                  background-color: #f68630;
+
+                }
+                50% {
+                  transform: scale(.8);
+
+                  background-color: #f68630;
+
+                }
+                100% {
+                  transform: scale(1);
+
+
+
+                }
+              }
             }
 
             .left {
@@ -408,7 +427,8 @@ export default {
                 input,
                 button {
                     border: 1px solid lightgrey;
-                    font-size: 0.4rem;
+                    font-size: 0.3rem;
+                  text-align: center;
                 }
 
                 #minus-button,
@@ -419,11 +439,6 @@ export default {
                     text-align: center;
                     font-weight: bold;
                     cursor: pointer;
-                }
-
-                #minus-button:hover,
-                #plus-button:hover {
-                    background-color: #fdbc48;
                 }
             }
         }

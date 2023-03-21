@@ -3,7 +3,7 @@
         <div class="HeaderSearch">
             <div class="container-lg">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-md-3 col-sm-10 col-10 logo">
+                    <div class="col-md-3 col-sm-10 col-8 logo">
                         <a href="/">
                             <img
                                 alt="Logo"
@@ -102,12 +102,20 @@ export default {
                 });
             }
 
+          setTimeout(() => {
             window.VBus.fire("search-products", {
-                length: this.length,
-                width: this.width,
-                height: this.height,
-                searchStr: this.searchStr,
+              length: this.length,
+              width: this.width,
+              height: this.height,
+              searchStr: this.searchStr,
             });
+
+            window.scrollTo({
+              top: 1020,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }, 1000);
         },
     },
 };
@@ -159,12 +167,7 @@ input {
   }
 }
 
-input::placeholder {
-    width: min-content;
-    color: black;
-    font-size: 60%;
-    font-weight: 600;
-}
+
 
 button.btn.btn-outline-secondary {
     background-color: rgb(253, 188, 72);
@@ -188,23 +191,36 @@ button.btn.btn-outline-secondary {
                 .logo {
                     img {
                         width: 100%;
+                      transition: .2s;
+
+                      &:active{
+                        transform: scale(.8);
+                      }
                     }
                 }
 
                 .inputs {
                     .input-group {
                         input {
-                            font-weight: bold;
+
+
                             border: none;
                             background-color: transparent;
                             padding: 0.5rem;
-                            font-size: 1.1rem;
+
                             transition: all 0.3s ease-in-out;
 
                             &:hover {
                                 box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
                             }
                         }
+
+                      input::placeholder {
+                        width: min-content;
+                        color: black;
+                        font-size: 60%;
+                        font-weight: 600;
+                      }
 
                         .input-group-append {
                             button {
@@ -214,9 +230,6 @@ button.btn.btn-outline-secondary {
                                 border: none;
                                 transition: all 0.3s ease-in-out;
 
-                                &:hover {
-                                    // transform: scale(0.9);
-                                }
                             }
                         }
                     }
@@ -225,6 +238,95 @@ button.btn.btn-outline-secondary {
         }
     }
 }
+
+@media (max-width: 576px) {
+  .HeaderBottom {
+    background-color: #ffffff;
+
+    .HeaderSearch {
+      .container-lg {
+        .row {
+          .logo {
+            img {
+              width: 100%;
+              transition: .2s;
+
+              &:active{
+                transform: scale(.8);
+              }
+            }
+          }
+
+          .inputs {
+            .input-group {
+              input {
+              font-weight: bold;
+                border: none;
+                background-color: transparent;
+                padding: 0.5rem;
+                font-size: 1.1rem;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.3);
+                }
+              }
+              input::placeholder {
+                width: min-content;
+                color: black;
+
+                font-weight: 600;
+              }
+
+              .input-group-append {
+                button {
+                  background-color: #fdbc47;
+                  color: white;
+                  font-weight: bold;
+                  border: none;
+
+
+
+                  border-radius: 50%;
+                  transform: scale(.8);
+
+
+                  &:hover{
+                    background-color: #f68630;
+                  }
+
+                  &:hover i{
+
+                      animation: roll 2s;
+                      animation-fill-mode: forwards;
+                    color:  black;
+
+
+                  }
+
+                  @keyframes roll {
+                    0% {
+                      transform: rotate(0deg);
+                    }
+                    100% {
+                      transform: rotate(360deg);
+                    }
+                  }
+
+
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
 
 
 </style>

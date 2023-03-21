@@ -85,7 +85,7 @@
                                             class="dropdown-item text-dark font-weight-bold"
                                             :href="`/category/${category.id}`"
                                         >
-                                            📦{{ category.name }}
+                                            {{ category.name }}
                                         </a>
 
                                         <ul v-if="category.subcategories && category.subcategories.length">
@@ -95,7 +95,7 @@
                                                     class="dropdown-item"
                                                     :href="`/subcategory/${subcategory.id}`"
                                                 >
-                                                    → {{ subcategory.name }}
+                                                  📦 {{ subcategory.name }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -237,11 +237,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .HeaderTop {
+    //position: fixed;
     width: 100%;
     height: fit-content;
     background-color: rgb(245, 133, 47);
     color: white;
+
+
+
 
     section {
         cursor: pointer;
@@ -263,6 +268,48 @@ export default {
             color: white;
         }
     }
+}
+@media (max-width: 576px) {
+  .HeaderTop {
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(245, 133, 47);
+    color: white;
+
+    section {
+      cursor: pointer;
+      transition: 1s;
+
+      img {
+        height: 25px;
+        padding: 0 10px;
+        margin: 0.5rem 0;
+
+        transition: .2s;
+
+        &:active{
+          transform: scale(.8);
+        }
+      }
+
+
+      p {
+        margin: 0;
+        font-size: 0.6rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: 0.4s;
+        &:hover{
+         color: lightgray;
+        }
+      }
+
+    }
+  }
 }
 </style>
 

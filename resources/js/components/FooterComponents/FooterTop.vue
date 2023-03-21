@@ -31,14 +31,16 @@
                         <h3>Seguici sui social</h3>
                         <ul class="wrapper icons">
 
+                          <a href="https://www.facebook.com/FoxyBox.scatole">
                                 <li class="icon facebook">
-                                  <a href="https://www.facebook.com/FoxyBox.scatole">
+
                                     <span class="tooltip">Facebook</span>
                                     <span>
                                         <i class="fa-sm fab fa-facebook-f"></i
                                     ></span>
-                            </a>
+
                                 </li>
+                          </a>
 
                             <!-- <li class="icon twitter">
                                 <span class="tooltip">Twitter</span>
@@ -161,6 +163,7 @@ export default {};
         font-weight: bold;
         font-size: 1rem;
         margin-bottom: 20px;
+        white-space: nowrap;
       }
 
       p {
@@ -178,9 +181,15 @@ export default {};
         padding: 0;
 
         li {
-          font-size: 0.5rem;
+          font-size: .6rem;
+          max-width: 150px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
-          font-weight: 500;
+          margin: 10px 0px;
+          margin-right: 10px;
+
 
           a {
             color: black;

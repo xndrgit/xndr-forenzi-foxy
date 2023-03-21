@@ -7,7 +7,7 @@
             </div>
 
             <div
-                class="col-sm-12 col-md-8 d-none align-items-end cart-info d-md-flex ml-4"
+                class="col-sm-12 col-md-8 d-none align-items-end cart-info d-md-flex"
             >
                 <div class="row">
                     <div class="col-md-5">
@@ -36,11 +36,14 @@
                             <div class="product">
                                 <div class="row">
                                     <div class="col-md-2 item">
+                                      <a :href="`/product/${item.id}`">
                                         <img
-                                            :src="productImage(item)"
-                                            alt=""
-                                            class="img-fluid mx-auto d-block image"
+                                          :src="productImage(item)"
+                                          alt=""
+                                          class="img-fluid mx-auto d-block image"
                                         />
+                                      </a>
+
                                         <a
                                             class="delete"
                                             type="button"

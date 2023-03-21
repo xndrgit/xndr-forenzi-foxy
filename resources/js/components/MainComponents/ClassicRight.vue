@@ -84,4 +84,41 @@
 
     }
 }
+
+@media (max-width: 576px) {
+  .classic {
+    background-color: #fdbc48;
+    text-align: center;
+
+    .classic-text {
+      width: fit-content;
+    }
+
+    .classic-btn {
+      width: -webkit-fill-available;
+      width: -moz-available;
+      width: stretch;
+    }
+
+    img {
+      width: -webkit-fill-available;
+      width: -moz-available;
+      width: stretch;
+      max-height: 250px;
+      object-fit: contain;
+    }
+
+    p {
+      font-size: 0.7rem;
+      text-align: center;
+    }
+
+    h1 {
+      color: rgb(246, 135, 46);
+      font-weight: bold;
+      font-size: 1.5rem;
+
+    }
+  }
+}
 </style>

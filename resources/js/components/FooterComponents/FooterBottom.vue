@@ -51,13 +51,13 @@ export default {};
         }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 576px) {
         img {
-            height: 12px; /* Height for screens less than 1000px */
+            display: none;
         }
         .policy {
-            font-size: 0.25rem;
-            height: 20px;
+            font-size: 0.4rem;
+           font-weight: bold;
         }
     }
 }

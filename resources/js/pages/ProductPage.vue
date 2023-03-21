@@ -5,7 +5,7 @@
 
             <div
                 v-else
-                class="flex-wrap d-none d-lg-flex justify-content-around justify-content-sm-between col-12"
+                class="flex-wrap d-none d-lg-flex justify-content-around justify-content-sm-between"
             >
                 <NavBoxesComponent
                     v-for="category in categories"

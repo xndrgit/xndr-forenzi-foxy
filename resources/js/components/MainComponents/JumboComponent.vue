@@ -304,6 +304,26 @@ export default {
                     margin: 10px;
                     padding: 1.2rem;
 
+                  position: relative;
+
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    bottom: -5px;
+                    left: -5px;
+                    border: 2px solid transparent;
+                    border-radius: 10px;
+                    z-index: -1;
+                    transition: all 0.4s ease-out;
+                  }
+
+                  &:hover:before {
+                    border-color: rgba(255, 255, 255, 0.7);
+                    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+                  }
+
                     .square-time {
                         font-size: 1.8rem;
                         font-weight: bold;
@@ -414,32 +434,27 @@ export default {
 
     .jumbo2 {
       .clock {
-
         display: flex;
         align-items: center;
         justify-content: center;
 
-        font-size: 0.5rem;
+        font-size: 0.8rem;
 
         height: -webkit-fill-available;
         height: -moz-available;
         height: stretch;
+
         background-color: rgb(246, 134, 48);
 
-        transition: 0.2s;
-
-        &:active{
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-          transform: scale(0.95);
-        }
-
-
-        h5,
         h6{
+          font-size: .8rem;
+        }
+        h5{
           font-size: .7rem;
         }
 
         .countdown {
+
           .square {
             display: flex;
             align-items: center;
@@ -447,23 +462,44 @@ export default {
 
             height: 50px;
             width: 50px;
+
             background-color: rgb(253, 188, 72);
+
             margin: 10px;
             padding: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Set initial border style */
+            animation: pulse 1s ease-in-out infinite; /* Apply animation every second */
 
             .square-time {
               font-size: 1.2rem;
               font-weight: bold;
               color: black;
             }
-
             .square-text {
               font-size: 0.4rem;
               font-weight: bold;
             }
+
+
           }
         }
       }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+        50% {
+          transform: scale(1.05);
+          border-color: rgba(255, 255, 255, 0.6);
+        }
+        100% {
+          transform: scale(1);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+      }
+
 
       .delivery {
         height: fit-content;

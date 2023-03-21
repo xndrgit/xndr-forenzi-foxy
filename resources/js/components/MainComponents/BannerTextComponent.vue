@@ -6,19 +6,19 @@
             </h1>
         </div>
 
-        <div class="mx-5">
+        <div class="mx-sm-5">
             <span class="text">
                 {{ description }}
             </span>
         </div>
-        <div class="mx-5">
+        <div class="mx-sm-5">
             <span class="text">
                 {{ descriptionTwo }}
             </span>
         </div>
 
         <div>
-            <p class="text fw-bold">
+            <p class="text fw-bold mx-sm-5">
                 {{ descriptionBold }}
             </p>
         </div>
@@ -69,7 +69,7 @@ export default {
     }
 
     .text {
-      font-size: .6rem;
+      font-size: .7rem;
     }
 
     h1 {

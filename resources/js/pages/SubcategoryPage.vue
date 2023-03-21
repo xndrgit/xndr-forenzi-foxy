@@ -3,7 +3,7 @@
     <div class="container-lg">
       <div
         v-if="categories"
-        class="flex-wrap d-none d-lg-flex justify-content-around justify-content-sm-between col-12"
+        class="flex-wrap d-none d-lg-flex justify-content-around justify-content-sm-between"
       >
         <NavBoxesComponent
           v-for="item in categories"
