@@ -288,7 +288,6 @@
                                             v-model="notes"
                                             :error-messages="notesErrors"
                                             label="NOTE ORDINE (opzionale)"
-                                            required
                                             @blur="$v.notes.$touch()"
                                             @input="$v.notes.$touch()"
                                         ></v-textarea>
@@ -319,11 +318,11 @@
                                             />
                                         </div>
 
-                                        <div class="d-flex flex-column px-3">
-                                            <b class="">{{ item.name }}</b>
+                                        <div class="d-flex flex-column px-3 ">
+                                            <strong class="">{{ item.name }}</strong>
                                             <strong
                                                 >CODICE:
-                                                <span> </span>
+
                                                 <a
                                                     class="text-warnings"
                                                     href="#"
@@ -596,13 +595,12 @@
                                         type="checkbox"
                                     />
                                     <label class="form-check-label" for="terms">
-                                        Ho letto e accetto
+                                      <span class="check">Ho letto e accetto</span>
                                         <strong
                                             ><a href=""
-                                                >termini e condizioni</a
-                                            ></strong
-                                        >
-                                        del sito web *
+                                                >termini e condizioni</a></strong>
+                                      <span class="check">del sito web *</span>
+
                                     </label>
                                 </div>
                                 <div
@@ -686,7 +684,7 @@ export default {
         phone: { required },
         pec: { required },
         code_sdi: { required },
-        notes: { required },
+        notes: { maxLength: maxLength(500) },
     },
 
     computed: {
@@ -859,7 +857,7 @@ export default {
                 return errors;
             }
             !this.$v.notes.required &&
-                errors.push("NOTES is required.") &&
+                errors.push("") &&
                 this.notes_error.push("error");
             return errors;
         },
@@ -1228,45 +1226,33 @@ tr.text-muted td {
     }
 }
 
-@media (max-width: 575px) {
-    .progress .progress-bar {
-        width: 38%;
-    }
 
-    #cart,
-    #summary {
-        max-width: 100%;
-    }
 
-    nav,
-    .wrapper {
-        padding: 10px 30px;
-    }
 
-    #register {
-        width: 100%;
-    }
-}
+@media (max-width: 576px) {
 
-@media (max-width: 424px) {
-    body {
-        width: fit-content;
-    }
-}
-
-@media (max-width: 375px) {
-    .progress .progress-bar {
-        width: 35%;
-    }
-
-    body {
-        width: fit-content;
-    }
-}
-
-.total * {
-    color: orange;
-    font-size: 0.8rem;
+  .item img[data-v-7ec38f04] {
+    object-fit: contain;
+  }
+  strong {
+    font-size: 0.5rem;
+  }
+  label{
+    font-size: .6rem;
+  }
+  .check{
+    font-size: .5rem;
+  }
+  .yellow-button{
+    font-size: .8rem;
+  }
+  h5{
+    font-size: .8rem;
     font-weight: bold;
+  }
+
+  p{
+    font-size: .6rem;
+  }
 }
 </style>

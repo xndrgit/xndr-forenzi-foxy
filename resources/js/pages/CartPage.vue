@@ -3,7 +3,7 @@
         <div class="container-lg">
             <div class="block-heading">
                 <h2 class="display-5 font-weight-bold">Il tuo carrello</h2>
-                <hr class="w-5"/>
+              <hr class="w-5 d-none d-sm-block"/>
             </div>
 
             <div
@@ -35,7 +35,7 @@
                         <div v-for="item in items" class="items">
                             <div class="product">
                                 <div class="row">
-                                    <div class="col-md-2 item">
+                                    <div class="col-md-2 col-6 d-flex item">
                                       <a :href="`/product/${item.id}`">
                                         <img
                                           :src="productImage(item)"
@@ -56,7 +56,7 @@
                                     </div>
 
                                     <div
-                                        class="col-md-10 d-flex align-items-center"
+                                        class="col-md-10 col-6 d-flex align-items-center"
                                     >
                                         <div
                                             class="info col-12 d-md-block d-none"
@@ -174,6 +174,8 @@
                                       >
 
                                           <span><strong>NOME: </strong> {{ item.name }}</span>
+                                        <span><strong>CODICE: </strong> {{ item.code }}</span>
+                                        <span><strong>DIMENSIONE: </strong> {{ item.length }} x {{item.height}} x {{item.width}}</span>
 
                                         <span><strong>PREZZO: </strong>  €{{ item.price_saled ? item.price_saled : item.price }}</span>
 
@@ -196,7 +198,9 @@
                             <hr/>
                         </div>
                     </div>
-                    <div v-else class="col-md-12 col-lg-8">Nessun Prodotto</div>
+                  <div v-else class="col-md-12 col-lg-8 d-flex align-items-center justify-content-center">
+                    <span>Nessun</span> <span>Prodotto</span>
+                  </div>
                     <div class="col-md-4">
                         <div class="summary d-flex flex-column">
                             <h3>TOTALE A CARRELLO</h3>
@@ -340,6 +344,59 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
+
+
+
+div.col-md-12.col-lg-8 {
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+div.col-md-12.col-lg-8 span:first-of-type {
+  color: #fdbc48;
+  font-size: 2em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+div.col-md-12.col-lg-8 span:last-of-type {
+  color: #f68630;
+  font-size: 2em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+div.col-md-12.col-lg-8 span:first-of-type::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 20%;
+  height: 2px;
+  background-color: #fdbc48;
+  transform: translateY(-50%);
+  z-index: -1;
+
+}
+
+div.col-md-12.col-lg-8 span:last-of-type::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  width: 20%;
+  height: 2px;
+  background-color: #f68630;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+
+
+div.col-md-12.col-lg-8:hover span {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  transition: text-shadow 0.3s ease-in-out;
+}
 
 .cart-header {
     font-weight: bold;
@@ -511,5 +568,58 @@ a {
             filter: grayscale(2);
         }
     }
+}
+
+@media (max-width: 576px) {
+
+  h2{
+    font-size: 1.2rem;
+
+    text-align: center;
+  }
+  h3{
+    font-size: .8rem;
+    margin: 0;
+  }
+  h6{
+    font-size: .8rem;
+  }
+  img{
+    max-height: 100px;
+  }
+
+  span{
+    font-size: .6rem;
+  }
+
+  .delete {
+    position: absolute;
+
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fff;
+    padding-left: 4px;
+
+    top: 30px;
+    right: 25px;
+
+    i {
+      background-color: rgb(244, 190, 89);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 1s ease-in-out;
+
+      &:hover {
+        transform: scale(0.9);
+        filter: grayscale(2);
+      }
+    }
+  }
+
+  .shopping-cart .items .product .info[data-v-2f3a4cd8] {
+    padding:0;
+    text-align: center;
+  }
 }
 </style>

@@ -3,7 +3,7 @@
         <div>
             <!-- Title goes here -->
             <div class="d-flex align-items-start">
-                <div class="w-10 bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
+                <div class="d-none d-sm-block w-10 bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
                 <div class="w-90">
                     <span class="title-create">{{ title }}</span>
 

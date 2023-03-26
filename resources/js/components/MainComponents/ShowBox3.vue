@@ -385,4 +385,26 @@ td {
   padding-inline: 12px;
   margin-left: 10px;
 }
+
+
+@media (max-width: 576px) {
+  h2{
+    font-size: 1.5rem;
+  }
+  h3{
+    font-size: .8rem;
+    margin: 0;
+  }
+  h6{
+    font-size: .8rem;
+  }
+
+  a{
+    font-size: .7rem;
+  }
+
+  span {
+    font-size: 0.6rem;
+  }
+}
 </style>

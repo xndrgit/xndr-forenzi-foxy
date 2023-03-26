@@ -1,8 +1,8 @@
 <template>
-    <div class="step">
+    <div class="step justify-content-center">
         <fieldset>
             <div class="d-flex align-items-start">
-                <div class="bg-yellow px-2 py-2 mx-2">STEP 5</div>
+                <div class="d-none d-sm-block bg-yellow px-2 py-2 mx-2">STEP 5</div>
 
                 <div class="w-90">
                     <span class="title-create"

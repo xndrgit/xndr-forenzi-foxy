@@ -109,14 +109,14 @@
     }
 
     p {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       text-align: center;
     }
 
     h1 {
       color: rgb(246, 135, 46);
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
 
     }
   }

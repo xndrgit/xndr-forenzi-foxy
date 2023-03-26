@@ -101,6 +101,19 @@
                                         </ul>
                                     </div>
                                 </li>
+                              <li
+
+                                class="nav-item dropdown mx-1"
+                              >
+                                <a
+                                  class="nav-link personalizza text-center text-dark"
+
+                                  href="/personalize"
+                                  role="button"
+                                >
+                                  PERSONALIZZA
+                                </a>
+                              </li>
                             </ul>
                         </div>
                     </nav>

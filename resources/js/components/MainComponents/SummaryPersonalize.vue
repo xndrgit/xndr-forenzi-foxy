@@ -260,9 +260,10 @@ label {
 
 input {
     width: 30%;
-    font-size: 1.5rem;
+    font-size: .8rem;
     border: 1px solid lightgray;
     background-color: white;
+  padding: .2rem;
 }
 
 .form-group input {

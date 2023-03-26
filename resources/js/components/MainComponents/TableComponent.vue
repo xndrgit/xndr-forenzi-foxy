@@ -171,10 +171,13 @@ export default {
   overflow-x: auto !important;
 
   table {
+
     td,
     th {
       background-color: $yellow;
-      border: 1px solid #ddd;
+
+      border: 1px solid transparent;
+
       font-size: 0.5rem;
       text-align: center;
       vertical-align: middle;

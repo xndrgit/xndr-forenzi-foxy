@@ -1,9 +1,9 @@
 <template>
-    <div class="step">
+    <div class="step justify-content-center justify-content-sm-between">
         <!-- Title goes here -->
         <div class="d-flex justify-content-start align-items-start">
-            <div class="bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
-            <div class="col-8">
+            <div class="d-none d-sm-block bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
+            <div class="col-12 col-sm-8">
                 <span class="title-create">{{ title }}</span>
                 <div
                     class="d-flex flex-wrap align-items-center justify-content-between col-12"
@@ -227,7 +227,8 @@ h2 {
 
 @media screen and (max-width: 500px) {
     .title-create {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
+      text-align: center;
     }
 }
 </style>

@@ -1,15 +1,11 @@
 <template>
-  <div>
     <!-- <div class="d-flex justify-content-center" v-if="loadingCategory">
         <LoadingRollComponent />
     </div> -->
-
-    <div class="d-flex">
-      <div class="right">
         <div
-          class="d-flex flex-wrap justify-content-between align-items-center"
+          class="d-flex flex-wrap justify-content-center align-items-center"
         >
-          <div class="col-12 col-md-8">
+          <div class="col-11 col-md-8">
             <h2 class="font-weight-bold">
               {{ category.name }}
             </h2>
@@ -30,7 +26,7 @@
             </span>
           </div>
 
-          <div class="col-12 col-md-4 position-relative">
+          <div class="col-11 col-md-4 position-relative">
             <img :src="category.img" alt="" class="img-fluid"/>
             <img
               :src="category.img2"
@@ -58,8 +54,6 @@
                 <strong>SCONTO 10%</strong> Totale ordine da €1.000
             </div>
         </div> -->
-      </div>
-    </div>
 
     <!-- <div class="row">
         <section
@@ -124,7 +118,6 @@
             </div>
         </section>
     </div> -->
-  </div>
 </template>
 
 <script>
@@ -404,6 +397,13 @@ td {
 
 
 @media (max-width: 576px) {
+  h2{
+    font-size: 1.5rem;
+  }
+  h3{
+    font-size: .8rem;
+    margin: 0;
+  }
   h6{
     font-size: .8rem;
   }

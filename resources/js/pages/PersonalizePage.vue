@@ -29,7 +29,7 @@
                         <div class="steps col-12 col-md-8 col-sm-10">
                             <!-- Left side content goes here -->
                             <StepFirstDynamic
-                                v-for="(element, index) in boxone"
+                                v-for="element in boxone"
                                 :key="element.id"
                                 :img="element.img"
                                 :letter-one="element.letterOne"
@@ -48,7 +48,7 @@
                                 @inputValuesChanged="setInputValues"
                             />
                             <StepColor
-                                v-for="(element, index) in colorData"
+                                v-for="element in colorData"
                                 :key="element.id"
                                 :img-one="element.imgOne"
                                 :img-two="element.imgTwo"
@@ -61,7 +61,7 @@
                                 @selectedColor="setSelectedColor"
                             />
                             <StepType
-                                v-for="(element, index) in typeData"
+                                v-for="element in typeData"
                                 :key="element.id"
                                 :img-one="element.imgOne"
                                 :img-two="element.imgTwo"
@@ -331,5 +331,10 @@ input {
 
 .image img {
     padding: 1rem;
+}
+@media (max-width: 576px) {
+  h2{
+    font-size: 1rem;
+  }
 }
 </style>

@@ -5,7 +5,7 @@
 
             <div
                 v-else
-                class="flex-wrap d-none d-lg-flex justify-content-around justify-content-sm-between"
+                class="flex-wrap d-none d-lg-flex justify-content-around justify-content-sm-between col-12"
             >
                 <NavBoxesComponent
                     v-for="category in categories"
@@ -19,10 +19,9 @@
 
             <hr/>
 
-            <div class="">
-                <loadingRollComponent v-if="loadingProduct" class="py-5 my-5"/>
-                <ShowBox v-else/>
-            </div>
+                <ShowBox/>
+
+
 
             <h6 class="font-weight-bold m-0">Elenco formati disponibili</h6>
             <TableComponent/>
@@ -39,6 +38,7 @@
             :title="element.title"
         />
         <ClassicRight/>
+
     </div>
 </template>
 
@@ -49,8 +49,6 @@ import NavBoxesComponent from "../components/MainComponents/NavBoxesComponent.vu
 import CustomizeBoxesComponent from "../components/MainComponents/CustomizeBoxesComponent.vue";
 
 import LoadingComponent from "../components/MainComponents/LoadingComponent.vue";
-import LoadingRollComponent from "../components/MainComponents/LoadingRollComponent.vue";
-
 import TableComponent from "../components/MainComponents/TableComponent.vue";
 import BannerNewsComponent from "../components/MainComponents/BannerNewsComponent.vue";
 import ClassicLeft from "../components/MainComponents/ClassicLeft.vue";
@@ -68,7 +66,6 @@ export default {
         NavBoxesComponent,
 
         LoadingComponent,
-        LoadingRollComponent,
 
         CustomizeBoxesComponent,
         TableComponent,

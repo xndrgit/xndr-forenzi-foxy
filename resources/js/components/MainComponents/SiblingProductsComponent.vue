@@ -33,7 +33,7 @@
         <td>€ {{ product.fourth_price }}</td>
         <td class="bancale">
             <div class="d-inline">1.280</div>
-            <div class="yellow-button d-inline p-2 mx-2">+</div>
+            <div disabled class="yellow-button d-inline p-2 mx-2">+</div>
         </td>
         <td>
             <div class="d-flex align-items-center">
@@ -135,12 +135,18 @@ export default {
                 this.items = [...this.items, addedItem];
             }
 
-            alert("Added to Cart");
+            // alert("Added to Cart");
         },
     },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+.yellow-button[disabled] {
+  cursor: not-allowed;
+  background-color: #f2f2f2;
+  color: #999;
+  opacity: 0.6;
+}
 .current-price {
     color: #f68630;
     font-weight: bold;

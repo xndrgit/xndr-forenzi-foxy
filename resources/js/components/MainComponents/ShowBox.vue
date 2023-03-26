@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LoadingRollComponent v-if="loadingProduct"/>
     <div v-if="product" class="d-flex flex-wrap justify-content-center">
       <div class="left col-12 col-lg-5 d-flex justify-content-center">
         <img :alt="product.name" :src="imageSource" class="img-fluid"/>
@@ -300,12 +299,13 @@ export default {
 }
 
 p {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 span {
-  font-size: 12px;
+  font-size: 10px;
   margin-right: 2px;
+  color: black;
 }
 
 
@@ -389,6 +389,26 @@ td {
 
 @media (max-width: 576px) {
 
+  td {
+    font-size: 0.6rem;
+    padding: 1rem;
+    border: 1px solid white;
+    min-width: 80px;
+  }
+
+  .td1 {
+    font-weight: bold;
+    width: 40%;
+  }
+
+  h4.current-price{
+    font-size: 1.2rem;
+  }
+
+  a.active{
+    font-size: .6rem;
+  }
+
   h2{
     font-size: 1.2rem;
 
@@ -400,6 +420,7 @@ td {
   h6{
     font-size: .8rem;
   }
+
   img{
     transition: .2s;
     &:active {

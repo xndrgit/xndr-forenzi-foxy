@@ -29,17 +29,21 @@
                     :title="element.title"
                 />
 
-                <LoadingRollComponent v-if="loadingProducts"/>
-                <div v-else class="d-flex justify-content-around justify-content-sm-center flex-wrap">
-                    <BoxesComponent
-                        v-for="product in products"
-                        :key="product.name"
-                        :product="product"
-                    />
-                </div>
+              <LoadingRollComponent v-if="loadingProducts"/>
+              <div class="no-products mx-5" v-else-if="products.length === 0">
+                <span>Nessun</span> <span>Prodotto</span>
 
-                <div v-if="!loadingProducts">
-                    <div v-if="pagination.next_page_url">
+              </div>
+              <div v-else class="d-flex justify-content-around justify-content-sm-center flex-wrap">
+                <BoxesComponent
+                  v-for="product in products"
+                  :key="product.name"
+                  :product="product"
+                />
+              </div>
+
+                <div class="col-12 d-flex justify-content-center" v-if="!loadingProducts">
+                    <div class="" v-if="pagination.next_page_url">
                         <button class="yellow-button" @click="loadMore">
                             Load More
                         </button>
@@ -211,4 +215,28 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
+
+.no-products {
+  font-weight: bold;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.no-products span:first-of-type {
+  color: #fdbc48;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.no-products span:last-of-type {
+  color: #f68630;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.no-products:hover span {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  transition: text-shadow 0.3s ease-in-out;
+}
 </style>

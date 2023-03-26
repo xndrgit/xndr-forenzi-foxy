@@ -1,7 +1,7 @@
 <template>
-    <div class="step">
+    <div class="step justify-content-center">
         <div class="d-flex align-items-start">
-            <div class="bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
+            <div class="d-none d-sm-block bg-yellow px-2 py-2 mx-2">STEP {{ step }}</div>
             <div class="">
                 <span class="title-create">{{ title }}</span>
                 <div
