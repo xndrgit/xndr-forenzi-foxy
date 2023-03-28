@@ -1,10 +1,18 @@
+//! TEXT
+.ellipsis {
+  //max-width: ;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 //! Width
 .w-5 {
-    width: 5%;
+  width: 5%;
 }
 
 .w-35 {
-    width: 35%;
+  width: 35%;
 }
 
 .w-40 {

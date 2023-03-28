@@ -220,18 +220,16 @@ export default {
     display: flex;
 
     .jumbo1 {
-        height: -webkit-fill-available;
-        height: -moz-available;
-        height: stretch;
+      height: 100%;
 
-        .carousel-image-container {
-            position: relative;
-        }
+      .carousel-image-container {
+        position: relative;
+      }
 
-        .maschera_dx {
-            position: absolute;
-            right: -60px;
-        }
+      .maschera_dx {
+        position: absolute;
+        right: -60px;
+      }
 
         .maschera_sx {
             position: absolute;
@@ -269,9 +267,9 @@ export default {
         }
 
         .VueCarousel {
-            object-fit: contain;
-            width: 100%;
-            height: 360px;
+          object-fit: contain;
+          width: 100%;
+          height: 350px;
         }
       div.VueCarousel-pagination {
         position: absolute !important;
@@ -281,35 +279,34 @@ export default {
 
     .jumbo2 {
         .clock {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-            font-size: 0.9rem;
+          font-size: 0.9rem;
 
-            height: -webkit-fill-available;
-            height: -moz-available;
-            height: stretch;
-            background-color: rgb(246, 134, 48);
+          height: 100%;
+          max-height: 160px;
+          background-color: rgb(246, 134, 48);
 
-            .countdown {
-                .square {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+          .countdown {
+            .square {
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
-                    height: 60px;
-                    width: 60px;
-                    background-color: rgb(253, 188, 72);
-                    margin: 10px;
-                    padding: 1.2rem;
+              height: 60px;
+              width: 60px;
+              background-color: rgb(253, 188, 72);
+              margin: 10px;
+              padding: 1.2rem;
 
-                  position: relative;
+              position: relative;
 
-                  &:before {
-                    content: "";
-                    position: absolute;
-                    top: -5px;
+              &:before {
+                content: "";
+                position: absolute;
+                top: -5px;
                     right: -5px;
                     bottom: -5px;
                     left: -5px;
@@ -339,31 +336,25 @@ export default {
         }
 
         .delivery {
-            height: fit-content;
-            margin-top: 23px;
+          height: fit-content;
+          margin-top: 15px;
 
-            border: 10px solid rgb(246, 134, 48);
+          border: 10px solid rgb(246, 134, 48);
 
-            .h1 {
-                color: rgb(246, 134, 48);
-            }
+          .h1 {
+            color: rgb(246, 134, 48);
+          }
 
-            span {
-                font-size: 0.8rem;
-                font-weight: 500;
-            }
+          span {
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
 
-            .delivery-image {
-                height: -webkit-fill-available;
-                height: -moz-available;
-                height: stretch;
-                width: -webkit-fill-available;
-                width: -moz-available;
-                width: stretch;
-                min-height: -webkit-fill-available;
-                min-height: -moz-available;
-                min-height: stretch;
-            }
+          .delivery-image {
+            height: 100%;
+            width: 100%;
+            min-height: 100%;
+          }
         }
     }
 }
@@ -373,9 +364,7 @@ export default {
     display: flex;
 
     .jumbo1 {
-      height: -webkit-fill-available;
-      height: -moz-available;
-      height: stretch;
+      height: 100%;
 
       .carousel-image-container {
         position: relative;
@@ -440,16 +429,17 @@ export default {
 
         font-size: 0.8rem;
 
-        height: -webkit-fill-available;
-        height: -moz-available;
-        height: stretch;
+        height: 100%;
+
+        max-height: 134px;
 
         background-color: rgb(246, 134, 48);
 
-        h6{
+        h6 {
           font-size: .8rem;
         }
-        h5{
+
+        h5 {
           font-size: .7rem;
         }
 
@@ -517,15 +507,9 @@ export default {
         }
 
         .delivery-image {
-          height: -webkit-fill-available;
-          height: -moz-available;
-          height: stretch;
-          width: -webkit-fill-available;
-          width: -moz-available;
-          width: stretch;
-          min-height: -webkit-fill-available;
-          min-height: -moz-available;
-          min-height: stretch;
+          height: 100%;
+          width: 100%;
+          min-height: 100%;
         }
       }
     }

@@ -18,7 +18,7 @@
         <div class="nav-item mx-3">
             <x-link
                 class="navbar-brand font-weight-bold text-white"
-                href="{{ url('/admin/home') }}"
+                href="{{ url('/') }}"
             >
                 <i class="fa-2x fas fa-box"></i>
                 <span>FoxyBox</span>
@@ -82,7 +82,7 @@
                             class="nav-link"
                             href="{{ route('admin.jumbos.index') }}"
                         >
-                            Jumbos
+                            Jumbo
                         </x-link>
                     </li>
                 @endguest

@@ -173,15 +173,21 @@
                                         class="info col-12 d-md-none d-flex flex-column align-items-start"
                                       >
 
-                                          <span><strong>NOME: </strong> {{ item.name }}</span>
-                                        <span><strong>CODICE: </strong> {{ item.code }}</span>
-                                        <span><strong>DIMENSIONE: </strong> {{ item.length }} x {{item.height}} x {{item.width}}</span>
+                                        <span class="ellipsis"><strong>NOME: </strong> {{ item.name }}</span>
+                                        <span class="ellipsis"><strong>CODICE: </strong> {{ item.code }}</span>
+                                        <span class="ellipsis"><strong>DIMENSIONE: </strong> {{
+                                            item.length
+                                          }} x {{ item.height }} x {{ item.width }}</span>
 
-                                        <span><strong>PREZZO: </strong>  €{{ item.price_saled ? item.price_saled : item.price }}</span>
+                                        <span class="ellipsis"><strong>PREZZO: </strong>  €{{
+                                            item.price_saled ? item.price_saled : item.price
+                                          }}</span>
 
 
-                                        <span><strong>QUANTITA': </strong> {{ item.cart_quantity }}</span>
-                                        <span><strong>SUBTOTALE: </strong> {{
+                                        <span class="ellipsis"><strong>QUANTITA': </strong> {{
+                                            item.cart_quantity
+                                          }}</span>
+                                        <span class="ellipsis"><strong>SUBTOTALE: </strong> {{
                                             (
                                               item.cart_quantity *
                                               (item.price_saled
@@ -345,6 +351,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/global.scss";
 
+
+.ellipsis {
+  max-width: 130px;
+}
 
 
 div.col-md-12.col-lg-8 {

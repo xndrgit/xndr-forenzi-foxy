@@ -3,7 +3,7 @@
 
     <x-layout.center-card class="auth-box">
         <x-slot name="cardHeader">
-            {{ __('Register') }}
+            {{ __('Registrati') }}
         </x-slot>
 
         <x-slot name="cardBody">
@@ -13,7 +13,7 @@
                         class="col-md-4 col-form-label text-md-right"
                         for="name"
                     >
-                        {{ __('Name') }}
+                        {{ __('Nome') }}
                     </label>
 
                     <div class="col-md-6">
@@ -44,7 +44,7 @@
                         class="col-md-4 col-form-label text-md-right"
                         for="email"
                     >
-                        {{ __('E-Mail Address') }}
+                        {{ __('Indirizzo E-Mail') }}
                     </label>
 
                     <div class="col-md-6">
@@ -103,7 +103,7 @@
                         class="col-md-4 col-form-label text-md-right"
                         for="password-confirm"
                     >
-                        {{ __('Confirm Password') }}
+                        {{ __('Conferma Password') }}
                     </label>
 
                     <div class="col-md-6">
@@ -121,7 +121,7 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <x-button>
-                            {{ __('Register') }}
+                            {{ __('Registrati') }}
                         </x-button>
                     </div>
                 </div>
