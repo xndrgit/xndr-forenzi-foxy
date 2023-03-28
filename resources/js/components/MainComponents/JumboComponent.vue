@@ -220,7 +220,10 @@ export default {
     display: flex;
 
     .jumbo1 {
-      height: 100%;
+      height: -webkit-fill-available;
+      height: -moz-available;
+      height: stretch;
+
 
       .carousel-image-container {
         position: relative;
@@ -285,7 +288,11 @@ export default {
 
           font-size: 0.9rem;
 
-          height: 100%;
+          height: -webkit-fill-available;
+          height: -moz-available;
+          height: stretch;
+
+
           max-height: 160px;
           background-color: rgb(246, 134, 48);
 
@@ -351,9 +358,15 @@ export default {
           }
 
           .delivery-image {
-            height: 100%;
-            width: 100%;
-            min-height: 100%;
+            height: -webkit-fill-available;
+            height: -moz-available;
+            height: stretch;
+            width: -webkit-fill-available;
+            width: -moz-available;
+            width: stretch;
+            min-height: -webkit-fill-available;
+            min-height: -moz-available;
+            min-height: stretch;
           }
         }
     }
@@ -364,7 +377,9 @@ export default {
     display: flex;
 
     .jumbo1 {
-      height: 100%;
+      height: -webkit-fill-available;
+      height: -moz-available;
+      height: stretch;
 
       .carousel-image-container {
         position: relative;
@@ -429,7 +444,10 @@ export default {
 
         font-size: 0.8rem;
 
-        height: 100%;
+        height: -webkit-fill-available;
+        height: -moz-available;
+        height: stretch;
+
 
         max-height: 134px;
 
@@ -507,9 +525,16 @@ export default {
         }
 
         .delivery-image {
-          height: 100%;
-          width: 100%;
-          min-height: 100%;
+          height: -webkit-fill-available;
+          height: -moz-available;
+          height: stretch;
+          width: -webkit-fill-available;
+          width: -moz-available;
+          width: stretch;
+          min-height: -webkit-fill-available;
+          min-height: -moz-available;
+          min-height: stretch;
+
         }
       }
     }
