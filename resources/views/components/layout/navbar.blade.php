@@ -18,7 +18,7 @@
         <div class="nav-item mx-3">
             <x-link
                 class="navbar-brand font-weight-bold text-white"
-                href="{{ url('/') }}"
+                href="{{ url('/admin/home') }}"
             >
                 <i class="fa-2x fas fa-box"></i>
                 <span>FoxyBox</span>
