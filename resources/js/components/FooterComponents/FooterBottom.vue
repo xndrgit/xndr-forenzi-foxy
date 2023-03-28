@@ -7,7 +7,7 @@
                 <p class="policy">
                     ©2022 PAPYRA SRL - P.IVA 01502350430 - PRIVACY & COOKIES
                     POLICY - MADE WITH <span class="text-danger"> ♥ </span> BY
-                    TERENZICONCEPT
+                  XanderWilde
                 </p>
             </div>
             <div>
