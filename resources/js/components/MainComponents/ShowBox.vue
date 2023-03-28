@@ -266,6 +266,7 @@ export default {
       }
 
       // alert("Added to Cart");
+
     },
   },
 };

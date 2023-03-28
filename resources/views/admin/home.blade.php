@@ -13,7 +13,7 @@
                 </x-alert.success>
             @endif
 
-            {{ __('Accesso effettuato!) }}
+            {{ __('You are logged in!') }}
         </x-slot>
     </x-layout.center-card>
 </x-app-layout>

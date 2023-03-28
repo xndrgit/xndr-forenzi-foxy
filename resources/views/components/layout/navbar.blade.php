@@ -20,7 +20,7 @@
                 class="navbar-brand font-weight-bold text-white"
                 href="{{ url('/admin/home') }}"
             >
-                <i class="fa-2x fas fa-box"></i>
+                <i class="fa-1x fas fa-box"></i>
                 <span>FoxyBox</span>
             </x-link>
         </div>

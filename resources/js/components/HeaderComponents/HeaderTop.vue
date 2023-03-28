@@ -132,16 +132,19 @@
                             </div>
                             <div class="d-none d-lg-inline">
                                 <p>
-                                    <strong>
-                                        {{
-                                            checkAuth
-                                                ? "DISCONNETTITI"
-                                                : "ACCEDI O"
-                                        }}
-                                    </strong>
+                                  <strong>
+                                    {{
+                                      checkAuth
+                                        ? "DISCONNETTITI"
+                                        : "ACCEDI O"
+                                    }}
+                                  </strong>
                                 </p>
-                                <p>{{ $store.state.name }}</p>
+                              <p>{{ $store.state.name }}</p>
                             </div>
+                          <div class="d-inline d-lg-none">
+                            <p>{{ $store.state.name }}</p>
+                          </div>
                         </div>
                     </a>
                 </section>

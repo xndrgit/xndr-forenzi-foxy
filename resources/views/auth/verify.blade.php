@@ -3,24 +3,24 @@
 
     <x-layout.center-card>
         <x-slot name="cardHeader">
-            {{ __('Verifica la tua mail') }}
+            {{ __('Verify Your Email Address') }}
         </x-slot>
 
         <x-slot name="cardBody">
             @if (session('resent'))
                 <x-alert.success role="alert">
-                    {{ __('Un link di verifica è stato mandato alla tua mail') }}
+                    {{ __('A fresh verification link has been sent to your email address.') }}
                 </x-alert.success>
             @endif
 
-            {{ __('Prima di procedere verifica se hai ricevuto un link nella tua mail') }}
-            {{ __('Se non hai ricevuto la mail') }},
+            {{ __('Before proceeding, please check your email for a verification link.') }}
+            {{ __('If you did not receive the email') }},
             <x-form
                 class="d-inline"
                 action="{{ route('verification.resend') }}"
             >
                 <x-button class="btn-link p-0 m-0 align-baseline">
-                    {{ __('Clicca qui per riceverne un altro) }}
+                    {{ __('click here to request another') }}
                 </x-button>
             </x-form>
         </x-slot>
