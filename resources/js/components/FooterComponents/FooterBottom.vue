@@ -7,7 +7,7 @@
                 <p class="policy">
                     ©2022 PAPYRA SRL - P.IVA 01502350430 - PRIVACY & COOKIES
                     POLICY - MADE WITH <span class="text-danger"> ♥ </span> BY
-                   <a href="">XanderWorld</a>
+                   <a href="https://github.com/XanderWorld">Xander Wilde</a>
                 </p>
             </div>
             <div>
@@ -26,39 +26,50 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+
 .FooterBottom {
-    width: 100%;
-    background-color: black;
-    color: white;
+  width: 100%;
+  background-color: black;
+  color: white;
 
-    img {
-        height: 20px;
-        margin: 10px;
-    }
+  img {
+    height: 20px;
+    margin: 10px;
+  }
 
-    .policy {
-        display: contents;
-        font-size: 0.8rem;
-    }
+  .policy {
+    display: contents;
+    font-size: 0.8rem;
+    line-height: 2rem;
+  }
 
-    @media (max-width: 1000px) {
-        img {
-            height: 18px; /* Height for screens less than 1000px */
-        }
-        .policy {
-            font-size: 0.6rem;
-            height: 20px;
-        }
+  p {
+    a {
+      text-decoration: none;
+      margin-left: 10px;
     }
+  }
 
-    @media (max-width: 576px) {
-        img {
-            display: none;
-        }
-        .policy {
-            font-size: 0.4rem;
-           font-weight: bold;
-        }
-    }
+
+}
+
+@media (max-width: 1000px) {
+  img {
+    height: 18px; /* Height for screens less than 1000px */
+  }
+  .policy {
+    font-size: 0.6rem;
+    height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  img {
+    display: none;
+  }
+  .policy {
+    font-size: 0.4rem;
+    font-weight: bold;
+  }
 }
 </style>

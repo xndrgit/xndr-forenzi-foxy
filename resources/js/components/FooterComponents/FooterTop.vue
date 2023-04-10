@@ -18,71 +18,71 @@
                     <div class="footer-section col-6 col-sm-3">
                         <h3>Menu utente</h3>
                         <ul>
-                            <li><a href="#">Account</a></li>
-                            <li><a href="#">Carrello</a></li>
-                            <li><a href="#">Abbonamento FoxTop</a></li>
-                            <li><a href="#">Condizioni di vendita</a></li>
-                            <li><a href="#">Privacy & Cookies Policy</a></li>
-                            <li><a href="#">Contributo Conai</a></li>
-                            <li><a href="#">Contatti</a></li>
+                          <li><span href="#">Account</span></li>
+                          <li><span href="#">Carrello</span></li>
+                          <li><span href="#">Abbonamento FoxTop</span></li>
+                          <li><span href="#">Condizioni di vendita</span></li>
+                          <li><span href="#">Privacy & Cookies Policy</span></li>
+                          <li><span href="#">Contributo Conai</span></li>
+                          <li><span href="#">Contatti</span></li>
                         </ul>
                     </div>
                     <div class="footer-section col-6 col-sm-3">
                         <h3>Seguici sui social</h3>
-                        <ul class="wrapper icons">
+                      <div class="wrapper icons">
 
-                          <a href="https://www.facebook.com/FoxyBox.scatole">
-                                <li class="icon facebook">
+                        <a href="https://www.facebook.com/FoxyBox.scatole">
+                                <span class="icon facebook">
 
                                     <span class="tooltip">Facebook</span>
                                     <span>
-                                        <i class="fa-sm fab fa-facebook-f"></i
-                                    ></span>
+                                        <i class="fa-2x fab fa-facebook-f"></i
+                                        ></span>
 
-                                </li>
-                          </a>
+                                </span>
+                        </a>
 
-                            <!-- <li class="icon twitter">
-                                <span class="tooltip">Twitter</span>
-                                <span
-                                    ><i class="fa-sm fab fa-twitter"></i
-                                ></span>
-                            </li> -->
-                            <li class="icon instagram">
+                        <!-- <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <span
+                                ><i class="fa-sm fab fa-twitter"></i
+                            ></span>
+                        </li> -->
+                        <span class="icon instagram">
                                 <span class="tooltip">Instagram</span>
                                 <span
-                                    ><i class="fa-sm fab fa-instagram"></i
+                                ><i class="fa-2x fab fa-instagram"></i
                                 ></span>
-                            </li>
-                            <!-- <li class="icon github">
-                            <span class="tooltip">Github</span>
-                            <span><i class="fa-sm fab fa-github"></i></span>
+                            </span>
+                        <!-- <li class="icon github">
+                        <span class="tooltip">Github</span>
+                        <span><i class="fa-sm fab fa-github"></i></span>
+                    </li> -->
+                        <!-- <li class="icon youtube">
+                            <span class="tooltip">Youtube</span>
+                            <span
+                                ><i class="fa-sm fab fa-youtube"></i
+                            ></span>
                         </li> -->
-                            <!-- <li class="icon youtube">
-                                <span class="tooltip">Youtube</span>
-                                <span
-                                    ><i class="fa-sm fab fa-youtube"></i
-                                ></span>
-                            </li> -->
-                        </ul>
+                      </div>
                     </div>
-                    <div class="footer-section col-6 col-sm-3">
-                        <h3>Newsletter</h3>
-                        <p>
-                            Iscriviti per ricevere email su novità, sconti e
-                            molto altro.
-                        </p>
-                        <form>
-                            <input placeholder="" type="email" />
-                            <br />
-                            <button
-                                class="dark-button text-white"
-                                type="submit"
-                            >
-                                ISCRIVITI
-                            </button>
-                        </form>
-                    </div>
+                  <div class="footer-section col-6 col-sm-3">
+                    <h3>Newsletter</h3>
+                    <p>
+                      Iscriviti per ricevere email su novità, sconti e
+                      molto altro.
+                    </p>
+                    <form>
+                      <input placeholder="" type="email"/>
+                      <br/>
+                      <button
+                        class="dark-button"
+                        type="submit"
+                      >
+                        ISCRIVITI
+                      </button>
+                    </form>
+                  </div>
                 </div>
             </div>
         </div>
@@ -94,17 +94,23 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+
 .FooterTop {
     padding: 3rem 0;
     background-color: white;
 
     input {
-        background-color: #f1f1f1;
-        border: none;
+      font-size: .6rem;
+
+      padding: .4rem;
+      background-color: #f1f1f1;
+      border: none;
     }
 
+
     button {
-        padding: 8px 2rem;
+      padding: 8px 2rem;
+      color: white;
     }
 
     .footer-section {
@@ -143,6 +149,7 @@ export default {};
 
     }
 }
+
 @media (max-width: 576px) {
   .FooterTop {
     padding: 3rem 0;
@@ -187,7 +194,7 @@ export default {};
           overflow: hidden;
           text-overflow: ellipsis;
 
-          margin: 10px 0px;
+          margin: 10px 0;
           margin-right: 10px;
 
 
@@ -202,4 +209,5 @@ export default {};
     }
   }
 }
+
 </style>

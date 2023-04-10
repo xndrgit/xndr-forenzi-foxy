@@ -1,0 +1,277 @@
+//! Width
+.w-5 {
+  width: 5%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-35 {
+  width: 35%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-65 {
+  width: 65%;
+}
+
+//! Background colors
+.bg-orange {
+  min-width: fit-content;
+
+  background-color: $orange;
+  border-radius: 0;
+}
+
+.bg-yellow {
+  min-width: fit-content;
+
+  background-color: $yellow;
+  border-radius: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.bg-gray {
+  background-color: $gray;
+  border-radius: 0;
+  color: white;
+}
+
+.bg-white * {
+  background-color: $white;
+  color: $black;
+  border-radius: 0;
+}
+
+//! TEXT
+.ellipsis {
+  //max-width: ;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.txt-orange {
+  color: $orange;
+}
+
+//! Button styles
+.yellow-button-radius {
+  background-color: #fdbc48;
+  border-radius: 50%;
+  color: $white;
+  font-weight: bold;
+  padding: 1px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    transform: scale(1);
+    // box-shadow: 0 0 10px #000;
+    background-color: $orange;
+  }
+}
+
+.yellow-button {
+  background-color: #fdbc48;
+  border: none;
+  border-radius: 0;
+  color: $white;
+  font-weight: bold;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    transform: scale(1);
+    // box-shadow: 0 0 10px #000;
+    background-color: $orange;
+  }
+}
+
+.orange-button {
+  background-color: $orange;
+  border: none;
+  border-radius: 0;
+  color: $white;
+  font-weight: bold;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    transform: scale(1);
+    box-shadow: 0 0 10px #000;
+    background-color: #00f;
+  }
+}
+
+.dark-button {
+  background-color: #000000;
+  border: none;
+  border-radius: 0;
+  color: $white;
+  font-weight: bold;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    transform: scale(1);
+    // box-shadow: 0 0 10px #000;
+    background-color: $orange;
+  }
+}
+
+//! ICONS
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wrapper.icons {
+  display: inline-flex;
+  list-style: none;
+
+  .icon {
+    position: relative;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 15px;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #ffffff;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #ffffff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .icon:hover span,
+  .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .facebook:hover,
+  .facebook:hover .tooltip,
+  .facebook:hover .tooltip::before {
+    background: #1877f2;
+    color: #ffffff;
+  }
+
+  .twitter:hover,
+  .twitter:hover .tooltip,
+  .twitter:hover .tooltip::before {
+    background: #1da1f2;
+    color: #ffffff;
+  }
+
+  .instagram:hover,
+  .instagram:hover .tooltip,
+  .instagram:hover .tooltip::before {
+    background: #e4405f;
+    color: #ffffff;
+  }
+
+  //  .github:hover,
+  // .github:hover .tooltip,
+  //  .github:hover .tooltip::before {
+  //     background: #333333;
+  //     color: #ffffff;
+  // }
+
+  .youtube:hover,
+  .youtube:hover .tooltip,
+  .youtube:hover .tooltip::before {
+    background: #cd201f;
+    color: #ffffff;
+  }
+}
+
+

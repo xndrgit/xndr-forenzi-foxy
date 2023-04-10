@@ -79,7 +79,7 @@ return [
     'error'          => env('DATATABLES_ERROR', null),
 
     /*
-     * Default columns definition of dataTable utility functions.
+     * Default columns definition of dataTable components functions.
      */
     'columns'        => [
         /*
