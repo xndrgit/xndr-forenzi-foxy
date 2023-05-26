@@ -2,27 +2,21 @@
 .w-5 {
   width: 5%;
 }
-
 .w-10 {
   width: 10%;
 }
-
 .w-35 {
   width: 35%;
 }
-
 .w-40 {
   width: 40%;
 }
-
 .w-60 {
   width: 60%;
 }
-
 .w-65 {
   width: 65%;
 }
-
 //! Background colors
 .bg-orange {
   min-width: fit-content;
@@ -30,7 +24,6 @@
   background-color: $orange;
   border-radius: 0;
 }
-
 .bg-yellow {
   min-width: fit-content;
 
@@ -39,19 +32,16 @@
   color: white;
   font-weight: bold;
 }
-
 .bg-gray {
   background-color: $gray;
   border-radius: 0;
   color: white;
 }
-
 .bg-white * {
   background-color: $white;
   color: $black;
   border-radius: 0;
 }
-
 //! TEXT
 .ellipsis {
   //max-width: ;
@@ -59,11 +49,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .txt-orange {
   color: $orange;
 }
-
 //! Button styles
 .yellow-button-radius {
   background-color: #fdbc48;

@@ -349,7 +349,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../sass/global.scss";
+@import "../../sass/app.scss";
 
 
 .ellipsis {

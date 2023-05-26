@@ -12,7 +12,6 @@
     transform: scale(1) translateY(0);
   }
 }
-
 article.card {
   position: relative;
   width: 20em;
@@ -23,13 +22,11 @@ article.card {
     box-shadow: 0 10px 20px 10px rgba(black, 0.2);
   }
 }
-
 .card__link {
   display: block;
   padding: 1em;
   text-decoration: none;
 }
-
 .card__icon {
   position: absolute;
   width: 4em;
@@ -41,7 +38,6 @@ article.card {
     transform: scale(0);
   }
 }
-
 .card__media {
   padding: 2em 0;
 
@@ -65,21 +61,17 @@ article.card {
     }
   }
 }
-
 .card__header {
   position: relative;
 }
-
 .card__header-title {
   margin: 0 0 0.25em;
   color: white;
 }
-
 .card__header-meta {
   margin: 0;
   color: #999;
 }
-
 .card__header-icon {
   opacity: 0;
   position: absolute;
@@ -100,7 +92,6 @@ article.card {
 //! CARD DARK
 $main-blue: #0076bd !default;
 $main-blue-rgb-015: rgba(0, 118, 189, 0.1) !default;
-
 section.dark {
   background: #110f16;
 
