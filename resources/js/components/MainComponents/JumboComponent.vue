@@ -18,7 +18,7 @@
                 <slide v-for="(image, index) in images" :key="index">
                     <div class="carousel-image-container">
                         <img
-                            :src="image.src"
+                            src="https://i.pinimg.com/1200x/92/33/95/9233959a41ba45b2a38c779616fc6197.jpg"
                             alt="Slider image"
                             class="img-fluid jumbo-image"
                             style="width: 85%"

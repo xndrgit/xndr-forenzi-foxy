@@ -6,7 +6,7 @@
           <p class="policy">
             ©2022 PAPYRA SRL - P.IVA 01502350430 - PRIVACY & COOKIES
             POLICY - MADE WITH <span class="text-danger"> ♥ </span> BY
-            <a href="https://github.com/XanderWorld">Xander Wilde</a>
+            <a href="https://github.com/xndrgit">xndr</a>
           </p>
         </div>
 

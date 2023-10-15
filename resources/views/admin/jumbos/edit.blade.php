@@ -6,9 +6,7 @@
             {{ $create ? 'Create' : 'Update' }} Jumbo
         </x-layout.form-header>
 
-        <x-form
-            action="{{ $action }}"
-        >
+        <x-form action="{{ $action }}" enctype="multipart/form-data">
             @if(!$create)
                 @method('put')
             @endif
@@ -27,7 +25,6 @@
                         id="src"
                         name="src"
                         type="file"
-                        accept="image/*"
                     />
 
                     <div

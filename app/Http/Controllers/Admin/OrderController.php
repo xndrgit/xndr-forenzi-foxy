@@ -19,6 +19,8 @@ class OrderController extends Controller
 {
     protected $repository;
 
+
+//Nel OrderController, all'inizio, viene creato un oggetto OrderRepository e viene messo dentro $repository. Questo è come mettere un'etichetta su una scatola dicendo "Tutte le operazioni sugli ordini sono dentro questa scatola".
     public function __construct(OrderRepository $orderRepository)
     {
         $this->repository = $orderRepository;
