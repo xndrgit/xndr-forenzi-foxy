@@ -1,6 +1,6 @@
 <template>
     <div class="HeaderTop d-flex align-items-center top-navbar">
-        <div class="container-lg">
+        <div class="container-fluid">
             <div class="row justify-content-between">
                 <section class="col-3 col-lg-3 d-none d-lg-block">
                     <div id="free" class="d-flex align-items-center">
