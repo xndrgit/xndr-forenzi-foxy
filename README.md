@@ -2,7 +2,7 @@
 
 ## Goal of the 'FoxyBox' App
 
-Welcome to Foxy Box, this is on of my e-commerce commissions
+Welcome to Foxy Box, this is one of my e-commerce commissions
 ## The Technology Behind It
 
 A fusion of Laravel and Vue.js brings this project to life.
