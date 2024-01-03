@@ -2,8 +2,7 @@
 
 ## Goal of the 'FoxyBox' App
 
-Welcome to Foxy Box, the premier online store for customizable boxes! With our easy-to-use e-commerce platform, you can design and order the perfect box for any occasion.
-
+Welcome to Foxy Box, this is on of my e-commerce commissions
 ## The Technology Behind It
 
 A fusion of Laravel and Vue.js brings this project to life.
