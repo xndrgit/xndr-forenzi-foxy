@@ -40,6 +40,7 @@ export default {};
 
   .policy {
     display: contents;
+    font-size: 0.7rem;
   }
 
   p {
@@ -57,7 +58,7 @@ export default {};
     height: 18px; /* Height for screens less than 1000px */
   }
   .policy {
-    font-size: 0.5rem;
+    font-size: 0.45rem !important;
     height: 20px;
   }
 }
@@ -67,7 +68,7 @@ export default {};
     display: none;
   }
   .policy {
-    font-size: 0.3rem;
+    font-size: 0.35rem !important;
     font-weight: bold;
   }
 }
