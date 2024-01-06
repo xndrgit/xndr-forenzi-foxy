@@ -3,6 +3,9 @@
 ## Goal of the 'FoxyBox' App
 
 Welcome to Foxy Box, this is one of my e-commerce commissions
+
+![image](https://github.com/xndrgit/forenzi-foxy-laravel7-vue2-XanderWorld/assets/115892862/cd9b8383-d78f-4449-9739-9f5c4273f343)
+
 ## The Technology Behind It
 
 A fusion of Laravel and Vue.js brings this project to life.
