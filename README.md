@@ -1,8 +1,8 @@
 ![FoxyBox_logo](https://github.com/xndrgit/forenzi-foxy-laravel7-vue2-XanderWorld/assets/115892862/132ff563-9203-4e36-a126-ecca20722d29)
 
-## Goal of the 'FoxyBox' App
+## FoxyBox
 
-Welcome to Foxy Box, this is one of my e-commerce commissions
+Welcome to Foxy Box, one of my commissions
 
 ![image](https://github.com/xndrgit/forenzi-foxy-laravel7-vue2-XanderWorld/assets/115892862/cd9b8383-d78f-4449-9739-9f5c4273f343)
 
